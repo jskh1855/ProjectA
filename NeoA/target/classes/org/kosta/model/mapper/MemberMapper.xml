@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kosta.model.mapper.MemberMapper">
+ 	<sql id="selectMember">
+ 		select id,password,name,address from security_member
+ 	</sql>
+ 	
+ 	<select id="getAddressList" resultType="string">
+ 		select distinct address from security_member
+ 	</select>
+ 	<select id="findMemberListByAddress" resultType="memberVO">
+ 		select id,name from security_member
+ 		where address=#{value}
+ 	</select>
+ 	<!-- <select id="login" resultType="memberVO" parameterType="memberVO">
+ 		<include refid="selectMember"></include>
+ 		where id=#{id} and password=#{password}
+ 	</select> -->
+ 	<select id="getMemberCount" resultType="int">
+ 		select count(*) from security_member
+ 	</select>
+ 	<update id="updateMember" parameterType="memberVO">
+		update security_member set password=#{password},name=#{name},address=#{address}
+		where id=#{id}
+	</update>
+	<insert id="registerMember" parameterType="memberVO">
+		insert into security_member(id,password,name,address)
+		values(#{id},#{password},#{name},#{address})
+	</insert>
+	<select id="idcheck" resultType="int">
+		select count(*) from security_member where id=#{value}
+	</select>
+	<!--  -->
+	<insert id="registerRole" parameterType="authority">
+		insert into authorities(username,authority) values(#{username},#{authority})
+	</insert>
+	<!-- Spring Security에서 로그인 인증시 사용 : 
+	      사용가능한(enabled 1) 계정일 경우만 조회. 
+	 -->
+	<select id="findMemberById" resultType="memberVO">
+ 		SELECT	id,	password,	name, address, enabled
+		FROM	security_member
+		WHERE 	id=#{value}	
+		AND		enabled=1 		
+ 	</select>
+	<!-- Spring Security에서 권한 체크를 위해 사용 -->
+	<select id="selectAuthorityByUsername"  resultType="authority">
+		SELECT	username,authority
+		FROM	authorities
+		WHERE	username=#{username}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
