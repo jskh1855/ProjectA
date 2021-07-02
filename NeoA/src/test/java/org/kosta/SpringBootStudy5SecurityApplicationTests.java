@@ -19,7 +19,7 @@ class SpringBootStudy5SecurityApplicationTests {
 		
 		// 회원정보 수정
 		
-		// 
+		// test 
 		
 	}
 }
