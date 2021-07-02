@@ -2,7 +2,7 @@ package org.kosta;
 
 import org.junit.jupiter.api.Test;
 import org.kosta.model.mapper.MemberMapper;
-import org.kosta.model.vo.PostVO;
+import org.kosta.model.mapper.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class SpringBootStudy5SecurityApplicationTests {
 	@Autowired
 	MemberMapper mm;
+	@Autowired
+	PostMapper pm;
 	@Test
 	public void contextLoads() {
 
@@ -29,7 +31,7 @@ class SpringBootStudy5SecurityApplicationTests {
 		 */
 		// 전체 물품 보기
 		
-		mm.showAll();
+		pm.showAll();
 		
 		
 		// test 

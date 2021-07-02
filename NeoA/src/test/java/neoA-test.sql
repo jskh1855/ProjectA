@@ -36,7 +36,7 @@ insert into a_member(member_id, member_email, name, password, address, phone_no,
 
 select * 
 from post
-order by sysdate desc
+order by product_up_time desc
 
 -- 상품 등록 
 

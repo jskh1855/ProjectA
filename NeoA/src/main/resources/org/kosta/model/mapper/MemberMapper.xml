@@ -16,12 +16,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	update a_member set name=#{name} , address=#{address}, phone_no = #{phoneNo}, bank_name=#{bankName},account_no=#{accountNo}
 		where member_id =#{memberId} and password=#{password}
 	</update>
-	
-	<select id="showAll" resultType="postVO">
-		select * 
-		from post
-		order by sysdate desc
-	</select>
-	
+
 	
 </mapper>
