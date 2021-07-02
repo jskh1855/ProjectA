@@ -18,7 +18,7 @@ public class MemberController {
 	@Resource
 	private MemberService memberService;
 	
-	//***************************register****************************************
+	//***************************register***********************************
 	
 	@RequestMapping("user/registerForm")
 	public String registerForm() {
