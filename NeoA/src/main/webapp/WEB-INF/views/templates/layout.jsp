@@ -10,12 +10,9 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/myweb/css/home.css">
 </head>
 <body>
-<div id="container">
-	<div id="header"><tiles:insertAttribute name="header" /></div>
-	<div id="left"><tiles:insertAttribute name="left" /></div>
-	<div id="main"><tiles:insertAttribute name="main" /></div>
-	<div id="footer"><tiles:insertAttribute name="footer" /></div>
-</div>
+	<tiles:insertAttribute name="header" />
+	<tiles:insertAttribute name="main" />
+	<tiles:insertAttribute name="footer" />
 </body>
 </html>
 
