@@ -1,269 +1,347 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Shop Homepage - Start Bootstrap Template</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/myweb/css/styles.css">
-    </head>
-    <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
-                    </form>
+
+   <main>
+        <!--? slider Area Start -->
+        <div class="slider-area ">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height d-flex align-items-center slide-bg">
+                    <div class="container">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                                <div class="hero__caption">
+                                    <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">Select Your New Perfect Style</h1>
+                                    <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>
+                                    <!-- Hero-btn -->
+                                    <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
+                                        <a href="industries.html" class="btn hero-btn">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
+                                <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
+                                    <img src="${pageContext.request.contextPath}/myweb/assets/img/hero/watch.png" alt="" class=" heartbeat">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Slider -->
+                <div class="single-slider slider-height d-flex align-items-center slide-bg">
+                    <div class="container">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                                <div class="hero__caption">
+                                    <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">Select Your New Perfect Style</h1>
+                                    <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>
+                                    <!-- Hero-btn -->
+                                    <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
+                                        <a href="industries.html" class="btn hero-btn">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
+                                <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
+                                    <img src="assets/img/hero/watch.png" alt="" class=" heartbeat">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-        <!-- Header-->
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+        </div>
+        <!-- slider Area End-->
+        <!-- ? New Product Start -->
+        <section class="new-product-area section-padding30">
+            <div class="container">
+                <!-- Section tittle -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section-tittle mb-70">
+                            <h2>New Arrivals</h2>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </header>
-        <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Fancy Product</h5>
-                                    <!-- Product price-->
-                                    $40.00 - $80.00
-                                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-new-pro mb-30 text-center">
+                            <div class="product-img">
+                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/new_product1.png" alt="">
                             </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                            <div class="product-caption">
+                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Special Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$20.00</span>
-                                    $18.00
-                                </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-new-pro mb-30 text-center">
+                            <div class="product-img">
+                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/new_product2.png" alt="">
                             </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                            <div class="product-caption">
+                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Sale Item</h5>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$50.00</span>
-                                    $25.00
-                                </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-new-pro mb-30 text-center">
+                            <div class="product-img">
+                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/new_product3.png" alt="">
                             </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Popular Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    $40.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Sale Item</h5>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$50.00</span>
-                                    $25.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Fancy Product</h5>
-                                    <!-- Product price-->
-                                    $120.00 - $280.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Special Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$20.00</span>
-                                    $18.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Popular Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    $40.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                            <div class="product-caption">
+                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
-    </html>
+        <!--  New Product End -->
+        <!--? Gallery Area Start -->
+        <div class="gallery-area">
+            <div class="container-fluid p-0 fix">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-gallery mb-30">
+                            <div class="gallery-img big-img" style="background-image: url(${pageContext.request.contextPath}/myweb/assets/img/gallery/gallery1.png);"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-gallery mb-30">
+                            <div class="gallery-img big-img" style="background-image: url(${pageContext.request.contextPath}/myweb/assets/img/gallery/gallery2.png);"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-12">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6">
+                                <div class="single-gallery mb-30">
+                                    <div class="gallery-img small-img" style="background-image: url(${pageContext.request.contextPath}/myweb/assets/img/gallery/gallery3.png);"></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12  col-md-6 col-sm-6">
+                                <div class="single-gallery mb-30">
+                                    <div class="gallery-img small-img" style="background-image: url(${pageContext.request.contextPath}/myweb/assets/img/gallery/gallery4.png);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Gallery Area End -->
+        <!--? Popular Items Start -->
+        <div class="popular-items section-padding30">
+            <div class="container">
+                <!-- Section tittle -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-8 col-md-10">
+                        <div class="section-tittle mb-70 text-center">
+                            <h2>Popular Items</h2>
+                            <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular1.png" alt="">
+                                <div class="img-cap">
+                                    <span>Add to cart</span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular2.png" alt="">
+                                <div class="img-cap">
+                                    <span>Add to cart</span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular3.png" alt="">
+                                <div class="img-cap">
+                                    <span>Add to cart</span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular4.png" alt="">
+                                <div class="img-cap">
+                                    <span>Add to cart</span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular5.png" alt="">
+                                <div class="img-cap">
+                                    <span>Add to cart</span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular6.png" alt="">
+                                <div class="img-cap">
+                                    <span>Add to cart</span>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
+                                <span>$ 45,743</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Button -->
+                <div class="row justify-content-center">
+                    <div class="room-btn pt-70">
+                        <a href="catagori.html" class="btn view-btn1">View More Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Popular Items End -->
+        <!--? Video Area Start -->
+        <div class="video-area">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                    <div class="video-wrap">
+                        <div class="play-btn "><a class="popup-video" href="https://www.youtube.com/watch?v=KMc6DyEJp04"><i class="fas fa-play"></i></a></div>
+                    </div>
+                    </div>
+                </div>
+                <!-- Arrow -->
+                <div class="thumb-content-box">
+                    <div class="thumb-content">
+                        <h3>Next Video</h3>
+                        <a href="#"> <i class="flaticon-arrow"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Video Area End -->
+        <!--? Watch Choice  Start-->
+        <div class="watch-area section-padding30">
+            <div class="container">
+                <div class="row align-items-center justify-content-between padding-130">
+                    <div class="col-lg-5 col-md-6">
+                        <div class="watch-details mb-40">
+                            <h2>Watch of Choice</h2>
+                            <p>Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                            <a href="shop.html" class="btn">Show Watches</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-10">
+                        <div class="choice-watch-img mb-40">
+                            <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/choce_watch1.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-lg-6 col-md-6 col-sm-10">
+                        <div class="choice-watch-img mb-40">
+                            <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/choce_watch2.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6">
+                        <div class="watch-details mb-40">
+                            <h2>Watch of Choice</h2>
+                            <p>Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                            <a href="shop.html" class="btn">Show Watches</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Watch Choice  End-->
+        <!--? Shop Method Start-->
+        <div class="shop-method-area">
+            <div class="container">
+                <div class="method-wrapper">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <div class="single-method mb-40">
+                                <i class="ti-package"></i>
+                                <h6>Free Shipping Method</h6>
+                                <p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <div class="single-method mb-40">
+                                <i class="ti-unlock"></i>
+                                <h6>Secure Payment System</h6>
+                                <p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
+                            </div>
+                        </div> 
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <div class="single-method mb-40">
+                                <i class="ti-reload"></i>
+                                <h6>Secure Payment System</h6>
+                                <p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Method End-->
+    </main>
