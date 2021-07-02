@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {		
-		http.authorizeRequests() .antMatchers("/", "/myweb/**", "/user/**") .permitAll().anyRequest().authenticated();
+		http.authorizeRequests() .antMatchers("/","/home", "/myweb/**", "/user/**", "/product/**") .permitAll().anyRequest().authenticated();
 		http.formLogin().loginPage("/login") 
 				.loginProcessingUrl("/login")
 				.failureUrl("/login")

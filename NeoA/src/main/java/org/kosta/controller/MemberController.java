@@ -19,14 +19,42 @@ public class MemberController {
 	
 	@Resource
 	private MemberService memberService;
+	
+	//***************************register****************************************
+	
+	@RequestMapping("user/registerForm")
+	public String registerForm() {
+		return "member/registerForm.tiles";
+	}
+	
+	@RequestMapping(value = "user/registerMember", method = RequestMethod.POST)
+	public String register(MemberVO vo) {
+		memberService.registerMember(vo);
+		return "redirect:/user/registerResultView?id=" + vo.getMemberId();
+	}
 
-	//@Secured("ROLE_MEMBER")
+	@RequestMapping("user/registerResultView")
+	public String registerResultView(String id, Model model) {
+		MemberVO vo = memberService.findMemberById(id);
+		model.addAttribute("memberVO",vo);
+		return "member/register_result.tiles";
+	}
+
+	@RequestMapping("user/idcheckAjax")
+	@ResponseBody
+	public String idcheckAjax(String id) {
+		return memberService.idcheck(id);
+	}
+	
+	//***************************register end****************************************
+	
+	//***************************update****************************************
+	
 	@RequestMapping("updateForm")
 	public String updateForm() {
 		return "member/updateForm.tiles";
 	}
 
-	//@Secured("ROLE_MEMBER")
 	@RequestMapping("updateMemberAction")
 	public String updateMemberAction(HttpServletRequest request, MemberVO memberVO) {
 		
@@ -41,28 +69,8 @@ public class MemberController {
 		return "member/update_result.tiles";
 	}
 	
-	@RequestMapping("user/registerForm")
-	public String registerForm() {
-		return "member/registerForm.tiles";
-	}
-	
-	@RequestMapping(value = "user/registerMember", method = RequestMethod.POST)
-	public String register(MemberVO vo) {
-		memberService.registerMember(vo);
-		return "redirect:/user/registerResultView?id=" + vo.getMemberId();
-	}
+	//***************************update end****************************************
 
-	@RequestMapping("user/registerResultView")
-	public ModelAndView registerResultView(String id) {
-		MemberVO vo = memberService.findMemberById(id);
-		return new ModelAndView("member/register_result.tiles", "memberVO", vo);
-	}
-
-	@RequestMapping("user/idcheckAjax")
-	@ResponseBody
-	public String idcheckAjax(String id) {
-		return memberService.idcheck(id);
-	}
 
 	
 }
