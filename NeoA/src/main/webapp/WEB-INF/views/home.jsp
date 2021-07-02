@@ -265,7 +265,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                     <div class="video-wrap">
-                        <div class="play-btn "><a class="popup-video" href="https://www.youtube.com/watch?v=KMc6DyEJp04"><i class="fas fa-play"></i></a></div>
+                        <div class="play-btn "><a class="popup-video" href="https://www.youtube.com/watch?v=uxQZVGU72lE"><i class="fas fa-play"></i></a></div>
                     </div>
                     </div>
                 </div>
