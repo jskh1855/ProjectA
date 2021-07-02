@@ -9,6 +9,7 @@ create table category(
 	small_cate varchar2(100) not null,
 	category_name varchar2(100) not null
 );
+create sequence category_seq;
 
 create table a_member(
 	member_id varchar2(100) primary key,
@@ -16,16 +17,17 @@ create table a_member(
 	name varchar2(100) not null,
 	password varchar2(100) not null,
 	address varchar2(100) not null,
-	phoneNo varchar2(100) not null,
+	phone_no varchar2(100) not null,
 	credit varchar2(100) not null,
-	bankName varchar2(100) not null,
-	accountNo varchar2(100) not null,
+	bank_name varchar2(100) not null,
+	account_no varchar2(100) not null,
 	enabled int default 1 not null
 );
 
+
+
 create table post(
 	product_no varchar2(100) primary key,
-	category_no varchar2(100),
 	product_name varchar2(100) not null,
 	start_price number default 0,
 	now_price number default 0,
@@ -34,9 +36,10 @@ create table post(
 	unit_price number,
 	give_me_that_price number,
 	detail clob,
+	category_no varchar2(100) constraint fk_post_category_no references category(category_no),
 	member_id varchar2(100) constraint fk_post references a_member(member_id)
 );
-
+create sequence product_no_seq;
 
 
 create table qna(
@@ -73,7 +76,17 @@ drop table post;
 drop table a_member;
 drop table category;
 
+--sequence 드랍
+drop sequence category_seq;
+drop sequence product_no_seq;
 
 -- **************************************
 -- insert ( sample )  
 -- **************************************
+insert into a_member(member_id, member_email, name, password, address, phone_no, credit, bank_name, account_no, enabled) values('java','a@abc.com','아이유','a','오리','010-1234-5678', 'gold','국민은행','111-111-1111','1'); 
+
+insert into category values(category_seq.nextval, '1','0','0','가전');
+insert into category values(category_seq.nextval, '1','1','0','영상가전');
+insert into category values(category_seq.nextval, '1','1','1','TV');
+
+insert into post values(product_no_seq, );
