@@ -6,19 +6,15 @@ import org.kosta.model.vo.Authority;
 import org.kosta.model.vo.MemberVO;
 
 public interface MemberService {
-	MemberVO findMemberById(String id);
-
-	List<String> getAddressList();
-
-	List<MemberVO> findMemberListByAddress(String address);
-
-	int getMemberCount();
-
-	void updateMember(MemberVO vo);
 
 	void registerMember(MemberVO vo);
 
+	void updateMember(MemberVO memberVO);
+
 	String idcheck(String id);
-	
+
 	List<Authority> selectAuthorityByUsername(String username);
+
+	MemberVO findMemberById(String id);
+
 }
