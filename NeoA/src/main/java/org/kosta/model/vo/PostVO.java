@@ -11,6 +11,7 @@ public class PostVO {
 	private int unitPrice;
 	private int giveMeThatPrice;
 	private String detail;
+	private int bidTimeUnit;
 	private LocalDate bidEndTime;
 	private MemberVO memberVO;
 	private CategoryVO categoryVO;
@@ -22,7 +23,7 @@ public class PostVO {
 		// TODO Auto-generated constructor stub
 	}
 	public PostVO(String productNo, String productName, int startPrice, int nowPrice, LocalDate productUpTime,
-			int unitPrice, int giveMeThatPrice, String detail, LocalDate bidEndTime, MemberVO memberVO,
+			int unitPrice, int giveMeThatPrice, String detail, int bidTimeUnit, LocalDate bidEndTime, MemberVO memberVO,
 			CategoryVO categoryVO, QnAVO qnaVO, PickVO pickVO, BidLogVO bidLogVO) {
 		super();
 		this.productNo = productNo;
@@ -33,6 +34,7 @@ public class PostVO {
 		this.unitPrice = unitPrice;
 		this.giveMeThatPrice = giveMeThatPrice;
 		this.detail = detail;
+		this.bidTimeUnit = bidTimeUnit;
 		this.bidEndTime = bidEndTime;
 		this.memberVO = memberVO;
 		this.categoryVO = categoryVO;
@@ -88,6 +90,12 @@ public class PostVO {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
+	public int getBidTimeUnit() {
+		return bidTimeUnit;
+	}
+	public void setBidTimeUnit(int bidTimeUnit) {
+		this.bidTimeUnit = bidTimeUnit;
+	}
 	public LocalDate getBidEndTime() {
 		return bidEndTime;
 	}
@@ -128,9 +136,9 @@ public class PostVO {
 	public String toString() {
 		return "PostVO [productNo=" + productNo + ", productName=" + productName + ", startPrice=" + startPrice
 				+ ", nowPrice=" + nowPrice + ", productUpTime=" + productUpTime + ", unitPrice=" + unitPrice
-				+ ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", bidEndTime=" + bidEndTime
-				+ ", memberVO=" + memberVO + ", categoryVO=" + categoryVO + ", qnaVO=" + qnaVO + ", pickVO=" + pickVO
-				+ ", bidLogVO=" + bidLogVO + "]";
+				+ ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", bidTimeUnit=" + bidTimeUnit
+				+ ", bidEndTime=" + bidEndTime + ", memberVO=" + memberVO + ", categoryVO=" + categoryVO + ", qnaVO="
+				+ qnaVO + ", pickVO=" + pickVO + ", bidLogVO=" + bidLogVO + "]";
 	}
 	
 	
