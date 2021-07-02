@@ -96,3 +96,26 @@ insert into category values(category_seq.nextval, '1','1','1','TV');
 -- select  
 -- **************************************
 select * from a_member;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

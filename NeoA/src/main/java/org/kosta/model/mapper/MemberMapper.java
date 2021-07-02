@@ -6,4 +6,8 @@ import org.kosta.model.vo.MemberVO;
 @Mapper
 public interface MemberMapper {
 	void registerMember(MemberVO memberVO);
+	
+	void updateMember(MemberVO memberVO);
+	
 }
+

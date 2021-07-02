@@ -30,3 +30,18 @@ insert into a_member(member_id, member_email, name, password, address, phone_no,
 insert into a_member(member_id, member_email, name, password, address, phone_no, credit, bank_name, account_no, enabled) values(#{memberId},#{memberEmail},#{name},#{password},#{address},#{phoneNo},#{credit},#{bankName},#{accountNo},#{enabled})
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
