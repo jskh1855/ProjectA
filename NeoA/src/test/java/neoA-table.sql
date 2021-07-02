@@ -89,4 +89,10 @@ insert into category values(category_seq.nextval, '1','0','0','가전');
 insert into category values(category_seq.nextval, '1','1','0','영상가전');
 insert into category values(category_seq.nextval, '1','1','1','TV');
 
-insert into post values(product_no_seq, );
+-- insert into post values(product_no_seq, );
+
+
+-- **************************************
+-- select  
+-- **************************************
+select * from a_member;
