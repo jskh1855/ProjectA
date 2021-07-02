@@ -2,6 +2,7 @@ package org.kosta.model.vo;
 
 public class MemberVO{
 	private String memberId;
+	private String memberEmail;
 	private String name;
 	private String password;
 	private String address;
@@ -14,10 +15,11 @@ public class MemberVO{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MemberVO(String memberId, String name, String password, String address, String phoneNo, String credit,
-			boolean enabled, String bankName, String accountNo) {
+	public MemberVO(String memberId, String memberEmail, String name, String password, String address, String phoneNo,
+			String credit, boolean enabled, String bankName, String accountNo) {
 		super();
 		this.memberId = memberId;
+		this.memberEmail = memberEmail;
 		this.name = name;
 		this.password = password;
 		this.address = address;
@@ -32,6 +34,12 @@ public class MemberVO{
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
 	public String getName() {
 		return name;
@@ -83,11 +91,10 @@ public class MemberVO{
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [memberId=" + memberId + ", name=" + name + ", password=" + password + ", address=" + address
-				+ ", phoneNo=" + phoneNo + ", credit=" + credit + ", enabled=" + enabled + ", bankName=" + bankName
-				+ ", accountNo=" + accountNo + "]";
+		return "MemberVO [memberId=" + memberId + ", memberEmail=" + memberEmail + ", name=" + name + ", password="
+				+ password + ", address=" + address + ", phoneNo=" + phoneNo + ", credit=" + credit + ", enabled="
+				+ enabled + ", bankName=" + bankName + ", accountNo=" + accountNo + "]";
 	}
-	
 	
 	
 }
