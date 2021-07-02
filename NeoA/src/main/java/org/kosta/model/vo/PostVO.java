@@ -3,8 +3,8 @@ package org.kosta.model.vo;
 import java.time.LocalDate;
 
 public class PostVO {
-	private String postNo;
 	private String productNo;
+	private String productName;
 	private int startPrice;
 	private int nowPrice;
 	private LocalDate productUpTime; 
@@ -21,12 +21,12 @@ public class PostVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PostVO(String postNo, String productNo, int startPrice, int nowPrice, LocalDate productUpTime, int unitPrice,
-			int giveMeThatPrice, String detail, LocalDate bidEndTime, MemberVO memberVO, CategoryVO categoryVO,
-			QnAVO qnaVO, PickVO pickVO, BidLogVO bidLogVO) {
+	public PostVO(String productNo, String productName, int startPrice, int nowPrice, LocalDate productUpTime,
+			int unitPrice, int giveMeThatPrice, String detail, LocalDate bidEndTime, MemberVO memberVO,
+			CategoryVO categoryVO, QnAVO qnaVO, PickVO pickVO, BidLogVO bidLogVO) {
 		super();
-		this.postNo = postNo;
 		this.productNo = productNo;
+		this.productName = productName;
 		this.startPrice = startPrice;
 		this.nowPrice = nowPrice;
 		this.productUpTime = productUpTime;
@@ -40,17 +40,17 @@ public class PostVO {
 		this.pickVO = pickVO;
 		this.bidLogVO = bidLogVO;
 	}
-	public String getPostNo() {
-		return postNo;
-	}
-	public void setPostNo(String postNo) {
-		this.postNo = postNo;
-	}
 	public String getProductNo() {
 		return productNo;
 	}
 	public void setProductNo(String productNo) {
 		this.productNo = productNo;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	public int getStartPrice() {
 		return startPrice;
@@ -126,12 +126,12 @@ public class PostVO {
 	}
 	@Override
 	public String toString() {
-		return "PostVO [postNo=" + postNo + ", productNo=" + productNo + ", startPrice=" + startPrice + ", nowPrice="
-				+ nowPrice + ", productUpTime=" + productUpTime + ", unitPrice=" + unitPrice + ", giveMeThatPrice="
-				+ giveMeThatPrice + ", detail=" + detail + ", bidEndTime=" + bidEndTime + ", memberVO=" + memberVO
-				+ "]";
+		return "PostVO [productNo=" + productNo + ", productName=" + productName + ", startPrice=" + startPrice
+				+ ", nowPrice=" + nowPrice + ", productUpTime=" + productUpTime + ", unitPrice=" + unitPrice
+				+ ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", bidEndTime=" + bidEndTime
+				+ ", memberVO=" + memberVO + ", categoryVO=" + categoryVO + ", qnaVO=" + qnaVO + ", pickVO=" + pickVO
+				+ ", bidLogVO=" + bidLogVO + "]";
 	}
-	
 	
 	
 }

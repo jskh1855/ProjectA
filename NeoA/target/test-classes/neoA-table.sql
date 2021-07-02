@@ -89,6 +89,10 @@ insert into category values(category_seq.nextval, '1','0','0','가전');
 insert into category values(category_seq.nextval, '1','1','0','영상가전');
 insert into category values(category_seq.nextval, '1','1','1','TV');
 
+insert into post values(product_no_seq.nextval, '롤렉스','2000','2000',sysdate,sysdate+3,'100','4000','afadafad','1','java')
+insert into post values(product_no_seq.nextval, '나이키슈즈','300','300',sysdate,sysdate+3,'10','2000','hahaha','1','java2')
+insert into post values(product_no_seq.nextval, '롤스로이스','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','2','java2')
+
 -- insert into post values(product_no_seq, );
 
 
@@ -96,3 +100,26 @@ insert into category values(category_seq.nextval, '1','1','1','TV');
 -- select  
 -- **************************************
 select * from a_member;
+select * from post;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -31,3 +31,25 @@ insert into a_member(member_id, member_email, name, password, address, phone_no,
 
 -- update 회원정보 변경 
 
+
+-- 제품 전체 조회
+
+select * 
+from post p, a_member a
+where p.member_id = a.member_id
+order by product_up_time desc
+
+-- 상품 등록 
+
+
+
+
+
+
+
+
+
+
+
+
+
