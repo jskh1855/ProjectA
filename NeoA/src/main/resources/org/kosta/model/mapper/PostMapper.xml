@@ -11,6 +11,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	order by product_up_time desc
 	</select>
 	
+	<insert id="registerProduct" parameterType="postVO">
+	insert into post 
+	values(product_no_seq.nextval, #{productName},#{startPrice},#{nowPrice},sysdate,sysdate+#{bidTimeUnit},#{unitPrice},#{giveMeThatPrice},#{detail},#{categoryVO.categoryNo},#{memberVO.memberId})
+	
+	</insert>
 
 </mapper>
 

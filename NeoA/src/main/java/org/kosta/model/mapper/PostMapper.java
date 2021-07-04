@@ -10,5 +10,5 @@ public interface PostMapper {
 	
 	ArrayList<PostVO> showAll();
 
-	
+	void registerProduct(PostVO pvo);
 }

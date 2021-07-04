@@ -1,8 +1,13 @@
 package org.kosta;
 
+import java.util.Locale.Category;
+
 import org.junit.jupiter.api.Test;
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
+import org.kosta.model.vo.CategoryVO;
+import org.kosta.model.vo.MemberVO;
+import org.kosta.model.vo.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -31,12 +36,27 @@ class SpringBootStudy5SecurityApplicationTests {
 		 */
 		// 전체 물품 보기
 		
-		pm.showAll();
+		//pm.showAll();
 		
+		//물품등록
+		PostVO pvo = new PostVO();
+		pvo.setProductName("롤렉스");
+		pvo.setStartPrice(2000);
+		pvo.setNowPrice(2000);
+		pvo.setBidTimeUnit(3);
+		pvo.setUnitPrice(100);
+		pvo.setGiveMeThatPrice(4000);
+		pvo.setDetail("dddddd");
+		MemberVO mvo  = new MemberVO();
+		mvo.setMemberId("java2");
+		CategoryVO cvo = new CategoryVO();
+		cvo.setCategoryNo("1");
+		pvo.setCategoryVO(cvo);
+		pvo.setMemberVO(mvo);
 		
+		pm.registerProduct(pvo);
 		// test 
 
-		
 	}
 	
 	
