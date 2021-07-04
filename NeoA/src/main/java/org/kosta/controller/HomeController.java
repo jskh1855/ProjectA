@@ -13,6 +13,11 @@ public class HomeController {
 		System.out.println("home "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());		
 		return "home.tiles";
 	}
+	
+	@RequestMapping("login")
+	public String login() {
+		return "member/login.tiles";
+	}
 
 	/*	
 		로그인 하였으나 권한이 없는 요청을 하였을 경우 보여지는 페이지를 지정  

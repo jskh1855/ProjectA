@@ -88,7 +88,7 @@
                                         <span class="flaticon-search"></span>
                                     </div>
                                 </li>
-                                <li> <a href="login.tiles"><span class="flaticon-user"></span></a></li>
+                                <li> <a href="${pageContext.request.contextPath}/login"><span class="flaticon-user"></span></a></li>
                                 <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
                             </ul>
                         </div>
