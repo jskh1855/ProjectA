@@ -24,4 +24,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE	name=#{name}
 	</select>
 	
+	 	<!-- <select id="login" resultType="memberVO" parameterType="memberVO">
+ 		<include refid="selectMember"></include>
+ 		where id=#{id} and password=#{password}
+ 	</select> -->
+ 	
 </mapper>
