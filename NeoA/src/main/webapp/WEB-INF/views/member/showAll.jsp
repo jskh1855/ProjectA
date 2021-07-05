@@ -7,4 +7,6 @@
 전체 목록 출력 
 <div class="container">
 ddd
+	${postVOList}
+
 </div>

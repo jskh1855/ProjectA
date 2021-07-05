@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
+import org.kosta.model.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,10 @@ public class ProductController {
 
 	@Resource
 	private PostMapper postMapper;
+	
+	@Resource
+	private ProductService productService;
+	
 
 	@RequestMapping("/product")
 	public String getDetailProduct(String productNo, Model model) {
@@ -21,7 +26,7 @@ public class ProductController {
 
 	@RequestMapping("/user/showAll")
 	public String showAll(Model model) {
-		model.addAttribute("postVO", postMapper.showAll());
+		model.addAttribute("postVOList", productService.showAll());
 		System.out.println("쇼올");
 		return "member/showAll.tiles";
 	}
