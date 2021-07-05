@@ -15,5 +15,5 @@ public interface PostMapper {
 	
 	PostVO viewDetailPost(String productNo);
 	
-	PickVO addCart(PostVO pvo);
+	PickVO addCart(HashMap<>());
 }
