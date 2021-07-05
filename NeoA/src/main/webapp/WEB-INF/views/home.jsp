@@ -51,6 +51,18 @@
                 </div>
             </div>
         </div>
+        
+        
+        <%-- 전체 목록 출력을 위한 테스트 by jaehoon --%>
+        <hr>
+        <div>
+       		<form action="${pageContext.request.contextPath}/user/showAll" method="get">
+       			<button type="submit" style="color: black">전체목록보기</button>		
+       		</form>
+        </div>
+        <hr>
+        
+        
         <!-- slider Area End-->
         <!-- ? New Product Start -->
         <section class="new-product-area section-padding30">
