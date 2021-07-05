@@ -39,23 +39,23 @@ class SpringBootStudy5SecurityApplicationTests {
 		//pm.showAll();
 		
 		//물품등록
-		PostVO pvo = new PostVO();
-		pvo.setProductName("롤렉스");
-		pvo.setStartPrice(2000);
-		pvo.setNowPrice(2000);
-		pvo.setBidTimeUnit(3);
-		pvo.setUnitPrice(100);
-		pvo.setGiveMeThatPrice(4000);
-		pvo.setDetail("dddddd");
-		MemberVO mvo  = new MemberVO();
-		mvo.setMemberId("java2");
-		CategoryVO cvo = new CategoryVO();
-		cvo.setCategoryNo("1");
-		pvo.setCategoryVO(cvo);
-		pvo.setMemberVO(mvo);
+		/*
+		 * PostVO pvo = new PostVO(); pvo.setProductName("롤렉스");
+		 * pvo.setStartPrice(2000); pvo.setNowPrice(2000); pvo.setBidTimeUnit(3);
+		 * pvo.setUnitPrice(100); pvo.setGiveMeThatPrice(4000); pvo.setDetail("dddddd");
+		 * MemberVO mvo = new MemberVO(); mvo.setMemberId("java2"); CategoryVO cvo = new
+		 * CategoryVO(); cvo.setCategoryNo("1"); pvo.setCategoryVO(cvo);
+		 * pvo.setMemberVO(mvo);
+		 * 
+		 * pm.registerProduct(pvo);
+		 */
 		
-		pm.registerProduct(pvo);
-		// test 
+		
+		// detail view
+		
+		
+		
+		System.out.println(pm.viewDetailPost("1"));
 
 	}
 	

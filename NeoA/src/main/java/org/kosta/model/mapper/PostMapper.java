@@ -11,4 +11,6 @@ public interface PostMapper {
 	ArrayList<PostVO> showAll();
 
 	void registerProduct(PostVO pvo);
+	
+	PostVO viewDetailPost(String productNo);
 }
