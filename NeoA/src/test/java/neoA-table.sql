@@ -20,16 +20,15 @@ create table a_member(
 	phone_no varchar2(100) not null,
 	credit varchar2(100) not null,
 	bank_name varchar2(100) not null,
-	account_no varchar2(100) not null,
-	
+	account_no varchar2(100) not null,	
 	enabled int default 1 not null
 );
 
 create table authorities(
-	username varchar(100) not null,
+	member_id varchar(100) not null,
 	authority varchar(30) not null,
-	constraint fk_authorities foreign key(username) references security_member(id),
-	constraint member_authorities primary key(username,authority)
+	constraint fk_authorities foreign key(member_id) references a_member(member_id),
+	constraint member_authorities primary key(member_id,authority)
 )
 
 create table post(
@@ -58,11 +57,13 @@ create table qna(
 );
 
 create table bid_log(
-	bid_time date,
-	bid_price varchar2(100) not null,
-	member_id varchar2(100) constraint fk_bid_id references a_member(member_id),
-	product_no varchar2(100) constraint fk_bid_no references post(product_no)
+bid_no varchar2(100) primary key,
+bid_time date,
+bid_price varchar2(100) not null,
+member_id varchar2(100) constraint fk_bid_id references a_member(member_id),
+product_no varchar2(100) constraint fk_bid_no references post(product_no)
 );
+create sequence bid_no_seq;
 
 create table pick(
 	pick_no varchar2(20) primary key,
@@ -79,12 +80,14 @@ drop table pick;
 drop table bid_log;
 drop table qna;
 drop table post;
+drop table authorities;
 drop table a_member;
 drop table category;
 
 --sequence 드랍
 drop sequence category_seq;
 drop sequence product_no_seq;
+drop sequence bid_no_seq;
 
 -- **************************************
 -- insert ( sample )  
@@ -101,12 +104,14 @@ insert into post values(product_no_seq.nextval, '롤스로이스','30000','30000
 
 -- insert into post values(product_no_seq, );
 
+insert into authorities(member_id,authority) values('java','ROLE_MEMBER');
 
 -- **************************************
 -- select  
 -- **************************************
 select * from a_member;
 select * from post;
+select * from authorities;
 
 
 
