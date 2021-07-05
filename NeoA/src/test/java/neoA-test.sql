@@ -68,11 +68,3 @@ values(bid_no_seq.nextval, 'java', '1',sysdate,
 );
 
 
-
-select * 
-	from post p, a_member a
-	where p.member_id = a.member_id
-	order by p.product_up_time desc
-
-
-

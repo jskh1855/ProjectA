@@ -4,8 +4,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper  namespace="org.kosta.model.mapper.PostMapper">
 	
-	<select id="showAll" resultType="arrayList">
-	select * 
+	<resultMap type="postVO" id="postListRM">
+		<result column="product_no" property="postVO.productNo" />
+		<result column="product_name" property="postVO.productName" />
+		<result column="start_price" property="postVO.start_price" />
+		<result column="now_price" property="postVO.nowPrice" />
+		<result column="product_up_time" property="postVO.productUpTime" />
+		<result column="bid_end_time" property="postVO.bidEndTime" />
+		<result column="unit_price" property="postVO.unitPrice" />
+		<result column="give_me_that_price" property="postVO.giveMeThatPrice" />
+		<result column="detail" property="postVO.detail" />
+	</resultMap>
+	
+	<select id="showAll" resultMap="postListRM">
+	select p.product_no, p.product_name
 	from post p, a_member a
 	where p.member_id = a.member_id
 	order by p.product_up_time desc

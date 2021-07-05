@@ -63,7 +63,7 @@ class SpringBootStudy5SecurityApplicationTests {
 		 */
 		
 		
-		System.out.println(pm.showAll());
+		pm.showAll();
 		
 	}
 	
