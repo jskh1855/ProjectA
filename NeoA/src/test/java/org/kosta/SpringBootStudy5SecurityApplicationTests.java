@@ -53,10 +53,9 @@ class SpringBootStudy5SecurityApplicationTests {
 		
 		// detail view
 		
+		PostVO pvo= new PostVO();
+		pvo = pm.viewDetailPost("1");
 		
-		
-		System.out.println(pm.viewDetailPost("1"));
-
 	}
 	
 	

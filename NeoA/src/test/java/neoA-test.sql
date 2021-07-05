@@ -48,7 +48,9 @@ insert into post values(product_no_seq.nextval, #{productName},#{startPrice},#{n
 
 
 
-
+select *
+from post
+where product_no = '1'
 
 
 

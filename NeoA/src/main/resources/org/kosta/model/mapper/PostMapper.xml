@@ -16,10 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	values(product_no_seq.nextval, #{productName},#{startPrice},#{nowPrice},sysdate,sysdate+#{bidTimeUnit},#{unitPrice},#{giveMeThatPrice},#{detail},#{categoryVO.categoryNo},#{memberVO.memberId})
 	</insert>
 	
-	<select id="viewDetailPost" resultType="postVO" parameterType="String">
+	<select id="viewDetailPost" resultType="postVO">
 		select *
 		from post
-		where product_no =#{product_no}
+		where product_no = #{value}
 	</select>
 </mapper>
 
