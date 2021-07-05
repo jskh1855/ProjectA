@@ -19,10 +19,10 @@ public class HomeController {
 		return "member/shop.tiles";
 	}
 	
-	@RequestMapping("login")
-	public String login() {
-		return "member/login.tiles";
-	}
+//	@RequestMapping("loginPage")
+//	public String loginPage() {
+//		return "member/loginPage.tiles";
+//	}
 	
 	@RequestMapping("productDetails")
 	public String productDetails() {

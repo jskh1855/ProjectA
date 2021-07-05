@@ -25,10 +25,10 @@ create table a_member(
 );
 
 create table a_authorities(
-	member_id varchar(100) not null,
+	username varchar(100) not null,
 	authority varchar(30) not null,
-	constraint fk_authorities foreign key(member_id) references a_member(member_id),
-	constraint member_authorities primary key(member_id,authority)
+	constraint fk_a foreign key(username) references a_member(member_id),
+	constraint member_a primary key(username,authority)
 );
 
 create table post(
@@ -111,7 +111,7 @@ commit
 
 -- insert into post values(product_no_seq, );
 
-insert into a_authorities(member_id,authority) values('java','ROLE_MEMBER');
+insert into a_authorities(username,authority) values('java','ROLE_MEMBER');
 
 -- **************************************
 -- select  

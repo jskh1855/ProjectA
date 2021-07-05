@@ -19,9 +19,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 		<!-- Spring Security에서 권한 체크를 위해 사용 -->
 	<select id="selectAuthorityByUsername"  resultType="authority">
-		SELECT	name,authority
-		FROM	authorities
-		WHERE	name=#{name}
+		SELECT	username,authority
+		FROM	a_authorities
+		WHERE	username=#{name}
 	</select>
 	
 	<select id="idcheck" resultType="int">
@@ -37,15 +37,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<sql id="selectMember">
  		select id,password,name,address from a_member
  	</sql>
-	 <select id="login" resultType="memberVO" parameterType="memberVO">
- 		<include refid="selectMember"></include>
- 		where id=#{id} and password=#{password}
-	</select>
 	
-	
-<!--  	<select id="selectAuthorityByUsername"  resultType="authority"> -->
-<!-- 		SELECT	member_id,authority -->
-<!-- 		FROM	a_authorities -->
-<!-- 		WHERE	member_id=#{username} -->
-<!-- 	</select> -->
 </mapper>
