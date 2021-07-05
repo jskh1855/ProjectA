@@ -1,9 +1,12 @@
 package org.kosta;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
-import org.kosta.model.vo.PickVO;
+import org.kosta.model.service.ProductService;
+import org.kosta.model.vo.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,6 +16,10 @@ class SpringBootStudy5SecurityApplicationTests {
 	MemberMapper mm;
 	@Autowired
 	PostMapper pm;
+	
+	@Autowired
+	ProductService productService;
+	
 	@Test
 	public void contextLoads() {
 
@@ -62,8 +69,9 @@ class SpringBootStudy5SecurityApplicationTests {
 		 * pm.addCart();
 		 */
 		
+		List<PostVO> list = productService.showAll();
 		
-		pm.showAll();
+		System.out.println(list);
 		
 	}
 	
