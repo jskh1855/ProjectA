@@ -92,7 +92,9 @@ drop sequence bid_no_seq;
 -- **************************************
 -- insert ( sample )  
 -- **************************************
-insert into a_member(member_id, member_email, name, password, address, phone_no, credit, bank_name, account_no, enabled) values('java','a@abc.com','아이유','a','오리','010-1234-5678', 'gold','국민은행','111-111-1111','1'); 
+insert into a_member(member_id, member_email, name, password, address, phone_no, credit, bank_name, account_no, enabled) values('java','a@abc.com','아이유','a','오리','010-1234-5678', 'gold','국민은행','111-111-1111','1');
+insert into a_member(member_id, member_email, name, password, address, phone_no, credit, bank_name, account_no, enabled) values('java2','222@abc.com','어른이유','a2','서울','010-1234-2222', 'gold2','국민은행','111-1112222','1');
+insert into a_member(member_id, member_email, name, password, address, phone_no, credit, bank_name, account_no, enabled) values('java3','3333@abc.com','학생이유','a3','천안','010-1234-3333', 'gold3','국민은행','111-111-11333','1');
 
 insert into category values(category_seq.nextval, '1','0','0','가전');
 insert into category values(category_seq.nextval, '1','1','0','영상가전');

@@ -61,7 +61,9 @@ class SpringBootStudy5SecurityApplicationTests {
 		 * 
 		 * pm.addCart();
 		 */
-		pm.showAll();
+		
+		
+		System.out.println(pm.showAll());
 		
 	}
 	
