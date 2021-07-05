@@ -28,6 +28,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from a_member where id=#{value}
 	</select>
 	
+	<select id="findMemberById" resultType="memberVO">
+ 		SELECT	member_id,	password,	name, address, enabled
+		FROM	a_member
+		WHERE 	member_id=#{value}	
+		AND		enabled=1 		
+ 	</select>
 	 	<!-- <select id="login" resultType="memberVO" parameterType="memberVO">
  		<include refid="selectMember"></include>
  		where id=#{id} and password=#{password}

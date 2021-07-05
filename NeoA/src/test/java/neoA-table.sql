@@ -24,12 +24,12 @@ create table a_member(
 	enabled int default 1 not null
 );
 
-create table authorities(
+create table a_authorities(
 	member_id varchar(100) not null,
 	authority varchar(30) not null,
 	constraint fk_authorities foreign key(member_id) references a_member(member_id),
 	constraint member_authorities primary key(member_id,authority)
-)
+);
 
 create table post(
 	product_no varchar2(100) primary key,
@@ -80,7 +80,7 @@ drop table pick;
 drop table bid_log;
 drop table qna;
 drop table post;
-drop table authorities;
+drop table a_authorities;
 drop table a_member;
 drop table category;
 
@@ -92,7 +92,7 @@ drop sequence bid_no_seq;
 -- **************************************
 -- insert ( sample )  
 -- **************************************
-insert into a_member(member_id, member_email, name, password, address, phone_no, credit, bank_name, account_no, enabled) values('java','a@abc.com','아이유','a','오리','010-1234-5678', 'gold','국민은행','111-111-1111','1'); 
+insert into a_member(member_id, member_email, name, password, address, phone_no, credit, bank_name, account_no, enabled) values('java','a@abc.com','아이유','$2a$10$GrxFYOzS9U3gkV4lHUIX8OWoou7f/FVyPiPKOEuQkeJskanfxxqHO','오리','010-1234-5678', 'gold','국민은행','111-111-1111','1'); 
 
 insert into category values(category_seq.nextval, '1','0','0','가전');
 insert into category values(category_seq.nextval, '1','1','0','영상가전');
@@ -108,7 +108,7 @@ commit
 
 -- insert into post values(product_no_seq, );
 
-insert into authorities(member_id,authority) values('java','ROLE_MEMBER');
+insert into a_authorities(member_id,authority) values('java','ROLE_MEMBER');
 
 -- **************************************
 -- select  
@@ -118,6 +118,11 @@ select * from post;
 select * from authorities;
 select * from bid_log;
 
+-- **************************************
+-- delete 
+-- **************************************
+delete from a_member;
+delete from a_authorities;
 
 
 
