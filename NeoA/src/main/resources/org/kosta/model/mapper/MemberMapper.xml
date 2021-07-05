@@ -24,6 +24,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE	name=#{name}
 	</select>
 	
+	<select id="idcheck" resultType="int">
+		select count(*) from a_member where id=#{value}
+	</select>
+	
 	 	<!-- <select id="login" resultType="memberVO" parameterType="memberVO">
  		<include refid="selectMember"></include>
  		where id=#{id} and password=#{password}

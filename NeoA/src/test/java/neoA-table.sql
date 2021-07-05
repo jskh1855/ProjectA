@@ -21,10 +21,16 @@ create table a_member(
 	credit varchar2(100) not null,
 	bank_name varchar2(100) not null,
 	account_no varchar2(100) not null,
+	
 	enabled int default 1 not null
 );
 
-
+create table authorities(
+	username varchar(100) not null,
+	authority varchar(30) not null,
+	constraint fk_authorities foreign key(username) references security_member(id),
+	constraint member_authorities primary key(username,authority)
+)
 
 create table post(
 	product_no varchar2(100) primary key,
