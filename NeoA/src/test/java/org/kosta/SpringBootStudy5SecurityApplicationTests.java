@@ -52,9 +52,14 @@ class SpringBootStudy5SecurityApplicationTests {
 		
 		
 		// detail view
-		
-		PostVO pvo= new PostVO();
+		// mapper에 sql에 select 항목 설정~~~~ 할것
+		PostVO pvo= new PostVO(); 
 		pvo = pm.viewDetailPost("1");
+		System.out.println(pvo);
+		
+		
+		//
+		
 		
 	}
 	

@@ -55,4 +55,20 @@ where product_no = '1'
 
 
 
+-- 입찰하기 버튼 눌렀을때
+select now_price from post where product_no = '1' 
+-- 있냐? --> 취소
+
+-- 없냐? --> bid_log 인서트  post 테이블 now_price 업데이트 
+update post set now_price = ( now_price + unit_price ) where product_no = '1';
+
+insert into bid_log(bid_no, member_id, product_no, bid_time, bid_price)
+values(bid_no_seq.nextval, 'java', '1',sysdate, 
+(select now_price from post where product_no = '1' )
+);
+
+
+
+
+
 

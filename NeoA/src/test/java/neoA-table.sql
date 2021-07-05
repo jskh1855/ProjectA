@@ -52,11 +52,14 @@ create table qna(
 );
 
 create table bid_log(
+	bid_no varchar2(100) primary key,
 	bid_time date,
 	bid_price varchar2(100) not null,
 	member_id varchar2(100) constraint fk_bid_id references a_member(member_id),
 	product_no varchar2(100) constraint fk_bid_no references post(product_no)
 );
+create sequence bid_no_seq;
+
 
 create table pick(
 	pick_no varchar2(20) primary key,
@@ -79,6 +82,7 @@ drop table category;
 --sequence 드랍
 drop sequence category_seq;
 drop sequence product_no_seq;
+drop sequence bid_no_seq;
 
 -- **************************************
 -- insert ( sample )  
@@ -89,9 +93,13 @@ insert into category values(category_seq.nextval, '1','0','0','가전');
 insert into category values(category_seq.nextval, '1','1','0','영상가전');
 insert into category values(category_seq.nextval, '1','1','1','TV');
 
-insert into post values(product_no_seq.nextval, '롤렉스','2000','2000',sysdate,sysdate+3,'100','4000','afadafad','1','java')
-insert into post values(product_no_seq.nextval, '나이키슈즈','300','300',sysdate,sysdate+3,'10','2000','hahaha','1','java2')
-insert into post values(product_no_seq.nextval, '롤스로이스','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','2','java2')
+insert into post values(product_no_seq.nextval, '롤렉스','2000','2000',sysdate,sysdate+3,'100','4000','afadafad','1','java');
+insert into post values(product_no_seq.nextval, '나이키슈즈','300','300',sysdate,sysdate+3,'10','2000','hahaha','1','java2');
+insert into post values(product_no_seq.nextval, '롤스로이스','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','2','java2');
+
+
+commit
+
 
 -- insert into post values(product_no_seq, );
 
@@ -101,7 +109,7 @@ insert into post values(product_no_seq.nextval, '롤스로이스','30000','30000
 -- **************************************
 select * from a_member;
 select * from post;
-
+select * from bid_log;
 
 
 
