@@ -65,10 +65,11 @@
 							<div class="bid_start">
 								<a href="#" class="btn_3">입찰하기</a>
 							</div>
-							<div class="add_to_cart">
-								<a href="addCart" class="btn_3">add to cart</a>
-							</div>
-
+							<form action="addCart" method="get">
+								<div class="add_to_cart">
+									<button>add to cart </button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>

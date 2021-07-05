@@ -33,9 +33,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from post
 		where product_no = #{value}
 	</select>
-	<insert id="addCart">
+	<insert id="addCart" parameterType="string">
 		insert into pick
 		values(pick_no_seq.nextval, sysdate, #{memberVO.member_Id},#{postVO.product_no})
 	</insert>
+	
+	
 </mapper>
 

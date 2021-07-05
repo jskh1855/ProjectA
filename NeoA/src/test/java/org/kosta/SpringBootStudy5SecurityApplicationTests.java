@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
 import org.kosta.model.vo.PickVO;
+import org.kosta.model.vo.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -56,14 +57,14 @@ class SpringBootStudy5SecurityApplicationTests {
 		
 		
 		//pick add cart
-		/*
-		 * PickVO vo = new PickVO();
-		 * 
-		 * pm.addCart();
-		 */
+		
+		 
+		  
+		  pm.addCart("1", "java");
+		 
 		
 		
-		pm.showAll();
+//		pm.showAll();
 		
 	}
 	

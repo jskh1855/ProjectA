@@ -25,5 +25,12 @@ public class ProductController {
 		System.out.println("쇼올");
 		return "member/showAll.tiles";
 	}
+	@RequestMapping("addCart")
+	public String addCart(String productNo, Model model) {
+		model.addAttribute("postVO",postMapper.addCart());
+		System.out.println("picked");
+		return "member/productDetails.tiles";
+		
+	}
 
 }

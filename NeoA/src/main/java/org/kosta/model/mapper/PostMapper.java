@@ -15,5 +15,5 @@ public interface PostMapper {
 	
 	PostVO viewDetailPost(String productNo);
 	
-	PickVO addCart();
+	PickVO addCart(PostVO pvo);
 }
