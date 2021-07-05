@@ -19,5 +19,6 @@ public interface MemberMapper {
 	List<Authority> selectAuthorityByUsername(String username);
 	
 	MemberVO findMemberById(String id);
+	
 }
 

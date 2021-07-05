@@ -38,5 +38,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<include refid="selectMember"></include>
  		where id=#{id} and password=#{password}
  	</select> -->
- 	
+ 	<select id="selectAuthorityByUsername"  resultType="authority">
+		SELECT	member_id,authority
+		FROM	authorities
+		WHERE	member_id=#{value}
+	</select>
 </mapper>

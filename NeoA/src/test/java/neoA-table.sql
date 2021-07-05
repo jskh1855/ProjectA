@@ -118,7 +118,7 @@ insert into a_authorities(member_id,authority) values('java','ROLE_MEMBER');
 -- **************************************
 select * from a_member;
 select * from post;
-select * from authorities;
+select * from a_authorities;
 select * from bid_log;
 
 -- **************************************
