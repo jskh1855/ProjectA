@@ -14,9 +14,19 @@ public class HomeController {
 		return "home.tiles";
 	}
 	
+	@RequestMapping("shop")
+	public String shop() {
+		return "member/shop.tiles";
+	}
+	
 	@RequestMapping("login")
 	public String login() {
 		return "member/login.tiles";
+	}
+	
+	@RequestMapping("productDetails")
+	public String productDetails() {
+		return "member/productDetails.tiles";
 	}
 
 	/*	
