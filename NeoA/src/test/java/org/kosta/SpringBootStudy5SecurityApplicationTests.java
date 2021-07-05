@@ -1,13 +1,9 @@
 package org.kosta;
 
-import java.util.Locale.Category;
-
 import org.junit.jupiter.api.Test;
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
-import org.kosta.model.vo.CategoryVO;
-import org.kosta.model.vo.MemberVO;
-import org.kosta.model.vo.PostVO;
+import org.kosta.model.vo.PickVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -53,13 +49,19 @@ class SpringBootStudy5SecurityApplicationTests {
 		
 		// detail view
 		// mapper에 sql에 select 항목 설정~~~~ 할것
-		PostVO pvo= new PostVO(); 
-		pvo = pm.viewDetailPost("1");
-		System.out.println(pvo);
+		/*
+		 * PostVO pvo= new PostVO(); pvo = pm.viewDetailPost("1");
+		 * System.out.println(pvo);
+		 */
 		
 		
-		//
-		
+		//pick add cart
+		/*
+		 * PickVO vo = new PickVO();
+		 * 
+		 * pm.addCart();
+		 */
+		pm.showAll();
 		
 	}
 	

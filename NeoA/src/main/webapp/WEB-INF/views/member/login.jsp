@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
                                 <h2>New to our Shop?</h2>
                                 <p>There are advances being made in science and technology
                                     everyday, and a good example of this is the</p>
-                                <a href="#" class="btn_3">Create an Account</a>
+                                <a href="/myweb/registerForm.jsp" class="btn_3">Create an Account</a>
                             </div>
                         </div>
                     </div>
@@ -48,9 +48,11 @@ pageEncoding="UTF-8"%>
                                             <input type="checkbox" id="f-option" name="selector">
                                             <label for="f-option">Remember me</label>
                                         </div>
+                                 
                                         <button type="submit" value="submit" class="btn_3">
                                             log in
                                         </button>
+                                        
                                         <a class="lost_pass" href="#">forget password?</a>
                                     </div>
                                 </form>
