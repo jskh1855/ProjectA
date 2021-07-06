@@ -18,4 +18,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<PostVO> showAll(){
 		return postMapper.showAll();
 	}
+	
+	@Override
+	public PostVO showDetails(String productNo) {
+		return postMapper.viewDetailPost(productNo);
+	}
 }
