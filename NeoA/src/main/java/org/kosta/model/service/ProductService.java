@@ -8,4 +8,6 @@ public interface ProductService {
 
 	List<PostVO> showAll();
 
+	PostVO showDetails(String productNo);
+
 }

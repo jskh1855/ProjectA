@@ -73,6 +73,11 @@ public class MemberController {
 		return "member/login_fail";
 	}
 	
+	@RequestMapping("user/loginPage")
+	public String loginPage() {		
+		return "member/loginPage.tiles";
+	}
+	
 	
 	//***************************update end****************************************
 

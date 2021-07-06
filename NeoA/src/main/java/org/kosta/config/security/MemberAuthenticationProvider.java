@@ -33,15 +33,16 @@ public class MemberAuthenticationProvider implements AuthenticationProvider{
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {		
-		
+		System.out.println("AA");
 		if(!supports(authentication.getClass())){
 			return null;
 		}
-		
+
 		String id = authentication.getName();
-		
+		System.out.println("BB");
+		System.out.println(id);
 		MemberVO member = memberService.findMemberById(id);
-		
+		System.out.println(member);
 		if(member == null){
 			throw new UsernameNotFoundException("아이디 혹은 비밀번호가 일치하지 않습니다.");
 		}

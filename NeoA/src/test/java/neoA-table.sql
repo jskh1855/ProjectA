@@ -18,17 +18,17 @@ create table a_member(
 	password varchar2(100) not null,
 	address varchar2(100) not null,
 	phone_no varchar2(100) not null,
-	credit varchar2(100) not null,
+	credit varchar2(100) default 'bronze',
 	bank_name varchar2(100) not null,
 	account_no varchar2(100) not null,	
 	enabled int default 1 not null
 );
 
 create table a_authorities(
-	member_id varchar(100) not null,
+	username varchar(100) not null,
 	authority varchar(30) not null,
-	constraint fk_authorities foreign key(member_id) references a_member(member_id),
-	constraint member_authorities primary key(member_id,authority)
+	constraint fk_a foreign key(username) references a_member(member_id),
+	constraint member_a primary key(username,authority)
 );
 
 create table post(
@@ -111,7 +111,7 @@ commit
 
 -- insert into post values(product_no_seq, );
 
-insert into a_authorities(member_id,authority) values('java','ROLE_MEMBER');
+insert into a_authorities(username,authority) values('java','ROLE_MEMBER');
 
 -- **************************************
 -- select  

@@ -5,11 +5,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
-<<<<<<< HEAD
 import org.kosta.model.vo.PickVO;
-=======
 import org.kosta.model.service.ProductService;
->>>>>>> f2b9c673304492a041904d2baca145ceb973b135
 import org.kosta.model.vo.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -70,7 +67,7 @@ class SpringBootStudy5SecurityApplicationTests {
 		
 		 
 		  
-		  pm.addCart("1", "java");
+		//pm.addCart("1", "java");
 		 
 		
 		List<PostVO> list = productService.showAll();
