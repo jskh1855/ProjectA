@@ -3,6 +3,7 @@ package org.kosta.controller;
 import java.io.File;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
@@ -50,20 +51,24 @@ public class ProductController {
 	}
 
 	//@PostMapping("/user/productUpload2")
-	@RequestMapping("/user/productUpload2")
-	public String productUpload2(@RequestParam("filename") MultipartFile mFile) {
+	//@RequestMapping("/user/productUpload2")
+	@PostMapping("/user/productUpload2")
+	public String productUpload2(HttpServletRequest request , @RequestParam("filename") MultipartFile mFile){
 		
+		System.out.println("oo");
 		try {
 			mFile.transferTo(new File("c:/kosta215/"+mFile.getOriginalFilename()));
+			System.out.println("dd");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "redirect:productUpload_ok";
+		return "member/productUpload_ok.tiles";
+		//return "redirect:productUpload_ok";
 	}
 	
 	@RequestMapping("productUpload_ok")
-	public String productUpload3() {
+	public String productUpload_ok() {
 	
 		return "member/productUpload_ok.tiles";
 	}
