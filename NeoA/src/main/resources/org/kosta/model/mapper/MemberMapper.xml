@@ -36,7 +36,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SELECT	member_id,	password,	name, address, enabled
 		FROM	a_member
 		WHERE 	member_id=#{value}	
-		AND		enabled=1 		
  	</select>
  	<sql id="selectMember">
  		select id,password,name,address from a_member
