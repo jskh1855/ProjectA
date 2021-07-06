@@ -22,13 +22,18 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	@Override
 	public void registerMember(MemberVO memberVO) {
+		System.out.println("register member");
 		String encodedPwd = passwordEncoder.encode(memberVO.getPassword());
 		memberVO.setPassword(encodedPwd);
-		
+		System.out.println("register member2");
+		System.out.println(memberVO);
 		memberMapper.registerMember(memberVO);
-		
+		System.out.println("register member3");
 		Authority authority = new Authority(memberVO.getMemberId(), "ROLE_MEMBER");
+		System.out.println("register member4");
+		System.out.println(authority);
 		memberMapper.registerRole(authority);
+		System.out.println("register member5");
 	}
 
 	@Override
@@ -53,4 +58,6 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO findMemberById(String id) {
 		return memberMapper.findMemberById(id);
 	}
+	
+	
 }

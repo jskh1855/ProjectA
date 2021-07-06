@@ -4,22 +4,22 @@ import java.io.Serializable;
 
 public class Authority implements Serializable {
 	private static final long serialVersionUID = 5188280555844223102L;
-	private String memberId;
+	private String username;
 	private String authority;
 	
 	public Authority(){}
 
 	public Authority(String username, String authority) {
-		this.memberId = username;
+		this.username = username;
 		this.authority = authority;
 	}
   
-	public String getMemberId() {
-		return memberId;
+	public String getUserName() {
+		return username;
 	}
 
 	public void setUsername(String username) {
-		this.memberId = username;
+		this.username = username;
 	}
 
 	public String getAuthority() {
@@ -32,7 +32,7 @@ public class Authority implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Authority [username=" + memberId + ", authority=" + authority
+		return "Authority [username=" + username + ", authority=" + authority
 				+ "]";
 	}	
 }
