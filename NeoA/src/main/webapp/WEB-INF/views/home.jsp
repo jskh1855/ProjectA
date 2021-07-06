@@ -65,10 +65,6 @@
         <div >
         	<a href="${pageContext.request.contextPath}/user/productUpload" style="color: black">이미지업로드</a>
         </div>
-     <%--    <form action="${pageContext.request.contextPath}/user/imageUploadForm" method="get">
-        		<button>이미지 업로드 </button>
-        	</form>
-         --%>
         
         
         <!-- slider Area End-->
