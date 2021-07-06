@@ -38,5 +38,9 @@ public class ProductController {
 		return "member/productDetails.tiles";
 		
 	}
-
+	@RequestMapping("/user/productUpload")
+	public String productUpload() {
+		
+		return "member/productUpload.tiles";
+	}
 }
