@@ -9,7 +9,6 @@ import org.kosta.model.vo.PostVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProductController {
@@ -32,20 +31,12 @@ public class ProductController {
 		System.out.println("쇼올");
 		return "member/showAll.tiles";
 	}
-//	@RequestMapping("addCart")
-//	public String addCart(String productNo, Model model) {
-//		model.addAttribute("postVO",postMapper.addCart());
-//		System.out.println("picked");
-//		return "member/productDetails.tiles";
-//		
-//	}
-	
-	@RequestMapping("/user/showDetails")
-	public String showDetails(@RequestParam("productNo") String pno, Model model) {
-		System.out.println(pno);
-		System.out.println("세부사항 조회");
-		model.addAttribute("postVO", productService.showDetails(pno));
-		return "member/showDetails.tiles";
+	@RequestMapping("addCart")
+	public String addCart(String productNo, Model model) {
+		model.addAttribute("postVO",postMapper.addCart());
+		System.out.println("picked");
+		return "member/productDetails.tiles";
+		
 	}
 
 }
