@@ -10,7 +10,7 @@
 				return false;
 			}		
 		});
-		$("#regForm :input[name=id]").keyup(function(){
+		$("#regForm :input[name=memberId]").keyup(function(){
 			var id=$(this).val().trim();
 			if(id.length<4 || id.length>10){
 				$("#idCheckView").html("아이디는 4자이상 10자 이하여야 함!").css(
@@ -41,16 +41,15 @@
 	});//ready 
 </script>
 <form method="post" action="${pageContext.request.contextPath}/user/registerMember" id="regForm">
-<%-- <sec:csrfInput/> --%><%-- csrf 토큰 --%>
-아이디 <input type="text" name="id" id="memberId"><span id="idCheckView"></span><br>
+<sec:csrfInput/>
+아이디 <input type="text" name="memberId" id="memberId"><span id="idCheckView"></span><br>
 비밀번호 <input type="password" name="password"><br>
-이메일 <input type="email" name="name"><br>
+이메일 <input type="email" name="memberEmail"><br>
 이름 <input type="text" name="name"><br>
 주소 <input type="text" name="address"><br>
-전화번호 <input type="text" name="phoneNumber"><br>
-은행이름 <input type="text" name="bank"><br>
-크레딧 <input type="text" name="credit"><br>
-계좌번호 <input type="text" name="accountNumber"><br>
+전화번호 <input type="text" name="phoneNo"><br>
+은행이름 <input type="text" name="bankName"><br>
+계좌번호 <input type="text" name="accountNo"><br>
 <input type="submit" value="가입하기">
 </form>
 <%--	  register.jsp -- MemberController
