@@ -38,7 +38,7 @@ public class ProductController {
 	}
 	@RequestMapping("addCart")
 	public String addCart(String productNo, Model model) {
-		model.addAttribute("postVO",postMapper.addCart());
+		model.addAttribute("postVO",postMapper.addCart(productNo, memberId)); 
 		System.out.println("picked");
 		return "member/productDetails.tiles";
 		
