@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="idcheck" resultType="int">
-		select count(*) from a_member where id=#{value}
+		select count(*) from a_member where member_id=#{value}
 	</select>
 	
 	<select id="findMemberById" resultType="memberVO">

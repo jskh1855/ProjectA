@@ -44,8 +44,13 @@
 <%-- <sec:csrfInput/> --%><%-- csrf 토큰 --%>
 아이디 <input type="text" name="id" id="memberId"><span id="idCheckView"></span><br>
 비밀번호 <input type="password" name="password"><br>
+이메일 <input type="email" name="name"><br>
 이름 <input type="text" name="name"><br>
 주소 <input type="text" name="address"><br>
+전화번호 <input type="text" name="phoneNumber"><br>
+은행이름 <input type="text" name="bank"><br>
+크레딧 <input type="text" name="credit"><br>
+계좌번호 <input type="text" name="accountNumber"><br>
 <input type="submit" value="가입하기">
 </form>
 <%--	  register.jsp -- MemberController

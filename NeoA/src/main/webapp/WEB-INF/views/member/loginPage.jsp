@@ -60,6 +60,17 @@ pageEncoding="UTF-8"%>
 <!--                                     </div> -->
                                 </form>
                             </div>
+                         	<script type="text/javascript">
+								$(document).ready(function() {
+									$("#logoutAction").click(function() {
+										$("#logoutForm").submit();
+									});
+								});
+							</script>
+							<a href="#" id="logoutAction" style="color: black;">로그아웃</a>
+                         <form id="logoutForm" action="${pageContext.request.contextPath}/logout" method="post">
+							<sec:csrfInput />
+						</form>
                         </div>
                     </div>
                 </div>
