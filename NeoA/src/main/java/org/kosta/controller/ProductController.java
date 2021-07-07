@@ -58,10 +58,15 @@ public class ProductController {
 //		return "member/productUpload_ok.tiles";
 //		//return "redirect:productUpload_ok";
 //	}
+	@RequestMapping("productUpload")
+	public String productUpload() {
+
+		return "member/productUpload.tiles";
+	}
 	
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	public String upload(HttpServletRequest request, @RequestParam("filename") MultipartFile[] mFiles) {
-
+		System.out.println("AA");
 		try {
 			String path2 = "..\\resources\\static\\myweb\\images\\";
 			String path = request.getSession().getServletContext().getRealPath("");
