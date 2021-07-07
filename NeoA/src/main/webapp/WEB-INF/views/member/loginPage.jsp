@@ -67,10 +67,7 @@ pageEncoding="UTF-8"%>
 									});
 								});
 							</script>
-							<a href="#" id="logoutAction" style="color: black;">로그아웃</a>
-                         <form id="logoutForm" action="${pageContext.request.contextPath}/logout" method="post">
-							<sec:csrfInput />
-						</form>
+
                         </div>
                     </div>
                 </div>

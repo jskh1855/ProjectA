@@ -1,18 +1,17 @@
 package org.kosta.controller;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
 import org.kosta.model.service.ProductService;
-import org.kosta.model.vo.PostVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -52,19 +51,48 @@ public class ProductController {
 
 	//@PostMapping("/user/productUpload2")
 	//@RequestMapping("/user/productUpload2")
-	@RequestMapping("productUpload2")
-	public String productUpload2(HttpServletRequest request , @RequestParam("filename") MultipartFile mFile){
-		
-		System.out.println("oo");
+//	@RequestMapping("productUpload2")
+//	public String productUpload2(HttpServletRequest request , @RequestParam("filename") MultipartFile mFile){
+//		
+//		System.out.println("AAAAAAAAAAAAAAAAAAA");
+//		try {
+//			mFile.transferTo(new File("c:/kosta215/"+mFile.getOriginalFilename()));
+//			System.out.println("BBBBBBBBBBBBBBBBB");
+//		} catch (Exception e) {
+//			e.getStackTrace();
+//		}
+//		
+//		return "member/productUpload_ok.tiles";
+//		//return "redirect:productUpload_ok";
+//	}
+	
+	@RequestMapping(value = "upload", method = RequestMethod.POST)
+	public String upload(HttpServletRequest request, @RequestParam("filename") MultipartFile[] mFiles) {
+
 		try {
-			mFile.transferTo(new File("c:/kosta215/"+mFile.getOriginalFilename()));
-			System.out.println("dd");
-		} catch (Exception e) {
-			e.getStackTrace();
+			String path2 = "..\\resources\\static\\myweb\\images\\";
+			String path = request.getSession().getServletContext().getRealPath(path2);
+
+			System.out.println(path);
+			
+			for (int i=0;i<mFiles.length;i++) {
+				mFiles[i].transferTo(new File(path+mFiles[i].getOriginalFilename()));
+				System.out.println(path+mFiles[i].getOriginalFilename());
+			}
+			
+
+			// mFile.transferTo(new File("c:/Users/short/kosta/ProjectA/NeoA/src/main/resources/static/myweb/images/"+mFile.getOriginalFilename()));
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		return "member/productUpload_ok.tiles";
-		//return "redirect:productUpload_ok";
+
+		System.out.println("AAA");
+		return "redirect:productUpload_ok";
 	}
 	
 	@RequestMapping("productUpload_ok")
