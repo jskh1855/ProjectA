@@ -34,6 +34,7 @@ create table a_authorities(
 
 create table post(
 	product_no varchar2(100) primary key,
+	title varchar2(100) not null,
 	product_name varchar2(100) not null,
 	start_price number default 0,
 	now_price number default 0,

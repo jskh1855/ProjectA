@@ -3,6 +3,7 @@ package org.kosta.model.vo;
 import java.time.LocalDate;
 
 public class PostVO {
+	private String title;
 	private String productNo;
 	private String productName;
 	private int startPrice;
@@ -23,10 +24,12 @@ public class PostVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PostVO(String productNo, String productName, int startPrice, int nowPrice, LocalDate productUpTime,
-			int unitPrice, int giveMeThatPrice, String detail, String postImage, int bidTimeUnit, LocalDate bidEndTime,
-			MemberVO memberVO, CategoryVO categoryVO, QnAVO qnaVO, PickVO pickVO, BidLogVO bidLogVO) {
+	public PostVO(String title, String productNo, String productName, int startPrice, int nowPrice,
+			LocalDate productUpTime, int unitPrice, int giveMeThatPrice, String detail, String postImage,
+			int bidTimeUnit, LocalDate bidEndTime, MemberVO memberVO, CategoryVO categoryVO, QnAVO qnaVO, PickVO pickVO,
+			BidLogVO bidLogVO) {
 		super();
+		this.title = title;
 		this.productNo = productNo;
 		this.productName = productName;
 		this.startPrice = startPrice;
@@ -43,6 +46,12 @@ public class PostVO {
 		this.qnaVO = qnaVO;
 		this.pickVO = pickVO;
 		this.bidLogVO = bidLogVO;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public String getProductNo() {
 		return productNo;
@@ -142,9 +151,9 @@ public class PostVO {
 	}
 	@Override
 	public String toString() {
-		return "PostVO [productNo=" + productNo + ", productName=" + productName + ", startPrice=" + startPrice
-				+ ", nowPrice=" + nowPrice + ", productUpTime=" + productUpTime + ", unitPrice=" + unitPrice
-				+ ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", postImage=" + postImage
+		return "PostVO [title=" + title + ", productNo=" + productNo + ", productName=" + productName + ", startPrice="
+				+ startPrice + ", nowPrice=" + nowPrice + ", productUpTime=" + productUpTime + ", unitPrice="
+				+ unitPrice + ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", postImage=" + postImage
 				+ ", bidTimeUnit=" + bidTimeUnit + ", bidEndTime=" + bidEndTime + ", memberVO=" + memberVO
 				+ ", categoryVO=" + categoryVO + ", qnaVO=" + qnaVO + ", pickVO=" + pickVO + ", bidLogVO=" + bidLogVO
 				+ "]";
