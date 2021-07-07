@@ -71,13 +71,10 @@ public class ProductController {
 
 		try {
 			String path2 = "..\\resources\\static\\myweb\\images\\";
-			String path = request.getSession().getServletContext().getRealPath(path2);
-
-			System.out.println(path);
+			String path = request.getSession().getServletContext().getRealPath("");
 			
 			for (int i=0;i<mFiles.length;i++) {
-				mFiles[i].transferTo(new File(path+mFiles[i].getOriginalFilename()));
-				System.out.println(path+mFiles[i].getOriginalFilename());
+				mFiles[i].transferTo(new File(path+path2+mFiles[i].getOriginalFilename()));
 			}
 			
 
