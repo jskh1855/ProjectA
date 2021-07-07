@@ -39,19 +39,28 @@ public class ProductController {
 	}
 	@RequestMapping("addCart")
 	public String addCart(String productNo, Model model) {
-		model.addAttribute("postVO",postMapper.addCart(productNo, memberId)); 
+//		model.addAttribute("postVO",postMapper.addCart(productNo, memberId)); 
 		System.out.println("picked");
 		return "member/productDetails.tiles";
 		
 	}
+<<<<<<< HEAD
 	@RequestMapping("/user/productUpload")
 	public String productUpload(HttpServletRequest request) {
+=======
+	@RequestMapping("productUpload")
+	public String productUpload() {
+>>>>>>> f6d82289ed5e4bb8130d2bdb081a06b1c1439b21
 		
 		return "member/productUpload.tiles";
 	}
 
 	//@PostMapping("/user/productUpload2")
+<<<<<<< HEAD
 	//@PostMapping("/user/productUpload2")
+=======
+	//@RequestMapping("/user/productUpload2")
+>>>>>>> f6d82289ed5e4bb8130d2bdb081a06b1c1439b21
 	@RequestMapping("productUpload2")
 	public String productUpload2(HttpServletRequest request , @RequestParam("filename") MultipartFile mFile){
 		
@@ -60,7 +69,7 @@ public class ProductController {
 			mFile.transferTo(new File("C:/kosta215/"+mFile.getOriginalFilename()));
 			System.out.println("dd");
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getStackTrace();
 		}
 		
 		//return "member/productUpload_ok.tiles";
