@@ -42,7 +42,7 @@ create table post(
 	unit_price number,
 	give_me_that_price number,
 	detail clob,
-	post_image blob,
+	post_image varchar2(100),
 	category_no varchar2(100) constraint fk_post_category_no references category(category_no),
 	member_id varchar2(100) constraint fk_post references a_member(member_id)
 );

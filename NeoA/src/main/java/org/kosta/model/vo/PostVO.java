@@ -11,6 +11,7 @@ public class PostVO {
 	private int unitPrice;
 	private int giveMeThatPrice;
 	private String detail;
+	private String postImage;
 	private int bidTimeUnit;
 	private LocalDate bidEndTime;
 	private MemberVO memberVO;
@@ -23,8 +24,8 @@ public class PostVO {
 		// TODO Auto-generated constructor stub
 	}
 	public PostVO(String productNo, String productName, int startPrice, int nowPrice, LocalDate productUpTime,
-			int unitPrice, int giveMeThatPrice, String detail, int bidTimeUnit, LocalDate bidEndTime, MemberVO memberVO,
-			CategoryVO categoryVO, QnAVO qnaVO, PickVO pickVO, BidLogVO bidLogVO) {
+			int unitPrice, int giveMeThatPrice, String detail, String postImage, int bidTimeUnit, LocalDate bidEndTime,
+			MemberVO memberVO, CategoryVO categoryVO, QnAVO qnaVO, PickVO pickVO, BidLogVO bidLogVO) {
 		super();
 		this.productNo = productNo;
 		this.productName = productName;
@@ -34,6 +35,7 @@ public class PostVO {
 		this.unitPrice = unitPrice;
 		this.giveMeThatPrice = giveMeThatPrice;
 		this.detail = detail;
+		this.postImage = postImage;
 		this.bidTimeUnit = bidTimeUnit;
 		this.bidEndTime = bidEndTime;
 		this.memberVO = memberVO;
@@ -90,6 +92,12 @@ public class PostVO {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
+	public String getPostImage() {
+		return postImage;
+	}
+	public void setPostImage(String postImage) {
+		this.postImage = postImage;
+	}
 	public int getBidTimeUnit() {
 		return bidTimeUnit;
 	}
@@ -136,10 +144,10 @@ public class PostVO {
 	public String toString() {
 		return "PostVO [productNo=" + productNo + ", productName=" + productName + ", startPrice=" + startPrice
 				+ ", nowPrice=" + nowPrice + ", productUpTime=" + productUpTime + ", unitPrice=" + unitPrice
-				+ ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", bidTimeUnit=" + bidTimeUnit
-				+ ", bidEndTime=" + bidEndTime + ", memberVO=" + memberVO + ", categoryVO=" + categoryVO + ", qnaVO="
-				+ qnaVO + ", pickVO=" + pickVO + ", bidLogVO=" + bidLogVO + "]";
+				+ ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", postImage=" + postImage
+				+ ", bidTimeUnit=" + bidTimeUnit + ", bidEndTime=" + bidEndTime + ", memberVO=" + memberVO
+				+ ", categoryVO=" + categoryVO + ", qnaVO=" + qnaVO + ", pickVO=" + pickVO + ", bidLogVO=" + bidLogVO
+				+ "]";
 	}
-	
 	
 }
