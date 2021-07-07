@@ -4,6 +4,7 @@ public class MemberVO{
 	private String memberId;
 	private String memberEmail;
 	private String name;
+	private String profileImage;
 	private String password;
 	private String address;
 	private String phoneNo;
@@ -15,12 +16,13 @@ public class MemberVO{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MemberVO(String memberId, String memberEmail, String name, String password, String address, String phoneNo,
-			String credit, boolean enabled, String bankName, String accountNo) {
+	public MemberVO(String memberId, String memberEmail, String name, String profileImage, String password,
+			String address, String phoneNo, String credit, boolean enabled, String bankName, String accountNo) {
 		super();
 		this.memberId = memberId;
 		this.memberEmail = memberEmail;
 		this.name = name;
+		this.profileImage = profileImage;
 		this.password = password;
 		this.address = address;
 		this.phoneNo = phoneNo;
@@ -46,6 +48,12 @@ public class MemberVO{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getProfileImage() {
+		return profileImage;
+	}
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
 	public String getPassword() {
 		return password;
@@ -91,9 +99,10 @@ public class MemberVO{
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [memberId=" + memberId + ", memberEmail=" + memberEmail + ", name=" + name + ", password="
-				+ password + ", address=" + address + ", phoneNo=" + phoneNo + ", credit=" + credit + ", enabled="
-				+ enabled + ", bankName=" + bankName + ", accountNo=" + accountNo + "]";
+		return "MemberVO [memberId=" + memberId + ", memberEmail=" + memberEmail + ", name=" + name + ", profileImage="
+				+ profileImage + ", password=" + password + ", address=" + address + ", phoneNo=" + phoneNo
+				+ ", credit=" + credit + ", enabled=" + enabled + ", bankName=" + bankName + ", accountNo=" + accountNo
+				+ "]";
 	}
 	
 	

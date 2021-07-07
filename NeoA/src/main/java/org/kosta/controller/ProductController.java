@@ -43,14 +43,7 @@ public class ProductController {
 		return "member/productDetails.tiles";
 		
 	}
-	@RequestMapping("productUpload")
-	public String productUpload() {
-		
-		return "member/productUpload.tiles";
-	}
 
-	//@PostMapping("/user/productUpload2")
-	//@RequestMapping("/user/productUpload2")
 //	@RequestMapping("productUpload2")
 //	public String productUpload2(HttpServletRequest request , @RequestParam("filename") MultipartFile mFile){
 //		
@@ -86,13 +79,11 @@ public class ProductController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
-		System.out.println("AAA");
 		return "redirect:productUpload_ok";
 	}
 	
-	@RequestMapping("productUpload_ok")
+	@RequestMapping("/productUpload_ok")
 	public String productUpload_ok() {
 	
 		return "member/productUpload_ok.tiles";
