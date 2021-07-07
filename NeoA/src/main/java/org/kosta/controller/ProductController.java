@@ -45,29 +45,29 @@ public class ProductController {
 		
 	}
 	@RequestMapping("/user/productUpload")
-	public String productUpload() {
+	public String productUpload(HttpServletRequest request) {
 		
 		return "member/productUpload.tiles";
 	}
 
 	//@PostMapping("/user/productUpload2")
-	//@RequestMapping("/user/productUpload2")
-	@PostMapping("/user/productUpload2")
+	//@PostMapping("/user/productUpload2")
+	@RequestMapping("productUpload2")
 	public String productUpload2(HttpServletRequest request , @RequestParam("filename") MultipartFile mFile){
 		
 		System.out.println("oo");
 		try {
-			mFile.transferTo(new File("c:/kosta215/"+mFile.getOriginalFilename()));
+			mFile.transferTo(new File("C:/kosta215/"+mFile.getOriginalFilename()));
 			System.out.println("dd");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "member/productUpload_ok.tiles";
-		//return "redirect:productUpload_ok";
+		//return "member/productUpload_ok.tiles";
+		return "redirect:productUpload_ok";
 	}
 	
-	@RequestMapping("productUpload_ok")
+	@RequestMapping("/productUpload_ok")
 	public String productUpload_ok() {
 	
 		return "member/productUpload_ok.tiles";

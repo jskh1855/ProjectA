@@ -70,7 +70,7 @@ public class MemberController {
 	
 	@RequestMapping("login_fail")
 	public String loginFail() {
-		return "member/login_fail";
+		return "member/login_fail.tiles";
 	}
 	
 	@RequestMapping("user/loginPage")

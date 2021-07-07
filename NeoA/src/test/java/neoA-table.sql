@@ -15,6 +15,7 @@ create table a_member(
 	member_id varchar2(100) primary key,
 	member_email varchar2(100) not null,
 	name varchar2(100) not null,
+	profile_image varchar2(100) default 'profile_default.jpg',
 	password varchar2(100) not null,
 	address varchar2(100) not null,
 	phone_no varchar2(100) not null,
@@ -41,6 +42,7 @@ create table post(
 	unit_price number,
 	give_me_that_price number,
 	detail clob,
+	post_image blob,
 	category_no varchar2(100) constraint fk_post_category_no references category(category_no),
 	member_id varchar2(100) constraint fk_post references a_member(member_id)
 );
