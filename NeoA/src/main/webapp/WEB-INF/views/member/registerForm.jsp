@@ -46,7 +46,6 @@
 비밀번호 <input type="password" name="password"><br>
 이메일 <input type="email" name="memberEmail"><br>
 이름 <input type="text" name="name"><br>
-프로필 사진 <input type="file" name="profileImage"><br>
 주소 <input type="text" name="address"><br>
 전화번호 <input type="text" name="phoneNo"><br>
 은행이름 <input type="text" name="bankName"><br>

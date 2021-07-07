@@ -67,14 +67,19 @@ public class ProductController {
 	
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	public String upload(HttpServletRequest request, @RequestParam("filename") MultipartFile[] mFiles) {
-		System.out.println("AA");
+		StringBuilder images = new StringBuilder();
 		try {
 			String path2 = "..\\resources\\static\\myweb\\images\\";
 			String path = request.getSession().getServletContext().getRealPath("");
 			
 			for (int i=0;i<mFiles.length;i++) {
 				mFiles[i].transferTo(new File(path+path2+mFiles[i].getOriginalFilename()));
+				images.append(mFiles[i].getOriginalFilename());
+				images.append(";");
+				
 			}
+			
+			
 			
 
 			// mFile.transferTo(new File("c:/Users/short/kosta/ProjectA/NeoA/src/main/resources/static/myweb/images/"+mFile.getOriginalFilename()));
