@@ -34,6 +34,7 @@ public class ProductController {
 	public String showAll(Model model) {
 		model.addAttribute("postVOList", productService.showAll());
 		System.out.println("쇼올");
+		
 		return "member/showAll.tiles";
 	}
 	@RequestMapping("addCart")
