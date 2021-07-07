@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 	member_id=#{value}	
  	</select>
  	<sql id="selectMember">
- 		select id,password,name,address from a_member
+ 		select member_id,password,name,address from a_member
  	</sql>
 	
 </mapper>
