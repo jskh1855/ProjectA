@@ -44,7 +44,7 @@ public class ProductController {
 		return "member/productDetails.tiles";
 		
 	}
-	@RequestMapping("/user/productUpload")
+	@RequestMapping("productUpload")
 	public String productUpload() {
 		
 		return "member/productUpload.tiles";
@@ -52,7 +52,7 @@ public class ProductController {
 
 	//@PostMapping("/user/productUpload2")
 	//@RequestMapping("/user/productUpload2")
-	@PostMapping("/user/productUpload2")
+	@RequestMapping("productUpload2")
 	public String productUpload2(HttpServletRequest request , @RequestParam("filename") MultipartFile mFile){
 		
 		System.out.println("oo");
@@ -60,7 +60,7 @@ public class ProductController {
 			mFile.transferTo(new File("c:/kosta215/"+mFile.getOriginalFilename()));
 			System.out.println("dd");
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getStackTrace();
 		}
 		
 		return "member/productUpload_ok.tiles";

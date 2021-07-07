@@ -63,7 +63,7 @@
         <hr>
         <!-- 이미지 업로드 테스트  -->
         <div >
-        	<a href="${pageContext.request.contextPath}/user/productUpload" style="color: black">이미지업로드</a>
+        	<a href="${pageContext.request.contextPath}/productUpload" style="color: black">이미지업로드</a>
         </div>
         
         
