@@ -40,6 +40,15 @@ public class ProductController {
 			pagingBean=new PagingBean(19, Integer.parseInt(pageNo));
 		}
 
+		// new PagingBean(19) <- 총 개수 확인하는 sql구문 mapper에 추가하기 
+		// select count(*) from post; 만해도 될 듯
+		
+		// 카테고리에 따라 변경할수 있도록 sql에 where 절 추가 
+		// pagingBean에 get set 추가하면 될 듯
+	
+		
+		
+		
 		System.out.println("1 test  "+pagingBean.getStartRowNumber());
 		
 		
