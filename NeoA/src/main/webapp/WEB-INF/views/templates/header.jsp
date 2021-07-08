@@ -48,13 +48,13 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="home.jsp"><img src="${pageContext.request.contextPath}/myweb/assets/img/logo/logo.png" alt=""></a>
+                            <a href="home"><img src="${pageContext.request.contextPath}/myweb/assets/img/logo/logo.png" alt=""></a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>                                                
                                 <ul id="navigation">  
-                                    <li><a href="home.jsp">Home</a></li>
+                                    <li><a href="home">Home</a></li>
                                     <li><a href="${pageContext.request.contextPath}/shop">shop</a></li>
                                     <li><a href="about.jsp">about</a></li>
                                     <li class="hot"><a href="#">Latest</a>
@@ -93,9 +93,17 @@
                         <div class="header-right">
                             <ul>
                                 <li>
-                                    <div class="nav-search search-switch">
-                                        <span class="flaticon-search"></span>
-                                    </div>
+                                  <%--   <div class="nav-search search-switch" onsubmit="${pageContext.request.contextPath}/searchByTitle">
+                                    <span class="flaticon-search">
+                                     </span>
+                                    </div> --%>
+                                    	<form action="${pageContext.request.contextPath}/searchByTitle">
+                                    		<div>
+                                    			<input type ="text" name="title" placeholder="검색어를 입력해주세요">
+                                    			<input type="submit" value="검색">
+                                    		</div>
+                              	
+                                    	</form>
                                 </li>
                                 <li> <a href="${pageContext.request.contextPath}/user/loginPage"><span class="flaticon-user"></span></a></li>
                                 <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>

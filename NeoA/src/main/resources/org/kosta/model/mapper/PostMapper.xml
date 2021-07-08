@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 	
-	<insert id="registerProduct" parameterType="postVO">
+	<insert id="registerProduct" parameterType="string">
 	insert into post 
 	values(product_no_seq.nextval, #{productName},#{startPrice},#{nowPrice},sysdate,sysdate+#{bidTimeUnit},#{unitPrice},#{giveMeThatPrice},#{detail},#{categoryVO.categoryNo},#{memberVO.memberId})
 	</insert>
@@ -37,7 +37,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into pick
 		values(pick_no_seq.nextval, sysdate, #{memberVO.member_Id},#{postVO.product_no})
 	</insert>
-	
+	<select id="searchByTitle" resultType="postVO"   parameterType="string">
+		select * from post 
+		where title like '%{value}%'
+		<!-- like '%{value}%' -->
+	</select>
 	
 	
 	

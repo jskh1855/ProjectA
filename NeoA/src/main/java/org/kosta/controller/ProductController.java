@@ -2,6 +2,7 @@ package org.kosta.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.kosta.model.mapper.PostMapper;
 import org.kosta.model.service.ProductService;
 import org.kosta.model.vo.PagingBean;
+import org.kosta.model.vo.PostVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -119,5 +121,16 @@ public class ProductController {
 	
 		return "member/productUpload_ok.tiles";
 	}
+	
+	@RequestMapping("searchByTitle")
+	public String searchByTitle(@RequestParam(value="title")String title, Model model) {
+		model.addAttribute("searchResult", productService.search(title));
+		
+		
+		return "member/search_result.tiles";
+		
+	}
+	
+	
 	
 }

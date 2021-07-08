@@ -11,4 +11,5 @@ public interface ProductService {
 
 	PostVO showDetails(String productNo);
 
+	PostVO search(String title);	
 }

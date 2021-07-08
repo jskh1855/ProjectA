@@ -41,9 +41,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
+                            <div class="col-xl-4 col-lg-5 col-md-8 col-sm-8 d-none d-sm-block">
                                 <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-                                    <img src="assets/img/hero/watch.png" alt="" class=" heartbeat">
+                                    <img src="${pageContext.request.contextPath}/myweb/assets/img/jhk/auction2.png" alt="" class=" heartbeat">
                                 </div>
                             </div>
                         </div>
