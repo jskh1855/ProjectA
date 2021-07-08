@@ -28,18 +28,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	values(product_no_seq.nextval, #{productName},#{startPrice},#{nowPrice},sysdate,sysdate+#{bidTimeUnit},#{unitPrice},#{giveMeThatPrice},#{detail},#{categoryVO.categoryNo},#{memberVO.memberId})
 	</insert>
 	
-	<select id="viewDetailPost" resultType="postVO">
-		select product_no
-		from post
-		where product_no = #{value}
+	<select id="viewDetailPost" resultMap="detailPostRM" parameterType="string">
+		select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time
+		from post p, a_member m
+		where p.product_no = #{value} and p.member_id=m.member_id
 	</select>
 	<insert id="addCart" parameterType="string">
 		insert into pick
 		values(pick_no_seq.nextval, sysdate, #{memberVO.member_Id},#{postVO.product_no})
 	</insert>
-	<select id="searchByTitle" resultType="postVO"   parameterType="string">
-		select * from post 
-		where title like '%{value}%'
+	<select id="searchByTitle" resultMap="detailPostRM" parameterType="string">
+		select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time
+		from post p, a_member m 
+		where title like '%{value}%' and p.member_id=m.member_id
 		<!-- like '%{value}%' -->
 	</select>
 	

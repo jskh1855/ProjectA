@@ -6,9 +6,9 @@
 		<div class="single-slider slider-height2 d-flex align-items-center">
 			<div class="container">
 				<div class="row">
-					<div class="col-xl-12">
+					<div class="col-xl-10">
 						<div class="hero-cap text-center">
-							<h2>Watch Shop</h2>
+							<h2>상품 상세</h2>
 						</div>
 					</div>
 				</div>
@@ -36,19 +36,15 @@
 						</div>
 					</div>
 				</div>
+				
+				
 				<div class="col-lg-8">
 					<div class="single_product_text text-center">
+					<c:forEach items="${viewDetailPost}" var="list">
 						<h3>
-							Foam filling cotton slow <br> rebound pillows
+							제목 <br> ${list.title}
 						</h3>
-						<p>Seamlessly empower fully researched growth strategies and
-							interoperable internal or “organic” sources. Credibly innovate
-							granular internal or “organic” sources whereas high standards in
-							web-readiness. Credibly innovate granular internal or organic
-							sources whereas high standards in web-readiness. Energistically
-							scale future-proof core competencies vis-a-vis impactful
-							experiences. Dramatically synthesize integrated schemas. with
-							optimal networks.</p>
+						<p>${list.productName}</p>
 						<div class="card_area">
 							<div class="product_count_area">
 								<p>Quantity</p>
@@ -71,8 +67,10 @@
 								</div>
 							</form>
 						</div>
+						</c:forEach>
 					</div>
 				</div>
+					
 			</div>
 		</div>
 	</div>

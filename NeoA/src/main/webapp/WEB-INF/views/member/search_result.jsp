@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h2>검색결과</h2>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+
+
 	<div class="container">
 
 	<table border="1">
@@ -28,15 +24,10 @@
 			<td>${list.title}</td>
 			<td>${list.productName}</td>
 			<td>${list.nowPrice}</td>
-			<td>에러</td>
+			<td>${list.bidEndTime}</td>
 			<td>${list.memberVO.memberId}</td>
 			<td>${list.memberVO.name}</td>
 		</tr>
 	</c:forEach>
 	</table> 
 </div>
-	
-	
-	
-</body>
-</html>

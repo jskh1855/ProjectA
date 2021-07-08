@@ -76,7 +76,21 @@ class SpringBootStudy5SecurityApplicationTests {
 		 * 
 		 * System.out.println(list);
 		 */
-
+		
+		/*
+		 * 상세보기
+		 * 
+		 * PostVO vo = new PostVO();
+		 * 
+		 * vo = pm.viewDetailPost("2"); System.out.println(vo);
+		 */
+		
+		//제목으로 찾기
+		PostVO vo = new PostVO();
+		vo = pm.searchByTitle("제목");
+		
+		System.out.println(vo);
+		
 		
 	}
 	

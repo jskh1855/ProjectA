@@ -27,8 +27,5 @@ public class ProductServiceImpl implements ProductService {
 		return postMapper.viewDetailPost(productNo);
 	}
 
-	@Override
-	public PostVO search(String title) {
-		return postMapper.searchByTitle(title);
-	}
+	
 }

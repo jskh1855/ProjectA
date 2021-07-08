@@ -27,9 +27,12 @@ public class ProductController {
 	@Resource
 	private ProductService productService;
 
-	@RequestMapping("/product")
-	public String getDetailProduct(String productNo, Model model) {
-		return "";
+	@RequestMapping("/user/productDetails")
+	public String getDetailProduct(@RequestParam("productNo")String productNo, Model model) {
+		model.addAttribute("viewDetailPost",productService.showDetails(productNo));
+		System.out.println("show this!!!");
+
+		return "member/showDetails.tiles";
 	}
 
 	@RequestMapping("/user/showAll")
@@ -123,8 +126,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping("searchByTitle")
-	public String searchByTitle(@RequestParam(value="title")String title, Model model) {
-		model.addAttribute("searchResult", productService.search(title));
+	public String searchByTitle(String title, Model model) {
+		model.addAttribute("searchResult", postMapper.searchByTitle(title));
 		
 		
 		return "member/search_result.tiles";

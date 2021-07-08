@@ -19,10 +19,10 @@ public class HomeController {
 		return "member/shop.tiles";
 	}
 	
-	@RequestMapping("productDetails")
-	public String productDetails() {
-		return "member/productDetails.tiles";
-	}
+	/*
+	 * @RequestMapping("productDetails") public String productDetails() { return
+	 * "member/productDetails.tiles"; }
+	 */
 
 	/*	
 		로그인 하였으나 권한이 없는 요청을 하였을 경우 보여지는 페이지를 지정  

@@ -38,9 +38,9 @@ create table post(
 	product_name varchar2(100) not null,
 	start_price number default 0,
 	now_price number default 0,
-	product_up_time date,
+	product_up_time date default sysdate,
 	bid_time_unit number default 0,
-	bid_end_time date default sysdate,
+	bid_end_time date,
 	unit_price number,
 	give_me_that_price number,
 	detail clob,
@@ -49,6 +49,7 @@ create table post(
 	member_id varchar2(100) constraint fk_post references a_member(member_id)
 );
 create sequence product_no_seq;
+
 
 
 create table qna(
@@ -105,10 +106,13 @@ insert into category values(category_seq.nextval, '1','0','0','가전');
 insert into category values(category_seq.nextval, '1','1','0','영상가전');
 insert into category values(category_seq.nextval, '1','1','1','TV');
 
+
+insert into post values(product_no_seq.nextval, '제목1','롤렉스','2000','2000',sysdate,3,sysdate+3,'100','4000','afadafad','1.jpg','1','java');
+
 insert into post values(product_no_seq.nextval, '제목1','롤렉스','2000','2000',sysdate,3,'100','4000','afadafad','1.jpg','1','java');
-insert into post values(product_no_seq.nextval, '제목2','나이키슈즈','300','300',sysdate,sysdate+3,'10','2000','hahaha','2.jpg','1','java2');
-insert into post values(product_no_seq.nextval, '제목3','롤스로이스','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','3.jpg','2','java2');
-insert into post values(product_no_seq.nextval, '제목4','아디다스슈즈','300','300',sysdate,sysdate+3,'10','2000','hahaha','4.jpg','1','java2');
+insert into post values(product_no_seq.nextval, '제목2','나이키슈즈','300','300',sysdate,3,sysdate+3,'10','2000','hahaha','2.jpg','1','java2');
+insert into post values(product_no_seq.nextval, '제목3','롤스로이스','30000','30000',sysdate,5,sysdate+5,'1000','100000','ㅎㄷㄷ','3.jpg','2','java2');
+insert into post values(product_no_seq.nextval, '제목4','아디다스슈즈','300','300',sysdate,3,sysdate+3,'10','2000','hahaha','4.jpg','1','java2');
 insert into post values(product_no_seq.nextval, '제목5','람보','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','5.jpg','2','java2');
 insert into post values(product_no_seq.nextval, '제목6','컨버스슈즈','300','300',sysdate,sysdate+3,'10','2000','hahaha','6.jpg','1','java2');
 insert into post values(product_no_seq.nextval, '제목7','페라리','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','7.jpg','2','java2');

@@ -22,7 +22,7 @@
 		</tr>
 	<c:forEach items="${postVOList}" var="list">
 		<tr>
-			<td>${list.productNo}</td>
+			<td><a href="${pageContext.request.contextPath}/user/productDetails?productNo=${list.productNo}">${list.productNo}</a></td>
 			<td>${list.postImage}</td>
 			<td>${list.title}</td>
 			<td>${list.productName}</td>

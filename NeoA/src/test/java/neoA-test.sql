@@ -52,7 +52,11 @@ insert into post values(product_no_seq.nextval, '롤렉스','2000','2000',sysdat
 insert into post values(product_no_seq.nextval, #{productName},#{startPrice},#{nowPrice},sysdate,sysdate+#{bidTimeUnit},#{unitPrice},#{giveMeThatPrice},#{detail},#{categoryVO.categoryNo},#{memberVO.memberID})
 
 
+-- 상세보기
 
+	select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time
+		from post p, a_member m
+		where p.product_no = '2' and p.member_id=m.member_id
 
 
 
