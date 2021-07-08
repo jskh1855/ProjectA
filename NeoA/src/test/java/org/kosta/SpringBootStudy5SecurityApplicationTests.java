@@ -70,10 +70,12 @@ class SpringBootStudy5SecurityApplicationTests {
 		//pm.addCart("1", "java");
 		 
 		
-		List<PostVO> list = productService.showAll();
-		
-
-		System.out.println(list);
+		/*
+		 * List<PostVO> list = productService.showAll();
+		 * 
+		 * 
+		 * System.out.println(list);
+		 */
 
 		
 	}

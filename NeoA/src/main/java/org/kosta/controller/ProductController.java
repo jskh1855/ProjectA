@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.model.mapper.PostMapper;
 import org.kosta.model.service.ProductService;
+import org.kosta.model.vo.PagingBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,6 @@ public class ProductController {
 	
 	@Resource
 	private ProductService productService;
-	
 
 	@RequestMapping("/product")
 	public String getDetailProduct(String productNo, Model model) {
@@ -31,10 +31,21 @@ public class ProductController {
 	}
 
 	@RequestMapping("/user/showAll")
-	public String showAll(Model model) {
-		model.addAttribute("postVOList", productService.showAll());
-		System.out.println("쇼올");
+	public String showAll(Model model, @RequestParam("pageNo") String pageNo) {
 		
+		PagingBean pagingBean=null;
+		if(pageNo.equals("0")) {
+			pagingBean=new PagingBean(19);
+		}else {
+			pagingBean=new PagingBean(19, Integer.parseInt(pageNo));
+		}
+
+		System.out.println("1 test  "+pagingBean.getStartRowNumber());
+		
+		
+		model.addAttribute("postVOList", productService.showAll(pagingBean));
+		System.out.println("show all !!!");
+		model.addAttribute("pagingBean", pagingBean);
 		return "member/showAll.tiles";
 	}
 	@RequestMapping("addCart")

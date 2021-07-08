@@ -39,6 +39,14 @@ from post p, a_member a
 where p.member_id = a.member_id
 order by product_up_time desc
 
+	select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name
+	from(
+		select row_number() over(order by product_no desc) as rnum,product_no,title,product_name,now_price,bid_end_time,post_image,member_id
+		from post
+	) p, a_member m
+	where p.member_id=m.member_id and rnum between 1 and 6
+
+
 -- 상품 등록 
 insert into post values(product_no_seq.nextval, '롤렉스','2000','2000',sysdate,sysdate+3,'100','4000','afadafad','1','java')
 insert into post values(product_no_seq.nextval, #{productName},#{startPrice},#{nowPrice},sysdate,sysdate+#{bidTimeUnit},#{unitPrice},#{giveMeThatPrice},#{detail},#{categoryVO.categoryNo},#{memberVO.memberID})
