@@ -48,19 +48,19 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img src="${pageContext.request.contextPath}/myweb/assets/img/logo/logo.png" alt=""></a>
+                            <a href="home.jsp"><img src="${pageContext.request.contextPath}/myweb/assets/img/logo/logo.png" alt=""></a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>                                                
                                 <ul id="navigation">  
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="home.jsp">Home</a></li>
                                     <li><a href="${pageContext.request.contextPath}/shop">shop</a></li>
-                                    <li><a href="about.html">about</a></li>
+                                    <li><a href="about.jsp">about</a></li>
                                     <li class="hot"><a href="#">Latest</a>
                                         <ul class="submenu">
-                                            <li><a href="${pageContext.request.contextPath}/shop"> Product list</a></li>
-                                            <li><a href="${pageContext.request.contextPath}/productDetails"> Product Details</a></li>
+                                            <li><a href="${pageContext.request.contextPath}/user/showAll?pageNo=0"> Product list</a></li>
+                                            <li><a href="${pageContext.request.contextPath}/user/showAll?pageNo=0"> Product Details</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="blog.html">Blog</a>

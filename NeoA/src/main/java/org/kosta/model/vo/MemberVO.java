@@ -4,7 +4,7 @@ public class MemberVO{
 	private String memberId;
 	private String memberEmail;
 	private String name;
-	private String profileImage;
+	private String profileImage="";
 	private String password;
 	private String address;
 	private String phoneNo;
@@ -16,6 +16,7 @@ public class MemberVO{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public MemberVO(String memberId, String memberEmail, String name, String profileImage, String password,
 			String address, String phoneNo, String credit, boolean enabled, String bankName, String accountNo) {
 		super();

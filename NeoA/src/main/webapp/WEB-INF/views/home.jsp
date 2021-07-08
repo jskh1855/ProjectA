@@ -11,11 +11,11 @@
                         <div class="row justify-content-between align-items-center">
                             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
                                 <div class="hero__caption">
-                                    <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">Select Your New Perfect Style</h1>
-                                    <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>
+                                    <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">What's new today?</h1>
+                                    <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">오늘의 물건들을 옥션으로 만나보세요, Project_a는 고객님들을 위한 쉬운 옥션 서비스를 제공합니다. </p>
                                     <!-- Hero-btn -->
                                     <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
-                                        <a href="industries.html" class="btn hero-btn">Shop Now</a>
+                                        <a href="${pageContext.request.contextPath}/user/showAll?pageNo=0" class="btn hero-btn">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -33,11 +33,11 @@
                         <div class="row justify-content-between align-items-center">
                             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
                                 <div class="hero__caption">
-                                    <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">Select Your New Perfect Style</h1>
-                                    <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>
+                                    <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">Keep in touch with your a_uction</h1>
+                                    <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">조심하세요, 순간의 방심으로 당신 물건은 남에게 돌아갈지도..? </p>
                                     <!-- Hero-btn -->
                                     <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
-                                        <a href="industries.html" class="btn hero-btn">Shop Now</a>
+                                        <a href="${pageContext.request.contextPath}/user/showAll?pageNo=0" class="btn hero-btn">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="section-tittle mb-70">
-                            <h2>New Arrivals</h2>
+                            <h2>방금 올라왔어요!</h2>
                         </div>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-7 col-lg-8 col-md-10">
                         <div class="section-tittle mb-70 text-center">
-                            <h2>Popular Items</h2>
+                            <h2>인기상품!!</h2>
                             <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
                         </div>
                     </div>
@@ -291,7 +291,7 @@
                 <div class="thumb-content-box">
                     <div class="thumb-content">
                         <h3>Next Video</h3>
-                        <a href="#"> <i class="flaticon-arrow"></i></a>
+                        <a href="https://www.youtube.com/watch?v=6GgkySMKwUs"> <i class="flaticon-arrow"></i></a>
                     </div>
                 </div>
             </div>
@@ -339,22 +339,22 @@
                         <div class="col-xl-4 col-lg-4 col-md-6">
                             <div class="single-method mb-40">
                                 <i class="ti-package"></i>
-                                <h6>Free Shipping Method</h6>
-                                <p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
+                                <h6>고객센터</h6>
+                                <p>거래상품이 마음에 들지 않으세요?</p>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-6">
                             <div class="single-method mb-40">
                                 <i class="ti-unlock"></i>
-                                <h6>Secure Payment System</h6>
-                                <p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
+                                <h6>안전한 거래 요망</h6>
+                                <p>거래시 발생하는 사건들에 대한 책임은 본인이!</p>
                             </div>
                         </div> 
                         <div class="col-xl-4 col-lg-4 col-md-6">
                             <div class="single-method mb-40">
                                 <i class="ti-reload"></i>
-                                <h6>Secure Payment System</h6>
-                                <p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
+                                <h6>a하러가기</h6>
+                                <p>당신의 물건의 가치는 얼마일까요?</p>
                             </div>
                         </div>
                     </div>
