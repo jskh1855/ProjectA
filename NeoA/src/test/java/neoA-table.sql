@@ -39,7 +39,8 @@ create table post(
 	start_price number default 0,
 	now_price number default 0,
 	product_up_time date,
-	bid_end_time date,
+	bid_time_unit number default 0,
+	bid_end_time date default sysdate,
 	unit_price number,
 	give_me_that_price number,
 	detail clob,
@@ -104,7 +105,7 @@ insert into category values(category_seq.nextval, '1','0','0','가전');
 insert into category values(category_seq.nextval, '1','1','0','영상가전');
 insert into category values(category_seq.nextval, '1','1','1','TV');
 
-insert into post values(product_no_seq.nextval, '제목1','롤렉스','2000','2000',sysdate,sysdate+3,'100','4000','afadafad','1.jpg','1','java');
+insert into post values(product_no_seq.nextval, '제목1','롤렉스','2000','2000',sysdate,3,'100','4000','afadafad','1.jpg','1','java');
 insert into post values(product_no_seq.nextval, '제목2','나이키슈즈','300','300',sysdate,sysdate+3,'10','2000','hahaha','2.jpg','1','java2');
 insert into post values(product_no_seq.nextval, '제목3','롤스로이스','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','3.jpg','2','java2');
 insert into post values(product_no_seq.nextval, '제목4','아디다스슈즈','300','300',sysdate,sysdate+3,'10','2000','hahaha','4.jpg','1','java2');
@@ -115,8 +116,8 @@ insert into post values(product_no_seq.nextval, '제목8','파텍필립','300','
 insert into post values(product_no_seq.nextval, '제목9','라페라리','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','9.jpg','2','java2');
 insert into post values(product_no_seq.nextval, '제목10','롤렉스','2000','2000',sysdate,sysdate+3,'100','4000','afadafad','10.jpg','1','java');
 
-insert into post values(product_no_seq.nextval, '제목11','롤렉스','2000','2000',sysdate,sysdate+3,'100','4000','afadafad','11.jpg','1','java');
-insert into post values(product_no_seq.nextval, '제목12','나이키슈즈','300','300',sysdate,sysdate+3,'10','2000','hahaha','12.jpg','1','java');
+insert into post values(product_no_seq.nextval, '제목11','롤렉스','2000','2000',sysdate+3,'100','4000','afadafad','11.jpg','1','java');
+insert into post values(product_no_seq.nextval, '제목12','나이키슈즈','300','300',sysdate+3,'10','2000','hahaha','12.jpg','1','java');
 insert into post values(product_no_seq.nextval, '제목13','롤스로이스','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','13.jpg','2','java');
 insert into post values(product_no_seq.nextval, '제목14','아디다스슈즈','300','300',sysdate,sysdate+3,'10','2000','hahaha','14.jpg','1','java');
 insert into post values(product_no_seq.nextval, '제목15','람보','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','15.jpg','2','java');
@@ -147,7 +148,7 @@ select * from bid_log;
 -- **************************************
 delete from a_member;
 delete from a_authorities;
-
+delete from post;
 
 
 

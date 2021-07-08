@@ -27,7 +27,7 @@
 			<td>${list.title}</td>
 			<td>${list.productName}</td>
 			<td>${list.nowPrice}</td>
-			<td>에러</td>
+			<td>${list.bidEndTime}</td>
 			<td>${list.memberVO.memberId}</td>
 			<td>${list.memberVO.name}</td>
 		</tr>

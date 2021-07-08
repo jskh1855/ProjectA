@@ -1,6 +1,6 @@
 package org.kosta.model.vo;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class PostVO {
 	private String title;
@@ -8,13 +8,13 @@ public class PostVO {
 	private String productName;
 	private int startPrice;
 	private int nowPrice;
-	private LocalDate productUpTime; 
+	private Date productUpTime; 
 	private int unitPrice;
 	private int giveMeThatPrice;
 	private String detail;
 	private String postImage;
 	private int bidTimeUnit;
-	private LocalDate bidEndTime;
+	private Date bidEndTime;
 	private MemberVO memberVO;
 	private CategoryVO categoryVO;
 	private QnAVO qnaVO;
@@ -24,10 +24,9 @@ public class PostVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PostVO(String title, String productNo, String productName, int startPrice, int nowPrice,
-			LocalDate productUpTime, int unitPrice, int giveMeThatPrice, String detail, String postImage,
-			int bidTimeUnit, LocalDate bidEndTime, MemberVO memberVO, CategoryVO categoryVO, QnAVO qnaVO, PickVO pickVO,
-			BidLogVO bidLogVO) {
+	public PostVO(String title, String productNo, String productName, int startPrice, int nowPrice, Date productUpTime,
+			int unitPrice, int giveMeThatPrice, String detail, String postImage, int bidTimeUnit, Date bidEndTime,
+			MemberVO memberVO, CategoryVO categoryVO, QnAVO qnaVO, PickVO pickVO, BidLogVO bidLogVO) {
 		super();
 		this.title = title;
 		this.productNo = productNo;
@@ -77,10 +76,10 @@ public class PostVO {
 	public void setNowPrice(int nowPrice) {
 		this.nowPrice = nowPrice;
 	}
-	public LocalDate getProductUpTime() {
+	public Date getProductUpTime() {
 		return productUpTime;
 	}
-	public void setProductUpTime(LocalDate productUpTime) {
+	public void setProductUpTime(Date productUpTime) {
 		this.productUpTime = productUpTime;
 	}
 	public int getUnitPrice() {
@@ -113,10 +112,10 @@ public class PostVO {
 	public void setBidTimeUnit(int bidTimeUnit) {
 		this.bidTimeUnit = bidTimeUnit;
 	}
-	public LocalDate getBidEndTime() {
+	public Date getBidEndTime() {
 		return bidEndTime;
 	}
-	public void setBidEndTime(LocalDate bidEndTime) {
+	public void setBidEndTime(Date bidEndTime) {
 		this.bidEndTime = bidEndTime;
 	}
 	public MemberVO getMemberVO() {
@@ -152,11 +151,11 @@ public class PostVO {
 	@Override
 	public String toString() {
 		return "PostVO [title=" + title + ", productNo=" + productNo + ", productName=" + productName + ", startPrice="
-				+ startPrice + ", nowPrice=" + nowPrice + ", productUpTime=" + productUpTime + ", unitPrice="
-				+ unitPrice + ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", postImage=" + postImage
-				+ ", bidTimeUnit=" + bidTimeUnit + ", bidEndTime=" + bidEndTime + ", memberVO=" + memberVO
-				+ ", categoryVO=" + categoryVO + ", qnaVO=" + qnaVO + ", pickVO=" + pickVO + ", bidLogVO=" + bidLogVO
-				+ "]";
+				+ startPrice + ", nowPrice=" + nowPrice + ", unitPrice=" + unitPrice + ", giveMeThatPrice="
+				+ giveMeThatPrice + ", detail=" + detail + ", postImage=" + postImage + ", bidTimeUnit=" + bidTimeUnit
+				+ ", memberVO=" + memberVO + ", categoryVO=" + categoryVO + ", qnaVO=" + qnaVO + ", pickVO=" + pickVO
+				+ ", bidLogVO=" + bidLogVO + "]";
 	}
+	
 	
 }
