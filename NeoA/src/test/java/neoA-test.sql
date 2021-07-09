@@ -58,7 +58,26 @@ insert into post values(product_no_seq.nextval, #{productName},#{startPrice},#{n
 		from post p, a_member m
 		where p.product_no = '2' and p.member_id=m.member_id
 
+			select *
+		from post p, a_member m
+		where p.product_no = '2' and p.member_id=m.member_id
+		
+		select *
+		from (
+		select row_number() over(order by product_no desc) as rnum,product_no,title,product_name,now_price,bid_end_time,post_image,member_id
+		from post
+		) p, a_member m
+		where title like '%제목%' and p.member_id=m.member_id 
+		
+-- 상품 찾기
+select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time
+		from post p, a_member m 
+		where p.title like '%제목%' and p.member_id = m.member_id
 
+		
+	select *
+		from post
+		where title like '%제목%' 		
 
 select *
 from post

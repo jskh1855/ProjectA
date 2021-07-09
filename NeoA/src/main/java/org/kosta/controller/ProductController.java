@@ -28,8 +28,9 @@ public class ProductController {
 	private ProductService productService;
 
 	@RequestMapping("/user/productDetails")
-	public String getDetailProduct(@RequestParam("productNo")String productNo, Model model) {
+	public String getDetailProduct(@RequestParam("productNo") String productNo, Model model) {
 		model.addAttribute("viewDetailPost",productService.showDetails(productNo));
+		System.out.println(productService.showDetails(productNo));
 		System.out.println("show this!!!");
 
 		return "member/showDetails.tiles";
@@ -50,10 +51,6 @@ public class ProductController {
 		
 		// 카테고리에 따라 변경할수 있도록 sql에 where 절 추가 
 		// pagingBean에 get set 추가하면 될 듯
-	
-		
-		
-		
 		System.out.println("1 test  "+pagingBean.getStartRowNumber());
 		
 		
@@ -125,7 +122,7 @@ public class ProductController {
 		return "member/productUpload_ok.tiles";
 	}
 	
-	@RequestMapping("searchByTitle")
+	@RequestMapping("/user/searchByTitle")
 	public String searchByTitle(String title, Model model) {
 		model.addAttribute("searchResult", postMapper.searchByTitle(title));
 		

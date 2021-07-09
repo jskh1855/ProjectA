@@ -3,6 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper  namespace="org.kosta.model.mapper.PostMapper">
+
 	<resultMap type="postVO" id="detailPostRM">
 		<result column="name" property="memberVO.name"/>
 		<result column="member_id" property="memberVO.memberId"/>
@@ -29,18 +30,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="viewDetailPost" resultMap="detailPostRM" parameterType="string">
-		select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time
+		select *
 		from post p, a_member m
 		where p.product_no = #{value} and p.member_id=m.member_id
 	</select>
+	
 	<insert id="addCart" parameterType="string">
 		insert into pick
 		values(pick_no_seq.nextval, sysdate, #{memberVO.member_Id},#{postVO.product_no})
 	</insert>
-	<select id="searchByTitle" resultMap="detailPostRM" parameterType="string">
-		select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time
-		from post p, a_member m 
-		where title like '%{value}%' and p.member_id=m.member_id
+	
+	<!-- pagingbean ㅠㅜ -->
+	<select id="searchByTitle" resultType="postVO" parameterType="map">
+		select *
+		from post
+		where title like '%{value}%'
 		<!-- like '%{value}%' -->
 	</select>
 	

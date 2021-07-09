@@ -31,3 +31,27 @@
 	</c:forEach>
 	</table> 
 </div>
+
+<%-- 페이징 처리 --%>
+<%-- ${requestScope.pagingBean} --%>
+<c:set var="pb" value="${pagingBean}"></c:set>
+<div class="pagingArea">
+	<ul class="pagination">
+	<c:if test="${pb.previousPageGroup}">
+	<li><a href="${pageContext.request.contextPath}/user/searchByTitle?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+	</c:if>
+		<c:forEach var="page" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
+		<c:choose>
+			<c:when test="${pb.nowPage==page}">
+			<li class="active"><a href="${pageContext.request.contextPath}/user/showAll?pageNo=${page}">${page}</a></li>
+			</c:when>
+			<c:otherwise>
+			<li><a href="${pageContext.request.contextPath}/user/showAll?pageNo=${page}">${page}</a></li>
+			</c:otherwise>
+		</c:choose>		
+		</c:forEach>
+	<c:if test="${pb.nextPageGroup}">
+	<li><a href="${pageContext.request.contextPath}/user/showAll?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+	</c:if>	
+	</ul>
+</div>
