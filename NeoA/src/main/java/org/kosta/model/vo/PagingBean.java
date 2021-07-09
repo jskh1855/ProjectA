@@ -221,5 +221,6 @@ public class PagingBean {
 		PagingBean pb = new PagingBean(6);
 		System.out.println(pb.getStartRowNumber());
 		System.out.println(pb.getEndRowNumber());
+		
 	}
 }

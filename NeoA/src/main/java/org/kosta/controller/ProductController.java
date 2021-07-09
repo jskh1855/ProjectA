@@ -27,15 +27,6 @@ public class ProductController {
 	@Resource
 	private ProductService productService;
 
-	@RequestMapping("/user/productDetails")
-	public String getDetailProduct(@RequestParam("productNo") String productNo, Model model) {
-		model.addAttribute("viewDetailPost",productService.showDetails(productNo));
-		System.out.println(productService.showDetails(productNo));
-		System.out.println("show this!!!");
-
-		return "member/showDetails.tiles";
-	}
-
 	@RequestMapping("/user/showAll")
 	public String showAll(Model model, @RequestParam("pageNo") String pageNo) {
 		
@@ -123,14 +114,21 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/user/searchByTitle")
-	public String searchByTitle(String title, Model model) {
-		model.addAttribute("searchResult", postMapper.searchByTitle(title));
+	public String searchByTitle(@RequestParam("title") String title, Model model) {
+		model.addAttribute("searchResult", productService.searchByTitle(title));
 		
 		
 		return "member/search_result.tiles";
 		
 	}
-	
+
+	@RequestMapping("/user/productDetails")
+	public String getDetailProduct(@RequestParam("productNo") String productNo, Model model) {
+		model.addAttribute("viewDetailPost",productService.showDetails(productNo));
+		System.out.println(productService.showDetails(productNo));
+		return "member/showDetails.tiles";
+	}
+
 	
 	
 }

@@ -8,7 +8,31 @@
 <%-- 전체 목록 출력을 위한 테스트 by jaehoon --%>
 전체 목록 출력 
 <div class="container">
+	<c:forEach items="${postVOList}" var="list">
 
+							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                <div class="single-popular-items mb-50 text-center">
+                                    <div class="popular-img">
+                                        <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular3.png" alt="">
+                                        <div class="img-cap">
+                                            <span>Add to cart</span>
+                                        </div>
+                                        <div class="favorit-items">
+                                            <span class="flaticon-heart"></span>
+                                        </div>
+                                    </div>
+                                    <div class="popular-caption">
+                                    	<h3>${list.title}</h3>
+                                    	
+                                        <h3>
+                                        <a href="${pageContext.request.contextPath}/user/productDetails?productNo=${list.productNo}">
+                                        <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular3.png">${list.productName}</a></h3>
+                                        <span>${list.nowPrice}</span>
+                                    </div>
+                                </div>
+                            </div>
+  	</c:forEach>
+                            
 	<table border="1">
 		<tr>
 			<th>넘버</th>
