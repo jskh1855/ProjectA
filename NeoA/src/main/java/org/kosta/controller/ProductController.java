@@ -100,6 +100,7 @@ public class ProductController {
 				images.append(";");
 				
 			}
+			System.out.println(images);
 			
 			
 			
