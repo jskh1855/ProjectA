@@ -86,12 +86,12 @@ class SpringBootStudy5SecurityApplicationTests {
 		 */
 		
 		//제목으로 찾기
-		PostVO vo = new PostVO();
-		vo = pm.searchByTitle("제목");
-		
-		System.out.println(vo);
-		
-		
+		/*
+		 * PostVO vo = new PostVO(); vo = pm.searchByTitle("제목");
+		 * 
+		 * System.out.println(vo);
+		 * 
+		 */
 	}
 	
 	

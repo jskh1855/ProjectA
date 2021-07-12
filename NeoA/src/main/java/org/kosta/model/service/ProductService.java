@@ -10,5 +10,8 @@ public interface ProductService {
 	List<PostVO> showAll(PagingBean pagingBean);
 
 	PostVO showDetails(String productNo);
+	
+	List<PostVO>  searchByTitle(String title);
 
+	void registerProduct(PostVO pvo);
 }

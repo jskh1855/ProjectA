@@ -60,7 +60,9 @@
 				<div class="container-fluid">
 					<div class="menu-wrapper">
 						<!-- Logo -->
+						
 						<div class="logo">
+						
 							<a href="home"><img
 								src="${pageContext.request.contextPath}/myweb/assets/img/logo/logo.png"
 								alt=""></a>
@@ -83,6 +85,7 @@
 												href="${pageContext.request.contextPath}/user/showAll?pageNo=0">
 													Product Details</a></li>
 										</ul></li>
+										
 									<li><a href="blog.html">Blog</a>
 										<ul class="submenu">
 											<li><a href="https://iamaway.tistory.com/">Blog-jh</a></li>

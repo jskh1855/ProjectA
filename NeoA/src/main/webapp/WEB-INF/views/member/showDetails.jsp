@@ -20,29 +20,24 @@
 			<div class="col-lg-12">
 				<div class="product_img_slide owl-carousel">
 					<div class="single_product_img">
-						<img src="assets/img/gallery/gallery1.png" alt="#"
+						<img src="../myweb/images/${viewDetailPost.postImage}" alt=""
 							class="img-fluid">
-					</div>
-					<div class="single_product_img">
-						<img src="assets/img/gallery/gallery01.png" alt="#"
-							class="img-fluid">
-					</div>
-					<div class="single_product_img">
-						<img src="assets/img/gallery/gallery1.png" alt="#"
-							class="img-fluid">
-					</div>
 				</div>
 			</div>
-
-
-			<div class="col-lg-8">
+			<div class="col-lg-12">
 				<div class="single_product_text text-center">
 					<h3>${viewDetailPost.title}</h3>
 					<p>${viewDetailPost.productName}</p>
-
-					<div class="bid_start">
+					
+					<div>
 						<h3>${viewDetailPost.nowPrice}</h3>
-						<input type="button" value="입찰하기" onclick= "">
+					</div>
+					<div>
+						<h4>${viewDetailPost.detail }</h4>
+					</div>
+					
+					<div class="bid_start">
+						<input type="button" value="입찰하기" onclick= " ">
 						<!-- <a href="#" class="btn_3">입찰하기</a> -->
 					</div>
 					<form action="addCart" method="get">

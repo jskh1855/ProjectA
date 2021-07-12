@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="name" property="memberVO.name"/>
 		<result column="member_id" property="memberVO.memberId"/>
 	</resultMap>
-	<select id="showAll" resultMap="detailPostRM" parameterType="pagingBean">
+	<select id="showAll" resultMap="detailPostRM">
 <!-- 	select p.product_no, p.product_name
 	from post p, a_member a
 	where p.member_id = a.member_id
@@ -20,13 +20,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select row_number() over(order by product_no desc) as rnum,product_no,title,product_name,now_price,bid_end_time,post_image,member_id
 		from post
 	) p, a_member m
-	where p.member_id=m.member_id and rnum between #{startRowNumber} and #{endRowNumber}
+	where p.member_id=m.member_id and rnum between #{pg.startRowNumber} and #{pg.endRowNumber}
 
 	</select>
 	
-	<insert id="registerProduct" parameterType="string">
+	<insert id="registerProduct" parameterType="postVO">
 	insert into post 
-	values(product_no_seq.nextval, #{productName},#{startPrice},#{nowPrice},sysdate,sysdate+#{bidTimeUnit},#{unitPrice},#{giveMeThatPrice},#{detail},#{categoryVO.categoryNo},#{memberVO.memberId})
+	values(#{title},product_no_seq.nextval, #{productName},#{startPrice},#{nowPrice},sysdate,#{unitPrice},#{giveMeThatPrice},#{detail},
+	#{postImage},#{bidTimeUnit},sysdate+#{bidTimeUnit},#{categoryVO.categoryNo},#{memberVO.memberId})
 	</insert>
 	
 	<select id="viewDetailPost" resultMap="detailPostRM" parameterType="string">
@@ -40,12 +41,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(pick_no_seq.nextval, sysdate, #{memberVO.member_Id},#{postVO.product_no})
 	</insert>
 	
-	<!-- pagingbean ㅠㅜ -->
-	<select id="searchByTitle" resultType="postVO" parameterType="map">
-		select *
+<!-- 	
+	<select id="searchByTitle" resultMap="detailPostRM" parameterType="hashMap">
+		select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time
+		from(
+		select row_number() over(order by product_no desc) as rnum,product_no,title,product_name,now_price,bid_end_time,post_image,member_id
 		from post
-		where title like '%{value}%'
-		<!-- like '%{value}%' -->
+		) p, a_member m
+		where p.member_id=m.member_id and p.title like '%'||#{title}||'%' and rnum between #{pg.startRowNumber} and #{pg.endRowNumber}
+		
+	</select> -->
+	
+	<!-- <select id="searchByTitle" parameterType="hashmap" resultType="hashmap">
+		
+	
+	</select> -->
+	<select id="searchByTitle" parameterType="string" resultMap="detailPostRM">
+		select *
+		from post p, a_member m
+		where title like '%'||#{value}||'%' and p.member_id=m.member_id
 	</select>
 	
 	

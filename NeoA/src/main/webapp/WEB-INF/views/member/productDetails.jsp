@@ -15,6 +15,9 @@
 			</div>
 		</div>
 	</div>
+	<img src="myweb/images/auction2.png">gvgvgvtg
+						<c:forEach items="${viewDetailPost}" var="list">
+	
 	<!-- Hero Area End-->
 	<!--================Single Product Area =================-->
 	<div class="product_image_area">
@@ -23,8 +26,7 @@
 				<div class="col-lg-12">
 					<div class="product_img_slide owl-carousel">
 						<div class="single_product_img">
-							<img src="assets/img/gallery/gallery1.png" alt="#"
-								class="img-fluid">
+							
 						</div>
 						<div class="single_product_img">
 							<img src="assets/img/gallery/gallery01.png" alt="#"
@@ -40,7 +42,6 @@
 				
 				<div class="col-lg-8">
 					<div class="single_product_text text-center">
-					<c:forEach items="${viewDetailPost}" var="list">
 						<h3>
 							제목 <br> ${list.title}
 						</h3>

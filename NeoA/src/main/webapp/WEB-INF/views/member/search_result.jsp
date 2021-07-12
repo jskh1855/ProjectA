@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>    
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
 
 
 	<div class="container">
@@ -21,19 +20,19 @@
 		<tr>
 			<td>${list.productNo}</td>
 			<td>${list.postImage}</td>
-			<td>${list.title}</td>
+			<td><a style="color : black"; href= "${pageContext.request.contextPath}/user/productDetails?productNo=${list.productNo}">${list.title}</a></td>
 			<td>${list.productName}</td>
 			<td>${list.nowPrice}</td>
 			<td>${list.bidEndTime}</td>
 			<td>${list.memberVO.memberId}</td>
 			<td>${list.memberVO.name}</td>
-		</tr>
+		</tr> 
 	</c:forEach>
 	</table> 
 </div>
 
-<%-- 페이징 처리 --%>
-<%-- ${requestScope.pagingBean} --%>
+<%-- 
+${requestScope.pagingBean}
 <c:set var="pb" value="${pagingBean}"></c:set>
 <div class="pagingArea">
 	<ul class="pagination">
@@ -54,4 +53,4 @@
 	<li><a href="${pageContext.request.contextPath}/user/showAll?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
 	</c:if>	
 	</ul>
-</div>
+</div> --%>
