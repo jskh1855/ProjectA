@@ -1,33 +1,36 @@
 package org.kosta.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.eclipse.jdt.internal.compiler.apt.model.ModuleElementImpl;
 import org.kosta.model.service.MemberService;
 import org.kosta.model.vo.MemberVO;
-import org.springframework.security.core.Authentication;
+import org.kosta.model.vo.PagingBean;
+import org.kosta.model.vo.PostVO;
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MemberController {
-	
+
 	@Resource
 	private MemberService memberService;
-	
-	//***************************register***********************************
-	
+
+	// ***************************register***********************************
+
 	@RequestMapping("user/registerForm")
 	public String registerForm() {
 		return "member/registerForm.tiles";
 	}
-	
+
 	@RequestMapping(value = "user/registerMember", method = RequestMethod.POST)
 	public String register(MemberVO vo) {
 		memberService.registerMember(vo);
@@ -37,7 +40,7 @@ public class MemberController {
 	@RequestMapping("user/registerResultView")
 	public String registerResultView(String id, Model model) {
 		MemberVO vo = memberService.findMemberById(id);
-		model.addAttribute("memberVO",vo);
+		model.addAttribute("memberVO", vo);
 		return "member/register_result.tiles";
 	}
 
@@ -46,11 +49,12 @@ public class MemberController {
 	public String idcheckAjax(String id) {
 		return memberService.idcheck(id);
 	}
-	
-	//***************************register end****************************************
-	
-	//***************************update****************************************
-	
+
+	// ***************************register
+	// end****************************************
+
+	// ***************************update****************************************
+
 	@RequestMapping("updateForm")
 	public String updateForm() {
 		return "member/updateForm.tiles";
@@ -58,57 +62,66 @@ public class MemberController {
 
 	@RequestMapping("updateMemberAction")
 	public String updateMemberAction(HttpServletRequest request, MemberVO memberVO) {
-		
+
 		MemberVO pvo = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
-		memberService.updateMember(memberVO); 
-		
+
+		memberService.updateMember(memberVO);
+
 		pvo.setPassword(memberVO.getPassword());
 		pvo.setName(memberVO.getName());
 		pvo.setAddress(memberVO.getAddress());
-		
+
 		return "member/update_result.tiles";
 	}
-	
+
 	@RequestMapping("login_fail")
 	public String loginFail() {
 		return "member/login_fail.tiles";
 	}
-	
+
 	@RequestMapping("user/loginPage")
-	public String loginPage() {		
+	public String loginPage() {
 		return "member/loginPage.tiles";
 	}
-	
-	
-	//***************************update end****************************************
 
-	//***************************mypage********************************************
-	@RequestMapping("user/mypage")
-	public String mypage(Model model) {
+	// ***************************update end****************************************
+
+	// ***************************mypage********************************************
+	@RequestMapping("/mypage")
+	public String mypage(Model model, @RequestParam("pageNo") @Nullable String pageNo) {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = memberVO.getMemberId();
-		System.out.println(memberService.findSellProductListById(id));
-		model.addAttribute("list", memberService.findSellProductListById(id));
+
+		int totalPostCount = memberService.getTotalSellProductCountById(id);
+		PagingBean pagingBean = null;
+		if (pageNo == null) {
+			pagingBean = new PagingBean(totalPostCount);
+		} else {
+			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
+		}
+		model.addAttribute("pagingBean", pagingBean);
+		List<PostVO> list = memberService.getSellProductListById(id, pagingBean);
+		model.addAttribute("list", list);
+
 		return "member/mypage.tiles";
 	}
-	
-	@RequestMapping("user/myBidList")
+
+	@RequestMapping("/myBidList")
 	public String myBidList() {
-		
+
 		return "member/mypage_bid_list.tiles";
 	}
-	
-	@RequestMapping("/user/mypagePickList")
+
+	@RequestMapping("/mypagePickList")
 	public String mypagePickList() {
-		
+
 		return "member/mypage_pick_list.tiles";
 	}
-	
-	@RequestMapping("user/mypageMyInfo")
+
+	@RequestMapping("/mypageMyInfo")
 	public String mypageMyInfo() {
-		
+
 		return "member/mypage_my_info.tiles";
 	}
-	
+
 }

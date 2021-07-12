@@ -98,11 +98,21 @@ values(bid_no_seq.nextval, 'java', '1',sysdate,
 (select now_price from post where product_no = '1' )
 );
 
+select * from post
+
 --판매 물품 아이디로 조회
-		select title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
-		from post
-		where member_id='java'
-
-
+		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image
+		from (select row_number() over(ORDER BY product_no DESC) as rnum, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
+		from post 
+		where member_id='kobos')
+		where rnum between '1' and '2'
+		
+			sql.append("SELECT B.no,B.title,B.hits,B.time_posted,M.name ");
+			sql.append("FROM ( ");
+			sql.append("SELECT row_number() over(ORDER BY NO DESC) as rnum, ");	
+			sql.append("no,title,hits,to_char(time_posted,'YYYY.MM.DD') as time_posted,id ");
+			sql.append("FROM board ");
+			sql.append(") B, board_member M ");	
+			sql.append("WHERE  B.id=M.id AND rnum BETWEEN ? AND ?");
 
 

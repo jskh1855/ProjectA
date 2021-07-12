@@ -8,13 +8,13 @@ public class PostVO {
 	private String productName;
 	private int startPrice;
 	private int nowPrice;
-	private Date productUpTime;
+	private String productUpTime;
 	private int unitPrice;
 	private int giveMeThatPrice;
 	private String detail;
 	private String postImage;
 	private int bidTimeUnit;
-	private Date bidEndTime;
+	private String bidEndTime;
 	private MemberVO memberVO;
 	private CategoryVO categoryVO;
 	private QnAVO qnaVO;
@@ -24,8 +24,8 @@ public class PostVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PostVO(String title, String productNo, String productName, int startPrice, int nowPrice, Date productUpTime,
-			int unitPrice, int giveMeThatPrice, String detail, String postImage, int bidTimeUnit, Date bidEndTime,
+	public PostVO(String title, String productNo, String productName, int startPrice, int nowPrice, String productUpTime,
+			int unitPrice, int giveMeThatPrice, String detail, String postImage, int bidTimeUnit, String bidEndTime,
 			MemberVO memberVO, CategoryVO categoryVO, QnAVO qnaVO, PickVO pickVO, BidLogVO bidLogVO) {
 		super();
 		this.title = title;
@@ -76,10 +76,10 @@ public class PostVO {
 	public void setNowPrice(int nowPrice) {
 		this.nowPrice = nowPrice;
 	}
-	public Date getProductUpTime() {
+	public String getProductUpTime() {
 		return productUpTime;
 	}
-	public void setProductUpTime(Date productUpTime) {
+	public void setProductUpTime(String productUpTime) {
 		this.productUpTime = productUpTime;
 	}
 	public int getUnitPrice() {
@@ -112,10 +112,10 @@ public class PostVO {
 	public void setBidTimeUnit(int bidTimeUnit) {
 		this.bidTimeUnit = bidTimeUnit;
 	}
-	public Date getBidEndTime() {
+	public String getBidEndTime() {
 		return bidEndTime;
 	}
-	public void setBidEndTime(Date bidEndTime) {
+	public void setBidEndTime(String bidEndTime) {
 		this.bidEndTime = bidEndTime;
 	}
 	public MemberVO getMemberVO() {

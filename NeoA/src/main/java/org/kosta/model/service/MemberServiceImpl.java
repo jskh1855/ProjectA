@@ -1,5 +1,6 @@
 package org.kosta.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,6 +8,7 @@ import javax.annotation.Resource;
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.vo.Authority;
 import org.kosta.model.vo.MemberVO;
+import org.kosta.model.vo.PagingBean;
 import org.kosta.model.vo.PostVO;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -61,7 +63,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public List<PostVO> findSellProductListById(String id){
-		return memberMapper.findSellProductListById(id);
+	public List<PostVO> getSellProductListById(String id, PagingBean pagingBean){
+		int startRowNumber = pagingBean.getStartRowNumber();
+		int endRowNumber = pagingBean.getEndRowNumber();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("startRowNumber", startRowNumber);
+		map.put("endRowNumber", endRowNumber);
+		return memberMapper.getSellProductListById(map);
+	}
+	
+	@Override
+	public int getTotalSellProductCountById(String id) {
+		return memberMapper.getTotalSellProductCountById(id);
 	}
 }

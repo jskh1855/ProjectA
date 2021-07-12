@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
+import org.kosta.model.vo.PagingBean;
 import org.kosta.model.vo.PickVO;
 import org.kosta.model.service.MemberService;
 import org.kosta.model.service.ProductService;
@@ -96,8 +97,9 @@ class SpringBootStudy5SecurityApplicationTests {
 		 * System.out.println(vo);
 		 * 
 		 */
-		
-		System.out.println(memberService.findSellProductListById("java"));
+		int totalPostCount = memberService.getTotalSellProductCountById("kobos");
+		PagingBean pagingBean = new PagingBean(totalPostCount);
+		System.out.println(memberService.getSellProductListById("kobos", pagingBean));
 		
 	}
 	

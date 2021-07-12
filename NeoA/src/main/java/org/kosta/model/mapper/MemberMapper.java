@@ -1,5 +1,6 @@
 package org.kosta.model.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -21,7 +22,9 @@ public interface MemberMapper {
 	
 	MemberVO findMemberById(String id);
 
-	List<PostVO> findSellProductListById(String id);
+	List<PostVO> getSellProductListById(HashMap<String, Object> map);
+
+	int getTotalSellProductCountById(String id);
 	
 }
 
