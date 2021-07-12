@@ -24,9 +24,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 	
-	<insert id="registerProduct" parameterType="string">
+	<insert id="registerProduct" parameterType="postVO">
 	insert into post 
-	values(product_no_seq.nextval, #{productName},#{startPrice},#{nowPrice},sysdate,sysdate+#{bidTimeUnit},#{unitPrice},#{giveMeThatPrice},#{detail},#{categoryVO.categoryNo},#{memberVO.memberId})
+	values(#{title},product_no_seq.nextval, #{productName},#{startPrice},#{nowPrice},sysdate,#{unitPrice},#{giveMeThatPrice},#{detail},
+	#{postImage},#{bidTimeUnit},sysdate+#{bidTimeUnit},#{categoryVO.categoryNo},#{memberVO.memberId})
 	</insert>
 	
 	<select id="viewDetailPost" resultMap="detailPostRM" parameterType="string">

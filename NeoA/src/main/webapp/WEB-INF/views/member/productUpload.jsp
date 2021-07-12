@@ -17,10 +17,11 @@
 		</div>
 	</div>
 </div>
+<%-- <sec:authorize access="hasRole('ROLE_ADMIN')">
+ --%><%--    <sec:authentication var="mvo" property="principal" />
+ --%><div class="container">
 
-<div class="container">
-
-	<form action="${pageContext.request.contextPath}/upload" method="post"
+	<form action="${pageContext.request.contextPath}/productRegister" method="post"
 		id="form" name="form" enctype="multipart/form-data">
 		<sec:csrfInput />
 		<br>
@@ -30,28 +31,28 @@
 		<table>
 			<tr>
 				<th>물품 제목</th>
-				<td><input type="text" name="title"></td>
+				<td><input type="text" id="title" name="title"></td>
 			</tr>
 			<tr>
 				<th>물품명</th>
-				<td><input type="text" name="productName"></td>
+				<td><input type="text" id="productName" name="productName"></td>
 			</tr>
 			<tr>
 				<th>물품 설명</th>
-				<td><textarea name="detail" cols="45" rows="10">상품정보 입력</textarea></td>
+				<td><textarea name="detail" id="detail" cols="45" rows="10">상품정보 입력</textarea></td>
 			</tr>
 			<tr>
 				<th>이미지 등록</th>
 				<td>
 					<div class="inputArea">
-						<label for="filename">이 사진이 썸네일로 지정됩니다!</label><br> 
-						<input type="file" id="filename"
+						<label for="postImage">이 사진이 썸네일로 지정됩니다!</label><br> 
+						<input type="file" id="postImage"
 							name="filename" multiple="multiple" />
 						<div class="select_img">
 							<img src="" />
 						</div>
 					</div> <script>
-						$("#filename").change(
+						$("#postImage").change(
 								function() {
 									if (this.files && this.files[0]) {
 										var reader = new FileReader;
@@ -76,11 +77,11 @@
 		<table>
 			<tr>
 				<th>시작가</th>
-				<td><input type="text" name="startPrice"></td>
+				<td><input type="text" id="startPrice" name="startPrice"></td>
 			</tr>
 			<tr>
 				<th>입찰단위</th>
-				<td><select name="unitPrice" size="6" multiple>
+				<td><select name="unitPrice" id ="unitPrice" size="6" multiple>
 						<option value="100" />100원
 						<option value="500" />500원
 						<option value="1000" />1000원
@@ -91,7 +92,7 @@
 			</tr>
 			<tr>
 				<th>경매기간</th>
-				<td><select name="bidTimeUnit" size="6" multiple>
+				<td><select name="bidTimeUnit" id = "bidTimeUnit" size="6" multiple>
 						<option value="1" />1일
 						<option value="2" />2일
 						<option value="3" />3일
@@ -100,10 +101,16 @@
 						<option value="7" />7일
 				</select></td>
 				<th>즉시구매가격</th>
-				<td><input type="number"></td>
+				<td><input type="number" id="giveMeThatPrice" name="giveMeThatPrice"></td>
 			</tr>
 
 		</table>
 		<input type="submit" value="등록" />
 	</form>
 </div>
+
+ <%=request.getRealPath("/") %>
+ 
+ 
+ 
+ 

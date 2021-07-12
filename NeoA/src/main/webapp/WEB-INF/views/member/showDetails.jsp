@@ -20,22 +20,11 @@
 			<div class="col-lg-12">
 				<div class="product_img_slide owl-carousel">
 					<div class="single_product_img">
-						<img src="myweb/images/"+${viewDetailPost.postImage} alt="#"
+						<img src="../myweb/images/${viewDetailPost.postImage}" alt=""
 							class="img-fluid">
-					</div>
-					<div class="single_product_img">
-						<img src="assets/img/gallery/gallery01.png" alt="#"
-							class="img-fluid">
-					</div>
-					<div class="single_product_img">
-						<img src="myweb/assets/img/gallery/gallery1.png" alt="#"
-							class="img-fluid">
-					</div>
 				</div>
 			</div>
-
-
-			<div class="col-lg-8">
+			<div class="col-lg-12">
 				<div class="single_product_text text-center">
 					<h3>${viewDetailPost.title}</h3>
 					<p>${viewDetailPost.productName}</p>

@@ -33,6 +33,12 @@ public class ProductServiceImpl implements ProductService {
 		
 		return postMapper.searchByTitle(title);
 	}
+
+	@Override
+	public void registerProduct(PostVO pvo) {
+
+		postMapper.registerProduct(pvo);
+	}
 	
 	
 	

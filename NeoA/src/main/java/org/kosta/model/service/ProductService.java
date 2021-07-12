@@ -13,4 +13,5 @@ public interface ProductService {
 	
 	List<PostVO>  searchByTitle(String title);
 
+	void registerProduct(PostVO pvo);
 }

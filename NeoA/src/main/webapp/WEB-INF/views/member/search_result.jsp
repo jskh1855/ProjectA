@@ -20,13 +20,13 @@
 		<tr>
 			<td>${list.productNo}</td>
 			<td>${list.postImage}</td>
-			<td>${list.title}</td>
+			<td><a style="color : black"; href= "${pageContext.request.contextPath}/user/productDetails?productNo=${list.productNo}">${list.title}</a></td>
 			<td>${list.productName}</td>
 			<td>${list.nowPrice}</td>
 			<td>${list.bidEndTime}</td>
 			<td>${list.memberVO.memberId}</td>
 			<td>${list.memberVO.name}</td>
-		</tr>
+		</tr> 
 	</c:forEach>
 	</table> 
 </div>
