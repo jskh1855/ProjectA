@@ -3,8 +3,10 @@ package org.kosta.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.eclipse.jdt.internal.compiler.apt.model.ModuleElementImpl;
 import org.kosta.model.service.MemberService;
 import org.kosta.model.vo.MemberVO;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -81,6 +83,32 @@ public class MemberController {
 	
 	//***************************update end****************************************
 
-
+	//***************************mypage********************************************
+	@RequestMapping("user/mypage")
+	public String mypage(Model model) {
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = memberVO.getMemberId();
+		System.out.println(memberService.findSellProductListById(id));
+		model.addAttribute("list", memberService.findSellProductListById(id));
+		return "member/mypage.tiles";
+	}
+	
+	@RequestMapping("user/myBidList")
+	public String myBidList() {
+		
+		return "member/mypage_bid_list.tiles";
+	}
+	
+	@RequestMapping("/user/mypagePickList")
+	public String mypagePickList() {
+		
+		return "member/mypage_pick_list.tiles";
+	}
+	
+	@RequestMapping("user/mypageMyInfo")
+	public String mypageMyInfo() {
+		
+		return "member/mypage_my_info.tiles";
+	}
 	
 }

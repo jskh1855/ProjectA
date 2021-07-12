@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.kosta.model.vo.Authority;
 import org.kosta.model.vo.MemberVO;
+import org.kosta.model.vo.PostVO;
 
 public interface MemberService {
 
@@ -16,5 +17,7 @@ public interface MemberService {
 	List<Authority> selectAuthorityByUsername(String username);
 
 	MemberVO findMemberById(String id);
+
+	List<PostVO> findSellProductListById(String id);
 
 }

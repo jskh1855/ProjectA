@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
 import org.kosta.model.vo.PickVO;
+import org.kosta.model.service.MemberService;
 import org.kosta.model.service.ProductService;
 import org.kosta.model.vo.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ class SpringBootStudy5SecurityApplicationTests {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	MemberService memberService;
 	
 	@Test
 	public void contextLoads() {
@@ -92,6 +96,9 @@ class SpringBootStudy5SecurityApplicationTests {
 		 * System.out.println(vo);
 		 * 
 		 */
+		
+		System.out.println(memberService.findSellProductListById("java"));
+		
 	}
 	
 	

@@ -41,4 +41,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select member_id,password,name,address from a_member
  	</sql>
 	
+	<select id="findSellProductListById" resultType="postVO">
+		select title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image
+		from post
+		where member_id=#{value}
+	</select>
+	
 </mapper>
