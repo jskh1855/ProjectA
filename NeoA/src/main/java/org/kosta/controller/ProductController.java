@@ -133,8 +133,9 @@ public class ProductController {
 	public String productRegister(PostVO pvo, MultipartFile file, HttpServletRequest request) throws IOException, Exception {
 		String uploadPath = request.getSession().getServletContext().getRealPath("/");
 		System.out.println(uploadPath);
-		//String uploadPath = ""
-		
+		/*
+		 * String Path = "..\\resources\\static\\myweb\\images\\";
+		 */		
 		String imgUploadPath = uploadPath + File.separator + "imgUpload"; //이미지 업로드 폴더를 설정 = /uploadPath/imgUpload
 		 String ymdPath = UpLoadFileUtils.calcPath(imgUploadPath); // 위의 폴더를 기준으로 연월일 폴더를 생성	
 		 
@@ -145,9 +146,8 @@ public class ProductController {
 			  // 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)  
               fileName=UpLoadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
               System.out.println("업로드할파일명"+fileName);
-			  // gdsImg에 원본 파일 경로 + 파일명 저장
+			  // postImage에 원본 파일 경로 + 파일명 저장
 			  pvo.setPostImage(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-			  // gdsThumbImg에 썸네일 파일 경로 + 썸네일 파일명 저장			  
 			  System.out.println(pvo);			  		  
 				/*
 				 * pvo.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator +
@@ -165,6 +165,9 @@ public class ProductController {
 		return "redirect:member/registerproduct-result";
 		
 	}
-	
+	@RequestMapping("member/registerproduct-result")
+	public String registerfin() {
+		return "member/productUpload_ok.tiles";
+	}
 	
 }

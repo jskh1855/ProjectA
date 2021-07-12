@@ -30,16 +30,22 @@
 		<hr>
 		<table>
 			<tr>
-				<th>물품 제목</th>
+				<div>
+				<th><label for ="title">물품 제목</label></th>
 				<td><input type="text" id="title" name="title"></td>
+				</div>
 			</tr>
 			<tr>
-				<th>물품명</th>
+				<div>
+				<th><label for ="productName">물품명</label></th>
 				<td><input type="text" id="productName" name="productName"></td>
+				</div>
 			</tr>
 			<tr>
-				<th>물품 설명</th>
+				<div>
+				<th><label for ="detail">물품 설명</label></th>
 				<td><textarea name="detail" id="detail" cols="45" rows="10">상품정보 입력</textarea></td>
+				</div>
 			</tr>
 			<tr>
 				<th>이미지 등록</th>
@@ -76,11 +82,14 @@
 		<hr>
 		<table>
 			<tr>
-				<th>시작가</th>
+				<div>
+				<th><label for ="startPrice">시작가</label></th>
 				<td><input type="text" id="startPrice" name="startPrice"></td>
+				</div>
 			</tr>
 			<tr>
-				<th>입찰단위</th>
+				<div>
+				<th><label for ="unitPrice">입찰단위</label></th>
 				<td><select name="unitPrice" id ="unitPrice" size="6" multiple>
 						<option value="100" />100원
 						<option value="500" />500원
@@ -89,9 +98,11 @@
 						<option value="10000" />10000원
 						<option value="500000" /> 500000원
 				</select></td>
+				</div>
 			</tr>
 			<tr>
-				<th>경매기간</th>
+				<div>
+				<th><label for ="bidTimeUnit" >경매기간</th>
 				<td><select name="bidTimeUnit" id = "bidTimeUnit" size="6" multiple>
 						<option value="1" />1일
 						<option value="2" />2일
@@ -100,17 +111,20 @@
 						<option value="5" />5일
 						<option value="7" />7일
 				</select></td>
-				<th>즉시구매가격</th>
+				</div>
+				<div>
+				<th><label for ="giveMeThatPrice" >즉시구매가격</label></th>
 				<td><input type="number" id="giveMeThatPrice" name="giveMeThatPrice"></td>
+				</div>
 			</tr>
-
+				
 		</table>
 		<input type="submit" value="등록" />
 	</form>
 </div>
 
- <%=request.getRealPath("/") %>
+<%--  <%=request.getRealPath("") %> --%>
  
- 
+ <%= request.getSession().getServletContext().getContext("/productUpload").getRealPath("")%>
  
  
