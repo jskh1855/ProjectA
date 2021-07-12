@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.vo.Authority;
 import org.kosta.model.vo.MemberVO;
+import org.kosta.model.vo.PostVO;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,5 +60,8 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.findMemberById(id);
 	}
 	
-	
+	@Override
+	public List<PostVO> findSellProductListById(String id){
+		return memberMapper.findSellProductListById(id);
+	}
 }

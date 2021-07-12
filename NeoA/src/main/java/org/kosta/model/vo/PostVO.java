@@ -8,7 +8,7 @@ public class PostVO {
 	private String productName;
 	private int startPrice;
 	private int nowPrice;
-	private Date productUpTime; 
+	private Date productUpTime;
 	private int unitPrice;
 	private int giveMeThatPrice;
 	private String detail;
@@ -151,11 +151,11 @@ public class PostVO {
 	@Override
 	public String toString() {
 		return "PostVO [title=" + title + ", productNo=" + productNo + ", productName=" + productName + ", startPrice="
-				+ startPrice + ", nowPrice=" + nowPrice + ", unitPrice=" + unitPrice + ", giveMeThatPrice="
-				+ giveMeThatPrice + ", detail=" + detail + ", postImage=" + postImage + ", bidTimeUnit=" + bidTimeUnit
-				+ ", memberVO=" + memberVO + ", categoryVO=" + categoryVO + ", qnaVO=" + qnaVO + ", pickVO=" + pickVO
-				+ ", bidLogVO=" + bidLogVO + "]";
+				+ startPrice + ", nowPrice=" + nowPrice + ", productUpTime=" + productUpTime + ", unitPrice="
+				+ unitPrice + ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", postImage=" + postImage
+				+ ", bidTimeUnit=" + bidTimeUnit + ", bidEndTime=" + bidEndTime + ", memberVO=" + memberVO
+				+ ", categoryVO=" + categoryVO + ", qnaVO=" + qnaVO + ", pickVO=" + pickVO + ", bidLogVO=" + bidLogVO
+				+ "]";
 	}
-	
-	
+
 }

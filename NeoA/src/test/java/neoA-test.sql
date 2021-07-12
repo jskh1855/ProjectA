@@ -98,4 +98,11 @@ values(bid_no_seq.nextval, 'java', '1',sysdate,
 (select now_price from post where product_no = '1' )
 );
 
+--판매 물품 아이디로 조회
+		select title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
+		from post
+		where member_id='java'
+
+
+
 

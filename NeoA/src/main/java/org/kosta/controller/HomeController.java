@@ -30,6 +30,6 @@ public class HomeController {
 	 */
 	@RequestMapping("accessDeniedView")
 	public String accessDeniedView() {
-		return "auth/accessDeniedView";
+		return "auth/accessDeniedView.tiles";
 	}
 }

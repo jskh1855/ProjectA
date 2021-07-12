@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.kosta.model.vo.Authority;
 import org.kosta.model.vo.MemberVO;
+import org.kosta.model.vo.PostVO;
 
 @Mapper
 public interface MemberMapper {
@@ -19,6 +20,8 @@ public interface MemberMapper {
 	List<Authority> selectAuthorityByUsername(String username);
 	
 	MemberVO findMemberById(String id);
+
+	List<PostVO> findSellProductListById(String id);
 	
 }
 
