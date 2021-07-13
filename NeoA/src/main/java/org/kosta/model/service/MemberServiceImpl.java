@@ -94,6 +94,9 @@ public class MemberServiceImpl implements MemberService {
 		map.put("startRowNumber", startRowNumber);
 		map.put("endRowNumber", endRowNumber);
 		return memberMapper.getBidProductListById(map);
+	}
+	
+	@Override
 	public void updateMemberWithoutPasswrod(MemberVO memberVO) {
 		memberMapper.updateMemberWithoutPasswrod(memberVO);
 	}
