@@ -101,7 +101,7 @@
 	                                        </div>
 	                                    </div>
 	                                    <div class="popular-caption">
-	                                        <h3><a href="product_details.html">${list.title}</a></h3>
+	                                        <h3><a href="${pageContext.request.contextPath}/user/productDetails?productNo=${list.productNo}">${list.title}</a></h3>
 	                                        <span> ${list.nowPrice} 원</span>
 	                                    </div>
 	                                </div>

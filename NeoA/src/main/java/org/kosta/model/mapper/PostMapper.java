@@ -23,5 +23,5 @@ public interface PostMapper {
 	//PickVO addCart(HashMap<>());
 	List<PostVO> searchByTitle(String title);
 	
-	
+	PostVO randPost();
 }

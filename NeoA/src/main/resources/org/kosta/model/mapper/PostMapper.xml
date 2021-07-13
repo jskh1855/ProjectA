@@ -62,6 +62,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where title like '%'||#{value}||'%' and p.member_id=m.member_id
 	</select>
 	
+	<select id="randPost" resultType="postVO">
+		select * from 
+		(select * from post order by dbms_random.value)
+		where rownum =1
+	</select>
 	
 	
 </mapper>

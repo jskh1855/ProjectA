@@ -125,5 +125,11 @@ from (
 	from bid_log) b, post p
 where p.product_no = b.product_no AND b.member_id='spring'
 
-
-
+--random
+select * from 
+		(select * from post order by dbms_random.value)
+		where rownum =1
+		
+select product_no from 
+		(select * from post order by dbms_random.value)
+		where rownum =1		

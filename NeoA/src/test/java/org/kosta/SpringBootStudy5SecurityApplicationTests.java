@@ -101,9 +101,14 @@ class SpringBootStudy5SecurityApplicationTests {
 		PagingBean pagingBean = new PagingBean(totalPostCount);
 		System.out.println(memberService.getSellProductListById("spring", pagingBean));
 		 */
-		int totalPostCount = memberService.getTotalBidProductCountById("spring");
-		PagingBean pagingBean = new PagingBean(totalPostCount);
-		System.out.println(memberService.getBidProductListById("spring", pagingBean));
+		/*
+		 * int totalPostCount = memberService.getTotalBidProductCountById("spring");
+		 * PagingBean pagingBean = new PagingBean(totalPostCount);
+		 * System.out.println(memberService.getBidProductListById("spring",
+		 * pagingBean));
+		 */
+		
+		pm.randPost();
 		
 	}
 	
