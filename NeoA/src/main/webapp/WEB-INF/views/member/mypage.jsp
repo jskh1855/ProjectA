@@ -106,26 +106,30 @@
 												var stDate = new Date().getTime();
 												var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
 												var RemainDate = edDate - stDate;
-										 
+												if(RemainDate<0){
+													document.getElementById(${item.productNo}).innerHTML= "만료";
+												}else{
 												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
 												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
 												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
 												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
-											  
 												document.getElementById(${item.productNo}).innerHTML= "남은시간 " + m;
+												}
 										</script>
 										<script>
 											var timer = setInterval(function(){
 												var stDate = new Date().getTime();
 												var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
 												var RemainDate = edDate - stDate;
-										 
+												if(RemainDate<0){
+													document.getElementById(${item.productNo}).innerHTML= "만료";
+												}else{
 												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
 												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
 												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
 												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
-											  
 												document.getElementById(${item.productNo}).innerHTML= "남은시간 " + m;
+												}
 											}, 1000);
 										</script>
 									</div>
