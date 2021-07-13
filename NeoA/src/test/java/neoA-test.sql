@@ -119,12 +119,11 @@ select * from post
 		where member_id='kobos')
 		where rnum between '1' and '2'
 		
-			sql.append("SELECT B.no,B.title,B.hits,B.time_posted,M.name ");
-			sql.append("FROM ( ");
-			sql.append("SELECT row_number() over(ORDER BY NO DESC) as rnum, ");	
-			sql.append("no,title,hits,to_char(time_posted,'YYYY.MM.DD') as time_posted,id ");
-			sql.append("FROM board ");
-			sql.append(") B, board_member M ");	
-			sql.append("WHERE  B.id=M.id AND rnum BETWEEN ? AND ?");
+select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, p.post_image, b.bid_no, b.bid_time, b.bid_price, b.member_id, b.product_no
+from (
+	select row_number() over(ORDER BY bid_time DESC) as rnum, bid_no,to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price,member_id,product_no 
+	from bid_log) b, post p
+where p.product_no = b.product_no AND b.member_id='spring'
+
 
 

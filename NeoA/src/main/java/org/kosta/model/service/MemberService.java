@@ -24,6 +24,10 @@ public interface MemberService {
 	int getTotalSellProductCountById(String id);
 
 	List<PostVO> getBidProductListById(String id, PagingBean pagingBean);
-
+	
 	int getTotalBidProductCountById(String id);
+
+	void updateMemberWithoutPasswrod(MemberVO memberVO);
+
+	
 }

@@ -5,9 +5,9 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- namespace는 Mapper interface의 패키지명과 인터페이스명과 동일하게 일치시킨다 -->
+<!-- namespace?? Mapper interface?? ?�키지명과 ?�터?�이?�명�? ?�일?�게 ?�치?�킨?? -->
 <mapper namespace="org.kosta.model.mapper.MemberMapper">
-<!-- id는 Mapper interface의 추상메서드명과 일치시킨다 -->
+<!-- id?? Mapper interface?? 추상메서?�명�? ?�치?�킨?? -->
 	<insert id="registerMember" parameterType="memberVO">
 		insert into a_member(member_id, member_email, name, profile_image,password, address, phone_no, bank_name, account_no, enabled) values(#{memberId},#{memberEmail},#{name},#{profileImage},#{password},#{address},#{phoneNo},#{bankName},#{accountNo},#{enabled})
 	</insert>
@@ -17,11 +17,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="updateMember" parameterType="memberVO">
-	update a_member set name=#{name} , address=#{address}, phone_no = #{phoneNo}, bank_name=#{bankName},account_no=#{accountNo}
-		where member_id =#{memberId} and password=#{password}
+		update a_member set name=#{name}, password=#{password}, address=#{address}, phone_no = #{phoneNo}, bank_name=#{bankName},account_no=#{accountNo}, member_email=#{memberEmail}
+		where member_id =#{memberId}
 	</update>
 	
-		<!-- Spring Security에서 권한 체크를 위해 사용 -->
+		<!-- Spring Security?�서 권한 체크�? ?�해 ?�용 -->
 	<select id="selectAuthorityByUsername"  resultType="authority">
 		SELECT	username,authority
 		FROM	a_authorities
@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="findMemberById" resultType="memberVO">
- 		SELECT	member_id,	password,	name, address, enabled
+ 		SELECT	member_id, password, member_email, name, address, phone_no, bank_name,account_no, enabled
 		FROM	a_member
 		WHERE 	member_id=#{value}	
  	</select>
@@ -71,4 +71,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and rnum between #{startRowNumber} and #{endRowNumber}
 		
 	</select>
+
+	<select id="getBidCountByProductNo" resultType="bidLogVO">
+		select *
+		from bid_log
+		where product_no = #{value}
+	</select>
+	
+	<update id="updateMemberWithoutPasswrod" parameterType="memberVO">
+		update a_member set name=#{name}, address=#{address}, phone_no = #{phoneNo}, bank_name=#{bankName},account_no=#{accountNo}, member_email=#{memberEmail}
+		where member_id =#{memberId}
+	</update>
 </mapper>

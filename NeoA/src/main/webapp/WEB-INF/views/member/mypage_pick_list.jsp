@@ -3,7 +3,7 @@
 
     <main>
         <!-- Hero Area Start-->
-        <div class="slider-area ">
+<!--         <div class="slider-area ">
             <div class="single-slider slider-height2 d-flex align-items-center">
                 <div class="container">
                     <div class="row">
@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Hero Area End-->
         <!-- Latest Products Start -->
         <section class="popular-items latest-padding">
