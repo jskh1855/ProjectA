@@ -1,12 +1,15 @@
 package org.kosta.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.vo.Authority;
+import org.kosta.model.vo.BidLogVO;
 import org.kosta.model.vo.MemberVO;
+import org.kosta.model.vo.PagingBean;
 import org.kosta.model.vo.PostVO;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -61,7 +64,46 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public List<PostVO> findSellProductListById(String id){
-		return memberMapper.findSellProductListById(id);
+	public List<PostVO> getSellProductListById(String id, PagingBean pagingBean){
+		int startRowNumber = pagingBean.getStartRowNumber();
+		int endRowNumber = pagingBean.getEndRowNumber();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("startRowNumber", startRowNumber);
+		map.put("endRowNumber", endRowNumber);
+		List<PostVO> postlist = memberMapper.getSellProductListById(map);
+		for(int i=0;i<postlist.size();i++) {
+			String productNo = postlist.get(i).getProductNo();
+			List<BidLogVO> bidList = memberMapper.getBidCountByProductNo(productNo);
+			postlist.get(i).setBidLogVOList(bidList);
+		}
+		return postlist;
 	}
+	
+	@Override
+	public int getTotalSellProductCountById(String id) {
+		return memberMapper.getTotalSellProductCountById(id);
+	}
+
+	@Override
+	public List<PostVO> getBidProductListById(String id, PagingBean pagingBean) {
+		int startRowNumber= pagingBean.getStartRowNumber();
+		int endRowNumber = pagingBean.getEndRowNumber();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("startRowNumber", startRowNumber);
+		map.put("endRowNumber", endRowNumber);
+		return memberMapper.getBidProductListById(map);
+	}
+	
+	@Override
+	public void updateMemberWithoutPasswrod(MemberVO memberVO) {
+		memberMapper.updateMemberWithoutPasswrod(memberVO);
+	}
+
+	@Override
+	public int getTotalBidProductCountById(String id) {
+		return memberMapper.getTotalBidProductCountById(id);
+	}
+	
 }

@@ -9,6 +9,9 @@
 </head>
 <body>
 <%-- 인가(authorization) 과정에서 권한이 없을 때 보여주는 페이지  --%>
+<script type="text/javascript">
+alert(2);
+</script>
  <a href="${pageContext.request.contextPath}/home">홈으로</a><hr>
  권한이 없습니다.
  다시 로그인해 주세요

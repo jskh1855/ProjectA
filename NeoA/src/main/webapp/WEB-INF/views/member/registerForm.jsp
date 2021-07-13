@@ -40,18 +40,69 @@
 		});//keyup
 	});//ready 
 </script>
-<form method="post" action="${pageContext.request.contextPath}/user/registerMember" id="regForm">
-<sec:csrfInput/>
-아이디 <input type="text" name="memberId" id="memberId"><span id="idCheckView"></span><br>
-비밀번호 <input type="password" name="password"><br>
-이메일 <input type="email" name="memberEmail"><br>
-이름 <input type="text" name="name"><br>
-주소 <input type="text" name="address"><br>
-전화번호 <input type="text" name="phoneNo"><br>
-은행이름 <input type="text" name="bankName"><br>
-계좌번호 <input type="text" name="accountNo"><br>
-<input type="submit" value="가입하기">
-</form>
+
+<section class="login_part section_padding ">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="login_part_text text-center">
+                            <div class="login_part_text_iner">
+                            	<h2>환영합니다!</h2>
+                                <h2>회원 가입을 부탁드릴게요~</h2>
+                                <p>이 사이트는 중고 경매 사이트 입니다.<br><br>
+                                경매에 낙찰될 시, 택배거래를 위해 <br><br> 판매자님에게는 <br>구매자님의 전화번호와 집 주소가 공개되고<br><br>
+                                구매자님에게는 <br>판매자님의 성명과 은행명, 계좌번호가 공개됩니다.<br></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="login_part_form">
+                            <div class="login_part_form_iner">
+ 								<form class="row contact_form" method="post" action="${pageContext.request.contextPath}/user/registerMember" id="regForm">
+								<sec:csrfInput/>                                   
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="memberId" name="memberId" value="" placeholder="아이디" autocomplete='off'><span id="idCheckView"></span>
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="password" name="password" value="" placeholder="비밀번호" autocomplete='off'>
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="email" class="form-control" id="memberEmail" name="memberEmail" value="" placeholder="이메일" autocomplete='off'>
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="name" name="name" value="" placeholder="이름" autocomplete='off'>
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="address" name="address" value="" placeholder="주소" autocomplete='off'>
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="phoneNo" name="phoneNo" value="" placeholder="전화번호" autocomplete='off'>
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="bankName" name="bankName" value="" placeholder="은행명" autocomplete='off'>
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="accountNo" name="accountNo" value="" placeholder="계좌번호" autocomplete='off'>
+                                    </div>
+
+                                    <div class="col-md-12 form-group">
+                                        <button type="submit" value="submit" class="btn_3">
+                                            회원 가입
+                                        </button>
+                                        <a class="lost_pass" href="#">forget password?</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
 <%--	  register.jsp -- MemberController
 								|
 								register_result.jsp 

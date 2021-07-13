@@ -3,7 +3,7 @@ pageEncoding="UTF-8"%>
 <%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
         <!-- Hero Area Start-->
-        <div class="slider-area ">
+<!--         <div class="slider-area ">
             <div class="single-slider slider-height2 d-flex align-items-center">
                 <div class="container">
                     <div class="row">
@@ -15,7 +15,7 @@ pageEncoding="UTF-8"%>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Hero Area End-->
         <!--================login_part Area =================-->
         <section class="login_part section_padding ">
@@ -51,7 +51,11 @@ pageEncoding="UTF-8"%>
 <!--                                             <input type="checkbox" id="f-option" name="selector"> -->
 <!--                                             <label for="f-option">Remember me</label> -->
 <!--                                         </div> -->
-                                 		<input type="submit" value="로그인">
+                                 		<div class="col-md-12 form-group">
+                                     	   <button type="submit" value="submit" class="btn_3">
+                                           로그인
+                                     	   </button>
+                                  		</div>
 <!--                                         <button type="submit" value="submit" class="btn_3"> -->
 <!--                                             log in -->
 <!--                                         </button> -->
@@ -59,6 +63,7 @@ pageEncoding="UTF-8"%>
 <!--                                         <a class="lost_pass" href="#">forget password?</a> -->
 <!--                                     </div> -->
                                 </form>
+
                             </div>
                          	<script type="text/javascript">
 								$(document).ready(function() {

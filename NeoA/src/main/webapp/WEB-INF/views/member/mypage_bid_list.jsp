@@ -1,9 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.center {
+	text-align: center;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	border: 1px solid #ddd;
+}
+
+.pagination a.active {
+	background-color: red;
+	color: white;
+	border: 1px solid red;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+.pagination a:first-child {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+</style>
 
     <main>
         <!-- Hero Area Start-->
-        <div class="slider-area ">
+<!--         <div class="slider-area ">
             <div class="single-slider slider-height2 d-flex align-items-center">
                 <div class="container">
                     <div class="row">
@@ -15,7 +53,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Hero Area End-->
         <!-- Latest Products Start -->
         <section class="popular-items latest-padding">
@@ -25,10 +63,10 @@
                         <!--Nav Button  -->
                         <nav>                                                      
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link" id="nav-home-tab" href="${pageContext.request.contextPath}/user/mypage" role="tab" aria-controls="nav-home" aria-selected="false"> 판매 목록</a>
-                                <a class="nav-item nav-link active" id="nav-profile-tab" href="${pageContext.request.contextPath}/user/myBidList" role="tab" aria-controls="nav-profile" aria-selected="true"> 입찰 목록</a>
-                                <a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/user/mypagePickList" role="tab" aria-controls="nav-contact" aria-selected="false"> pick 목록 </a>
-                                <a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/user/mypageMyInfo" role="tab" aria-controls="nav-userInfo" aria-selected="false"> 나의 정보 </a>
+                                <a class="nav-item nav-link" id="nav-home-tab" href="${pageContext.request.contextPath}/mypage" role="tab" aria-controls="nav-home" aria-selected="false"> 판매 목록</a>
+                                <a class="nav-item nav-link active" id="nav-profile-tab" href="${pageContext.request.contextPath}/myBidList" role="tab" aria-controls="nav-profile" aria-selected="true"> 입찰 목록</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypagePickList" role="tab" aria-controls="nav-contact" aria-selected="false"> pick 목록 </a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypageMyInfo" role="tab" aria-controls="nav-userInfo" aria-selected="false"> 나의 정보 </a>
                             </div>
                         </nav>
                         <!--End Nav Button  -->
@@ -38,6 +76,9 @@
                     </div>
                     <!-- Select items -->
                 </div>
+                
+                <%-- ${list }
+                <hr> --%>
                 <!-- Nav Card -->
                 <div class="tab-content" id="nav-tabContent">
                     
@@ -70,35 +111,4 @@
             </div>
         </section>
         <!-- Latest Products End -->
-        <!--? Shop Method Start-->
-        <div class="shop-method-area">
-            <div class="container">
-                <div class="method-wrapper">
-                    <div class="row d-flex justify-content-between">
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single-method mb-40">
-                                <i class="ti-package"></i>
-                                <h6>Free Shipping Method</h6>
-                                <p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single-method mb-40">
-                                <i class="ti-unlock"></i>
-                                <h6>Secure Payment System</h6>
-                                <p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
-                            </div>
-                        </div> 
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single-method mb-40">
-                                <i class="ti-reload"></i>
-                                <h6>Secure Payment System</h6>
-                                <p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Shop Method End-->
     </main>

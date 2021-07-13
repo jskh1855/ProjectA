@@ -1,44 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript">
-	function remainTime() {
-		alert("3");
-/* 		// Set the date we're counting down to
-		var countDownDate = new Date("Jan 5, 2023 15:37:25").getTime();
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<style>
+.center {
+	text-align: center;
+}
 
-		// Update the count down every 1 second
-		var x = setInterval(function() {
+.pagination {
+	display: inline-block;
+}
 
-			// Get today's date and time
-			var now = new Date().getTime();
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	border: 1px solid #ddd;
+}
 
-			// Find the distance between now and the count down date
-			var distance = countDownDate - now;
+.pagination a.active {
+	background-color: red;
+	color: white;
+	border: 1px solid red;
+}
 
-			// Time calculations for days, hours, minutes and seconds
-			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-			var hours = Math.floor((distance % (1000 * 60 * 60 * 24))
-					/ (1000 * 60 * 60));
-			var minutes = Math.floor((distance % (1000 * 60 * 60))
-					/ (1000 * 60));
-			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
 
-			// Output the result in an element with id="demo"
-			document.getElementById("demo").innerHTML = days + "d " + hours
-					+ "h " + minutes + "m " + seconds + "s ";
+.pagination a:first-child {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
 
-			// If the count down is over, write some text 
-			if (distance < 0) {
-				clearInterval(x);
-				document.getElementById("demo").innerHTML = "EXPIRED";
-			}
-		}, 1000); */
-	}
-</script>
+.pagination a:last-child {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+</style>
 
 <main>
 	<!-- Hero Area Start-->
-	<div class="slider-area ">
+<!-- 	<div class="slider-area ">
 		<div class="single-slider slider-height2 d-flex align-items-center">
 			<div class="container">
 				<div class="row">
@@ -50,7 +53,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- Hero Area End-->
 	<!-- Latest Products Start -->
 	<section class="popular-items latest-padding">
@@ -60,7 +63,10 @@
 					<!--Nav Button  -->
 					<nav>
 						<div class="nav nav-tabs" id="nav-tab" role="tablist">
-							<a class="nav-item nav-link active" id="nav-home-tab" href="${pageContext.request.contextPath}/user/mypage" role="tab" aria-controls="nav-home" aria-selected="true"> 판매 목록</a> <a class="nav-item nav-link" id="nav-profile-tab" href="${pageContext.request.contextPath}/user/myBidList" role="tab" aria-controls="nav-profile" aria-selected="false"> 입찰 목록</a> <a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/user/mypagePickList" role="tab" aria-controls="nav-contact" aria-selected="false"> pick 목록 </a> <a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/user/mypageMyInfo" role="tab" aria-controls="nav-userInfo" aria-selected="false"> 나의 정보 </a>
+							<a class="nav-item nav-link active" id="nav-home-tab" href="${pageContext.request.contextPath}/mypage" role="tab" aria-controls="nav-home" aria-selected="true"> 판매 목록</a> 
+							<a class="nav-item nav-link" id="nav-profile-tab" href="${pageContext.request.contextPath}/myBidList" role="tab" aria-controls="nav-profile" aria-selected="false"> 입찰 목록</a> 
+							<a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypagePickList" role="tab" aria-controls="nav-contact" aria-selected="false"> pick 목록 </a> 
+							<a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypageMyInfo" role="tab" aria-controls="nav-userInfo" aria-selected="false"> 나의 정보 </a>
 						</div>
 					</nav>
 					<!--End Nav Button  -->
@@ -69,8 +75,8 @@
 				<div class="grid-list-view"></div>
 				<!-- Select items -->
 			</div>
-			${list }
-			<hr>
+
+			
 
 			<!-- Nav Card -->
 			<div class="tab-content" id="nav-tabContent">
@@ -78,9 +84,13 @@
 				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 					<div class="row">
 						<c:forEach var="item" items="${list}">
+							
 							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 								<div class="single-popular-items mb-50 text-center">
 									<div class="popular-img">
+						<!--------------확인용--------------------->
+									<%-- ${item } --%>
+						<!--------------------------------------->
 										<img src="/myweb/assets/img/gallery/popular1.png" alt="">
 										<div class="img-cap">
 											<span>상세 보기</span>
@@ -90,10 +100,38 @@
 										<h3>
 											<a href="product_details.html"> <c:out value="${item.title}" /></a>
 										</h3>
-										<span>시작가 <c:out value="${item.startPrice}" /></span> 
-										<span>현재가 <c:out value="${item.nowPrice}" /></span> 
-										<span>입찰자수 <c:out value="${item.title}" /> 명	</span> 
-										<span id="demo" onload="remainTime()">남은 시간	</span>
+										<span>시작가 <c:out value="${item.startPrice}" /></span> <span>현재가 <c:out value="${item.nowPrice}" /></span> <span>입찰자수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
+										</span> <span id="${item.productNo}"> 남은시간 </span>
+										<script>
+												var stDate = new Date().getTime();
+												var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
+												var RemainDate = edDate - stDate;
+												if(RemainDate<0){
+													document.getElementById(${item.productNo}).innerHTML= "만료";
+												}else{
+												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
+												document.getElementById(${item.productNo}).innerHTML= "남은시간 " + m;
+												}
+										</script>
+										<script>
+											var timer = setInterval(function(){
+												var stDate = new Date().getTime();
+												var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
+												var RemainDate = edDate - stDate;
+												if(RemainDate<0){
+													document.getElementById(${item.productNo}).innerHTML= "만료";
+												}else{
+												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
+												document.getElementById(${item.productNo}).innerHTML= "남은시간 " + m;
+												}
+											}, 1000);
+										</script>
 									</div>
 								</div>
 							</div>
@@ -105,36 +143,28 @@
 		</div>
 	</section>
 	<!-- Latest Products End -->
-	<!--? Shop Method Start-->
-	<div class="shop-method-area">
-		<div class="container">
-			<div class="method-wrapper">
-				<div class="row d-flex justify-content-between">
-					<div class="col-xl-4 col-lg-4 col-md-6">
-						<div class="single-method mb-40">
-							<i class="ti-package"></i>
-							<h6>Free Shipping Method</h6>
-							<p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
-						</div>
-					</div>
-					<div class="col-xl-4 col-lg-4 col-md-6">
-						<div class="single-method mb-40">
-							<i class="ti-unlock"></i>
-							<h6>Secure Payment System</h6>
-							<p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
-						</div>
-					</div>
-					<div class="col-xl-4 col-lg-4 col-md-6">
-						<div class="single-method mb-40">
-							<i class="ti-reload"></i>
-							<h6>Secure Payment System</h6>
-							<p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
-						</div>
-					</div>
-				</div>
-			</div>
+
+	<%-- 페이징 처리 --%>
+	<%-- 	${requestScope.pagingBean}<hr> --%>
+	<c:set var="pb" value="${requestScope.pagingBean}"></c:set>
+	<div class="center">
+		<div class="pagination">
+			<c:if test="${pb.previousPageGroup}">
+				<a href="/mypage?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a>
+			</c:if>
+			<c:forEach var="page" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
+				<c:choose>
+					<c:when test="${pb.nowPage==page}">
+						<a class="active" href="/mypage?pageNo=${page}">${page}</a>
+					</c:when>
+					<c:otherwise>
+						<a href="/mypage?pageNo=${page}">${page}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${pb.nextPageGroup}">
+				<a href="/mypage?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a>
+			</c:if>
 		</div>
 	</div>
-	<!-- Shop Method End-->
-
 </main>

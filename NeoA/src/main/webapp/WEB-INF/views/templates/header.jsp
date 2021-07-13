@@ -58,7 +58,7 @@
 									<li class="hot"><a href="#">Latest</a>
 										<ul class="submenu">
 											<li><a href="${pageContext.request.contextPath}/user/showAll?pageNo=0"> Product list</a></li>
-											<li><a href="${pageContext.request.contextPath}/user/showAll?pageNo=0"> Product Details</a></li>
+											<li><a href="${pageContext.request.contextPath}/user/randPost"> Random Product </a></li>
 										</ul></li>
 									<li><a href="blog.html">Blog</a>
 										<ul class="submenu">
@@ -90,7 +90,7 @@
 										<li><a href="${pageContext.request.contextPath}/user/loginPage"><span class="flaticon-user"></span></a></li>
 									</sec:authorize>
 									<sec:authorize access="isAuthenticated()">
-										<li><a href="${pageContext.request.contextPath}/user/mypage"> <span class="flaticon-user"></span> <sec:csrfInput /></a></li>
+										<li><a href="${pageContext.request.contextPath}/mypage"> <span class="flaticon-user"></span> <sec:csrfInput /></a></li>
 										<li><a href="#" id="logoutAction" style="color: black;">logout</a>
 											<form id="logoutForm" action="${pageContext.request.contextPath}/logout" method="post">
 												<sec:csrfInput />

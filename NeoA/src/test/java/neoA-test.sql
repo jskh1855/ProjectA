@@ -1,7 +1,19 @@
 -- test 1 : 상품 검색
+select count(*) from post where member_id='spring'
+select count(*) from  bid_log where member_id='spring'
 
-
-
+select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image,b.bid_no,b.bid_time,b.bid_price, b.member_id, b.product_no
+	from 
+		 		(select row_number() over(ORDER BY bid_time DESC) as rnum,
+		 		bid_no,to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price,member_id,product_no 
+		 		from  bid_log) b, post p
+		where p.product_no=b.product_no AND b.member_id='spring'
+		
+		
+		
+		
+		
+		
 -- test 1 : 상품 등록
 
 
@@ -98,11 +110,26 @@ values(bid_no_seq.nextval, 'java', '1',sysdate,
 (select now_price from post where product_no = '1' )
 );
 
+select * from post
+
 --판매 물품 아이디로 조회
-		select title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
-		from post
-		where member_id='java'
+		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image
+		from (select row_number() over(ORDER BY product_no DESC) as rnum, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
+		from post 
+		where member_id='kobos')
+		where rnum between '1' and '2'
+		
+select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, p.post_image, b.bid_no, b.bid_time, b.bid_price, b.member_id, b.product_no
+from (
+	select row_number() over(ORDER BY bid_time DESC) as rnum, bid_no,to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price,member_id,product_no 
+	from bid_log) b, post p
+where p.product_no = b.product_no AND b.member_id='spring'
 
-
-
-
+--random
+select * from 
+		(select * from post order by dbms_random.value)
+		where rownum =1
+		
+select product_no from 
+		(select * from post order by dbms_random.value)
+		where rownum =1		

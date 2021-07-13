@@ -170,5 +170,13 @@ public class ProductController {
 	public String registerfin() {
 		return "member/productUpload_ok.tiles";
 	}
+	@RequestMapping("/user/randPost")
+	public String randPost(Model model) {
+		System.out.println("random!");
+		model.addAttribute("random",postMapper.randPost());
+		
+		return "member/randompost.tiles";
+	}
+	
 	
 }

@@ -1,9 +1,11 @@
 package org.kosta.model.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.kosta.model.vo.Authority;
+import org.kosta.model.vo.BidLogVO;
 import org.kosta.model.vo.MemberVO;
 import org.kosta.model.vo.PostVO;
 
@@ -21,7 +23,17 @@ public interface MemberMapper {
 	
 	MemberVO findMemberById(String id);
 
-	List<PostVO> findSellProductListById(String id);
+	List<PostVO> getSellProductListById(HashMap<String, Object> map);
+
+	int getTotalSellProductCountById(String id);
+
+	List<PostVO> getBidProductListById(HashMap<String, Object> map);
+
+	int getTotalBidProductCountById(String id);
+
+	void updateMemberWithoutPasswrod(MemberVO memberVO);
+
+	List<BidLogVO> getBidCountByProductNo(String productNo);
 	
 }
 

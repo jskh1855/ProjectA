@@ -5,9 +5,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- namespace는 Mapper interface의 패키지명과 인터페이스명과 동일하게 일치시킨다 -->
 <mapper namespace="org.kosta.model.mapper.MemberMapper">
-<!-- id는 Mapper interface의 추상메서드명과 일치시킨다 -->
 	<insert id="registerMember" parameterType="memberVO">
 		insert into a_member(member_id, member_email, name, profile_image,password, address, phone_no, bank_name, account_no, enabled) values(#{memberId},#{memberEmail},#{name},#{profileImage},#{password},#{address},#{phoneNo},#{bankName},#{accountNo},#{enabled})
 	</insert>
@@ -17,11 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="updateMember" parameterType="memberVO">
-	update a_member set name=#{name} , address=#{address}, phone_no = #{phoneNo}, bank_name=#{bankName},account_no=#{accountNo}
-		where member_id =#{memberId} and password=#{password}
+		update a_member set name=#{name}, password=#{password}, address=#{address}, phone_no = #{phoneNo}, bank_name=#{bankName},account_no=#{accountNo}, member_email=#{memberEmail}
+		where member_id =#{memberId}
 	</update>
 	
-		<!-- Spring Security에서 권한 체크를 위해 사용 -->
 	<select id="selectAuthorityByUsername"  resultType="authority">
 		SELECT	username,authority
 		FROM	a_authorities
@@ -33,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="findMemberById" resultType="memberVO">
- 		SELECT	member_id,	password,	name, address, enabled
+ 		SELECT	member_id, password, member_email, name, address, phone_no, bank_name,account_no, enabled
 		FROM	a_member
 		WHERE 	member_id=#{value}	
  	</select>
@@ -41,10 +38,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select member_id,password,name,address from a_member
  	</sql>
 	
-	<select id="findSellProductListById" resultType="postVO">
-		select title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image
+	<select id="getTotalSellProductCountById" resultType="int">
+		select count(*)
 		from post
 		where member_id=#{value}
 	</select>
 	
+	<select id="getSellProductListById" parameterType="map" resultType="postVO">
+		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image
+		from (select row_number() over(ORDER BY product_no DESC) as rnum, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
+		from post 
+		where member_id=#{id})
+		where rnum between #{startRowNumber} and #{endRowNumber}
+	</select>
+	
+	<select id="getTotalBidProductCountById" resultType="int">
+		select count(*)
+		from  bid_log
+		where member_id=#{value}
+	</select>
+	
+	<select id="getBidProductListById" parameterType="map" resultType="postVO">
+		select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image,b.bid_no,b.bid_time,b.bid_price, b.member_id, b.product_no
+	from 
+		 		(select row_number() over(ORDER BY bid_time DESC) as rnum,
+		 		bid_no,to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price,member_id,product_no 
+		 		from  bid_log) b, post p
+		where p.product_no=b.product_no AND b.member_id=#{id}
+		and rnum between #{startRowNumber} and #{endRowNumber}
+		
+	</select>
+
+	<select id="getBidCountByProductNo" resultType="bidLogVO">
+		select *
+		from bid_log
+		where product_no = #{value}
+	</select>
+	
+	<update id="updateMemberWithoutPasswrod" parameterType="memberVO">
+		update a_member set name=#{name}, address=#{address}, phone_no = #{phoneNo}, bank_name=#{bankName},account_no=#{accountNo}, member_email=#{memberEmail}
+		where member_id =#{memberId}
+	</update>
 </mapper>

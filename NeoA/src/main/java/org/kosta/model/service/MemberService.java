@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.kosta.model.vo.Authority;
 import org.kosta.model.vo.MemberVO;
+import org.kosta.model.vo.PagingBean;
 import org.kosta.model.vo.PostVO;
 
 public interface MemberService {
@@ -18,6 +19,15 @@ public interface MemberService {
 
 	MemberVO findMemberById(String id);
 
-	List<PostVO> findSellProductListById(String id);
+	List<PostVO> getSellProductListById(String id, PagingBean pagingBean);
 
+	int getTotalSellProductCountById(String id);
+
+	List<PostVO> getBidProductListById(String id, PagingBean pagingBean);
+	
+	int getTotalBidProductCountById(String id);
+
+	void updateMemberWithoutPasswrod(MemberVO memberVO);
+
+	
 }
