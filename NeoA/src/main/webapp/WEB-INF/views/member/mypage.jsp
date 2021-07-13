@@ -89,7 +89,7 @@
 								<div class="single-popular-items mb-50 text-center">
 									<div class="popular-img">
 						<!--------------확인용--------------------->
-									${item }
+									<%-- ${item } --%>
 						<!--------------------------------------->
 										<img src="/myweb/assets/img/gallery/popular1.png" alt="">
 										<div class="img-cap">
