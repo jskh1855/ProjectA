@@ -96,10 +96,14 @@ class SpringBootStudy5SecurityApplicationTests {
 		 * 
 		 * System.out.println(vo);
 		 * 
-		 */
-		int totalPostCount = memberService.getTotalSellProductCountById("kobos");
+		
+		int totalPostCount = memberService.getTotalSellProductCountById("spring");
 		PagingBean pagingBean = new PagingBean(totalPostCount);
-		System.out.println(memberService.getSellProductListById("kobos", pagingBean));
+		System.out.println(memberService.getSellProductListById("spring", pagingBean));
+		 */
+		int totalPostCount = memberService.getTotalBidProductCountById("spring");
+		PagingBean pagingBean = new PagingBean(totalPostCount);
+		System.out.println(memberService.getBidProductListById("spring", pagingBean));
 		
 	}
 	

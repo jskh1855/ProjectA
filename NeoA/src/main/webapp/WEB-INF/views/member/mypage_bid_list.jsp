@@ -1,5 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.center {
+	text-align: center;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	border: 1px solid #ddd;
+}
+
+.pagination a.active {
+	background-color: red;
+	color: white;
+	border: 1px solid red;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+.pagination a:first-child {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+</style>
 
     <main>
         <!-- Hero Area Start-->
@@ -38,6 +76,9 @@
                     </div>
                     <!-- Select items -->
                 </div>
+                
+                <%-- ${list }
+                <hr> --%>
                 <!-- Nav Card -->
                 <div class="tab-content" id="nav-tabContent">
                     

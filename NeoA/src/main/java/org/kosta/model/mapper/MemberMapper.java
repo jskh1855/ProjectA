@@ -25,6 +25,10 @@ public interface MemberMapper {
 	List<PostVO> getSellProductListById(HashMap<String, Object> map);
 
 	int getTotalSellProductCountById(String id);
+
+	List<PostVO> getBidProductListById(HashMap<String, Object> map);
+
+	int getTotalBidProductCountById(String id);
 	
 }
 

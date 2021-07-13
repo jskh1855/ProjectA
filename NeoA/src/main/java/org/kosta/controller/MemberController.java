@@ -107,8 +107,21 @@ public class MemberController {
 	}
 
 	@RequestMapping("/myBidList")
-	public String myBidList() {
-
+	public String myBidList(Model model, @RequestParam("pageNo") @Nullable String pageNo) {
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = memberVO.getMemberId();
+		
+		int totalPostCount = memberService.getTotalBidProductCountById(id);
+		PagingBean pagingBean = null;
+		if (pageNo == null) {
+			pagingBean = new PagingBean(totalPostCount);
+		} else {
+			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
+		}
+		model.addAttribute("pagingBean", pagingBean);
+		List<PostVO> list= memberService.getBidProductListById(id, pagingBean);
+		model.addAttribute("list", list);
+		
 		return "member/mypage_bid_list.tiles";
 	}
 

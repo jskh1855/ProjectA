@@ -77,4 +77,21 @@ public class MemberServiceImpl implements MemberService {
 	public int getTotalSellProductCountById(String id) {
 		return memberMapper.getTotalSellProductCountById(id);
 	}
+
+	@Override
+	public List<PostVO> getBidProductListById(String id, PagingBean pagingBean) {
+		int startRowNumber= pagingBean.getStartRowNumber();
+		int endRowNumber = pagingBean.getEndRowNumber();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("startRowNumber", startRowNumber);
+		map.put("endRowNumber", endRowNumber);
+		return memberMapper.getBidProductListById(map);
+	}
+
+	@Override
+	public int getTotalBidProductCountById(String id) {
+		return memberMapper.getTotalBidProductCountById(id);
+	}
+	
 }

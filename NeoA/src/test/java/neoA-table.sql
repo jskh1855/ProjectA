@@ -70,6 +70,10 @@ create table bid_log(
 );
 create sequence bid_no_seq;
 
+insert into bid_log values(bid_no_seq.nextval,sysdate,'20000','java','9');
+insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','java','8');
+insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','java','7');
+
 create table pick(
 	pick_no varchar2(20) primary key,
 	pick_time date,
@@ -107,7 +111,9 @@ insert into category values(category_seq.nextval, '1','1','0','영상가전');
 insert into category values(category_seq.nextval, '1','1','1','TV');
 
 
-insert into post values(product_no_seq.nextval, '옥션에코백팜','에코백-옥션a','20','20',sysdate,3,sysdate+3,'10','300','한정판임 ㄹㅇ','auction2.png','1','java');
+insert into post values(product_no_seq.nextval, '제목1','롤렉스','2000','2000',sysdate,3,sysdate+3,'100','4000','afadafad','1.jpg','1','spring');
+insert into post values(product_no_seq.nextval, '제목2','프라다','2000','2000',sysdate,3,sysdate+3,'100','4000','afadafad','2.jpg','1','spring');
+insert into post values(product_no_seq.nextval, '제목3','좋은물건','2000','2000',sysdate,3,sysdate+3,'100','4000','afadafad','3.jpg','1','spring');
 
 insert into post values(product_no_seq.nextval, '제목1','롤렉스','2000','2000',sysdate,3,sysdate+3,'100','4000','afadafad','1.jpg','1','java');
 insert into post values(product_no_seq.nextval, '골동품','롤렉스','3000','3000',sysdate,5,sysdate+3,'100','4000','afadafad','1.jpg','1','java');
@@ -157,6 +163,7 @@ select * from bid_log;
 delete from a_member;
 delete from a_authorities;
 delete from post;
+delete from  bid_log;
 
 
 
