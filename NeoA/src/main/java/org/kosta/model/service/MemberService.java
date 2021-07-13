@@ -23,4 +23,6 @@ public interface MemberService {
 
 	int getTotalSellProductCountById(String id);
 
+	void updateMemberWithoutPasswrod(MemberVO memberVO);
+
 }

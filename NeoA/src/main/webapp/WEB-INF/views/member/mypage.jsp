@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <style>
 .center {
 	text-align: center;
@@ -40,7 +41,7 @@
 
 <main>
 	<!-- Hero Area Start-->
-	<div class="slider-area ">
+<!-- 	<div class="slider-area ">
 		<div class="single-slider slider-height2 d-flex align-items-center">
 			<div class="container">
 				<div class="row">
@@ -52,7 +53,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- Hero Area End-->
 	<!-- Latest Products Start -->
 	<section class="popular-items latest-padding">
@@ -75,8 +76,7 @@
 				<!-- Select items -->
 			</div>
 
-			<%-- ${list }
-			<hr> --%>
+			
 
 			<!-- Nav Card -->
 			<div class="tab-content" id="nav-tabContent">
@@ -84,9 +84,13 @@
 				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 					<div class="row">
 						<c:forEach var="item" items="${list}">
+							
 							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 								<div class="single-popular-items mb-50 text-center">
 									<div class="popular-img">
+						<!--------------확인용--------------------->
+									${item }
+						<!--------------------------------------->
 										<img src="/myweb/assets/img/gallery/popular1.png" alt="">
 										<div class="img-cap">
 											<span>상세 보기</span>
@@ -96,8 +100,20 @@
 										<h3>
 											<a href="product_details.html"> <c:out value="${item.title}" /></a>
 										</h3>
-										<span>시작가 <c:out value="${item.startPrice}" /></span> <span>현재가 <c:out value="${item.nowPrice}" /></span> <span>입찰자수 <c:out value="" /> 명
+										<span>시작가 <c:out value="${item.startPrice}" /></span> <span>현재가 <c:out value="${item.nowPrice}" /></span> <span>입찰자수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
 										</span> <span id="${item.productNo}"> 남은시간 </span>
+										<script>
+												var stDate = new Date().getTime();
+												var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
+												var RemainDate = edDate - stDate;
+										 
+												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
+											  
+												document.getElementById(${item.productNo}).innerHTML= "남은시간 " + m;
+										</script>
 										<script>
 											var timer = setInterval(function(){
 												var stDate = new Date().getTime();

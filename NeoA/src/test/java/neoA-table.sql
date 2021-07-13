@@ -134,7 +134,7 @@ insert into post values(product_no_seq.nextval, '제목17','페라리','30000','
 insert into post values(product_no_seq.nextval, '제목18','파텍필립','300','300',sysdate,sysdate+3,'10','2000','hahaha','18.jpg','1','java2');
 insert into post values(product_no_seq.nextval, '제목19','라페라리','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','19.jpg','2','java');
 
-
+insert into bid_log values(bid_no_seq.nextval, sysdate,'30000','java','9');
 
 commit
 

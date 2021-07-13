@@ -13,6 +13,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,7 +75,7 @@ public class MemberController {
 		return "member/update_result.tiles";
 	}
 
-	@RequestMapping("login_fail")
+	@RequestMapping("/user/loginPageFail")
 	public String loginFail() {
 		return "member/login_fail.tiles";
 	}
@@ -119,8 +120,31 @@ public class MemberController {
 	}
 
 	@RequestMapping("/mypageMyInfo")
-	public String mypageMyInfo() {
-
+	public String mypageMyInfo(Model model) {
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("memberVO", memberService.findMemberById(memberVO.getMemberId()));
+		return "member/mypage_my_info.tiles";
+	}
+	
+	@PostMapping("/updateMemberInfo")
+	public String updateMemberInfo(MemberVO memberVO) {
+		//System.out.println(memberVO);
+		
+		if(memberVO.getPassword()=="") {
+			System.out.println("updateMemberWithoutPasswrod");
+			memberService.updateMemberWithoutPasswrod(memberVO);
+		}else {
+			memberService.updateMember(memberVO);
+		}
+		
+		return "redirect:updateMemberInfoOk";
+	}
+	
+	@RequestMapping("updateMemberInfoOk")
+	public String updateMemberInfoOk(Model model) {
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("memberVO", memberService.findMemberById(memberVO.getMemberId()));
+		model.addAttribute("message", "회원정보 수정이 완료되었습니다.");
 		return "member/mypage_my_info.tiles";
 	}
 

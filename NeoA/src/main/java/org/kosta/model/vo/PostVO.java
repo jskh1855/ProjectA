@@ -1,6 +1,6 @@
 package org.kosta.model.vo;
 
-import java.util.Date;
+import java.util.List;
 
 public class PostVO {
 	private String title;
@@ -19,14 +19,15 @@ public class PostVO {
 	private CategoryVO categoryVO;
 	private QnAVO qnaVO;
 	private PickVO pickVO;
-	private BidLogVO bidLogVO;
+	private List<BidLogVO> bidLogVOList;
 	public PostVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PostVO(String title, String productNo, String productName, int startPrice, int nowPrice, String productUpTime,
-			int unitPrice, int giveMeThatPrice, String detail, String postImage, int bidTimeUnit, String bidEndTime,
-			MemberVO memberVO, CategoryVO categoryVO, QnAVO qnaVO, PickVO pickVO, BidLogVO bidLogVO) {
+	public PostVO(String title, String productNo, String productName, int startPrice, int nowPrice,
+			String productUpTime, int unitPrice, int giveMeThatPrice, String detail, String postImage, int bidTimeUnit,
+			String bidEndTime, MemberVO memberVO, CategoryVO categoryVO, QnAVO qnaVO, PickVO pickVO,
+			List<BidLogVO> bidLogVOList) {
 		super();
 		this.title = title;
 		this.productNo = productNo;
@@ -44,7 +45,7 @@ public class PostVO {
 		this.categoryVO = categoryVO;
 		this.qnaVO = qnaVO;
 		this.pickVO = pickVO;
-		this.bidLogVO = bidLogVO;
+		this.bidLogVOList = bidLogVOList;
 	}
 	public String getTitle() {
 		return title;
@@ -142,11 +143,11 @@ public class PostVO {
 	public void setPickVO(PickVO pickVO) {
 		this.pickVO = pickVO;
 	}
-	public BidLogVO getBidLogVO() {
-		return bidLogVO;
+	public List<BidLogVO> getBidLogVOList() {
+		return bidLogVOList;
 	}
-	public void setBidLogVO(BidLogVO bidLogVO) {
-		this.bidLogVO = bidLogVO;
+	public void setBidLogVOList(List<BidLogVO> bidLogVOList) {
+		this.bidLogVOList = bidLogVOList;
 	}
 	@Override
 	public String toString() {
@@ -154,8 +155,10 @@ public class PostVO {
 				+ startPrice + ", nowPrice=" + nowPrice + ", productUpTime=" + productUpTime + ", unitPrice="
 				+ unitPrice + ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", postImage=" + postImage
 				+ ", bidTimeUnit=" + bidTimeUnit + ", bidEndTime=" + bidEndTime + ", memberVO=" + memberVO
-				+ ", categoryVO=" + categoryVO + ", qnaVO=" + qnaVO + ", pickVO=" + pickVO + ", bidLogVO=" + bidLogVO
-				+ "]";
+				+ ", categoryVO=" + categoryVO + ", qnaVO=" + qnaVO + ", pickVO=" + pickVO + ", bidLogVOList="
+				+ bidLogVOList + "]";
 	}
+
+	
 
 }

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.vo.Authority;
+import org.kosta.model.vo.BidLogVO;
 import org.kosta.model.vo.MemberVO;
 import org.kosta.model.vo.PagingBean;
 import org.kosta.model.vo.PostVO;
@@ -70,11 +71,22 @@ public class MemberServiceImpl implements MemberService {
 		map.put("id", id);
 		map.put("startRowNumber", startRowNumber);
 		map.put("endRowNumber", endRowNumber);
-		return memberMapper.getSellProductListById(map);
+		List<PostVO> postlist = memberMapper.getSellProductListById(map);
+		for(int i=0;i<postlist.size();i++) {
+			String productNo = postlist.get(i).getProductNo();
+			List<BidLogVO> bidList = memberMapper.getBidCountByProductNo(productNo);
+			postlist.get(i).setBidLogVOList(bidList);
+		}
+		return postlist;
 	}
 	
 	@Override
 	public int getTotalSellProductCountById(String id) {
 		return memberMapper.getTotalSellProductCountById(id);
+	}
+
+	@Override
+	public void updateMemberWithoutPasswrod(MemberVO memberVO) {
+		memberMapper.updateMemberWithoutPasswrod(memberVO);
 	}
 }
