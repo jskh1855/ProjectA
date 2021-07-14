@@ -58,7 +58,7 @@
 									<li class="hot"><a href="#">Latest</a>
 										<ul class="submenu">
 											<li><a href="${pageContext.request.contextPath}/user/showAll?pageNo=0"> Product list</a></li>
-											<li><a href="${pageContext.request.contextPath}/user/showAll?pageNo=0"> Product Details</a></li>
+											<li><a href="${pageContext.request.contextPath}/user/randPost"> Random Product </a></li>
 										</ul></li>
 									<li><a href="blog.html">Blog</a>
 										<ul class="submenu">

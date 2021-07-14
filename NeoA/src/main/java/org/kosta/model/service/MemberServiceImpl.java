@@ -101,11 +101,12 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return postList;
 	}
-		@Override
-		public int getTotalBidProductCountById(String id) {
-			return memberMapper.getTotalBidProductCountById(id);
-		}
-	@Override	
+	@Override
+	public int getTotalBidProductCountById(String id) {
+		return memberMapper.getTotalBidProductCountById(id);
+	}
+	
+	@Override
 	public void updateMemberWithoutPasswrod(MemberVO memberVO) {
 		memberMapper.updateMemberWithoutPasswrod(memberVO);
 	}
