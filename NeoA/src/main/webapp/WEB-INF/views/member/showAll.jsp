@@ -46,7 +46,22 @@
 	</c:forEach>
 	</table> 
 </div>
-
+<br>
+<div>
+	페이지당<br>
+	<a href="${pageContext.request.contextPath}/user/showAll?perPage=3" style="color: black;"> 3 </a>
+	<a href="${pageContext.request.contextPath}/user/showAll?perPage=6" style="color: black;"> 6 </a>
+	<a href="${pageContext.request.contextPath}/user/showAll?perPage=12" style="color: black;"> 12 </a><br> 
+	카테고리(일단 제품명으로)<br>
+	<a href="${pageContext.request.contextPath}/user/showAll?category=" style="color: black;"> 초기화 </a>
+	<a href="${pageContext.request.contextPath}/user/showAll?category=나" style="color: black;"> 나 </a>
+	<a href="${pageContext.request.contextPath}/user/showAll?category=롤" style="color: black;"> 롤 </a><br>
+	정렬<br>
+	<a href="${pageContext.request.contextPath}/user/showAll?sortBy=product_up_time desc" style="color: black;"> 등록순 </a>
+	<a href="${pageContext.request.contextPath}/user/showAll?sortBy=now_price asc" style="color: black;"> 가격 오름차순 </a>
+	<a href="${pageContext.request.contextPath}/user/showAll?sortBy=now_price desc" style="color: black;"> 가격 내림차순 </a><br>	
+	
+</div>
         <!-- Latest Products Start -->
         <section class="popular-items latest-padding">
             <div class="container">
@@ -70,10 +85,10 @@
 	                        <form action="#">
 	                            <div class="select-itms">
 	                                <select name="select" id="select1">
-	                                    <option value="">6 per page</option>
-	                                    <option value="">12 per page</option>
-	                                    <option value="">18 per page</option>
-	                                    <option value="">24 per page</option>
+	                                    <option value="6">6 per page</option>
+	                                    <option value="12">12 per page</option>
+	                                    <option value="18">18 per page</option>
+	                                    <option value="24">24 per page</option>
 	                                </select>
 	                            </div>
 	                        </form>

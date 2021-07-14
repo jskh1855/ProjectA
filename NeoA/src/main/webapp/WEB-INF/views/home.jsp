@@ -60,7 +60,7 @@
        			<button type="submit" style="color: black">전체목록보기</button>		
        		</form>
        		
-       		<a href="${pageContext.request.contextPath}/user/showAll?pageNo=0" style="color: black">전체목록보기2</a>
+       		<a href="${pageContext.request.contextPath}/user/showAll" style="color: black">전체목록보기2</a>
         </div>
         <hr>
         <!-- 이미지 업로드 테스트  -->
