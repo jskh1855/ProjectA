@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="name" property="memberVO.name"/>
 		<result column="member_id" property="memberVO.memberId"/>
 	</resultMap>
-	<select id="showAll" resultMap="detailPostRM">
+	<select id="showAll" resultMap="detailPostRM" parameterType="pagingBeanMain">
 <!-- 	select p.product_no, p.product_name
 	from post p, a_member a
 	where p.member_id = a.member_id
@@ -17,11 +17,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- p.bid_end_time 에러남 ㅠ -->
 	select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time
 	from(
-		select row_number() over(order by product_no desc) as rnum,product_no,title,product_name,now_price,bid_end_time,post_image,member_id
+		select row_number() over(order by ${sortBy}) as rnum,product_no,title,product_name,now_price,bid_end_time,post_image,member_id
 		from post
+		where product_name like '${category}%'
 	) p, a_member m
-	where p.member_id=m.member_id and rnum between #{pg.startRowNumber} and #{pg.endRowNumber}
+	where p.member_id=m.member_id and rnum between #{startRowNumber} and #{endRowNumber}
 
+	</select>
+	
+	<select id="showAllCount" resultType="integer" parameterType="pagingBeanMain">
+		select count(*) from post where product_name like '${category}%'
 	</select>
 	
 	<insert id="registerProduct" parameterType="postVO">
