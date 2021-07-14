@@ -52,14 +52,27 @@ create sequence product_no_seq;
 
 
 
+--create table qna(
+--	qna_no varchar2(100) primary key,
+--	qna_time date not null,
+--	qna_type int default 1 not null,
+--	qna_content clob not null,
+--	member_id varchar2(100) constraint fk_member_id references a_member(member_id),
+--	product_no varchar2(100) constraint fk_product_no references post(product_no)
+--);
+
+-- qna 테이블 변경
+drop table qna;
 create table qna(
-	qna_no varchar2(100) primary key,
+	qna_no varchar2(100) not null,
 	qna_time date not null,
-	qna_type int default 1 not null,
+	qna_type int not null,
 	qna_content clob not null,
 	member_id varchar2(100) constraint fk_member_id references a_member(member_id),
-	product_no varchar2(100) constraint fk_product_no references post(product_no)
+	product_no varchar2(100) constraint fk_product_no references post(product_no),
+	constraint pk_qna primary key (qna_no, qna_type)
 );
+create sequence qna_no_seq;
 
 create table bid_log(
 	bid_no varchar2(100) primary key,
@@ -70,9 +83,9 @@ create table bid_log(
 );
 create sequence bid_no_seq;
 
-insert into bid_log values(bid_no_seq.nextval,sysdate,'20000','java','9');
-insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','java','8');
-insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','java','7');
+insert into bid_log values(bid_no_seq.nextval,sysdate,'20000','spring','9');
+insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','spring','8');
+insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','spring','7');
 
 create table pick(
 	pick_no varchar2(20) primary key,
@@ -140,7 +153,7 @@ insert into post values(product_no_seq.nextval, '제목17','페라리','30000','
 insert into post values(product_no_seq.nextval, '제목18','파텍필립','300','300',sysdate,sysdate+3,'10','2000','hahaha','18.jpg','1','java2');
 insert into post values(product_no_seq.nextval, '제목19','라페라리','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','19.jpg','2','java');
 
-insert into bid_log values(bid_no_seq.nextval, sysdate,'30000','java','9');
+
 
 commit
 

@@ -5,9 +5,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- namespace?? Mapper interface?? ?¨í‚¤ì§€ëª…ê³¼ ?¸í„°?˜ì´?¤ëª…ê³? ?™ì¼?˜ê²Œ ?¼ì¹˜?œí‚¨?? -->
 <mapper namespace="org.kosta.model.mapper.MemberMapper">
-<!-- id?? Mapper interface?? ì¶”ìƒë©”ì„œ?œëª…ê³? ?¼ì¹˜?œí‚¨?? -->
 	<insert id="registerMember" parameterType="memberVO">
 		insert into a_member(member_id, member_email, name, profile_image,password, address, phone_no, bank_name, account_no, enabled) values(#{memberId},#{memberEmail},#{name},#{profileImage},#{password},#{address},#{phoneNo},#{bankName},#{accountNo},#{enabled})
 	</insert>
@@ -21,7 +19,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where member_id =#{memberId}
 	</update>
 	
-		<!-- Spring Security?ì„œ ê¶Œí•œ ì²´í¬ë¥? ?„í•´ ?¬ìš© -->
 	<select id="selectAuthorityByUsername"  resultType="authority">
 		SELECT	username,authority
 		FROM	a_authorities

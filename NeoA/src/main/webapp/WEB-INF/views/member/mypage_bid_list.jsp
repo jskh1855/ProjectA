@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <style>
 .center {
 	text-align: center;
@@ -85,30 +86,85 @@
                     <!-- Card two -->
                     <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div class="row">
+                        	<c:forEach var="item" items="${list}"> 
+                        
                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                                 <div class="single-popular-items mb-50 text-center">
                                     <div class="popular-img">
                                         <img src="/myweb/assets/img/gallery/popular2.png" alt="">
                                         <div class="img-cap">
-                                            <span>Add to cart</span>
+                                            <span>상세보기</span>
                                         </div>
                                     </div>
                                     <div class="popular-caption">
-                                        <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                        <span>시작가</span>
-                                        <span>현재가</span>
-                                        <span>남은 시간</span>
-                                        <span>입찰자수</span>
+                                        <h3>
+                                        	<a href="product_details.html"> <c:out value="${item.title}" /></a>
+                                        </h3>
+                                        
+                                        <span>상품명 <c:out value="${item.productName}" /></span><span> <c:out value="${item.title}" /></span> <span>현재가 <c:out value="${item.nowPrice}" /></span> <span>입찰자수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
+										</span><span>입찰날짜 <c:out value="${item.bidTime}" /></span><span>입찰가격 <c:out value="${item.bidPrice}" /></span> <span id="${item.productNo}"> 남은시간 </span>
+										<script>
+												var stDate = new Date().getTime();
+												var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
+												var RemainDate = edDate - stDate;
+												if(RemainDate<0){
+													document.getElementById(${item.productNo}).innerHTML= "만료";
+												}else{
+												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
+												document.getElementById(${item.productNo}).innerHTML= "남은시간 " + m;
+												}
+										</script>
+											<script>
+											var timer = setInterval(function(){
+												var stDate = new Date().getTime();
+												var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
+												var RemainDate = edDate - stDate;
+												if(RemainDate<0){
+													document.getElementById(${item.productNo}).innerHTML= "만료";
+												}else{
+												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
+												document.getElementById(${item.productNo}).innerHTML= "남은시간 " + m;
+												}
+											}, 1000);
+										</script>
                                     </div>
                                 </div>
                             </div>
-                            
+                            </c:forEach>
                         </div>
                     </div>
-                    
                 </div>
                 <!-- End Nav Card -->
             </div>
         </section>
         <!-- Latest Products End -->
+        <%-- 페이징 처리 --%>
+	<%-- 	${requestScope.pagingBean}<hr> --%>
+	<c:set var="pb" value="${requestScope.pagingBean}"></c:set>
+	<div class="center">
+		<div class="pagination">
+			<c:if test="${pb.previousPageGroup}">
+				<a href="/myBidList?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a>
+			</c:if>
+			<c:forEach var="page" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
+				<c:choose>
+					<c:when test="${pb.nowPage==page}">
+						<a class="active" href="/myBidList?pageNo=${page}">${page}</a>
+					</c:when>
+					<c:otherwise>
+						<a href="/myBidList?pageNo=${page}">${page}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${pb.nextPageGroup}">
+				<a href="/myBidList?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a>
+			</c:if>
+		</div>
+	</div>
     </main>

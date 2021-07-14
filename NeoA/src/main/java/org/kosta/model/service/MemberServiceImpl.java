@@ -93,14 +93,22 @@ public class MemberServiceImpl implements MemberService {
 		map.put("id", id);
 		map.put("startRowNumber", startRowNumber);
 		map.put("endRowNumber", endRowNumber);
-		return memberMapper.getBidProductListById(map);
+		List<PostVO> postList= memberMapper.getBidProductListById(map);
+		for(int i=0;i<postList.size();i++) {
+			String productNo = postList.get(i).getProductNo();
+			List<BidLogVO> bidList = memberMapper.getBidCountByProductNo(productNo);
+			postList.get(i).setBidLogVOList(bidList);
+		}
+		return postList;
+	}
+		@Override
+		public int getTotalBidProductCountById(String id) {
+			return memberMapper.getTotalBidProductCountById(id);
+		}
+	@Override	
 	public void updateMemberWithoutPasswrod(MemberVO memberVO) {
 		memberMapper.updateMemberWithoutPasswrod(memberVO);
 	}
 
-	@Override
-	public int getTotalBidProductCountById(String id) {
-		return memberMapper.getTotalBidProductCountById(id);
-	}
 	
 }

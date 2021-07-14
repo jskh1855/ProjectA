@@ -119,8 +119,10 @@ public class MemberController {
 		} else {
 			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
 		}
+		System.out.println(pagingBean);
 		model.addAttribute("pagingBean", pagingBean);
 		List<PostVO> list= memberService.getBidProductListById(id, pagingBean);
+		System.out.println(list);
 		model.addAttribute("list", list);
 		
 		return "member/mypage_bid_list.tiles";
