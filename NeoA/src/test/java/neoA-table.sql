@@ -172,6 +172,9 @@ insert into post values(product_no_seq.nextval, '제목16','컨버스슈즈','30
 insert into post values(product_no_seq.nextval, '제목17','페라리','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','17.jpg','2','java');
 insert into post values(product_no_seq.nextval, '제목18','파텍필립','300','300',sysdate,sysdate+3,'10','2000','hahaha','18.jpg','1','java2');
 insert into post values(product_no_seq.nextval, '제목19','라페라리','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','19.jpg','2','java');
+insert into post(product_no,title,product_name,start_price,now_price,bid_time_unit,bid_end_time,unit_price,give_me_that_price,detail,post_image,category,member_id)
+values(product_no_seq.nextval,'제목', '로골','1000','1000','2',sysdate+2,'100','10000','ㅗㅜㅑ','rg.img','가전노트북맥북','java');
+
 
 insert into bid_log values(bid_no_seq.nextval, sysdate,'30000','java','9');
 
