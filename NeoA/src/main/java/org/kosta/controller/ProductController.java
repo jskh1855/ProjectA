@@ -79,14 +79,6 @@ public class ProductController {
 		return "member/showAll.tiles";
 	}
 
-	@RequestMapping("addCart")
-	public String addCart(String productNo, Model model) {
-//		model.addAttribute("postVO",postMapper.addCart(productNo, memberId)); 
-		System.out.println("picked");
-		return "member/productDetails.tiles";
-
-	}
-
 	@RequestMapping("productUpload")
 	public String productUpload() {
 
@@ -132,14 +124,13 @@ public class ProductController {
 		model.addAttribute("searchResult", productService.searchByTitle(title));
 
 		return "member/search_result.tiles";
-
 	}
 
 	@RequestMapping("/user/productDetails")
-	public String getDetailProduct(@RequestParam("productNo") String productNo, Model model) {
-		model.addAttribute("viewDetailPost", productService.showDetails(productNo));
-		System.out.println(productService.showDetails(productNo));
-		return "member/showDetails.tiles";
+	public String getDetailProduct(@RequestParam("productNo") @Nullable String productNo, Model model) {
+		//model.addAttribute("viewDetailPost", productService.showDetails(productNo));
+		//System.out.println(productService.showDetails(productNo));
+		return "member/productDetails.tiles";
 	}
 
 	@PostMapping("productRegister")
@@ -210,11 +201,10 @@ public class ProductController {
 	
 	@ResponseBody
 	@RequestMapping("/user/getQnAList")
-	public ArrayList<QnAVO> getQnAList(String productNo) {
-		 List<QnAVO> list = productService.getQnAList(productNo);
-		 ArrayList<QnAVO> arrayList = new ArrayList<QnAVO>();
-		 arrayList.add
-		 return arrayList;
+	public List<QnAVO> getQnAList(String productNo) {
+		productNo = "9";
+		List<QnAVO> list = productService.getQnAList(productNo);
+		return list;
 	}
 
 }

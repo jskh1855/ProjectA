@@ -149,7 +149,7 @@ delete from qna
 where qna_no ='1' and qna_type='1'
 
 insert into qna(qna_no, qna_time, qna_type, qna_content, member_id, product_no)
-values('1', sysdate, '1', 'answer', 'kobos', '9')
+values('2', sysdate, '0', 'answer', 'kobos', '9')
 
 select qna_no, qna_time, qna_type, qna_content, member_id
 from qna
