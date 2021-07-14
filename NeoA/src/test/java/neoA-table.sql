@@ -50,8 +50,7 @@ create table post(
 );
 create sequence product_no_seq;
 
-
-
+/*
 create table qna(
 	qna_no varchar2(100) primary key,
 	qna_time date not null,
@@ -60,6 +59,20 @@ create table qna(
 	member_id varchar2(100) constraint fk_member_id references a_member(member_id),
 	product_no varchar2(100) constraint fk_product_no references post(product_no)
 );
+*/
+
+--qna 테이블 변경 변경, qna_no 와 qna_type 을 복합기본키로. qna_type 이 0이면 질문, 1 이면 대답.
+drop table qna;
+create table qna (
+	qna_no varchar2(100) not null,    
+	qna_time date not null,
+ 	qna_type int not null,
+ 	qna_content clob not null,
+ 	member_id varchar2(100) constraint fk_member_id references a_member(member_id),
+ 	product_no varchar2(100) constraint fk_product_no references post(product_no),
+	constraint pk_qna primary key (qna_no, qna_type)
+);
+create sequence qna_no_seq;
 
 create table bid_log(
 	bid_no varchar2(100) primary key,
@@ -143,7 +156,6 @@ insert into post values(product_no_seq.nextval, '제목19','라페라리','30000
 insert into bid_log values(bid_no_seq.nextval, sysdate,'30000','java','9');
 
 commit
-
 
 -- insert into post values(product_no_seq, );
 
