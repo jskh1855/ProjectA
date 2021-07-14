@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <style>
 .center {
 	text-align: center;
@@ -40,9 +40,9 @@
 }
 </style>
 
-    <main>
-        <!-- Hero Area Start-->
-<!--         <div class="slider-area ">
+<main>
+	<!-- Hero Area Start-->
+	<!--         <div class="slider-area ">
             <div class="single-slider slider-height2 d-flex align-items-center">
                 <div class="container">
                     <div class="row">
@@ -55,54 +55,67 @@
                 </div>
             </div>
         </div> -->
-        <!-- Hero Area End-->
-        <!-- Latest Products Start -->
-        <section class="popular-items latest-padding">
-            <div class="container">
-                <div class="row product-btn justify-content-between mb-40">
-                    <div class="properties__button">
-                        <!--Nav Button  -->
-                        <nav>                                                      
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link" id="nav-home-tab" href="${pageContext.request.contextPath}/mypage" role="tab" aria-controls="nav-home" aria-selected="false"> 판매 목록</a>
-                                <a class="nav-item nav-link active" id="nav-profile-tab" href="${pageContext.request.contextPath}/myBidList" role="tab" aria-controls="nav-profile" aria-selected="true"> 입찰 목록</a>
-                                <a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypagePickList" role="tab" aria-controls="nav-contact" aria-selected="false"> pick 목록 </a>
-                                <a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypageMyInfo" role="tab" aria-controls="nav-userInfo" aria-selected="false"> 나의 정보 </a>
-                            </div>
-                        </nav>
-                        <!--End Nav Button  -->
-                    </div>
-                    <!-- Grid and List view -->
-                    <div class="grid-list-view">
-                    </div>
-                    <!-- Select items -->
-                </div>
-                
-                <%-- ${list }
+	<!-- Hero Area End-->
+	<!-- Latest Products Start -->
+	<section class="popular-items latest-padding">
+		<div class="container">
+			<div class="row product-btn justify-content-between mb-40">
+				<div class="properties__button">
+					<!--Nav Button  -->
+					<nav>
+						<div class="nav nav-tabs" id="nav-tab" role="tablist">
+							<a class="nav-item nav-link" id="nav-home-tab" href="${pageContext.request.contextPath}/mypage" role="tab" aria-controls="nav-home" aria-selected="false"> 판매 목록</a> 
+							<a class="nav-item nav-link active" id="nav-profile-tab" href="${pageContext.request.contextPath}/myBidList" role="tab" aria-controls="nav-profile" aria-selected="true"> 입찰 목록</a> 
+							<a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypagePickList" role="tab" aria-controls="nav-contact" aria-selected="false"> pick 목록 </a> 
+							<a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypageMyInfo" role="tab" aria-controls="nav-userInfo" aria-selected="false"> 나의 정보 </a>
+						</div>
+					</nav>
+					<!--End Nav Button  -->
+				</div>
+				<!-- Grid and List view -->
+				<div class="grid-list-view"></div>
+				<!-- Select items -->
+			</div>
+			<%-- ${list }
                 <hr> --%>
-                <!-- Nav Card -->
-                <div class="tab-content" id="nav-tabContent">
-                    
-                    <!-- Card two -->
-                    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <div class="row">
-                        	<c:forEach var="item" items="${list}"> 
-                        
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                <div class="single-popular-items mb-50 text-center">
-                                    <div class="popular-img">
-                                        <img src="/myweb/assets/img/gallery/popular2.png" alt="">
-                                        <div class="img-cap">
-                                            <span>상세보기</span>
-                                        </div>
-                                    </div>
-                                    <div class="popular-caption">
-                                        <h3>
-                                        	<a href="product_details.html"> <c:out value="${item.title}" /></a>
-                                        </h3>
-                                        
-                                        <span>상품명 <c:out value="${item.productName}" /></span><span> <c:out value="${item.title}" /></span> <span>현재가 <c:out value="${item.nowPrice}" /></span> <span>입찰자수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
-										</span><span>입찰날짜 <c:out value="${item.bidTime}" /></span><span>입찰가격 <c:out value="${item.bidPrice}" /></span> <span id="${item.productNo}"> 남은시간 </span>
+			<!-- Nav Card -->
+			<div class="tab-content" id="nav-tabContent">
+				<!-- Card two -->
+				<div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+					<div class="row">
+						<c:forEach var="item" items="${list}">
+							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+								<div class="single-popular-items mb-50 text-center">
+									<div class="popular-img">
+										<img src="/myweb/assets/img/gallery/popular2.png" alt="">
+										<div class="img-cap">
+											<span>상세보기</span>
+										</div>
+									</div>
+									<div class="popular-caption">
+										<h3>
+											<a href="product_details.html"> <c:out value="${item.title}" /></a>
+										</h3>
+										<span>상품명 <c:out value="${item.productName}" /></span>
+										<span> <c:out value="${item.title}" /></span> 
+										<span>현재가 <c:out value="${item.nowPrice}" /></span> 
+										<span>입찰자수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명	</span> 
+										<span>입찰날짜
+											<sec:authentication var="currMemberId" property='principal.memberId' />
+											<c:forEach var="bidLogVO" items="${item.bidLogVOList }">
+												<c:if test="${bidLogVO.memberId == currMemberId }">
+													${bidLogVO.bidTime }"
+												</c:if>
+											</c:forEach>
+										</span> 
+										<span>입찰가격 
+											<c:forEach var="bidLogVO" items="${item.bidLogVOList }">
+												<c:if test="${bidLogVO.memberId == currMemberId }">
+													${bidLogVO.bidPrice }
+												</c:if>
+											</c:forEach>
+										</span> 
+										<span id="${item.productNo}"> 남은시간 </span>
 										<script>
 												var stDate = new Date().getTime();
 												var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
@@ -117,7 +130,7 @@
 												document.getElementById(${item.productNo}).innerHTML= "남은시간 " + m;
 												}
 										</script>
-											<script>
+										<script>
 											var timer = setInterval(function(){
 												var stDate = new Date().getTime();
 												var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
@@ -133,18 +146,18 @@
 												}
 											}, 1000);
 										</script>
-                                    </div>
-                                </div>
-                            </div>
-                            </c:forEach>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Nav Card -->
-            </div>
-        </section>
-        <!-- Latest Products End -->
-        <%-- 페이징 처리 --%>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+			<!-- End Nav Card -->
+		</div>
+	</section>
+	<!-- Latest Products End -->
+	<%-- 페이징 처리 --%>
 	<%-- 	${requestScope.pagingBean}<hr> --%>
 	<c:set var="pb" value="${requestScope.pagingBean}"></c:set>
 	<div class="center">
@@ -167,4 +180,4 @@
 			</c:if>
 		</div>
 	</div>
-    </main>
+</main>

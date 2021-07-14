@@ -1,20 +1,20 @@
 package org.kosta.model.vo;
 
-import java.time.LocalDate;
-
 public class BidLogVO {
 	private String bidNo;
 	private int bidPrice;
-	private LocalDate bidTime;
+	private String bidTime;
+	private String memberId;
 	public BidLogVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public BidLogVO(String bidNo, int bidPrice, LocalDate bidTime) {
+	public BidLogVO(String bidNo, int bidPrice, String bidTime, String memberId) {
 		super();
 		this.bidNo = bidNo;
 		this.bidPrice = bidPrice;
 		this.bidTime = bidTime;
+		this.memberId = memberId;
 	}
 	public String getBidNo() {
 		return bidNo;
@@ -28,16 +28,24 @@ public class BidLogVO {
 	public void setBidPrice(int bidPrice) {
 		this.bidPrice = bidPrice;
 	}
-	public LocalDate getBidTime() {
+	public String getBidTime() {
 		return bidTime;
 	}
-	public void setBidTime(LocalDate bidTime) {
+	public void setBidTime(String bidTime) {
 		this.bidTime = bidTime;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	@Override
 	public String toString() {
-		return "BidLogVO [bidNo=" + bidNo + ", bidPrice=" + bidPrice + ", bidTime=" + bidTime + "]";
+		return "BidLogVO [bidNo=" + bidNo + ", bidPrice=" + bidPrice + ", bidTime=" + bidTime + ", memberId=" + memberId
+				+ "]";
 	}
+	
 	
 	
 }

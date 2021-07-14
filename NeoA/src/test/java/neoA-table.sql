@@ -155,6 +155,8 @@ insert into post values(product_no_seq.nextval, '제목19','라페라리','30000
 
 insert into bid_log values(bid_no_seq.nextval, sysdate,'30000','java','9');
 
+insert into bid_log values(bid_no_seq.nextval, sysdate,'30000','kobos','9');
+
 commit
 
 -- insert into post values(product_no_seq, );
@@ -168,6 +170,7 @@ select * from a_member;
 select * from post;
 select * from a_authorities;
 select * from bid_log;
+select * from qna;
 
 -- **************************************
 -- delete 

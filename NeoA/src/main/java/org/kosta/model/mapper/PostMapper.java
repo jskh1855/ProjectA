@@ -9,6 +9,7 @@ import org.kosta.model.vo.PagingBean;
 import org.kosta.model.vo.PagingBeanMain;
 import org.kosta.model.vo.PickVO;
 import org.kosta.model.vo.PostVO;
+import org.kosta.model.vo.QnAVO;
 
 @Mapper
 public interface PostMapper {
@@ -28,4 +29,10 @@ public interface PostMapper {
 	List<PostVO> searchByTitle(String title);
 	
 	PostVO randPost();
+	
+	void registerQuestion(HashMap<String, String> map);
+	
+	void registerAnswer(HashMap<String, String> map);
+	
+	List<QnAVO> getQnAList(String productNo);
 }

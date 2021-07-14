@@ -110,8 +110,10 @@ class SpringBootStudy5SecurityApplicationTests {
 		
 		//pm.randPost();
 		
-	
 		
+		//productService.registerQuestion("content test", "kobos", "9");
+		//productService.registerAnswer("1", "answer test", "kobos", "9");
+		System.out.println(productService.getQnAList("9"));
 	}
 	
 	
