@@ -110,7 +110,7 @@ class SpringBootStudy5SecurityApplicationTests {
 		
 		//pm.randPost();
 		
-		System.out.println(pm.showAllCount());
+	
 		
 	}
 	
