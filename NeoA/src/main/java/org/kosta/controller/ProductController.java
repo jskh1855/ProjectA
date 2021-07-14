@@ -80,20 +80,6 @@ public class ProductController {
 		
 	}
 
-//	@RequestMapping("productUpload2")
-//	public String productUpload2(HttpServletRequest request , @RequestParam("filename") MultipartFile mFile){
-//		
-//		System.out.println("AAAAAAAAAAAAAAAAAAA");
-//		try {
-//			mFile.transferTo(new File("c:/kosta215/"+mFile.getOriginalFilename()));
-//			System.out.println("BBBBBBBBBBBBBBBBB");
-//		} catch (Exception e) {
-//			e.getStackTrace();
-//		}
-//		
-//		return "member/productUpload_ok.tiles";
-//		//return "redirect:productUpload_ok";
-//	}
 	@RequestMapping("productUpload")
 	public String productUpload() {
 
@@ -113,6 +99,7 @@ public class ProductController {
 				images.append(";");
 				
 			}
+			System.out.println(images);
 			
 			
 			
