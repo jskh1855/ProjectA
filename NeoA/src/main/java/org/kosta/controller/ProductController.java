@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.model.mapper.PostMapper;
 import org.kosta.model.service.ProductService;
+import org.kosta.model.vo.MemberVO;
 import org.kosta.model.vo.PagingBeanMain;
 import org.kosta.model.vo.PostVO;
 import org.springframework.lang.Nullable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -87,7 +88,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
-	public String upload(HttpServletRequest request, @RequestParam("filename") MultipartFile[] mFiles) {
+	public String upload(HttpServletRequest request, @RequestParam("filename") MultipartFile[] mFiles, PostVO pvo) {
+		System.out.println("AA");
+		
 		StringBuilder images = new StringBuilder();
 		try {
 			String path2 = "..\\resources\\static\\myweb\\images\\";
@@ -112,6 +115,13 @@ public class ProductController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(pvo);
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		pvo.setPostImage(images.toString());
+		pvo.setCategory("가전;스마트폰;삼성;");
+		pvo.setMemberVO(memberVO);
+		System.out.println(pvo);
+		productService.registerProduct(pvo);
 
 		return "redirect:productUpload_ok";
 	}
@@ -138,42 +148,42 @@ public class ProductController {
 		return "member/showDetails.tiles";
 	}
 
-	@PostMapping("productRegister")
-	public String productRegister(PostVO pvo, MultipartFile file, HttpServletRequest request) throws IOException, Exception {
-		String uploadPath = request.getSession().getServletContext().getRealPath("/");
-		System.out.println(uploadPath);
-		/*
-		 * String Path = "..\\resources\\static\\myweb\\images\\";
-		 */		
-		String imgUploadPath = uploadPath + File.separator + "imgUpload"; //이미지 업로드 폴더를 설정 = /uploadPath/imgUpload
-		 String ymdPath = UpLoadFileUtils.calcPath(imgUploadPath); // 위의 폴더를 기준으로 연월일 폴더를 생성	
-		 
-		 String fileName = null;  // 기본 경로와 별개로 작성되는 경로 + 파일이름
-		 System.out.println("imgUploadPath:"+imgUploadPath);
-		 if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
-			 System.out.println("파일업로드시작!!");
-			  // 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)  
-              fileName=UpLoadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-              System.out.println("업로드할파일명"+fileName);
-			  // postImage에 원본 파일 경로 + 파일명 저장
-			  pvo.setPostImage(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-			  System.out.println(pvo);			  		  
-				/*
-				 * pvo.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator +
-				 * "s" + File.separator + "s_" + fileName);
-				 */			 } else {  // 첨부된 파일이 없으면
-			  fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
-			  // 미리 준비된 none.png파일을 대신 출력함
-			  System.out.println("업로드파일:"+fileName);
-			  pvo.setPostImage(fileName);
-				/*
-				 * pvo.setGdsThumbImg(fileName);
-				 */			 }
-		 
-		productService.registerProduct(pvo);
-		return "redirect:member/registerproduct-result";
-		
-	}
+//	@PostMapping("productRegister")
+//	public String productRegister(PostVO pvo, MultipartFile file, HttpServletRequest request) throws IOException, Exception {
+//		String uploadPath = request.getSession().getServletContext().getRealPath("/");
+//		System.out.println(uploadPath);
+//		/*
+//		 * String Path = "..\\resources\\static\\myweb\\images\\";
+//		 */		
+//		String imgUploadPath = uploadPath + File.separator + "imgUpload"; //이미지 업로드 폴더를 설정 = /uploadPath/imgUpload
+//		 String ymdPath = UpLoadFileUtils.calcPath(imgUploadPath); // 위의 폴더를 기준으로 연월일 폴더를 생성	
+//		 
+//		 String fileName = null;  // 기본 경로와 별개로 작성되는 경로 + 파일이름
+//		 System.out.println("imgUploadPath:"+imgUploadPath);
+//		 if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
+//			 System.out.println("파일업로드시작!!");
+//			  // 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)  
+//              fileName=UpLoadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+//              System.out.println("업로드할파일명"+fileName);
+//			  // postImage에 원본 파일 경로 + 파일명 저장
+//			  pvo.setPostImage(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+//			  System.out.println(pvo);			  		  
+//				/*
+//				 * pvo.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator +
+//				 * "s" + File.separator + "s_" + fileName);
+//				 */			 } else {  // 첨부된 파일이 없으면
+//			  fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+//			  // 미리 준비된 none.png파일을 대신 출력함
+//			  System.out.println("업로드파일:"+fileName);
+//			  pvo.setPostImage(fileName);
+//				/*
+//				 * pvo.setGdsThumbImg(fileName);
+//				 */			 }
+//		 
+//		productService.registerProduct(pvo);
+//		return "redirect:member/registerproduct-result";
+//		
+//	}
 	@RequestMapping("member/registerproduct-result")
 	public String registerfin() {
 		return "member/productUpload_ok.tiles";

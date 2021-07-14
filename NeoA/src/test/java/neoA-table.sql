@@ -32,6 +32,7 @@ create table a_authorities(
 	constraint member_a primary key(username,authority)
 );
 
+/*
 create table post(
 	product_no varchar2(100) primary key,
 	title varchar2(100) not null,
@@ -48,6 +49,25 @@ create table post(
 	category_no varchar2(100) constraint fk_post_category_no references category(category_no),
 	member_id varchar2(100) constraint fk_post references a_member(member_id)
 );
+*/
+
+create table post(
+	product_no varchar2(100) primary key,
+	title varchar2(100) not null,
+	product_name varchar2(100) not null,
+	start_price number default 0,
+	now_price number default 0,
+	product_up_time date default sysdate,
+	bid_time_unit number default 0,
+	bid_end_time date,
+	unit_price number,
+	give_me_that_price number,
+	detail clob,
+	post_image varchar2(100),
+	category varchar2(100),
+	member_id varchar2(100) constraint fk_post references a_member(member_id)
+);
+
 create sequence product_no_seq;
 
 /*

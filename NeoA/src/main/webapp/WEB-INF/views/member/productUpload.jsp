@@ -21,7 +21,7 @@
  --%><%--    <sec:authentication var="mvo" property="principal" />
  --%><div class="container">
 
-	<form action="${pageContext.request.contextPath}/productRegister" method="post"
+	<form action="${pageContext.request.contextPath}/upload" method="post"
 		id="form" name="form" enctype="multipart/form-data">
 		<sec:csrfInput />
 		<br>
@@ -125,6 +125,6 @@
 
 <%--  <%=request.getRealPath("") %> --%>
  
- <%= request.getSession().getServletContext().getContext("/productUpload").getRealPath("")%>
+<%--  <%= request.getSession().getServletContext().getContext("/productUpload").getRealPath("")%> --%>
  
  

@@ -16,9 +16,9 @@ public class PostVO {
 	private int bidTimeUnit;
 	private String bidEndTime;
 	private MemberVO memberVO;
-	private CategoryVO categoryVO;
-	private QnAVO qnaVO;
-	private PickVO pickVO;
+	private String category;
+	//private QnAVO qnaVO;
+	//private PickVO pickVO;
 	private List<BidLogVO> bidLogVOList;
 	public PostVO() {
 		super();
@@ -26,7 +26,7 @@ public class PostVO {
 	}
 	public PostVO(String title, String productNo, String productName, int startPrice, int nowPrice,
 			String productUpTime, int unitPrice, int giveMeThatPrice, String detail, String postImage, int bidTimeUnit,
-			String bidEndTime, MemberVO memberVO, CategoryVO categoryVO, QnAVO qnaVO, PickVO pickVO,
+			String bidEndTime, MemberVO memberVO, String category, QnAVO qnaVO, PickVO pickVO,
 			List<BidLogVO> bidLogVOList) {
 		super();
 		this.title = title;
@@ -42,9 +42,9 @@ public class PostVO {
 		this.bidTimeUnit = bidTimeUnit;
 		this.bidEndTime = bidEndTime;
 		this.memberVO = memberVO;
-		this.categoryVO = categoryVO;
-		this.qnaVO = qnaVO;
-		this.pickVO = pickVO;
+		this.category = category;
+//		this.qnaVO = qnaVO;
+//		this.pickVO = pickVO;
 		this.bidLogVOList = bidLogVOList;
 	}
 	public String getTitle() {
@@ -125,24 +125,24 @@ public class PostVO {
 	public void setMemberVO(MemberVO memberVO) {
 		this.memberVO = memberVO;
 	}
-	public CategoryVO getCategoryVO() {
-		return categoryVO;
+	public String getCategory() {
+		return category;
 	}
-	public void setCategoryVO(CategoryVO categoryVO) {
-		this.categoryVO = categoryVO;
+	public void setCategory(String category) {
+		this.category = category;
 	}
-	public QnAVO getQnaVO() {
-		return qnaVO;
-	}
-	public void setQnaVO(QnAVO qnaVO) {
-		this.qnaVO = qnaVO;
-	}
-	public PickVO getPickVO() {
-		return pickVO;
-	}
-	public void setPickVO(PickVO pickVO) {
-		this.pickVO = pickVO;
-	}
+//	public QnAVO getQnaVO() {
+//		return qnaVO;
+//	}
+//	public void setQnaVO(QnAVO qnaVO) {
+//		this.qnaVO = qnaVO;
+//	}
+//	public PickVO getPickVO() {
+//		return pickVO;
+//	}
+//	public void setPickVO(PickVO pickVO) {
+//		this.pickVO = pickVO;
+//	}
 	public List<BidLogVO> getBidLogVOList() {
 		return bidLogVOList;
 	}
@@ -155,7 +155,7 @@ public class PostVO {
 				+ startPrice + ", nowPrice=" + nowPrice + ", productUpTime=" + productUpTime + ", unitPrice="
 				+ unitPrice + ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", postImage=" + postImage
 				+ ", bidTimeUnit=" + bidTimeUnit + ", bidEndTime=" + bidEndTime + ", memberVO=" + memberVO
-				+ ", categoryVO=" + categoryVO + ", qnaVO=" + qnaVO + ", pickVO=" + pickVO + ", bidLogVOList="
+				+ ", categoryVO=" + category +  ", bidLogVOList="
 				+ bidLogVOList + "]";
 	}
 
