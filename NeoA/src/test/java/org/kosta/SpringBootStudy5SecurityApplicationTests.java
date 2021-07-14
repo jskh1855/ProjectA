@@ -108,7 +108,9 @@ class SpringBootStudy5SecurityApplicationTests {
 		 * pagingBean));
 		 */
 		
-		pm.randPost();
+		//pm.randPost();
+		
+		System.out.println(pm.showAllCount());
 		
 	}
 	

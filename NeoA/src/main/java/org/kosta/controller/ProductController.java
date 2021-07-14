@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.model.mapper.PostMapper;
 import org.kosta.model.service.ProductService;
-import org.kosta.model.vo.PagingBean;
+import org.kosta.model.vo.PagingBeanMain;
 import org.kosta.model.vo.PostVO;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,26 +21,47 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class ProductController {
-
+	
 	@Resource
 	private PostMapper postMapper;
 	
 	@Resource
 	private ProductService productService;
+	
+	//private PagingBeanMain pagingBean=new PagingBeanMain();
 
 	@RequestMapping("/user/showAll")
-	public String showAll(Model model, @RequestParam("pageNo") String pageNo) {
+	public String showAll(Model model, @RequestParam("pageNo") @Nullable String pageNo, @RequestParam("category") @Nullable String category, 
+			@RequestParam("sortBy") @Nullable String sortBy, @RequestParam("perPage") @Nullable String perPage) {
 		
-		PagingBean pagingBean=null;
-		if(pageNo.equals("0")) {
-			pagingBean=new PagingBean(19);
-		}else {
-			pagingBean=new PagingBean(19, Integer.parseInt(pageNo));
+		PagingBeanMain pagingBean=new PagingBeanMain();
+		
+		//카테고리 
+		if(category!=null) {
+			pagingBean.setCategory(category);
 		}
+		//정렬
+		if(sortBy!=null) {
+			pagingBean.setSortBy(sortBy);
+		}
+		
+		//그룹당 페이지수
+		if(perPage!=null) {
+			pagingBean.setPostCountPerPage(Integer.parseInt(perPage));
+		}
+		
+		int totalpostCount = postMapper.showAllCount(pagingBean);
+		pagingBean.setTotalPostCount(totalpostCount);
+		
+		if(pageNo != null) {
+			pagingBean.setNowPage(Integer.parseInt(pageNo));
+		}
+		
+		//pagingBean.setPostCountPerPage(12);
 
 		// new PagingBean(19) <- 총 개수 확인하는 sql구문 mapper에 추가하기 
 		// select count(*) from post; 만해도 될 듯
-		
+
 		// 카테고리에 따라 변경할수 있도록 sql에 where 절 추가 
 		// pagingBean에 get set 추가하면 될 듯
 		System.out.println("1 test  "+pagingBean.getStartRowNumber());
