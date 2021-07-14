@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getBidCountByProductNo" resultType="bidLogVO">
-		select *
+		select bid_no, to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price, member_id
 		from bid_log
 		where product_no = #{value}
 	</select>

@@ -1,5 +1,6 @@
 package org.kosta.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.kosta.model.mapper.PostMapper;
 import org.kosta.model.vo.PagingBean;
 import org.kosta.model.vo.PagingBeanMain;
 import org.kosta.model.vo.PostVO;
+import org.kosta.model.vo.QnAVO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,6 +43,28 @@ public class ProductServiceImpl implements ProductService {
 		postMapper.registerProduct(pvo);
 	}
 	
+	@Override
+	public void registerQuestion(String qnaContent, String memberId, String productNo) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("qnaContent", qnaContent);
+		map.put("memberId", memberId);
+		map.put("productNo", productNo);
+		postMapper.registerQuestion(map);
+	}
 	
+	@Override
+	public void registerAnswer(String qnaNo, String qnaContent, String memberId, String productNo) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("qnaNo", qnaNo);
+		map.put("qnaContent", qnaContent);
+		map.put("memberId", memberId);
+		map.put("productNo", productNo);
+		postMapper.registerAnswer(map);
+	}
+	
+	@Override
+	public List<QnAVO> getQnAList(String productNo){
+		return postMapper.getQnAList(productNo);
+	}
 	
 }

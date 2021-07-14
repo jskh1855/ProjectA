@@ -73,7 +73,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rownum =1
 	</select>
 	
+	<insert id="registerQuestion" parameterType="map">
+		insert into qna(qna_no, qna_time, qna_type, qna_content, member_id, product_no)
+		values(qna_no_seq.nextval, sysdate, '0', #{qnaContent}, #{memberId}, #{productNo})
+	</insert>
 	
+	<insert id="registerAnswer" parameterType="map">
+		insert into qna(qna_no, qna_time, qna_type, qna_content, member_id, product_no)
+		values(#{qnaNo}, sysdate, '1', #{qnaContent}, #{memberId}, #{productNo})
+	</insert>
+	
+	<select id="getQnAList" resultType="QnAVO">
+		select qna_no, to_char(qna_time,'YYYY-MM-DD HH24:MI:SS') as qna_time, qna_type, qna_content, member_id
+		from qna
+		where product_no=#{value}
+	</select>
 	
 	
 </mapper>

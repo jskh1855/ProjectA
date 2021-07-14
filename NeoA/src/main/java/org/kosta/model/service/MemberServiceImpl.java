@@ -62,9 +62,9 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO findMemberById(String id) {
 		return memberMapper.findMemberById(id);
 	}
-	
+
 	@Override
-	public List<PostVO> getSellProductListById(String id, PagingBean pagingBean){
+	public List<PostVO> getSellProductListById(String id, PagingBean pagingBean) {
 		int startRowNumber = pagingBean.getStartRowNumber();
 		int endRowNumber = pagingBean.getEndRowNumber();
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -72,14 +72,14 @@ public class MemberServiceImpl implements MemberService {
 		map.put("startRowNumber", startRowNumber);
 		map.put("endRowNumber", endRowNumber);
 		List<PostVO> postlist = memberMapper.getSellProductListById(map);
-		for(int i=0;i<postlist.size();i++) {
+		for (int i = 0; i < postlist.size(); i++) {
 			String productNo = postlist.get(i).getProductNo();
 			List<BidLogVO> bidList = memberMapper.getBidCountByProductNo(productNo);
 			postlist.get(i).setBidLogVOList(bidList);
 		}
 		return postlist;
 	}
-	
+
 	@Override
 	public int getTotalSellProductCountById(String id) {
 		return memberMapper.getTotalSellProductCountById(id);
@@ -87,29 +87,32 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List<PostVO> getBidProductListById(String id, PagingBean pagingBean) {
-		int startRowNumber= pagingBean.getStartRowNumber();
+		int startRowNumber = pagingBean.getStartRowNumber();
 		int endRowNumber = pagingBean.getEndRowNumber();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("startRowNumber", startRowNumber);
 		map.put("endRowNumber", endRowNumber);
-		List<PostVO> postList= memberMapper.getBidProductListById(map);
-		for(int i=0;i<postList.size();i++) {
+		List<PostVO> postList = memberMapper.getBidProductListById(map);
+		for (int i = 0; i < postList.size(); i++) {
 			String productNo = postList.get(i).getProductNo();
+			System.out.println("test1"+postList);
 			List<BidLogVO> bidList = memberMapper.getBidCountByProductNo(productNo);
+			System.out.println("test2"+postList);
 			postList.get(i).setBidLogVOList(bidList);
+			System.out.println("test3"+postList);
 		}
 		return postList;
 	}
+
 	@Override
 	public int getTotalBidProductCountById(String id) {
 		return memberMapper.getTotalBidProductCountById(id);
 	}
-	
+
 	@Override
 	public void updateMemberWithoutPasswrod(MemberVO memberVO) {
 		memberMapper.updateMemberWithoutPasswrod(memberVO);
 	}
 
-	
 }

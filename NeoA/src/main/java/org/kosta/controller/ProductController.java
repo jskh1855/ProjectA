@@ -2,6 +2,8 @@ package org.kosta.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +13,7 @@ import org.kosta.model.service.ProductService;
 import org.kosta.model.vo.MemberVO;
 import org.kosta.model.vo.PagingBeanMain;
 import org.kosta.model.vo.PostVO;
+import org.kosta.model.vo.QnAVO;
 import org.springframework.lang.Nullable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,67 +21,61 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class ProductController {
-	
+
 	@Resource
 	private PostMapper postMapper;
-	
+
 	@Resource
 	private ProductService productService;
-	
-	//private PagingBeanMain pagingBean=new PagingBeanMain();
+
+	// private PagingBeanMain pagingBean=new PagingBeanMain();
 
 	@RequestMapping("/user/showAll")
-	public String showAll(Model model, @RequestParam("pageNo") @Nullable String pageNo, @RequestParam("category") @Nullable String category, 
-			@RequestParam("sortBy") @Nullable String sortBy, @RequestParam("perPage") @Nullable String perPage) {
-		
-		PagingBeanMain pagingBean=new PagingBeanMain();
-		
-		//카테고리 
-		if(category!=null) {
+	public String showAll(Model model, @RequestParam("pageNo") @Nullable String pageNo,
+			@RequestParam("category") @Nullable String category, @RequestParam("sortBy") @Nullable String sortBy,
+			@RequestParam("perPage") @Nullable String perPage) {
+
+		PagingBeanMain pagingBean = new PagingBeanMain();
+
+		// 카테고리
+		if (category != null) {
 			pagingBean.setCategory(category);
 		}
-		//정렬
-		if(sortBy!=null) {
+		// 정렬
+		if (sortBy != null) {
 			pagingBean.setSortBy(sortBy);
 		}
-		
-		//그룹당 페이지수
-		if(perPage!=null) {
+
+		// 그룹당 페이지수
+		if (perPage != null) {
 			pagingBean.setPostCountPerPage(Integer.parseInt(perPage));
 		}
-		
+
 		int totalpostCount = postMapper.showAllCount(pagingBean);
 		pagingBean.setTotalPostCount(totalpostCount);
-		
-		if(pageNo != null) {
+
+		if (pageNo != null) {
 			pagingBean.setNowPage(Integer.parseInt(pageNo));
 		}
-		
-		//pagingBean.setPostCountPerPage(12);
 
-		// new PagingBean(19) <- 총 개수 확인하는 sql구문 mapper에 추가하기 
+		// pagingBean.setPostCountPerPage(12);
+
+		// new PagingBean(19) <- 총 개수 확인하는 sql구문 mapper에 추가하기
 		// select count(*) from post; 만해도 될 듯
 
-		// 카테고리에 따라 변경할수 있도록 sql에 where 절 추가 
+		// 카테고리에 따라 변경할수 있도록 sql에 where 절 추가
 		// pagingBean에 get set 추가하면 될 듯
-		System.out.println("1 test  "+pagingBean.getStartRowNumber());
-		
-		
+		System.out.println("1 test  " + pagingBean.getStartRowNumber());
+
 		model.addAttribute("postVOList", productService.showAll(pagingBean));
 		System.out.println("show all !!!");
 		model.addAttribute("pagingBean", pagingBean);
 		return "member/showAll.tiles";
-	}
-	@RequestMapping("addCart")
-	public String addCart(String productNo, Model model) {
-//		model.addAttribute("postVO",postMapper.addCart(productNo, memberId)); 
-		System.out.println("picked");
-		return "member/productDetails.tiles";
-		
 	}
 
 	@RequestMapping("productUpload")
@@ -86,7 +83,7 @@ public class ProductController {
 
 		return "member/productUpload.tiles";
 	}
-	
+
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	public String upload(HttpServletRequest request, @RequestParam("filename") MultipartFile[] mFiles, PostVO pvo) {
 		System.out.println("AA");
@@ -95,19 +92,17 @@ public class ProductController {
 		try {
 			String path2 = "..\\resources\\static\\myweb\\images\\";
 			String path = request.getSession().getServletContext().getRealPath("");
-			
-			for (int i=0;i<mFiles.length;i++) {
-				mFiles[i].transferTo(new File(path+path2+mFiles[i].getOriginalFilename()));
+
+			for (int i = 0; i < mFiles.length; i++) {
+				mFiles[i].transferTo(new File(path + path2 + mFiles[i].getOriginalFilename()));
 				images.append(mFiles[i].getOriginalFilename());
 				images.append(";");
-				
+
 			}
 			System.out.println(images);
-			
-			
-			
 
-			// mFile.transferTo(new File("c:/Users/short/kosta/ProjectA/NeoA/src/main/resources/static/myweb/images/"+mFile.getOriginalFilename()));
+			// mFile.transferTo(new
+			// File("c:/Users/short/kosta/ProjectA/NeoA/src/main/resources/static/myweb/images/"+mFile.getOriginalFilename()));
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,27 +120,25 @@ public class ProductController {
 
 		return "redirect:productUpload_ok";
 	}
-	
+
 	@RequestMapping("/productUpload_ok")
 	public String productUpload_ok() {
-	
+
 		return "member/productUpload_ok.tiles";
 	}
-	
+
 	@RequestMapping("/user/searchByTitle")
 	public String searchByTitle(@RequestParam("title") String title, Model model) {
 		model.addAttribute("searchResult", productService.searchByTitle(title));
-		
-		
+
 		return "member/search_result.tiles";
-		
 	}
 
 	@RequestMapping("/user/productDetails")
-	public String getDetailProduct(@RequestParam("productNo") String productNo, Model model) {
-		model.addAttribute("viewDetailPost",productService.showDetails(productNo));
-		System.out.println(productService.showDetails(productNo));
-		return "member/showDetails.tiles";
+	public String getDetailProduct(@RequestParam("productNo") @Nullable String productNo, Model model) {
+		//model.addAttribute("viewDetailPost", productService.showDetails(productNo));
+		//System.out.println(productService.showDetails(productNo));
+		return "member/productDetails.tiles";
 	}
 
 //	@PostMapping("productRegister")
@@ -184,17 +177,41 @@ public class ProductController {
 //		return "redirect:member/registerproduct-result";
 //		
 //	}
+
 	@RequestMapping("member/registerproduct-result")
 	public String registerfin() {
 		return "member/productUpload_ok.tiles";
 	}
+
 	@RequestMapping("/user/randPost")
 	public String randPost(Model model) {
 		System.out.println("random!");
-		model.addAttribute("random",postMapper.randPost());
-		
+		model.addAttribute("random", postMapper.randPost());
 		return "member/randompost.tiles";
 	}
 	
+	@PostMapping("/registerQuestion")
+	public void registerQuestion(String qnaContent, String productNo) {
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String memberId = memberVO.getMemberId();
+		productService.registerQuestion(qnaContent, memberId, productNo);
 	
+	}
+	
+	@PostMapping("/registerAnswer")
+	public void registerAnswer(String qnaNo, String qnaContent, String productNo) {
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String memberId = memberVO.getMemberId();
+		productService.registerAnswer(qnaNo, qnaContent, memberId, productNo);
+	
+	}
+	
+	@ResponseBody
+	@RequestMapping("/user/getQnAList")
+	public List<QnAVO> getQnAList(String productNo) {
+		productNo = "9";
+		List<QnAVO> list = productService.getQnAList(productNo);
+		return list;
+	}
+
 }

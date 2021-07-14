@@ -141,3 +141,20 @@ select * from
 select product_no from 
 		(select * from post order by dbms_random.value)
 		where rownum =1		
+
+--qna
+select * from qna
+		
+delete from qna
+where qna_no ='1' and qna_type='1'
+
+insert into qna(qna_no, qna_time, qna_type, qna_content, member_id, product_no)
+values('2', sysdate, '0', 'answer', 'kobos', '9')
+
+select qna_no, qna_time, qna_type, qna_content, member_id
+from qna
+where product_no='9'
+
+		select bid_no, to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price, member_id
+		from bid_log
+		where product_no = '9'
