@@ -118,7 +118,7 @@
 
     <!-- Scrollup, nice-select, sticky -->
     <script src="${pageContext.request.contextPath}/myweb/assets/js/jquery.scrollUp.min.js"></script>
-    <script src="${pageContext.request.contextPath}/myweb/assets/js/jquery.nice-select.min.js"></script>
+<%--     <script src="${pageContext.request.contextPath}/myweb/assets/js/jquery.nice-select.min.js"></script> --%>
     <script src="${pageContext.request.contextPath}/myweb/assets/js/jquery.sticky.js"></script>
     
     <!-- contact js -->

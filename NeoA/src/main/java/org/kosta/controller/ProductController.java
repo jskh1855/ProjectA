@@ -113,7 +113,9 @@ public class ProductController {
 		System.out.println(pvo);
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		pvo.setPostImage(images.toString());
-		pvo.setCategory("가전;스마트폰;삼성;");
+		String category1 = request.getParameter("top");
+		String category2 = request.getParameter("mid");
+		pvo.setCategory(category1+';'+category2+';');
 		pvo.setMemberVO(memberVO);
 		System.out.println(pvo);
 		productService.registerProduct(pvo);
