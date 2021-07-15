@@ -119,19 +119,32 @@ public class MemberController {
 		} else {
 			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
 		}
-		System.out.println(pagingBean);
+		//System.out.println(pagingBean);
 		model.addAttribute("pagingBean", pagingBean);
 		List<PostVO> list= memberService.getBidProductListById(id, pagingBean);
-		System.out.println(list);
+		//System.out.println(list);
 		model.addAttribute("list", list);
 		
 		return "member/mypage_bid_list.tiles";
 	}
 
 	@RequestMapping("/mypagePickList")
-	public String mypagePickList() {
-
-		return "member/mypage_pick_list.tiles";
+	public String mypagePickList(Model model, @RequestParam("pageNo") @Nullable String pageNo) {
+		MemberVO memberVO= (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = memberVO.getMemberId();
+		
+		int totalPostCount = memberService.getTotalPickProductCountById(id);
+		PagingBean pagingBean  = null;
+		if(pageNo ==null) {
+			pagingBean = new PagingBean(totalPostCount);
+		} else {
+			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
+		}
+		model.addAttribute("pagingBean", pagingBean);
+		List<PostVO> list = memberService.getPickProductListById(id,pagingBean);
+		model.addAttribute("list", list);
+		
+ 		return "member/mypage_pick_list.tiles";
 	}
 
 	@RequestMapping("/mypageMyInfo")

@@ -114,9 +114,13 @@ class SpringBootStudy5SecurityApplicationTests {
 		//productService.registerQuestion("content test", "kobos", "9");
 		//productService.registerAnswer("1", "answer test", "kobos", "9");
 		System.out.println(productService.getQnAList("9"));
+		
+		int totalPostCount = memberService.getTotalPickProductCountById("spring");
+		PagingBean pagingBean = new PagingBean(totalPostCount);
+		System.out.println(memberService.getPickProductListById("spring", pagingBean));
 	}
 	
-	
+		
 	
 	
 	

@@ -34,6 +34,10 @@ public interface MemberMapper {
 	void updateMemberWithoutPasswrod(MemberVO memberVO);
 
 	List<BidLogVO> getBidCountByProductNo(String productNo);
+
+	int getTotalPickProductCountById(String id);
+
+	List<PostVO> getPickProductListById(HashMap<String, Object> map);
 	
 }
 

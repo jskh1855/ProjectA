@@ -29,5 +29,9 @@ public interface MemberService {
 
 	void updateMemberWithoutPasswrod(MemberVO memberVO);
 
+	int getTotalPickProductCountById(String id);
+
+	List<PostVO> getPickProductListById(String id, PagingBean pagingBean);
+
 	
 }
