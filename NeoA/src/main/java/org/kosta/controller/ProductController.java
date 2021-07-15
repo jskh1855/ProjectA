@@ -216,4 +216,15 @@ public class ProductController {
 		return list;
 	}
 
+	@RequestMapping("/addPick")
+		public String addPick(String productNo) {
+			MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String memberId = memberVO.getMemberId();
+			
+			productService.addPick(memberId, productNo);
+			
+			return "member/showAll.tiles";
+		
+		}
+	
 }
