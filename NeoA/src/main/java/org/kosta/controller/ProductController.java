@@ -100,7 +100,8 @@ public class ProductController {
 
 			}
 			System.out.println(images);
-
+			// img1.jpg;img2.jpg;img3.jpg;
+			
 			// mFile.transferTo(new
 			// File("c:/Users/short/kosta/ProjectA/NeoA/src/main/resources/static/myweb/images/"+mFile.getOriginalFilename()));
 		} catch (IllegalStateException e) {
@@ -113,7 +114,9 @@ public class ProductController {
 		System.out.println(pvo);
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		pvo.setPostImage(images.toString());
-		pvo.setCategory("가전;스마트폰;삼성;");
+		String category1 = request.getParameter("top");
+		String category2 = request.getParameter("mid");
+		pvo.setCategory(category1+';'+category2+';');
 		pvo.setMemberVO(memberVO);
 		System.out.println(pvo);
 		productService.registerProduct(pvo);
@@ -133,10 +136,11 @@ public class ProductController {
 
 		return "member/search_result.tiles";
 	}
-
+	
+	
 	@RequestMapping("/user/productDetails")
-	public String getDetailProduct(@RequestParam("productNo") @Nullable String productNo, Model model) {
-		//model.addAttribute("viewDetailPost", productService.showDetails(productNo));
+	public String getproductDetails(@RequestParam("productNo") String productNo, Model model) {
+		model.addAttribute("productDetails", productService.getproductDetails(productNo));
 		//System.out.println(productService.showDetails(productNo));
 		return "member/productDetails.tiles";
 	}
@@ -191,11 +195,12 @@ public class ProductController {
 	}
 	
 	@PostMapping("/registerQuestion")
-	public void registerQuestion(String qnaContent, String productNo) {
+	public String registerQuestion(String qnaContent, String productNo) {
+		//System.out.println("kkkkkkkkkkkkkk");
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
 		productService.registerQuestion(qnaContent, memberId, productNo);
-	
+		return "redirect:/user/getQnAList";
 	}
 	
 	@PostMapping("/registerAnswer")
@@ -203,13 +208,13 @@ public class ProductController {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
 		productService.registerAnswer(qnaNo, qnaContent, memberId, productNo);
-	
+		
 	}
 	
 	@ResponseBody
 	@RequestMapping("/user/getQnAList")
 	public List<QnAVO> getQnAList(String productNo) {
-		productNo = "9";
+		productNo = "1";
 		List<QnAVO> list = productService.getQnAList(productNo);
 		return list;
 	}

@@ -3,6 +3,30 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+	
+<script type="text/javascript">
+
+var malls = true;
+
+function update_selected() {
+  $("#mallSelect").val(0);
+  $("#mallSelect").find("option[value!=0]").detach();
+
+  $("#mallSelect").append(malls.filter(".mall" + $(this).val()));
+}
+
+$(function() {
+  malls = $("#mallSelect").find("option[value!=0]");
+  malls.detach();
+
+  $("#productSelect").change(update_selected);
+  $("#productSelect").trigger("change");
+});
+</script>
+
+
+<br>
+<br>
 
 <div class="slider-area ">
 	<div class="single-slider slider-height2 d-flex align-items-center">
@@ -19,16 +43,45 @@
 </div>
 <%-- <sec:authorize access="hasRole('ROLE_ADMIN')">
  --%><%--    <sec:authentication var="mvo" property="principal" />
- --%><div class="container">
+ 
+ 
+ --%>
+
+ 
+ 
+ <div class="container">
 
 	<form action="${pageContext.request.contextPath}/upload" method="post"
-		id="form" name="form" enctype="multipart/form-data">
+		id="form" name="form" enctype="multipart/form-data" onLoad="initForm(document.form)">
 		<sec:csrfInput />
+
+		 		<select id="productSelect" name = "top">
+				   <option value="0" selected="selected">대분류 선택</option>
+				   <option value="1">전자제품</option>
+				   <option value="2">패션</option>
+				   <option value="3">책</option>
+				</select>
+				<select id="mallSelect" name = "mid">
+				   <option value="0">중분류 선택</option>
+				   <option value="스마트폰" class="mall1">스마트폰</option>
+				   <option value="컴퓨터" class="mall1">컴퓨터</option>
+				   <option value="TV" class="mall1">TV</option>
+				   <option value="신발" class="mall2">신발</option>
+				   <option value="상의" class="mall2">상의</option>  
+				   <option value="하의" class="mall2">하의</option>
+				   <option value="악세서리" class="mall2">악세서리</option> 
+				   <option value="소설" class="mall3">소설</option>
+				   <option value="만화책" class="mall3">만화책</option>
+				   <option value="전문서적" class="mall3">전문서적</option>
+				   <option value="잡지" class="mall3">잡지</option>
+				</select>
+
 		<br>
 		<hr>
 		<h3>물품정보</h3>
 		<hr>
 		<table>
+
 			<tr>
 				<div>
 				<th><label for ="title">물품 제목</label></th>

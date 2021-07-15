@@ -59,7 +59,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getBidProductListById" parameterType="map" resultType="postVO">
-		select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image,b.bid_no,b.bid_time,b.bid_price, b.member_id, b.product_no
+		select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image,
+		b.bid_no,b.bid_time,b.bid_price, b.member_id, b.product_no
 	from 
 		 		(select row_number() over(ORDER BY bid_time DESC) as rnum,
 		 		bid_no,to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price,member_id,product_no 
@@ -73,6 +74,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select bid_no, to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price, member_id
 		from bid_log
 		where product_no = #{value}
+	</select>
+	
+	<select id="getTotalPickProductCountById" resultType="int">
+		select count(*)
+		from pick
+		where member_id=#{value}
+	</select>
+	 
+	<select id="getPickProductListById" parameterType="map" resultType="postVO">
+		select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image,
+		k.pick_no, k.pick_time, k.member_id, k.product_no
+		from (select row_number() over(ORDER BY pick_time DESC) as rnum,
+		 		pick_no,to_char(pick_time, 'YYYY-MM-DD HH24:MI:SS') as pick_time,member_id,product_no 
+		 		from  pick) k, post p
+		where p.product_no = k.product_no AND k.member_id=#{id}
+		and rnum between #{startRowNumber} and #{endRowNumber}
 	</select>
 	
 	<update id="updateMemberWithoutPasswrod" parameterType="memberVO">
