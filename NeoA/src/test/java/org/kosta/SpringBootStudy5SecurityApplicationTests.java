@@ -1,5 +1,6 @@
 ﻿package org.kosta;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -121,6 +122,10 @@ class SpringBootStudy5SecurityApplicationTests {
 		//int totalPostCount = memberService.getTotalPickProductCountById("spring");
 		//PagingBean pagingBean = new PagingBean(totalPostCount);
 		//System.out.println(memberService.getPickProductListById("spring", pagingBean));
+		
+		productService.addPick("spring", "23");
+		
+		
 	}
 	
 		

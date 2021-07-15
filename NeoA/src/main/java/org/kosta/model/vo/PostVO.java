@@ -18,7 +18,7 @@ public class PostVO {
 	private MemberVO memberVO;
 	private String category;
 	//private QnAVO qnaVO;
-	//private PickVO pickVO;
+	private PickVO pickVO;
 	private List<BidLogVO> bidLogVOList;
 	public PostVO() {
 		super();
@@ -44,7 +44,7 @@ public class PostVO {
 		this.memberVO = memberVO;
 		this.category = category;
 //		this.qnaVO = qnaVO;
-//		this.pickVO = pickVO;
+		this.pickVO = pickVO;
 		this.bidLogVOList = bidLogVOList;
 	}
 	public String getTitle() {
@@ -137,12 +137,12 @@ public class PostVO {
 //	public void setQnaVO(QnAVO qnaVO) {
 //		this.qnaVO = qnaVO;
 //	}
-//	public PickVO getPickVO() {
-//		return pickVO;
-//	}
-//	public void setPickVO(PickVO pickVO) {
-//		this.pickVO = pickVO;
-//	}
+	public PickVO getPickVO() {
+		return pickVO;
+	}
+	public void setPickVO(PickVO pickVO) {
+		this.pickVO = pickVO;
+	}
 	public List<BidLogVO> getBidLogVOList() {
 		return bidLogVOList;
 	}

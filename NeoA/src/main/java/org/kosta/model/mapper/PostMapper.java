@@ -23,7 +23,7 @@ public interface PostMapper {
 	
 	PostVO getproductDetails(String productNo);
 	
-	PickVO addCart(String productNo, String memberId);
+	void addPick(HashMap<String, String> map);
 
 	//PickVO addCart(HashMap<>());
 	List<PostVO> searchByTitle(String title);
