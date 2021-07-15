@@ -57,9 +57,9 @@ $(function() {
 
 		 		<select id="productSelect" name = "top">
 				   <option value="0" selected="selected">대분류 선택</option>
-				   <option value="전자제품">전자제품</option>
-				   <option value="패션">패션</option>
-				   <option value="책">책</option>
+				   <option value="1">전자제품</option>
+				   <option value="2">패션</option>
+				   <option value="3">책</option>
 				</select>
 				<select id="mallSelect" name = "mid">
 				   <option value="0">중분류 선택</option>
