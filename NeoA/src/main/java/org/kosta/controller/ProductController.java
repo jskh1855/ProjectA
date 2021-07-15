@@ -100,7 +100,8 @@ public class ProductController {
 
 			}
 			System.out.println(images);
-
+			// img1.jpg;img2.jpg;img3.jpg;
+			
 			// mFile.transferTo(new
 			// File("c:/Users/short/kosta/ProjectA/NeoA/src/main/resources/static/myweb/images/"+mFile.getOriginalFilename()));
 		} catch (IllegalStateException e) {
