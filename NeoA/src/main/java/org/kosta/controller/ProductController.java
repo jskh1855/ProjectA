@@ -137,7 +137,6 @@ public class ProductController {
 	
 	@RequestMapping("/user/productDetails")
 	public String getproductDetails(@RequestParam("productNo") String productNo, Model model) {
-		
 		model.addAttribute("productDetails", productService.getproductDetails(productNo));
 		//System.out.println(productService.showDetails(productNo));
 		return "member/productDetails.tiles";
@@ -193,11 +192,12 @@ public class ProductController {
 	}
 	
 	@PostMapping("/registerQuestion")
-	public void registerQuestion(String qnaContent, String productNo) {
+	public String registerQuestion(String qnaContent, String productNo) {
+		//System.out.println("kkkkkkkkkkkkkk");
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
 		productService.registerQuestion(qnaContent, memberId, productNo);
-	
+		return "redirect:/user/getQnAList";
 	}
 	
 	@PostMapping("/registerAnswer")
@@ -205,13 +205,13 @@ public class ProductController {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
 		productService.registerAnswer(qnaNo, qnaContent, memberId, productNo);
-	
+		
 	}
 	
 	@ResponseBody
 	@RequestMapping("/user/getQnAList")
 	public List<QnAVO> getQnAList(String productNo) {
-		productNo = "9";
+		productNo = "1";
 		List<QnAVO> list = productService.getQnAList(productNo);
 		return list;
 	}
