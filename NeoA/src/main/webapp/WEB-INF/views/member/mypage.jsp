@@ -91,14 +91,14 @@
 						<!--------------확인용--------------------->
 									<%-- ${item } --%>
 						<!--------------------------------------->
-										<img src="/myweb/assets/img/gallery/popular1.png" alt="">
+										<a href="/user/productDetails?productNo=${item.productNo }"><img src="/myweb/assets/img/gallery/popular1.png" alt=""></a>
 										<div class="img-cap">
-											<span>상세 보기</span>
+											<a href="/user/productDetails?productNo=${item.productNo }"><span>상세 보기</span></a>
 										</div>
 									</div>
 									<div class="popular-caption">
 										<h3>
-											<a href="product_details.html"> <c:out value="${item.title}" /></a>
+											<a href="/user/productDetails?productNo=${item.productNo }"> <c:out value="${item.title}" /></a>
 										</h3>
 										<span>시작가 <c:out value="${item.startPrice}" /></span> <span>현재가 <c:out value="${item.nowPrice}" /></span> <span>입찰자수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
 										</span> <span id="${item.productNo}"> 남은시간 </span>

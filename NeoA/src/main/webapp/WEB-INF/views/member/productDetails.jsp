@@ -1,6 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.ajaxPrefilter(function(options) {
+			let headerName = '${_csrf.headerName}';
+			let token = '${_csrf.token}';
+			if (options.type.toLowerCase() === 'post') {
+			options.headers = {};
+			options.headers[headerName] = token;
+			}
+		});
+		
+		$.ajax({
+			url: "demo_test.txt", 
+			success: function(result){
+			    $("#div1").html(result);
+		}});
+		
+	})
+</script>
 
 <main>
 	<!-- Hero Area Start-->
@@ -17,6 +38,7 @@
 			</div>
 		</div>
 	</div>
+${productDetails }
 
 	<!--================Blog Area =================-->
 	<section class="blog_area single-post-area section-padding">
@@ -27,43 +49,20 @@
 						<div class="feature-img">
 							<img class="img-fluid" src="assets/img/gallery/popular3.png" alt="" style="width: 300px;">
 						</div>
+						
 						<div class="blog_details">
-							<h2>Second divided from form fish beast made every of seas all gathered us saying he our</h2>
-
-							<p class="excert">MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower</p>
-							<p>MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training. who has the willpower to actually</p>
-
-							<p>MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower</p>
-							<p>MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training. who has the willpower to actually</p>
+							<%--제목 --%>
+							<h2>${productDetails.title }</h2>
+							<%--내용 --%>
+							<p class="excert">${productDetails.detail }</p>
 						</div>
+					
 					</div>
 
-
+					<%--Qna 시작 --%>
 					<div class="comments-area">
-						<h4>05 QnA</h4>
-						<div class="comment-list">
-							<div class="single-comment justify-content-between d-flex">
-								<div class="user justify-content-between d-flex">
-									<div class="thumb">
-										<img src="assets/img/comment/comment_1.png" alt="">
-									</div>
-									<div class="desc">
-										<p class="comment">이거 다른 하자는 없죠??</p>
-										<div class="d-flex justify-content-between">
-											<div class="d-flex align-items-center">
-												<h5>
-													<a href="#">Emilly Blunt</a>
-												</h5>
-												<p class="date">December 4, 2017 at 3:12 pm</p>
-											</div>
-											<div class="reply-btn">
-												<a href="#" class="btn-reply text-uppercase">reply</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						<h4>QnA</h4>
+						
 						<div class="comment-list">
 							<div class="single-comment justify-content-between d-flex">
 								<div class="user justify-content-between d-flex">
@@ -80,7 +79,7 @@
 												<p class="date">December 4, 2017 at 3:12 pm</p>
 											</div>
 											<div class="reply-btn">
-												<a href="#" class="btn-reply text-uppercase">reply</a>
+												<a href="#" class="btn-reply text-uppercase">질문하기</a>
 											</div>
 										</div>
 									</div>
@@ -111,56 +110,93 @@
 							</div>
 						</div>
 					</div>
+					<%--QnA 끝 --%>
+					
+					<%--Qna 폼 시작 --%>
 					<div class="comment-form">
-						<h4>Leave a Reply</h4>
-						<form class="form-contact comment_form" action="#" id="commentForm">
+						<h4>질문하기</h4>
+						<form class="form-contact comment_form" action="${pageContext.request.contextPath}/registerQuestion" method="post" id="commentForm">
+							<sec:csrfInput/>
 							<div class="row">
 								<div class="col-12">
 									<div class="form-group">
-										<textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
+										<textarea class="form-control w-100" name="qnaContent" id="comment" cols="30" rows="9" placeholder="질문을 작성하세요"></textarea>
+										<input type="hidden" name="productNo" value="${productDetails.productNo }">
 									</div>
 								</div>
-
-
-
 							</div>
 							<div class="form-group">
-								<button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+								<button type="submit" class="button button-contactForm btn_1 boxed-btn">질문하기</button>
 							</div>
 						</form>
 					</div>
+					<%--QnA 폼 끝 --%>
 				</div>
 				<div class="col-lg-4">
 					<div class="blog_right_sidebar">
+						<%--입찰하기 --%>
 						<div class="add_to_cart">
 							<input type="text" value="26000" size="12"> 원으로 <a href="#" class="btn_3">입찰하기</a>
 						</div>
+						<%--제품 정보들 --%>
 						<aside class="single_sidebar_widget post_category_widget">
+							<%--현재가격 --%>
 							<h4 class="widget_title">현재가격 25000</h4>
+							<%--기타 정보들 --%>
 							<ul class="list cat-list">
 								<li><a href="#" class="d-flex">
 										<p>시작가</p>
-										<p>10000</p>
+										<p>${productDetails.startPrice }</p>
 								</a></li>
 								<li><a href="#" class="d-flex">
 										<p>즉구가</p>
-										<p>(10)</p>
+										<p>${productDetails.giveMeThatPrice }</p>
 								</a></li>
 								<li><a href="#" class="d-flex">
 										<p>경매시작시간</p>
-										<p>(03)</p>
+										<p>${productDetails.productUpTime }</p>
 								</a></li>
 								<li><a href="#" class="d-flex">
 										<p>경매종료시간</p>
-										<p>(11)</p>
+										<p>${productDetails.bidEndTime }</p>
 								</a></li>
 								<li><a href="#" class="d-flex">
 										<p>남은 시간</p>
-										<p>(21)</p>
+										<p id="remainTime"></p>
+										<script>
+												var stDate = new Date().getTime();
+												var edDate = new Date("${productDetails.bidEndTime}").getTime(); // 종료날짜
+												var RemainDate = edDate - stDate;
+												if(RemainDate<0){
+													document.getElementById(${item.productNo}).innerHTML= "만료";
+												}else{
+												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
+												document.getElementById("remainTime").innerHTML= m;
+												}
+										</script>
+										<script>
+											var timer = setInterval(function(){
+												var stDate = new Date().getTime();
+												var edDate = new Date("${productDetails.bidEndTime}").getTime(); // 종료날짜
+												var RemainDate = edDate - stDate;
+												if(RemainDate<0){
+													document.getElementById(${item.productNo}).innerHTML= "만료";
+												}else{
+												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
+												document.getElementById("remainTime").innerHTML=m;
+												}
+											}, 1000);
+										</script>
 								</a></li>
 								<li><a href="#" class="d-flex">
 										<p>총 입찰자 수</p>
-										<p>(21)</p>
+										<p>ajax 로 구현할 부분</p>
 								</a></li>
 							</ul>
 						</aside>

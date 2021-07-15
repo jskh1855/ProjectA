@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myweb/assets/css/fontawesome-all.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myweb/assets/css/themify-icons.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myweb/assets/css/slick.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/myweb/assets/css/nice-select.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/myweb/assets/css/nice-select.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myweb/assets/css/style.css">
 </head>
 
