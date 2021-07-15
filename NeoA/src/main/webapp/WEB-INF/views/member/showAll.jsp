@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 <style>
 .center {
@@ -156,14 +160,46 @@
 	<a href="${pageContext.request.contextPath}/user/showAll?sortBy=product_up_time desc" style="color: black;"> 등록순 </a>
 	<a href="${pageContext.request.contextPath}/user/showAll?sortBy=now_price asc" style="color: black;"> 가격 오름차순 </a>
 	<a href="${pageContext.request.contextPath}/user/showAll?sortBy=now_price desc" style="color: black;"> 가격 내림차순 </a><br>	
+
+<sec:authorize access="isAuthenticated()==false">
+	로그인 x
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+	로그인 ok
+</sec:authorize>
 	
 </div>
+
 
 
         <!-- Latest Products Start -->
         <section class="popular-items latest-padding">
             <div class="container">
 	            <div class="row product-btn justify-content-between mb-40">
+	                    <div class="select-this">
+	                        <form action="#">
+	                            <div class="select-itms">
+	                                <select name="select" id="select2">
+	                                	<option value="" >category</option>
+	                                    <option value="" >가전</option>
+	                                    <option value="" >가구</option>
+	                                    <option value="" >기타</option>
+	                                </select>
+	                            </div>
+	                        </form>
+	                    </div>
+	                    <div class="select-this">
+	                        <form action="#">
+	                            <div class="select-itms">
+	                                <select name="select" id="select2">
+	                                	<option value="" >category</option>
+	                                    <option value="" >가전</option>
+	                                    <option value="" >가구</option>
+	                                    <option value="" >기타</option>
+	                                </select>
+	                            </div>
+	                        </form>
+	                    </div>
 	                    <div class="select-this">
 	                        <form action="#">
 	                            <div class="select-itms">
@@ -222,9 +258,14 @@
 	                                            	<span style="float: left; width: 50%">sub22</span>
 	                                            </div>
 	                                        </div>
-	                                        <div class="favorit-items">
-	                                            <span class="flaticon-heart"></span>
-	                                        </div>
+	                                        
+	                                        <!-- 하트 로그인 유저만 -->
+	                                        <sec:authorize access="isAuthenticated()">
+		                                        <div class="favorit-items">
+		                                            <span class="flaticon-heart"></span>
+		                                        </div>
+	                                        </sec:authorize>
+	                                        
 	                                    </div>
 	                                    <div class="popular-caption">
 	                                        <h3><a href="${pageContext.request.contextPath}/user/productDetails?productNo=${list.productNo}">${list.title}</a></h3>

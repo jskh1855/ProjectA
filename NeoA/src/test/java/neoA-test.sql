@@ -66,6 +66,39 @@ order by product_up_time desc
 	) p, a_member m
 	where p.member_id=m.member_id and rnum between 1 and 6 
 
+-- + 찜했는지 유무도 조회 해야함.ㅠ
+
+	select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name
+	from(
+		select row_number() over(order by product_up_time desc) as rnum,product_no,title,product_name,now_price,bid_end_time,post_image,member_id
+		from post
+		where product_name like '%' 
+	) p, a_member m
+	where p.member_id=m.member_id and rnum between 1 and 6 
+-- 아우터조인 동일한 제품에 좋아요 여러개 들어가면 중복값출력함 ㅠ
+select row_number() over(order by product_up_time desc) as rnum, p.product_no, p.title, p.product_name, p.now_price, p.bid_end_time, p.post_image, p.member_id, pi.member_id
+from post p, pick pi
+where p.product_no = pi.product_no(+) and p.product_name like '%' 
+
+select row_number() over(order by product_up_time desc) as rnum, p.product_no, p.title, p.product_name, p.now_price, p.bid_end_time, p.post_image, p.member_id, pi.member_id
+from post p, pick pi
+where p.product_no = pi.product_no(+) and pi.member_id(+) = '' and p.product_name like '%' 
+
+
+	select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.pick_member
+	from(
+		select row_number() over(order by product_up_time desc) as rnum, p.product_no, p.title, p.product_name, p.now_price, p.bid_end_time, p.post_image, p.member_id, pi.member_id as pick_member
+		from post p, pick pi
+		where p.product_no = pi.product_no(+) and pi.member_id(+) = '1234' and p.product_name like '%' 
+	) p, a_member m
+	where p.member_id=m.member_id and rnum between 1 and 6 
+
+
+
+
+
+
+
 
 -- 상품 등록 
 insert into post values(product_no_seq.nextval, '롤렉스','2000','2000',sysdate,sysdate+3,'100','4000','afadafad','1','java')

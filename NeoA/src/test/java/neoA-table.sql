@@ -113,6 +113,7 @@ create table pick(
 	member_id varchar2(100) constraint fk_pick_id references a_member(member_id),
 	product_no varchar2(100) constraint fk_pick_no references post(product_no)
 );
+create sequence pick_no_seq;
 
 -- **************************************
 -- table 삭제 순서대로  
@@ -130,6 +131,7 @@ drop table category;
 drop sequence category_seq;
 drop sequence product_no_seq;
 drop sequence bid_no_seq;
+drop sequence pick_no_seq;
 
 -- **************************************
 -- insert ( sample )  
@@ -180,6 +182,12 @@ insert into bid_log values(bid_no_seq.nextval, sysdate,'30000','java','9');
 
 insert into bid_log values(bid_no_seq.nextval, sysdate,'30000','kobos','9');
 
+insert into pick(pick_no, member_id,product_no) values(pick_no_seq.nextval, '1234', '30');
+insert into pick(pick_no, member_id,product_no) values(pick_no_seq.nextval, '1234', '28');
+insert into pick(pick_no, member_id,product_no) values(pick_no_seq.nextval, '1234', '26');
+insert into pick(pick_no, member_id,product_no) values(pick_no_seq.nextval, '123123', '30');
+insert into pick(pick_no, member_id,product_no) values(pick_no_seq.nextval, '123123', '29');
+
 commit
 
 -- insert into post values(product_no_seq, );
@@ -194,6 +202,7 @@ select * from post;
 select * from a_authorities;
 select * from bid_log;
 select * from qna;
+select * from pick;
 
 -- **************************************
 -- delete 
