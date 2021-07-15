@@ -113,6 +113,19 @@ create table pick(
 	member_id varchar2(100) constraint fk_pick_id references a_member(member_id),
 	product_no varchar2(100) constraint fk_pick_no references post(product_no)
 );
+create sequence pick_no_seq;
+
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','9');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','8');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','7');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','21');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','22');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','22');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','23');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','27');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','28');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','29');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','30');
 
 -- **************************************
 -- table 삭제 순서대로  
@@ -130,6 +143,7 @@ drop table category;
 drop sequence category_seq;
 drop sequence product_no_seq;
 drop sequence bid_no_seq;
+drop sequence pick_no_seq;
 
 -- **************************************
 -- insert ( sample )  
@@ -152,16 +166,15 @@ insert into post values(product_no_seq.nextval, '제목1','롤렉스','2000','20
 insert into post values(product_no_seq.nextval, '골동품','롤렉스','3000','3000',sysdate,5,sysdate+3,'100','4000','afadafad','1.jpg','1','java');
 insert into post values(product_no_seq.nextval, '제목1','롤렉스','2000','2000',sysdate,3,sysdate+3,'100','4000','afadafad','1.jpg','1','java');
 
-insert into post values(product_no_seq.nextval, '제목1','롤렉스','2000','2000',sysdate,3,'100','4000','afadafad','1.jpg','1','java');
 insert into post values(product_no_seq.nextval, '제목2','나이키슈즈','300','300',sysdate,3,sysdate+3,'10','2000','hahaha','2.jpg','1','java2');
 insert into post values(product_no_seq.nextval, '제목3','롤스로이스','30000','30000',sysdate,5,sysdate+5,'1000','100000','ㅎㄷㄷ','3.jpg','2','java2');
 insert into post values(product_no_seq.nextval, '한번신은','아디다스슈즈','300','300',sysdate,7,sysdate+7,'10','2000','hahaha','4.jpg','1','java2');
-insert into post values(product_no_seq.nextval, '제목5','람보','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','5.jpg','2','java2');
-insert into post values(product_no_seq.nextval, '제목6','컨버스슈즈','300','300',sysdate,sysdate+3,'10','2000','hahaha','6.jpg','1','java2');
-insert into post values(product_no_seq.nextval, '제목7','페라리','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','7.jpg','2','java2');
-insert into post values(product_no_seq.nextval, '제목8','파텍필립','300','300',sysdate,sysdate+3,'10','2000','hahaha','8.jpg','1','java2');
-insert into post values(product_no_seq.nextval, '제목9','라페라리','30000','30000',sysdate,sysdate+5,'1000','100000','ㅎㄷㄷ','9.jpg','2','java2');
-insert into post values(product_no_seq.nextval, '제목10','롤렉스','2000','2000',sysdate,sysdate+3,'100','4000','afadafad','10.jpg','1','java');
+insert into post values(product_no_seq.nextval, '제목5','람보','30000','30000',sysdate,5,sysdate+5,'1000','100000','ㅎㄷㄷ','5.jpg','2','java2');
+insert into post values(product_no_seq.nextval, '제목6','컨버스슈즈','300','300',sysdate,3,sysdate+3,'10','2000','hahaha','6.jpg','1','java2');
+insert into post values(product_no_seq.nextval, '제목7','페라리','30000','30000',sysdate,5,sysdate+5,'1000','100000','ㅎㄷㄷ','7.jpg','2','java2');
+insert into post values(product_no_seq.nextval, '제목8','파텍필립','300','300',sysdate,4,sysdate+4,'10','2000','hahaha','8.jpg','1','java2');
+insert into post values(product_no_seq.nextval, '제목9','라페라리','30000','30000',sysdate,4,sysdate+4,'1000','100000','ㅎㄷㄷ','9.jpg','2','java2');
+insert into post values(product_no_seq.nextval, '제목10','롤렉스','2000','2000',sysdate,2,sysdate+2,'100','4000','afadafad','10.jpg','1','java');
 
 insert into post values(product_no_seq.nextval, '제목11','롤렉스','2000','2000',sysdate+3,'100','4000','afadafad','11.jpg','1','java');
 insert into post values(product_no_seq.nextval, '제목12','나이키슈즈','300','300',sysdate+3,'10','2000','hahaha','12.jpg','1','java');
@@ -193,6 +206,7 @@ select * from a_member;
 select * from post;
 select * from a_authorities;
 select * from bid_log;
+select * from pick;
 select * from qna;
 
 -- **************************************
@@ -202,7 +216,7 @@ delete from a_member;
 delete from a_authorities;
 delete from post;
 delete from  bid_log;
-
+delete from  pick;
 
 
 

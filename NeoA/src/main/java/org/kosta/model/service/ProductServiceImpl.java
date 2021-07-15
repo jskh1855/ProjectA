@@ -27,8 +27,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public PostVO showDetails(String productNo) {
-		return postMapper.viewDetailPost(productNo);
+	public PostVO getproductDetails(String productNo) {
+		PostVO postVO = postMapper.getproductDetails(productNo);
+		
+		return postVO;
 	}
 
 	@Override

@@ -21,7 +21,7 @@ public interface PostMapper {
 
 	void registerProduct(PostVO pvo);
 	
-	PostVO viewDetailPost(String productNo);
+	PostVO getproductDetails(String productNo);
 	
 	PickVO addCart(String productNo, String memberId);
 
