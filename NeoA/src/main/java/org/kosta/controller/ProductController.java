@@ -133,10 +133,12 @@ public class ProductController {
 
 		return "member/search_result.tiles";
 	}
-
+	
+	
 	@RequestMapping("/user/productDetails")
-	public String getDetailProduct(@RequestParam("productNo") @Nullable String productNo, Model model) {
-		//model.addAttribute("viewDetailPost", productService.showDetails(productNo));
+	public String getproductDetails(@RequestParam("productNo") String productNo, Model model) {
+		
+		model.addAttribute("productDetails", productService.getproductDetails(productNo));
 		//System.out.println(productService.showDetails(productNo));
 		return "member/productDetails.tiles";
 	}

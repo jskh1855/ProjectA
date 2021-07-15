@@ -10,7 +10,7 @@ public interface ProductService {
 
 	List<PostVO> showAll(PagingBeanMain pagingBean);
 
-	PostVO showDetails(String productNo);
+	PostVO getproductDetails(String productNo);
 	
 	List<PostVO>  searchByTitle(String title);
 
