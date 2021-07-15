@@ -86,12 +86,23 @@ public class ProductController {
 
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	public String upload(HttpServletRequest request, @RequestParam("filename") MultipartFile[] mFiles, PostVO pvo) {
-		System.out.println("AA");
-		
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String path = request.getSession().getServletContext().getRealPath("");
+		System.out.println(memberVO.getMemberId());
+		File Folder = new File(path + "..\\resources\\static\\myweb\\images\\"+memberVO.getMemberId());
+		if (!Folder.exists()) {
+			try{
+			    Folder.mkdir(); //폴더 생성합니다.
+			    System.out.println("폴더가 생성되었습니다.");
+		        } 
+		        catch(Exception e){
+			    e.getStackTrace();
+			}
+		}
 		StringBuilder images = new StringBuilder();
 		try {
-			String path2 = "..\\resources\\static\\myweb\\images\\";
-			String path = request.getSession().getServletContext().getRealPath("");
+			String path2 = "..\\resources\\static\\myweb\\images\\"+memberVO.getMemberId()+"\\";
+
 
 			for (int i = 0; i < mFiles.length; i++) {
 				mFiles[i].transferTo(new File(path + path2 + mFiles[i].getOriginalFilename()));
@@ -112,12 +123,13 @@ public class ProductController {
 			e.printStackTrace();
 		}
 		System.out.println(pvo);
-		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
 		pvo.setPostImage(images.toString());
 		String category1 = request.getParameter("top");
 		String category2 = request.getParameter("mid");
 		pvo.setCategory(category1+';'+category2+';');
 		pvo.setMemberVO(memberVO);
+		pvo.setNowPrice(pvo.getStartPrice());
 		System.out.println(pvo);
 		productService.registerProduct(pvo);
 
