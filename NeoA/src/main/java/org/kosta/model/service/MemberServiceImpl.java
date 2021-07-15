@@ -96,11 +96,11 @@ public class MemberServiceImpl implements MemberService {
 		List<PostVO> postList = memberMapper.getBidProductListById(map);
 		for (int i = 0; i < postList.size(); i++) {
 			String productNo = postList.get(i).getProductNo();
-			System.out.println("test1"+postList);
+//			System.out.println("test1"+postList);
 			List<BidLogVO> bidList = memberMapper.getBidCountByProductNo(productNo);
-			System.out.println("test2"+postList);
+//			System.out.println("test2"+postList);
 			postList.get(i).setBidLogVOList(bidList);
-			System.out.println("test3"+postList);
+//			System.out.println("test3"+postList);
 		}
 		return postList;
 	}
@@ -109,10 +109,34 @@ public class MemberServiceImpl implements MemberService {
 	public int getTotalBidProductCountById(String id) {
 		return memberMapper.getTotalBidProductCountById(id);
 	}
-
+	
+	@Override
+	public int getTotalPickProductCountById(String id) {
+		return memberMapper.getTotalPickProductCountById(id);
+	}
+	
 	@Override
 	public void updateMemberWithoutPasswrod(MemberVO memberVO) {
 		memberMapper.updateMemberWithoutPasswrod(memberVO);
 	}
+
+	@Override
+	public List<PostVO> getPickProductListById(String id, PagingBean pagingBean) {
+		int startRowNumber = pagingBean.getStartRowNumber();
+		int endRowNumber = pagingBean.getEndRowNumber();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("startRowNumber", startRowNumber);
+		map.put("endRowNumber", endRowNumber);
+		List<PostVO> postList = memberMapper.getPickProductListById(map);
+		for (int i = 0; i < postList.size(); i++) {
+			String productNo = postList.get(i).getProductNo();
+			List<BidLogVO> pickList = memberMapper.getBidCountByProductNo(productNo);
+			postList.get(i).setBidLogVOList(pickList);
+		}
+		return postList;
+	}
+
+	
 
 }
