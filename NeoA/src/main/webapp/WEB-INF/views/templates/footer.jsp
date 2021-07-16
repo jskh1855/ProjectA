@@ -28,7 +28,7 @@
                                 <ul>
                                     <li><a href="#">About</a></li>
                                     <li><a href="#"> Offers & Discounts</a></li>
-                                    <li><a href="#"> Get Coupon</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/views/admin/map.html">Map</a></li>
                                     <li><a href="#">  Contact Us</a></li>
                                 </ul>
                             </div>
