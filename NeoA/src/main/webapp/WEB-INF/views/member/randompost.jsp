@@ -40,15 +40,15 @@
 						<input type="button" value="입찰하기" onclick= " ">
 						<!-- <a href="#" class="btn_3">입찰하기</a> -->
 					</div>
-					<form action="addCart" method="get">
+				
 						<div class="add_to_cart">
-							<button>add to cart</button>
+							<a href="${pageContext.request.contextPath}/addCart?productNo=${random.productNo}">add to cart</a>
 						</div>
-					</form>
+					
 				</div>
 			</div>
 
-			<div class="card_area">
+			<!-- <div class="card_area">
 				<div class="product_count_area">
 					<p>Bid!</p>
 					<div class="product_count d-inline-block">
@@ -59,10 +59,9 @@
 							class="product_count_item number-increment"> <i
 							class="ti-plus"></i></span>
 					</div>
-					<p>$5</p>
 				</div>
 
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>

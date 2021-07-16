@@ -343,7 +343,7 @@ ${pagingBean.ca2}
 					                                            <span>찜완료</span>
 		                                        		</c:when>
 		                                        		<c:otherwise>
-					                                            <span>xx</span>
+					                                             <a href="${pageContext.request.contextPath}/addPick?productNo=${list.productNo}" style="color:black;"><span class="flaticon-heart"></span></a>
 		                                        		</c:otherwise>
 		                                        	</c:choose>
 		                                   		</div>
