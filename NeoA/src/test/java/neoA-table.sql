@@ -106,6 +106,7 @@ create sequence bid_no_seq;
 insert into bid_log values(bid_no_seq.nextval,sysdate,'20000','java','9');
 insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','java','8');
 insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','java','7');
+insert into bid_log values(bid_no_seq.nextval,sysdate,'1000','python','2');
 
 create table pick(
 	pick_no varchar2(20) primary key,

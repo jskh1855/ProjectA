@@ -112,6 +112,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where product_no=#{value}
 	</select>
 	
+	<update id="bid" parameterType="postVO">
+		update post set now_price=#{nowPrice}
+		where product_no =#{productNo}
+	</update>
+	
+	<insert id="insertLog" parameterType="bidLogVO">
+		insert into bid_log
+		values(bid_no_seq.nextval,sysdate,#{bidPrice},#{memberId},#{productNo})
+	</insert>
+	
 	
 </mapper>
 
