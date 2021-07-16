@@ -2,6 +2,7 @@ package org.kosta.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -40,6 +41,24 @@ public class ProductController {
 			@RequestParam("category") @Nullable String category, @RequestParam("sortBy") @Nullable String sortBy,
 			@RequestParam("perPage") @Nullable String perPage) {
 
+		
+		//mapper로 보낼 객체
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		// 로그인 유무확인
+		MemberVO memberVO = null;
+		if (SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) { // 비회원으로
+			System.out.println("비회원!");
+			memberVO = new MemberVO();
+		} else { // 회원일때
+			System.out.println("회원!");
+			memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		}
+	
+		
+		//회원일땐 아이디 출력, 비회원일땐 null
+		System.out.println("id:"+memberVO.getMemberId());
+		
 		PagingBeanMain pagingBean = new PagingBeanMain();
 
 		System.out.println("param @pageNo:"+pageNo+" @category:"+category+" @sortBy:"+sortBy+" @perPage:"+perPage);
@@ -78,16 +97,13 @@ public class ProductController {
 			pagingBean.setNowPage(Integer.parseInt(pageNo));
 		}
 
-		// pagingBean.setPostCountPerPage(12);
-
-		// new PagingBean(19) <- 총 개수 확인하는 sql구문 mapper에 추가하기
-		// select count(*) from post; 만해도 될 듯
-
-		// 카테고리에 따라 변경할수 있도록 sql에 where 절 추가
-		// pagingBean에 get set 추가하면 될 듯
+		map.put("memberVO", memberVO);
+		map.put("pagingBean", pagingBean);
+		
+		
 		System.out.println("1 test  " + pagingBean.getStartRowNumber());
 
-		model.addAttribute("postVOList", productService.showAll(pagingBean));
+		model.addAttribute("postVOList", productService.showAll(map));
 		System.out.println("show all !!!");
 		model.addAttribute("pagingBean", pagingBean);
 		return "member/showAll.tiles";

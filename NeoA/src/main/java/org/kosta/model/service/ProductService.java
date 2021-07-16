@@ -1,5 +1,6 @@
 package org.kosta.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.kosta.model.vo.PagingBeanMain;
@@ -8,7 +9,7 @@ import org.kosta.model.vo.QnAVO;
 
 public interface ProductService {
 
-	List<PostVO> showAll(PagingBeanMain pagingBean);
+	List<PostVO> showAll(HashMap<String, Object> map);
 
 	PostVO getproductDetails(String productNo);
 	

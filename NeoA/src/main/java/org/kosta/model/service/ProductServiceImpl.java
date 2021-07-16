@@ -20,10 +20,8 @@ public class ProductServiceImpl implements ProductService {
 	private PostMapper postMapper;
 	
 	@Override
-	public List<PostVO> showAll(PagingBeanMain pagingBean){
-		System.out.println("2 test  "+pagingBean.getEndRowNumber());
-		 
-		return postMapper.showAll(pagingBean);
+	public List<PostVO> showAll(HashMap<String, Object> map){
+		return postMapper.showAll(map);
 	}
 	
 	@Override
