@@ -25,7 +25,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public PostVO getproductDetails(String productNo) {
 		PostVO postVO = postMapper.getproductDetails(productNo);
-		
 		return postVO;
 	}
 

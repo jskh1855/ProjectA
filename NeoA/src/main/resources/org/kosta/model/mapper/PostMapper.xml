@@ -107,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="getQnAList" resultType="QnAVO">
-		select qna_no, to_char(qna_time,'YYYY-MM-DD HH24:MI:SS') as qna_time, qna_type, qna_content, member_id
+		select LPAD(qna_no,4,'0') as qna_no, to_char(qna_time,'YYYY-MM-DD HH24:MI:SS') as qna_time, qna_type, qna_content, member_id
 		from qna
 		where product_no=#{value}
 		order by qna_no

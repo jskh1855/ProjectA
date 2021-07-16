@@ -253,7 +253,7 @@ public class ProductController {
 	public List<QnAVO> registerAnswer(String qnaNo, String qnaContent, String productNo) {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
-		System.out.println("test="+qnaNo+" "+ qnaContent+ " "+ memberId+ " "+ productNo);
+		//System.out.println("test="+qnaNo+" "+ qnaContent+ " "+ memberId+ " "+ productNo);
 		productService.registerAnswer(qnaNo, qnaContent, memberId, productNo);
 		List<QnAVO> list = productService.getQnAList(productNo);
 		return list;
@@ -264,7 +264,7 @@ public class ProductController {
 	public List<QnAVO> getQnAList(String productNo) {
 		//System.out.println("testsssssssssss");
 		List<QnAVO> list = productService.getQnAList(productNo);
-		System.out.println(list);
+		//System.out.println(list);
 		return list;
 	}
 
