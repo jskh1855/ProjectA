@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.kosta.model.vo.PagingBean;
+import org.kosta.model.vo.BidLogVO;
 import org.kosta.model.vo.PagingBeanMain;
 import org.kosta.model.vo.PickVO;
 import org.kosta.model.vo.PostVO;
@@ -15,7 +14,7 @@ import org.kosta.model.vo.QnAVO;
 public interface PostMapper {
 	
 	//List<PostVO> showAll(@Param("pg") PagingBean pg);
-	List<PostVO> showAll(PagingBeanMain pg);
+	List<PostVO> showAll(HashMap<String, Object> map);
 	
 	int showAllCount(PagingBeanMain pg);
 
@@ -37,4 +36,8 @@ public interface PostMapper {
 	List<QnAVO> getQnAList(String productNo);
 	
 	PickVO deletePick(String pickNo);
+	
+	void bid(PostVO pvo);
+	
+	void insertLog(BidLogVO bvo);
 }

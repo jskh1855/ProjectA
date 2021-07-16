@@ -137,6 +137,12 @@ public class MemberServiceImpl implements MemberService {
 		return postList;
 	}
 
+	@Override
+	public void deleteMember(String memberId) {
+		memberMapper.deleteMember(memberId);
+		
+	}
+
 	
 
 }

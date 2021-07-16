@@ -22,12 +22,10 @@ public class PostVO {
 	private List<BidLogVO> bidLogVOList;
 	public PostVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public PostVO(String title, String productNo, String productName, int startPrice, int nowPrice,
 			String productUpTime, int unitPrice, int giveMeThatPrice, String detail, String postImage, int bidTimeUnit,
-			String bidEndTime, MemberVO memberVO, String category, QnAVO qnaVO, PickVO pickVO,
-			List<BidLogVO> bidLogVOList) {
+			String bidEndTime, MemberVO memberVO, String category, PickVO pickVO, List<BidLogVO> bidLogVOList) {
 		super();
 		this.title = title;
 		this.productNo = productNo;
@@ -43,7 +41,6 @@ public class PostVO {
 		this.bidEndTime = bidEndTime;
 		this.memberVO = memberVO;
 		this.category = category;
-//		this.qnaVO = qnaVO;
 		this.pickVO = pickVO;
 		this.bidLogVOList = bidLogVOList;
 	}
@@ -131,12 +128,6 @@ public class PostVO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-//	public QnAVO getQnaVO() {
-//		return qnaVO;
-//	}
-//	public void setQnaVO(QnAVO qnaVO) {
-//		this.qnaVO = qnaVO;
-//	}
 	public PickVO getPickVO() {
 		return pickVO;
 	}
@@ -155,10 +146,8 @@ public class PostVO {
 				+ startPrice + ", nowPrice=" + nowPrice + ", productUpTime=" + productUpTime + ", unitPrice="
 				+ unitPrice + ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", postImage=" + postImage
 				+ ", bidTimeUnit=" + bidTimeUnit + ", bidEndTime=" + bidEndTime + ", memberVO=" + memberVO
-				+ ", categoryVO=" + category +  ", bidLogVOList="
-				+ bidLogVOList + "]";
+				+ ", category=" + category + ", pickVO=" + pickVO + ", bidLogVOList=" + bidLogVOList + "]";
 	}
 
 	
-
 }

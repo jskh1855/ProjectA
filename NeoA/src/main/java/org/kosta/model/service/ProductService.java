@@ -1,14 +1,15 @@
 package org.kosta.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
-import org.kosta.model.vo.PagingBeanMain;
+import org.kosta.model.vo.BidLogVO;
 import org.kosta.model.vo.PostVO;
 import org.kosta.model.vo.QnAVO;
 
 public interface ProductService {
 
-	List<PostVO> showAll(PagingBeanMain pagingBean);
+	List<PostVO> showAll(HashMap<String, Object> map);
 
 	PostVO getproductDetails(String productNo);
 	
@@ -23,4 +24,8 @@ public interface ProductService {
 	List<QnAVO> getQnAList(String productNo);
 	
 	void addPick(String memberId, String productNo);
+	
+	void bid(PostVO pvo);
+	
+	void insertLog(BidLogVO bvo);
 }

@@ -5,7 +5,8 @@
 	uri="http://www.springframework.org/security/tags"%>
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/myweb/assets/js/jquery.nice-select.min.js"></script>
+<!-- 경로 문제인가요? -->
 
 <style>
 .center {
@@ -166,6 +167,7 @@
 			<th>종료시간</th>
 			<th>판매자아이디</th>
 			<th>판매자이름</th>
+			<th>로그인회원찜유무(아이디로)</th>
 		</tr>
 	<c:forEach items="${postVOList}" var="list">
 	
@@ -183,9 +185,13 @@
 			<td>에러</td>
 			<td>${list.memberVO.memberId}</td>
 			<td>${list.memberVO.name}</td>
+			<td>${list.pickVO.memberId}</td>
 		</tr>
 	</c:forEach>
 	</table> 
+	
+	 <%--<sec:authentication property="principal.name"/>  찜 확인 --%>
+	 
 </div>
 <br>
 <div>
@@ -308,8 +314,15 @@ ${pagingBean.ca2}
 	                                        <!-- 하트 로그인 유저만 -->
 	                                        <sec:authorize access="isAuthenticated()">
 		                                        <div class="favorit-items">
-		                                            <span class="flaticon-heart"></span>
-		                                        </div>
+		                                        	<c:choose>
+		                                        		<c:when test="${list.pickVO.memberId != null}">
+					                                            <span>찜완료</span>
+		                                        		</c:when>
+		                                        		<c:otherwise>
+					                                             <a href="${pageContext.request.contextPath}/addPick?productNo=${list.productNo}" style="color:black;"><span class="flaticon-heart"></span></a>
+		                                        		</c:otherwise>
+		                                        	</c:choose>
+		                                   		</div>
 	                                        </sec:authorize>
 	                                        
 	                                    </div>
@@ -383,3 +396,5 @@ ${pagingBean.ca2}
 					</div>
 	</div>
 	</section>
+	
+	

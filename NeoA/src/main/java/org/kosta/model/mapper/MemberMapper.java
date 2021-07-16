@@ -39,5 +39,7 @@ public interface MemberMapper {
 
 	List<PostVO> getPickProductListById(HashMap<String, Object> map);
 	
+	MemberVO deleteMember(String memberId);
+	
 }
 

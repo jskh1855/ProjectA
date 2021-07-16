@@ -33,5 +33,5 @@ public interface MemberService {
 
 	List<PostVO> getPickProductListById(String id, PagingBean pagingBean);
 
-	
+	void deleteMember(String memberId);
 }

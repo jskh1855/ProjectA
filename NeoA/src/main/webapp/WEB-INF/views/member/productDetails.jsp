@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
@@ -185,6 +185,48 @@ function registerAnswer(qnaNo){
 		}//callback
 	});//ajax
 }	
+		function bid() {
+	    var data=$("#input").val();
+	    var messageDTO={
+	        result:data
+	    };
+	    $.ajax({
+	        url: "${pageContext.request.contextPath}/bid",
+	        data: messageDTO,
+	        type:"POST",
+	        beforeSend : function(
+					xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+				xhr
+						.setRequestHeader(
+								"${_csrf.headerName}",
+								"${_csrf.token}");
+			},
+			success : function(data) {
+				if (data == "fail") {
+					alert("아이디가 중복됩니다");
+					$(
+							"#idCheckView")
+							.html(
+									id
+											+ " 사용불가!")
+							.css(
+									"color",
+									"red");
+					checkResultId = "";
+				} else {
+					$(
+							"#idCheckView")
+							.html(
+									id
+											+ " 사용가능!")
+							.css(
+									"color",
+									"blue");
+					checkResultId = id;
+				}
+			}//callback
+	    });
+	}
 </script>
 <main>
 	<!-- Hero Area Start-->
@@ -281,12 +323,12 @@ function registerAnswer(qnaNo){
 					<div class="blog_right_sidebar">
 						<%--입찰하기 --%>
 						<div class="add_to_cart">
-							<input type="text" value="26000" size="12"> 원으로 <a href="#" class="btn_3">입찰하기</a>
+							<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12"> 원으로 <a href="#" class="btn_3" onclick="startBid()">입찰하기</a>
 						</div>
 						<%--제품 정보들 --%>
 						<aside class="single_sidebar_widget post_category_widget">
 							<%--현재가격 --%>
-							<h4 class="widget_title">현재가격 25000</h4>
+							<h4 class="widget_title">현재가격 ${productDetails.nowPrice }</h4>
 							<%--기타 정보들 --%>
 							<ul class="list cat-list">
 								<li><a href="#" class="d-flex">
