@@ -215,7 +215,7 @@ select * from a_authorities;
 select * from bid_log;
 select * from pick;
 select * from qna;
-select * from pick;
+
 
 -- **************************************
 -- delete 

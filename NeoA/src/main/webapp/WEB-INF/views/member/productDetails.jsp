@@ -136,12 +136,12 @@ ${productDetails }
 					<div class="blog_right_sidebar">
 						<%--입찰하기 --%>
 						<div class="add_to_cart">
-							<input type="text" value="26000" size="12"> 원으로 <a href="#" class="btn_3">입찰하기</a>
+							<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12"> 원으로 <a href="#" class="btn_3">입찰하기</a>
 						</div>
 						<%--제품 정보들 --%>
 						<aside class="single_sidebar_widget post_category_widget">
 							<%--현재가격 --%>
-							<h4 class="widget_title">현재가격 25000</h4>
+							<h4 class="widget_title">현재가격 ${productDetails.nowPrice }</h4>
 							<%--기타 정보들 --%>
 							<ul class="list cat-list">
 								<li><a href="#" class="d-flex">
