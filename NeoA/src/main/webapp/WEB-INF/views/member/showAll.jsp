@@ -48,7 +48,7 @@
 <script type="text/javascript">
 	let pageNo = null;
 	let perPage = null;
-	let sortBy;
+	let sortBy = null;
 	
 	$(document).ready(function(){
 		
@@ -70,6 +70,10 @@
 			showAll();
 		});			
 		
+		$("#categoryButton").click(function(){
+			showAll();
+		});
+		
 	});
 	
 	
@@ -79,8 +83,18 @@
 		if(sortBy==null){
 			sortBy = $(".nav-tabs .active").attr('value');
 		}
-		//alert(pageNo);
 		
+		let ca1 = '';
+		if($("#productSelect option:selected").text()!='대분류 선택'){
+			ca1 = $("#productSelect option:selected").text()+';';
+		}
+		let ca2 = '';
+		if($("#mallSelect option:selected").text()!='중분류 선택'){
+			ca2 = $("#mallSelect option:selected").text()+';';
+		}
+		let category=ca1+ca2;
+		
+		//alert(pageNo);
 		
 		//${pageContext.request.contextPath} 써야하는데.. 
 		let contextPath = getContextPath();
@@ -88,10 +102,10 @@
 		
 		if(pageNo == null){
 			//alert("  "+sortBy+"   "+perPage+"   "+pageNo+"   "+"전송1");
-			location.href="/user/showAll?sortBy="+sortBy+"&perPage="+perPage;
+			location.href="/user/showAll?sortBy="+sortBy+"&perPage="+perPage+"&category="+category;
 		}else{
 			//alert("  "+sortBy+"   "+perPage+"   "+pageNo+"   "+"전송2");
-			location.href="/user/showAll?sortBy="+sortBy+"&perPage="+perPage+"&pageNo="+pageNo;
+			location.href="/user/showAll?sortBy="+sortBy+"&perPage="+perPage+"&category="+category+"&pageNo="+pageNo;
 		}
 	}	
 	
@@ -101,6 +115,26 @@
 	};
 	
 
+</script>
+
+<script type="text/javascript">
+
+	var malls = true;
+	
+	function update_selected() {
+	  $("#mallSelect").val(0);
+	  $("#mallSelect").find("option[value!=0]").detach();
+	
+	  $("#mallSelect").append(malls.filter(".mall" + $(this).val()));
+	}
+	
+	$(function() {
+	  malls = $("#mallSelect").find("option[value!=0]");
+	  malls.detach();
+	
+	  $("#productSelect").change(update_selected);
+	  $("#productSelect").trigger("change");
+	});
 </script>
 
         <div class="slider-area ">
@@ -168,6 +202,12 @@
 	로그인 ok
 </sec:authorize>
 	
+
+dd<br>
+${pagingBean.ca1}
+<br>
+${pagingBean.ca2}
+
 </div>
 
 
@@ -179,38 +219,37 @@
 	                    <div class="select-this">
 	                        <form action="#">
 	                            <div class="select-itms">
-	                                <select name="select" id="select2">
-	                                	<option value="" >category</option>
-	                                    <option value="" >가전</option>
-	                                    <option value="" >가구</option>
-	                                    <option value="" >기타</option>
-	                                </select>
+	                                <select id="productSelect" name = "top">
+									   <option value="0" >대분류 선택</option>
+									   <option value="1" <c:if test="${pagingBean.ca1 eq '전자제품'}">selected</c:if>>전자제품</option>
+									   <option value="2" <c:if test="${pagingBean.ca1 eq '패션'}">selected</c:if>>패션</option>
+									   <option value="3" <c:if test="${pagingBean.ca1 eq '책'}">selected</c:if>>책</option>
+									</select>
 	                            </div>
 	                        </form>
 	                    </div>
 	                    <div class="select-this">
 	                        <form action="#">
 	                            <div class="select-itms">
-	                                <select name="select" id="select2">
-	                                	<option value="" >category</option>
-	                                    <option value="" >가전</option>
-	                                    <option value="" >가구</option>
-	                                    <option value="" >기타</option>
-	                                </select>
+	                                <select id="mallSelect" name = "mid">
+									   <option value="0">중분류 선택</option>
+									   <option value="스마트폰" class="mall1" <c:if test="${pagingBean.ca2 eq '스마트폰'}">selected</c:if>>스마트폰</option>
+									   <option value="컴퓨터" class="mall1" <c:if test="${pagingBean.ca2 eq '컴퓨터'}">selected</c:if>>컴퓨터</option>
+									   <option value="TV" class="mall1" <c:if test="${pagingBean.ca2 eq 'TV'}">selected</c:if>>TV</option>
+									   <option value="신발" class="mall2" <c:if test="${pagingBean.ca2 eq '신발'}">selected</c:if>>신발</option>
+									   <option value="상의" class="mall2" <c:if test="${pagingBean.ca2 eq '상의'}">selected</c:if>>상의</option>  
+									   <option value="하의" class="mall2" <c:if test="${pagingBean.ca2 eq '하의'}">selected</c:if>>하의</option>
+									   <option value="악세서리" class="mall2" <c:if test="${pagingBean.ca2 eq '악세서리'}">selected</c:if>>악세서리</option> 
+									   <option value="소설" class="mall3" <c:if test="${pagingBean.ca2 eq '소설'}">selected</c:if>>소설</option>
+									   <option value="만화책" class="mall3" <c:if test="${pagingBean.ca2 eq '만화책'}">selected</c:if>>만화책</option>
+									   <option value="전문서적" class="mall3" <c:if test="${pagingBean.ca2 eq '전문서적'}">selected</c:if>>전문서적</option>
+									   <option value="잡지" class="mall3" <c:if test="${pagingBean.ca2 eq '잡지'}">selected</c:if>>잡지</option>
+									</select>
 	                            </div>
 	                        </form>
 	                    </div>
-	                    <div class="select-this">
-	                        <form action="#">
-	                            <div class="select-itms">
-	                                <select name="select" id="select2">
-	                                	<option value="" >category</option>
-	                                    <option value="" >가전</option>
-	                                    <option value="" >가구</option>
-	                                    <option value="" >기타</option>
-	                                </select>
-	                            </div>
-	                        </form>
+	                    <div>
+	                    	<input type="button" id="categoryButton" value="카테고리 선택 완료">
 	                    </div>
 	                    
 	                    <div class="properties__button">

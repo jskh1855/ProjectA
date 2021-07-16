@@ -9,5 +9,5 @@ public class SpringBootStudy5SecurityApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootStudy5SecurityApplication.class, args);
 	}
-
 }
+ 

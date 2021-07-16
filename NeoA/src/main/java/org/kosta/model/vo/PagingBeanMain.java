@@ -9,7 +9,27 @@ public class PagingBeanMain {
 	// 정렬기준 default
 	private String sortBy = "product_up_time desc";
 	
+	private String ca1;
 	
+	private String ca2;
+	
+	
+	public String getCa1() {
+		return ca1;
+	}
+
+	public void setCa1(String ca1) {
+		this.ca1 = ca1;
+	}
+
+	public String getCa2() {
+		return ca2;
+	}
+
+	public void setCa2(String ca2) {
+		this.ca2 = ca2;
+	}
+
 	/**
 	 * 현재 페이지
 	 */
@@ -240,47 +260,5 @@ public class PagingBeanMain {
 		if(this.getNowPageGroup()<this.getTotalPageGroup())
 			flag=true;
 		return flag;
-	}
-
-	public static void main(String args[]) {
-		/*  
-		 * PagingBean p = new PagingBean(47, 10);
-		 * System.out.println("//////// 총게시물47개,현재페이지10 //////////"); // 현페이지의 시작 row
-		 * number 를 조회 46 System.out.println("getStartRowNumber:" +
-		 * p.getStartRowNumber()); // 현페이지의 마지막 row number 를 조회 47
-		 * System.out.println("getEndRowNumber:" + p.getEndRowNumber()); // 전체 페이지 수 :
-		 * 10 System.out.println("getTotalPage:" + p.getTotalPage()); // 전체 페이지 그룹 수 : 3
-		 * System.out.println("getTotalPageGroup:" + p.getTotalPageGroup()); // 게시물수 47
-		 * -> 총페이지수 10 -> 총페이지그룹->3 // 현재 페이지 그룹 : 3
-		 * System.out.println("getNowPageGroup:" + p.getNowPageGroup()); // 페이지 그룹의 시작
-		 * 페이지 : 9 System.out.println("getStartPageOfPageGroup:" +
-		 * p.getStartPageOfPageGroup()); // 페이지 그룹의 마지막 페이지 : 10
-		 * System.out.println("getEndPageOfPageGroup:" + p.getEndPageOfPageGroup()); //
-		 * 이전 페이지 그룹이 있는 지 : true System.out.println("isPreviousPageGroup:" +
-		 * p.isPreviousPageGroup()); // 다음 페이지 그룹이 있는 지 : false
-		 * System.out.println("isNextPageGroup:" + p.isNextPageGroup());
-		 * System.out.println("//////// 총게시물31개,현재페이지4 //////////"); p = new
-		 * PagingBean(31, 4);// 게시물수 31 현재 페이지 4 // 현페이지의 시작 row number 를 조회 26
-		 * System.out.println("getStartRowNumber:" + p.getStartRowNumber()); // 현페이지의
-		 * 마지막 row number 를 조회 30 System.out.println("getEndRowNumber:" +
-		 * p.getEndRowNumber()); // 게시물수 31 -> 총페이지수 7 -> 총페이지그룹->2 // 현재 페이지 그룹 : 2
-		 * System.out.println("getNowPageGroup:" + p.getNowPageGroup()); // 페이지 그룹의 시작
-		 * 페이지 : 5 System.out.println("getStartPageOfPageGroup:" +
-		 * p.getStartPageOfPageGroup()); // 페이지 그룹의 마지막 페이지 : 7
-		 * System.out.println("getEndPageOfPageGroup:" + p.getEndPageOfPageGroup()); //
-		 * 이전 페이지 그룹이 있는 지 : true System.out.println("isPreviousPageGroup:" +
-		 * p.isPreviousPageGroup()); // 다음 페이지 그룹이 있는 지 : false
-		 * System.out.println("isNextPageGroup:" + p.isNextPageGroup());
-		 */
-		
-		PagingBeanMain pb = new PagingBeanMain(20);
-		System.out.println(pb.getStartRowNumber());
-		System.out.println(pb.getEndRowNumber());
-		
-		pb.setPostCountPerPage(12);
-		System.out.println(pb.getStartRowNumber());
-		System.out.println(pb.getEndRowNumber());
-		
-		
 	}
 }

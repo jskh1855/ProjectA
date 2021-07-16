@@ -21,7 +21,7 @@ create table a_member(
 	phone_no varchar2(100) not null,
 	credit varchar2(100) default 'bronze',
 	bank_name varchar2(100) not null,
-	account_no varchar2(100) not null,	
+	account_no varchar2(100) not null,		
 	enabled int default 1 not null
 );
 

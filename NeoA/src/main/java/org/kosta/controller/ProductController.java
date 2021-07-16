@@ -42,10 +42,25 @@ public class ProductController {
 
 		PagingBeanMain pagingBean = new PagingBeanMain();
 
+		System.out.println("param @pageNo:"+pageNo+" @category:"+category+" @sortBy:"+sortBy+" @perPage:"+perPage);
+
 		// 카테고리
-		if (category != null) {
+		if (category != "") {
 			pagingBean.setCategory(category);
+			String[] ca=category.split(";");
+			System.out.println(ca.length);
+			for(int i=0; i<ca.length; i++) {
+				System.out.println(ca[i]);
+				if(i==0) {
+					pagingBean.setCa1(ca[i]);
+				}else if(i==1) {
+					pagingBean.setCa2(ca[i]);
+				}
+			}
 		}
+		
+		System.out.println("테스트 : 1:"+pagingBean.getCa1()+" 2:"+pagingBean.getCa2());
+		
 		// 정렬
 		if (sortBy != null) {
 			pagingBean.setSortBy(sortBy);
