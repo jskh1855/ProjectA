@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -275,6 +276,14 @@ public class ProductController {
 		
 		
 		return "redirect:";
+	}
+	
+	@PostMapping("/pickAjax")
+	public Map<String,String> pickAjax() {
+		System.out.println("실행완료");
+		Map<String,String> param=new HashMap<String,String>();
+		param.put("pick","ok");
+		return param;
 	}
 	
 }

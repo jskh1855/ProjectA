@@ -75,7 +75,30 @@
 			showAll();
 		});
 		
+		// 찜목록 ajax 처리 
+		$.ajaxSetup({
+			success:function(result){
+				alert(result);
+			},
+			error:function(){
+				alert("fail");
+			}
+		});//ajaxSetup
+
+		$("#testJSONButton").click(function(){
+			$.ajax({
+				headers:{"[[${_csrf.headerName}]]":"[[_csrf.token]]"},
+				type:"post",
+				dataType:"json",
+				url:"/pickAjax",
+				sucess:function(result){
+					alert(result);
+				}
+			});
+		});
+		
 	});
+
 	
 	
 	function showAll(){
@@ -213,6 +236,7 @@
 </sec:authorize>
 <sec:authorize access="isAuthenticated()">
 	로그인 ok
+	<input type="button" id="testJSONButton" value="ㅇㅇ">
 </sec:authorize>
 	
 
