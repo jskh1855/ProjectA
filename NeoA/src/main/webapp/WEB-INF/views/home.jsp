@@ -15,7 +15,7 @@
                                     <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">오늘의 물건들을 옥션으로 만나보세요, Project_a는 고객님들을 위한 쉬운 옥션 서비스를 제공합니다. </p>
                                     <!-- Hero-btn -->
                                     <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
-                                        <a href="${pageContext.request.contextPath}/user/showAll?pageNo=0" class="btn hero-btn">Shop Now</a>
+                                        <a href="${pageContext.request.contextPath}/user/showAll" class="btn hero-btn">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                     <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">조심하세요, 순간의 방심으로 당신 물건은 남에게 돌아갈지도..? </p>
                                     <!-- Hero-btn -->
                                     <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
-                                        <a href="${pageContext.request.contextPath}/user/showAll?pageNo=0" class="btn hero-btn">Shop Now</a>
+                                        <a href="${pageContext.request.contextPath}/user/showAll" class="btn hero-btn">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
