@@ -57,7 +57,7 @@
 									<li><a href="${pageContext.request.contextPath}/productUpload">auction</a></li>
 									<li class="hot"><a href="#">Latest</a>
 										<ul class="submenu">
-											<li><a href="${pageContext.request.contextPath}/user/showAll?pageNo=0"> Product list</a></li>
+											<li><a href="${pageContext.request.contextPath}/user/showAll"> Product list</a></li>
 											<li><a href="${pageContext.request.contextPath}/user/randPost"> Random Product </a></li>
 										</ul></li>
 									<li><a href="blog.html">Blog</a>

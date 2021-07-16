@@ -45,7 +45,7 @@ public class ProductController {
 		System.out.println("param @pageNo:"+pageNo+" @category:"+category+" @sortBy:"+sortBy+" @perPage:"+perPage);
 
 		// 카테고리
-		if (category != "") {
+		if (category != "" && category!=null ) {
 			pagingBean.setCategory(category);
 			String[] ca=category.split(";");
 			System.out.println(ca.length);
