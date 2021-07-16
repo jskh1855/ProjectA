@@ -221,28 +221,34 @@ public class ProductController {
 		return "member/randompost.tiles";
 	}
 	
+	@ResponseBody
 	@PostMapping("/registerQuestion")
-	public String registerQuestion(String qnaContent, String productNo) {
-		//System.out.println("kkkkkkkkkkkkkk");
+	public List<QnAVO> registerQuestion(String qnaContent, String productNo) {
+		//System.out.println("test = " + qnaContent + " " + productNo);
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
 		productService.registerQuestion(qnaContent, memberId, productNo);
-		return "redirect:/user/getQnAList";
+		List<QnAVO> list = productService.getQnAList(productNo);
+		return list;
 	}
 	
+	@ResponseBody
 	@PostMapping("/registerAnswer")
-	public void registerAnswer(String qnaNo, String qnaContent, String productNo) {
+	public List<QnAVO> registerAnswer(String qnaNo, String qnaContent, String productNo) {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
+		System.out.println("test="+qnaNo+" "+ qnaContent+ " "+ memberId+ " "+ productNo);
 		productService.registerAnswer(qnaNo, qnaContent, memberId, productNo);
-		
+		List<QnAVO> list = productService.getQnAList(productNo);
+		return list;
 	}
 	
 	@ResponseBody
 	@RequestMapping("/user/getQnAList")
 	public List<QnAVO> getQnAList(String productNo) {
-		productNo = "1";
+		//System.out.println("testsssssssssss");
 		List<QnAVO> list = productService.getQnAList(productNo);
+		System.out.println(list);
 		return list;
 	}
 
