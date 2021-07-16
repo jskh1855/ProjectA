@@ -15,7 +15,7 @@ import org.kosta.model.vo.QnAVO;
 public interface PostMapper {
 	
 	//List<PostVO> showAll(@Param("pg") PagingBean pg);
-	List<PostVO> showAll(PagingBeanMain pg);
+	List<PostVO> showAll(HashMap<String, Object> map);
 	
 	int showAllCount(PagingBeanMain pg);
 

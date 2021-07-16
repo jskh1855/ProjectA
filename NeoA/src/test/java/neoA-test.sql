@@ -85,13 +85,13 @@ from post p, pick pi
 where p.product_no = pi.product_no(+) and pi.member_id(+) = '' and p.product_name like '%' 
 
 
-	select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.pick_member
-	from(
-		select row_number() over(order by product_up_time desc) as rnum, p.product_no, p.title, p.product_name, p.now_price, p.bid_end_time, p.post_image, p.member_id, pi.member_id as pick_member
-		from post p, pick pi
-		where p.product_no = pi.product_no(+) and pi.member_id(+) = '1234' and p.product_name like '%' 
-	) p, a_member m
-	where p.member_id=m.member_id and rnum between 1 and 6 
+select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.pick_member
+from(
+	select row_number() over(order by product_up_time desc) as rnum, po.product_no, po.title, po.product_name, po.now_price, po.bid_end_time, po.post_image, po.member_id, pi.member_id as pick_member
+	from post po, pick pi
+	where po.product_no = pi.product_no(+) and pi.member_id(+) = '' and po.product_name like '%' 
+) p, a_member m
+where p.member_id=m.member_id and rnum between 1 and 6 
 
 
 
