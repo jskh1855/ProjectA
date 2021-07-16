@@ -1,34 +1,50 @@
 package org.kosta.model.vo;
 
-import java.time.LocalDate;
-
 public class PickVO {
-	private String PickNo;
-	private LocalDate prickTime;
+	private String pickNo;
+	private String pickTime;
+	private String memberId;
+	
 	public PickVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PickVO(String pickNo, LocalDate prickTime) {
+
+	public PickVO(String pickNo, String pickTime, String memberId) {
 		super();
-		PickNo = pickNo;
-		this.prickTime = prickTime;
+		this.pickNo = pickNo;
+		this.pickTime = pickTime;
+		this.memberId = memberId;
 	}
+
 	public String getPickNo() {
-		return PickNo;
+		return pickNo;
 	}
+
 	public void setPickNo(String pickNo) {
-		PickNo = pickNo;
+		this.pickNo = pickNo;
 	}
-	public LocalDate getPrickTime() {
-		return prickTime;
+
+	public String getPickTime() {
+		return pickTime;
 	}
-	public void setPrickTime(LocalDate prickTime) {
-		this.prickTime = prickTime;
+
+	public void setPickTime(String pickTime) {
+		this.pickTime = pickTime;
 	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
 	@Override
 	public String toString() {
-		return "PickVO [PickNo=" + PickNo + ", prickTime=" + prickTime + "]";
+		return "PickVO [pickNo=" + pickNo + ", pickTime=" + pickTime + ", memberId=" + memberId + "]";
 	}
+	
 	
 }

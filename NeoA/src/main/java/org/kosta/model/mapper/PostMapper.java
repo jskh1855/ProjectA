@@ -23,7 +23,7 @@ public interface PostMapper {
 	
 	PostVO getproductDetails(String productNo);
 	
-	PickVO addCart(String productNo, String memberId);
+	void addPick(HashMap<String, String> map);
 
 	//PickVO addCart(HashMap<>());
 	List<PostVO> searchByTitle(String title);
@@ -35,4 +35,6 @@ public interface PostMapper {
 	void registerAnswer(HashMap<String, String> map);
 	
 	List<QnAVO> getQnAList(String productNo);
+	
+	PickVO deletePick(String pickNo);
 }

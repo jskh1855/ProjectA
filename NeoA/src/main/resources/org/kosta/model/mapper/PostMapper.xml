@@ -41,11 +41,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where product_no = #{value}
 	</select>
 	
-	<insert id="addCart" parameterType="string">
+	<insert id="addPick" parameterType="map">
 		insert into pick
-		values(pick_no_seq.nextval, sysdate, #{memberVO.member_Id},#{postVO.product_no})
+		values(pick_no_seq.nextval, sysdate, #{memberId},#{productNo})
 	</insert>
 	
+	<delete id="deletePick">
+		delete pick
+		where pick_no = #{pick_no}
+	</delete>
+	<select id="pickList" resultType="PickVO">
+ 	select
+     row_number() over(order by c.pick_no desc) as num,
+     c.pick_no, c.member_id, c.pick_time,  
+     p.product_name, p.now_price, p.post_image, p.product_no
+ 	from pick c
+     inner join post p
+     on c.product_no = p.product_no   
+     where c.member_id = #{memberId}
+</select>
 <!-- 	
 	<select id="searchByTitle" resultMap="detailPostRM" parameterType="hashMap">
 		select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time

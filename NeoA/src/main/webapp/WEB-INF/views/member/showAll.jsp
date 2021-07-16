@@ -157,6 +157,7 @@
 데이터 가져다 쓰기~
 	<table border="1">
 		<tr>
+			<th>pick</th>
 			<th>넘버</th>
 			<th>제품사진</th>
 			<th>제목</th>
@@ -167,7 +168,13 @@
 			<th>판매자이름</th>
 		</tr>
 	<c:forEach items="${postVOList}" var="list">
+	
 		<tr>
+			<td>
+			<div class="favorit-items">
+	        <a href="${pageContext.request.contextPath}/addPick?productNo=${list.productNo}" style="color:black;"><span class="flaticon-heart"></span></a>
+	        </div>
+			</td>
 			<td>${list.productNo}</td>
 			<td>${list.postImage}</td>
 			<td>${list.title}</td>

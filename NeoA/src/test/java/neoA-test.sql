@@ -203,4 +203,16 @@ select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD
 		 		from  pick) k, post p
 		where p.product_no = k.product_no AND k.member_id='spring'
 		
+insert into pick
+		values(pick_no_seq.nextval, sysdate, 'spring','21')		
 		
+select * from pick		
+
+select
+     row_number() over(order by c.pick_no desc) as num,
+     c.pick_no, c.member_id, c.pick_time, c.product_no, 
+     p.product_name, p.now_price, p.post_image, p.product_no , p.title , to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time
+ 	from pick c
+     inner join post p
+     on c.product_no = p.product_no   
+     where c.member_id = 'spring'

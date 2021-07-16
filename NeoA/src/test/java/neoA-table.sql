@@ -116,6 +116,17 @@ create table pick(
 create sequence pick_no_seq;
 
 
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','21');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','8');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','7');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','21');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','22');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','22');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','23');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','27');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','28');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','29');
+insert into pick values(pick_no_seq.nextval,sysdate,'spring','30');
 
 -- **************************************
 -- table 삭제 순서대로  
