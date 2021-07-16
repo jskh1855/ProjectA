@@ -35,4 +35,6 @@ public interface PostMapper {
 	void registerAnswer(HashMap<String, String> map);
 	
 	List<QnAVO> getQnAList(String productNo);
+	
+	PickVO deletePick(String pickNo);
 }
