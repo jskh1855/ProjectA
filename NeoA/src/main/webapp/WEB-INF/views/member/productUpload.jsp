@@ -57,23 +57,23 @@ $(function() {
 
 		 		<select id="productSelect" name = "top">
 				   <option value="0" selected="selected">대분류 선택</option>
-				   <option value="1">전자제품</option>
-				   <option value="2">패션</option>
-				   <option value="3">책</option>
+				   <option value="전자제품">전자제품</option>
+				   <option value="패션">패션</option>
+				   <option value="책">책</option>
 				</select>
 				<select id="mallSelect" name = "mid">
 				   <option value="0">중분류 선택</option>
-				   <option value="스마트폰" class="mall1">스마트폰</option>
-				   <option value="컴퓨터" class="mall1">컴퓨터</option>
-				   <option value="TV" class="mall1">TV</option>
-				   <option value="신발" class="mall2">신발</option>
-				   <option value="상의" class="mall2">상의</option>  
-				   <option value="하의" class="mall2">하의</option>
-				   <option value="악세서리" class="mall2">악세서리</option> 
-				   <option value="소설" class="mall3">소설</option>
-				   <option value="만화책" class="mall3">만화책</option>
-				   <option value="전문서적" class="mall3">전문서적</option>
-				   <option value="잡지" class="mall3">잡지</option>
+				   <option value="스마트폰" class="mall전자제품">스마트폰</option>
+				   <option value="컴퓨터" class="mall전자제품">컴퓨터</option>
+				   <option value="TV" class="mall전자제품">TV</option>
+				   <option value="신발" class="mall패션">신발</option>
+				   <option value="상의" class="mall패션">상의</option>  
+				   <option value="하의" class="mall패션">하의</option>
+				   <option value="악세서리" class="mall패션">악세서리</option> 
+				   <option value="소설" class="mall책">소설</option>
+				   <option value="만화책" class="mall책">만화책</option>
+				   <option value="전문서적" class="mall책">전문서적</option>
+				   <option value="잡지" class="mall책">잡지</option>
 				</select>
 
 		<br>
