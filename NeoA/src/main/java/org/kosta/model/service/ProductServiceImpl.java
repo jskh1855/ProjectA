@@ -2,13 +2,11 @@ package org.kosta.model.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.kosta.model.mapper.PostMapper;
-import org.kosta.model.vo.PagingBean;
-import org.kosta.model.vo.PagingBeanMain;
+import org.kosta.model.vo.BidLogVO;
 import org.kosta.model.vo.PostVO;
 import org.kosta.model.vo.QnAVO;
 import org.springframework.stereotype.Service;
@@ -74,6 +72,16 @@ public class ProductServiceImpl implements ProductService {
 		map.put("productNo", productNo);
 		postMapper.addPick(map);
 		
+	}
+	
+	@Override
+	public void bid(PostVO pvo){
+		postMapper.bid(pvo);
+	}
+	
+	@Override
+	public void insertLog(BidLogVO bvo){
+		postMapper.insertLog(bvo);
 	}
 	
 }

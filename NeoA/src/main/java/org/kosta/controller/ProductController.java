@@ -277,4 +277,10 @@ public class ProductController {
 		return "redirect:";
 	}
 	
+    @RequestMapping(value = "/bid",method = RequestMethod.POST)
+    public String dataSend(Model model){
+        //model.addAttribute("msg",dto.getResult()+"/ this is the value sent by the server ");
+        return "index :: #resultDiv";
+    }
+	
 }
