@@ -19,11 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	) p, a_member m
 	where p.member_id=m.member_id and rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}  -->
 
-	select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time, p.pick_member
+	select p.product_no, p.title, p.product_name, p.start_price, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time, p.pick_member
 	from(
-		select row_number() over(order by ${pagingBean.sortBy}) as rnum, product_no, title, product_name, now_price, bid_end_time, post_image, member_id, pick_member
+		select row_number() over(order by ${pagingBean.sortBy}) as rnum, product_no, title, product_name, start_price,now_price, bid_end_time, post_image, member_id, pick_member
 		from(
-			select po.product_no, po.title, po.product_up_time, po.product_name, po.category, po.now_price, po.bid_end_time, po.post_image, po.member_id, pi.member_id as pick_member
+			select po.product_no, po.title, po.product_up_time, po.product_name, po.category, po.start_price,po.now_price, po.bid_end_time, po.post_image, po.member_id, pi.member_id as pick_member
 			from post po, pick pi
 			where po.product_no = pi.product_no(+) and pi.member_id(+) = '${memberVO.memberId}'
 		) subpost

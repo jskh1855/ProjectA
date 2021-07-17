@@ -1,10 +1,12 @@
 package org.kosta.model.service;
 
+import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
 import org.kosta.model.vo.BidLogVO;
 import org.kosta.model.vo.PostVO;
@@ -17,10 +19,21 @@ public class ProductServiceImpl implements ProductService {
 	@Resource
 	private PostMapper postMapper;
 	
+	@Resource 
+	private MemberMapper memberMapper;
+	
 	@Override
 	public List<PostVO> showAll(HashMap<String, Object> map){
-		return postMapper.showAll(map);
+		System.out.println("show All service");
+		List<PostVO> postList = postMapper.showAll(map);
+		for (int i = 0; i < postList.size(); i++) {
+			String productNo = postList.get(i).getProductNo();
+			List<BidLogVO> pickList = memberMapper.getBidCountByProductNo(productNo);
+			postList.get(i).setBidLogVOList(pickList);
+		}
+		return postList;
 	}
+
 	
 	@Override
 	public PostVO getproductDetails(String productNo) {
