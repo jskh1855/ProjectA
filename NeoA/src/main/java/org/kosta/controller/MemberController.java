@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MemberController {
@@ -39,10 +40,18 @@ public class MemberController {
 	}
 
 	@RequestMapping("user/registerResultView")
-	public String registerResultView(String id, Model model) {
+	public ModelAndView registerResultView(String id, ModelAndView mv) {
 		MemberVO vo = memberService.findMemberById(id);
-		model.addAttribute("memberVO", vo);
-		return "member/register_result.tiles";
+		mv.addObject("id", vo.getMemberId());
+		mv.addObject("name", vo.getName());
+		mv.addObject("address", vo.getAddress());
+		mv.addObject("phone",vo.getPhoneNo());
+		mv.setViewName("member/register_result.tiles");
+		/*
+		 * model.addAttribute("memberVO", vo);
+		 * 	return "member/register_result.tiles";
+		 */	
+		return mv;
 	}
 
 	@RequestMapping("user/idcheckAjax")

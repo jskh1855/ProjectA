@@ -223,7 +223,7 @@ function bid() {
 							<%--제목 --%>
 							<h2>${random.title }</h2>
 							<%--내용 --%>
-							<p class="excert">${random.detail }</p>
+							<div style="white-space:pre;"><c:out value="${productDetails.detail}" /></div>
 						</div>
 					</div>
 					<%--Qna 시작 --%>

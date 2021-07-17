@@ -3,7 +3,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-	
+	<style>
+		h3.a{
+			text-align: center;
+		}
+
+
+	</style>
 <script type="text/javascript">
 var str = $("#textarea").val();
 
@@ -62,6 +68,7 @@ $(function() {
 		id="form" name="form" enctype="multipart/form-data" onLoad="initForm(document.form)">
 		<sec:csrfInput />
 
+		<br>
 		 		<select id="productSelect" name = "top">
 				   <option value="0" selected="selected">대분류 선택</option>
 				   <option value="전자제품">전자제품</option>
@@ -84,9 +91,11 @@ $(function() {
 				</select>
 
 		<br>
+
 		<hr>
 		<h3>물품정보</h3>
 		<hr>
+		<br>
 		<table>
 
 			<tr>
@@ -140,6 +149,7 @@ $(function() {
 		<hr>
 		<h3>경매정보</h3>
 		<hr>
+		<br>
 		<table>
 			<tr>
 				<div>
