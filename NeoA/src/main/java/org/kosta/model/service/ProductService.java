@@ -22,9 +22,7 @@ public interface ProductService {
 	void registerAnswer(String qnaNo, String qnaContent, String memberId, String productNo);
 
 	List<QnAVO> getQnAList(String productNo);
-	
-	void addPick(String memberId, String productNo);
-	
+		
 	String updatePick(HashMap<String, String> map);
 	
 	void bid(PostVO pvo);

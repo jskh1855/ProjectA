@@ -176,11 +176,21 @@ public class MemberController {
 		return "member/mypage_my_info.tiles";
 	}
 
-	@PostMapping("/deleteMember")
-	public void deleteMember() {
+	@RequestMapping("/deleteMember")
+	public String deleteMember() {
+
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
-		
+
 		memberService.deleteMember(memberId);
+		return "redirect:deleteMemberResult";
+	}
+
+	@RequestMapping()
+	public String deleteMemberResult(Model model) {
+
+		model.addAttribute("message", "회원탈퇴가 완료되었습니다.");
+
+		return "member/deleteMemberResult.tiles";
 	}
 }
