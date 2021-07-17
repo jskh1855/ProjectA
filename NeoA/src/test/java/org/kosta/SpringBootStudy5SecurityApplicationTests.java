@@ -123,8 +123,10 @@ class SpringBootStudy5SecurityApplicationTests {
 		//PagingBean pagingBean = new PagingBean(totalPostCount);
 		//System.out.println(memberService.getPickProductListById("spring", pagingBean));
 		
-		productService.addPick("spring", "23");
+		//productService.addPick("spring", "23");
 		
+		
+		System.out.println(productService.getQnAList("1"));
 		
 	}
 	

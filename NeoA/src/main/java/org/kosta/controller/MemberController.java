@@ -111,7 +111,7 @@ public class MemberController {
 	public String myBidList(Model model, @RequestParam("pageNo") @Nullable String pageNo) {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = memberVO.getMemberId();
-		
+
 		int totalPostCount = memberService.getTotalBidProductCountById(id);
 		PagingBean pagingBean = null;
 		if (pageNo == null) {
@@ -119,32 +119,32 @@ public class MemberController {
 		} else {
 			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
 		}
-		//System.out.println(pagingBean);
+		// System.out.println(pagingBean);
 		model.addAttribute("pagingBean", pagingBean);
-		List<PostVO> list= memberService.getBidProductListById(id, pagingBean);
-		//System.out.println(list);
+		List<PostVO> list = memberService.getBidProductListById(id, pagingBean);
+		// System.out.println(list);
 		model.addAttribute("list", list);
-		
+
 		return "member/mypage_bid_list.tiles";
 	}
 
 	@RequestMapping("/mypagePickList")
 	public String mypagePickList(Model model, @RequestParam("pageNo") @Nullable String pageNo) {
-		MemberVO memberVO= (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = memberVO.getMemberId();
-		
+
 		int totalPostCount = memberService.getTotalPickProductCountById(id);
-		PagingBean pagingBean  = null;
-		if(pageNo ==null) {
+		PagingBean pagingBean = null;
+		if (pageNo == null) {
 			pagingBean = new PagingBean(totalPostCount);
 		} else {
 			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
 		}
 		model.addAttribute("pagingBean", pagingBean);
-		List<PostVO> list = memberService.getPickProductListById(id,pagingBean);
+		List<PostVO> list = memberService.getPickProductListById(id, pagingBean);
 		model.addAttribute("list", list);
-		
- 		return "member/mypage_pick_list.tiles";
+
+		return "member/mypage_pick_list.tiles";
 	}
 
 	@RequestMapping("/mypageMyInfo")
@@ -153,21 +153,21 @@ public class MemberController {
 		model.addAttribute("memberVO", memberService.findMemberById(memberVO.getMemberId()));
 		return "member/mypage_my_info.tiles";
 	}
-	
+
 	@PostMapping("/updateMemberInfo")
 	public String updateMemberInfo(MemberVO memberVO) {
-		//System.out.println(memberVO);
-		
-		if(memberVO.getPassword()=="") {
+		// System.out.println(memberVO);
+
+		if (memberVO.getPassword() == "") {
 			System.out.println("updateMemberWithoutPasswrod");
 			memberService.updateMemberWithoutPasswrod(memberVO);
-		}else {
+		} else {
 			memberService.updateMember(memberVO);
 		}
-		
+
 		return "redirect:updateMemberInfoOk";
 	}
-	
+
 	@RequestMapping("updateMemberInfoOk")
 	public String updateMemberInfoOk(Model model) {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -176,4 +176,11 @@ public class MemberController {
 		return "member/mypage_my_info.tiles";
 	}
 
+	@PostMapping("/deleteMember")
+	public void deleteMember() {
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String memberId = memberVO.getMemberId();
+		
+		memberService.deleteMember(memberId);
+	}
 }
