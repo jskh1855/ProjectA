@@ -272,21 +272,7 @@ public class ProductController {
 		return list;
 	}
 
-	@RequestMapping("/addPick")
-		public void addPick(String productNo) {
-			MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			String memberId = memberVO.getMemberId();
-			
-			productService.addPick(memberId, productNo);
-		}
-	
-	@RequestMapping("/deletePick")
-	public String deletePick(String pickNo) {
-		
-		
-		return "redirect:";
-	}
-	
+
 	@PostMapping("/updatePick")
 	@ResponseBody
 	public Map<String,String> updatePick(HttpServletRequest request) {

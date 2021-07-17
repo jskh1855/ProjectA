@@ -123,10 +123,10 @@
 				success:function(result){
 					if(result.pick == '0'){
 						//alert("찜ㄴㄴ");
-						$(this).children("#pick-switch").html("찜ㄴㄴ");
+						$(this).children("#pick-switch").html("<span class='far fa-heart'/>");
 					}else if(result.pick == '1'){
 						//alert("찜했음");
-						$(this).children("#pick-switch").html("찜했음");
+						$(this).children("#pick-switch").html("<span class='fas fa-heart' style='color: red;'/>");
 					}
 				}
 			});
@@ -382,10 +382,10 @@ ${pagingBean.category}
 		                                        	<span id="pick-switch-range">
 			                                        	<c:choose>
 			                                        		<c:when test="${list.pickVO.memberId != null}">
-					                                            	<a id="pick-switch" value="${list.productNo}">찜했음</a>
+					                                            	<a id="pick-switch" value="${list.productNo}"><span class="fas fa-heart" style="color: red;"/></a>
 			                                        		</c:when>
 			                                        		<c:otherwise>
-		                                        					<a id="pick-switch" value="${list.productNo}">찜ㄴㄴ</a>
+		                                        					<a id="pick-switch" value="${list.productNo}"><span class="far fa-heart"/></a>
 						                                            <%-- <a href="${pageContext.request.contextPath}/addPick?productNo=${list.productNo}" style="color:black;"><span class="flaticon-heart"></span></a> --%>
 			                                        		</c:otherwise>
 			                                        	</c:choose>

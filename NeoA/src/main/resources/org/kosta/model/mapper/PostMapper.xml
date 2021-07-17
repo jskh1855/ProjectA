@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where category like '${pagingBean.category}%' and title like '%%'
 	) p, a_member m
 	where p.member_id=m.member_id and rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}
-
+	
 	</select>
 	
 	<select id="showAllCount" resultType="integer" parameterType="pagingBeanMain">
