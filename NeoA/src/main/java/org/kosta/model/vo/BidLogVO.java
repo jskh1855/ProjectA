@@ -5,16 +5,16 @@ public class BidLogVO {
 	private int bidPrice;
 	private String bidTime;
 	private String memberId;
+	private String productNo;
 	public BidLogVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public BidLogVO(String bidNo, int bidPrice, String bidTime, String memberId) {
+	public BidLogVO(int bidPrice,  String memberId, String productNo) {
 		super();
-		this.bidNo = bidNo;
 		this.bidPrice = bidPrice;
-		this.bidTime = bidTime;
 		this.memberId = memberId;
+		this.setProductNo(productNo);
 	}
 	public String getBidNo() {
 		return bidNo;
@@ -43,7 +43,13 @@ public class BidLogVO {
 	@Override
 	public String toString() {
 		return "BidLogVO [bidNo=" + bidNo + ", bidPrice=" + bidPrice + ", bidTime=" + bidTime + ", memberId=" + memberId
-				+ "]";
+				+productNo+ "]";
+	}
+	public String getProductNo() {
+		return productNo;
+	}
+	public void setProductNo(String productNo) {
+		this.productNo = productNo;
 	}
 	
 	

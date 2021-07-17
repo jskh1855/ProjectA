@@ -64,18 +64,10 @@ public class ProductServiceImpl implements ProductService {
 		return postMapper.getQnAList(productNo);
 	}
 
-	@Override
-	public void addPick(String memberId, String productNo) {
-		HashMap<String, String> map = new HashMap<String,String>();
-		map.put("memberId", memberId);
-		map.put("productNo", productNo);
-		postMapper.addPick(map);
-		
-	}
 	
 	@Override
-	public void bid(PostVO pvo){
-		postMapper.bid(pvo);
+	public void bid(String id){
+		postMapper.bid(id);
 	}
 	
 	@Override

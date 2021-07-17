@@ -13,16 +13,22 @@
 		</div>
 	</div>
 </div>
-
-<h3>가입정보</h3> 
-<table>
+<br>
+<br>
+<br>
+<h3 align="center" class="display-3">가입정보</h3> 
+<br>
+<table class="table">
 	<tr>
-	<td>${requestScope.memberVO.memberId}</td>
+	<td scope="col">ID</td>
+	<td scope="col">${requestScope.memberVO.memberId}</td>
 	</tr>
 	<tr>
-	<td>${requestScope.memberVO.name} </td>
+	<td scope="col">Name</td>
+	<td scope="col">${requestScope.memberVO.name} </td>
 	</tr>
 	<tr>
-	<td>${requestScope.memberVO.address}</td>
+	<td scope="col">Address</td>
+	<td scope="col">${requestScope.memberVO.address}</td>
 	</tr>
 </table>

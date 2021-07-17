@@ -98,7 +98,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<delete id="deleteMember" parameterType="string">
-		delete from a_member a Inner Join post p
-		where a.member_id= p.member_id and a.member_id=#{value}
+		delete from a_member
+		where member_id=#{value}
 	</delete>
 </mapper>
