@@ -155,6 +155,11 @@ public class ProductController {
 			e.printStackTrace();
 		}
 
+		System.out.println(pvo);
+		/*
+		 * System.out.println(pvo.getDetail());
+		 */		
+
 		
 		pvo.setPostImage(images.toString());
 		String category1 = request.getParameter("top");
@@ -282,21 +287,6 @@ public class ProductController {
 		List<QnAVO> list = productService.getQnAList(productNo);
 		//System.out.println(list);
 		return list;
-	}
-
-	@RequestMapping("/addPick")
-		public void addPick(String productNo) {
-			MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			String memberId = memberVO.getMemberId();
-			
-			productService.addPick(memberId, productNo);
-		}
-	
-	@RequestMapping("/deletePick")
-	public String deletePick(String pickNo) {
-		
-		
-		return "redirect:";
 	}
 	
 	@PostMapping("/updatePick")

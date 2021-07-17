@@ -65,7 +65,7 @@ create table post(
 	detail clob,
 	post_image varchar2(100),
 	category varchar2(100),
-	member_id varchar2(100) constraint fk_post references a_member(member_id)
+	member_id varchar2(100) constraint fk_post references a_member(member_id) on delete cascade
 );
 create sequence product_no_seq;
 

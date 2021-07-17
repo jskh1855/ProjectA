@@ -58,14 +58,7 @@
 			<c:out value="${message}" />
 		</h2>
 	</c:if>
-	<!-- 회원탈퇴 -->
-	<div class="col-lg-6 col-md-6" align="right">
-		<form action="${pageContext.request.contextPath}/deleteMember"
-			method="post">
-			<sec:csrfInput />
-			<button>회원탈퇴</button>
-		</form>
-	</div>
+
 
 	<section class="login_part">
 		<div class="container">

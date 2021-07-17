@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/myweb/assets/js/jquery.nice-select.min.js"></script>
 <style>
 .center {
 	text-align: center;
@@ -96,9 +99,55 @@
 		return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
 	};
 	
-
+	$(document).on("click", "#pick-switch-range", function() {
+		var productNo = $(this).children().attr('value');
+		//alert(productNo);
+		//alert("부모 : "+$(this).html());
+		//$(this).children("#pick-switch").html("123123");
+		//alert("자식 : "+$(this).children("#pick-switch").html());
+		$.ajax({
+			headers:{"${_csrf.headerName}":"${_csrf.token}"}, 
+			type:"post",
+			data:{ data : productNo },
+			dataType:"json",
+			url:"/updatePick",
+			context : this,   // success callback 에서 this 쓰기 위해 
+			success:function(result){
+				if(result.pick == '0'){
+					//alert("찜ㄴㄴ");
+					$(this).children("#pick-switch").html("찜ㄴㄴ");
+				}else if(result.pick == '1'){
+					//alert("찜했음");
+					$(this).children("#pick-switch").html("찜했음");
+				}
+			}
+		});
+	});
+	function getContextPath() {
+		var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+		return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+	};
+	
 </script>
+<script type="text/javascript">
 
+	var malls = true;
+	
+	function update_selected() {
+	  $("#mallSelect").val(0);
+	  $("#mallSelect").find("option[value!=0]").detach();
+	
+	  $("#mallSelect").append(malls.filter(".mall" + $(this).val()));
+	}
+	
+	$(function() {
+	  malls = $("#mallSelect").find("option[value!=0]");
+	  malls.detach();
+	
+	  $("#productSelect").change(update_selected);
+	  $("#productSelect").trigger("change");
+	});
+</script>
         <div class="slider-area ">
             <div class="single-slider slider-height2 d-flex align-items-center">
                 <div class="container">
@@ -194,9 +243,22 @@
 	                                            	<span style="float: left; width: 50%">sub22</span>
 	                                            </div>
 	                                        </div>
-	                                        <div class="favorit-items">
-	                                            <a href="${pageContext.request.contextPath}/addPick?productNo=${list.productNo}" style="color:black;"><span class="flaticon-heart"></span></a>
-	                                        </div>
+	                                         <!-- 하트 로그인 유저만 -->
+	                                        <sec:authorize access="isAuthenticated()">
+		                                        <div class="favorit-items">
+		                                        	<span id="pick-switch-range">
+			                                        	<c:choose>
+			                                        		<c:when test="${list.pickVO.memberId != null}">
+					                                            	<a id="pick-switch" value="${list.productNo}">찜했음</a>
+			                                        		</c:when>
+			                                        		<c:otherwise>
+		                                        					<a id="pick-switch" value="${list.productNo}">찜ㄴㄴ</a>
+						                                            <%-- <a href="${pageContext.request.contextPath}/addPick?productNo=${list.productNo}" style="color:black;"><span class="flaticon-heart"></span></a> --%>
+			                                        		</c:otherwise>
+			                                        	</c:choose>
+		                                        	</span>
+		                                   		</div>
+	                                        </sec:authorize>
 	                                    </div>
 	                                    <div class="popular-caption">
 	                                        <h3><a href="${pageContext.request.contextPath}/user/productDetails?productNo=${list.productNo}">${list.title}</a></h3>
