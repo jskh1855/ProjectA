@@ -45,4 +45,6 @@ public interface PostMapper {
 	void insertLog(BidLogVO bvo);
 
 	void deletePickByPostNoAndMId(HashMap<String, String> map);
+	
+	void insertPickByPostNoAndMId(HashMap<String, String> map);
 }

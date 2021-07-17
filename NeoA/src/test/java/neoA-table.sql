@@ -143,7 +143,7 @@ drop table a_member;
 --drop table category;
 
 --sequence 드랍
-drop sequence category_seq;
+--drop sequence category_seq;
 drop sequence product_no_seq;
 drop sequence bid_no_seq;
 drop sequence pick_no_seq;

@@ -81,7 +81,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		if(checkPick.equals("0")) { // 기존에 없으니 insert문 실행
 			System.out.println("service update");
-			postMapper.addPick(map);
+			postMapper.insertPickByPostNoAndMId(map);
 		}else if(checkPick.equals("1")) { // 기존에 있으니 delete문 실행
 			System.out.println("service delete");
 			postMapper.deletePickByPostNoAndMId(map);
