@@ -161,7 +161,6 @@ public class ProductController {
 		/*
 		 * System.out.println(pvo.getDetail());
 		 */		
-		
 		pvo.setPostImage(images.toString());
 		String category1 = request.getParameter("top");
 		String category2 = request.getParameter("mid");

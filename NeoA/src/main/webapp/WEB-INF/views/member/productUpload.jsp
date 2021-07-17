@@ -5,6 +5,13 @@
 	uri="http://www.springframework.org/security/tags"%>
 	
 <script type="text/javascript">
+var str = $("#textarea").val();
+
+str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
+
+$("#text").html(str);
+
+
 
 var malls = true;
 
