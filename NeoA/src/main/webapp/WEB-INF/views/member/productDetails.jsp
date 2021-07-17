@@ -149,8 +149,8 @@ function bid() {
 </script>
 
 <main>
-<input type="hidden" id="productNo" value="${productDetails.productNo }">
-<input type="hidden" id="memberId" value="${productDetails.memberVO.memberId }">
+	<input type="hidden" id="productNo" value="${productDetails.productNo }"> <input type="hidden" id="memberId"
+		value="${productDetails.memberVO.memberId }">
 	<!-- Hero Area Start-->
 	<div class="slider-area ">
 		<div class="single-slider slider-height2 d-flex align-items-center">
@@ -236,7 +236,8 @@ function bid() {
 					<div class="blog_right_sidebar">
 						<%--입찰하기 --%>
 						<div class="add_to_cart">
-							<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12"> 원으로 <a href="#" class="btn_3" onclick="startBid()">입찰하기</a>
+							<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12"> 원으로 <a href="#" class="btn_3"
+								onclick="startBid()">입찰하기</a>
 						</div>
 						<%--제품 정보들 --%>
 						<aside class="single_sidebar_widget post_category_widget">
@@ -245,55 +246,48 @@ function bid() {
 							<%--기타 정보들 --%>
 							<ul class="list cat-list">
 								<li><a href="#" class="d-flex">
-										<p>시작가</p>
+										<p>시작가&nbsp&nbsp&nbsp</p>
 										<p>${productDetails.startPrice }</p>
 								</a></li>
 								<li><a href="#" class="d-flex">
-										<p>즉구가</p>
+										<p>즉구가&nbsp&nbsp&nbsp</p>
 										<p>${productDetails.giveMeThatPrice }</p>
 								</a></li>
 								<li><a href="#" class="d-flex">
-										<p>경매시작시간</p>
+										<p>경매시작시간&nbsp&nbsp&nbsp</p>
 										<p>${productDetails.productUpTime }</p>
 								</a></li>
 								<li><a href="#" class="d-flex">
-										<p>경매종료시간</p>
+										<p>경매종료시간&nbsp&nbsp&nbsp</p>
 										<p>${productDetails.bidEndTime }</p>
 								</a></li>
 								<li><a href="#" class="d-flex">
-										<p>남은 시간</p>
-										<p id="remainTime"></p> <script>
+										<p>남은 시간&nbsp&nbsp&nbsp</p>
+										<p id="remainTime"></p>
+										<script>
+											function remainTime(){
 												var stDate = new Date().getTime();
 												var edDate = new Date("${productDetails.bidEndTime}").getTime(); // 종료날짜
 												var RemainDate = edDate - stDate;
 												if(RemainDate<0){
-													document.getElementById(${item.productNo}).innerHTML= "만료";
+													document.getElementById("remainTime").innerHTML= "경매시간 만료, 역경매 시작";
 												}else{
-												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
-												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
-												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
-												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
-												document.getElementById("remainTime").innerHTML= m;
+													var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+													var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+													var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+													m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
+													document.getElementById("remainTime").innerHTML=m;
 												}
-										</script> <script>
-											var timer = setInterval(function(){
-												var stDate = new Date().getTime();
-												var edDate = new Date("${productDetails.bidEndTime}").getTime(); // 종료날짜
-												var RemainDate = edDate - stDate;
-												if(RemainDate<0){
-													document.getElementById(${item.productNo}).innerHTML= "만료";
-												}else{
-												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
-												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
-												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
-												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
-												document.getElementById("remainTime").innerHTML=m;
-												}
-											}, 1000);
+											}
+											function startInterval(seconds, remainTime){
+												remainTime();
+												return setInterval(remainTime, seconds * 1000);
+											};
+											startInterval(1, remainTime);
 										</script>
 								</a></li>
 								<li><a href="#" class="d-flex">
-										<p>총 입찰자 수</p>
+										<p>총 입찰자 수&nbsp&nbsp&nbsp</p>
 										<p>ajax 로 구현할 부분</p>
 								</a></li>
 							</ul>
