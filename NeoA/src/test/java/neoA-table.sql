@@ -208,7 +208,7 @@ insert into pick(pick_no, member_id,product_no) values(pick_no_seq.nextval, '123
 
 commit
 
--- insert into post values(product_no_seq, );
+update post set now_price = now_price + unit_price where product_no ='2';
 
 insert into a_authorities(username,authority) values('java','ROLE_MEMBER');
 

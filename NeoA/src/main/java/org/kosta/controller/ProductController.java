@@ -1,7 +1,6 @@
 package org.kosta.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.model.mapper.PostMapper;
 import org.kosta.model.service.ProductService;
+import org.kosta.model.vo.BidLogVO;
 import org.kosta.model.vo.MemberVO;
 import org.kosta.model.vo.PagingBeanMain;
 import org.kosta.model.vo.PostVO;
@@ -311,9 +311,18 @@ public class ProductController {
 	}
 	
     @RequestMapping(value = "/bid",method = RequestMethod.POST)
-    public String dataSend(Model model){
+    public String dataSend(HttpServletRequest request, Model model){
+    	System.out.println("AA");
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String memberId = memberVO.getMemberId();
+    	String id = request.getParameter("id");
+    	String bidPrice = request.getParameter("bidPrice");
+    	productService.bid(id);
+    	BidLogVO bvo = new BidLogVO(Integer.parseInt(bidPrice),memberId,id);
+    	productService.insertLog(bvo);
         //model.addAttribute("msg",dto.getResult()+"/ this is the value sent by the server ");
-        return "index :: #resultDiv";
+    	model.addAttribute("productDetails", productService.getproductDetails("11"));
+        return "member/productDetails.tiles";
     }
     
 	

@@ -40,7 +40,7 @@ public interface PostMapper {
 	
 	PickVO deletePick(String pickNo);
 	
-	void bid(PostVO pvo);
+	void bid(String id);
 	
 	void insertLog(BidLogVO bvo);
 
