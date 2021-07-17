@@ -126,6 +126,7 @@ from(
 where p.member_id=m.member_id and rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}
 
 
+
 --찜 유무 
 
 select count(*) from pick where product_no = '4' and member_id = '1234';

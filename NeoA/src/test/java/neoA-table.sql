@@ -143,7 +143,7 @@ drop table a_member;
 --drop table category;
 
 --sequence 드랍
-drop sequence category_seq;
+--drop sequence category_seq;
 drop sequence product_no_seq;
 drop sequence bid_no_seq;
 drop sequence pick_no_seq;
@@ -192,6 +192,9 @@ insert into post values(product_no_seq.nextval, '제목19','라페라리','30000
 insert into post(product_no,title,product_name,start_price,now_price,bid_time_unit,bid_end_time,unit_price,give_me_that_price,detail,post_image,category,member_id)
 values(product_no_seq.nextval,'제목', '로골','1000','1000','2',sysdate+2,'100','10000','ㅗㅜㅑ','rg.img','가전노트북맥북','java');
 
+<insert id="insertAuthor" parameterType="author"> 
+insert int Author values (seq_authorno.nextval, #{name}) <selectKey keyProperty="id" resultType="_int" order="AFTER"> select seq_authorno.currval from dual </selectKey> </insert>
+
 
 insert into bid_log values(bid_no_seq.nextval, sysdate,'30000','java','9');
 
@@ -205,7 +208,7 @@ insert into pick(pick_no, member_id,product_no) values(pick_no_seq.nextval, '123
 
 commit
 
--- insert into post values(product_no_seq, );
+update post set now_price = now_price + unit_price where product_no ='2';
 
 insert into a_authorities(username,authority) values('java','ROLE_MEMBER');
 
@@ -228,6 +231,8 @@ delete from a_authorities;
 delete from post;
 delete from bid_log;
 delete from pick;
+
+
 
 
 
