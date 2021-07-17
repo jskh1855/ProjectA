@@ -87,18 +87,46 @@ where p.product_no = pi.product_no(+) and pi.member_id(+) = '' and p.product_nam
 
 select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.pick_member
 from(
-	select row_number() over(order by product_up_time desc) as rnum, po.product_no, po.title, po.product_name, po.now_price, po.bid_end_time, po.post_image, po.member_id, pi.member_id as pick_member
+	select row_number() over(order by product_up_time desc) as rnum, po.product_no, po.title, po.product_name, po.category, po.now_price, po.bid_end_time, po.post_image, po.member_id, pi.member_id as pick_member
 	from post po, pick pi
-	where po.product_no = pi.product_no(+) and pi.member_id(+) = '' and po.product_name like '%' 
+	where po.product_no = pi.product_no(+) and pi.member_id(+) = '' and category = '패션;신발;'
 ) p, a_member m
 where p.member_id=m.member_id and rnum between 1 and 6 
 
 
 
+select * 
+from post
+where category like '패션;%';
+
+select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.pick_member
+from(
+	select row_number() over(order by product_up_time desc) as rnum, product_no, title, product_name, now_price, post_image, member_id, pick_member
+	from(
+		select po.product_no, po.title, po.product_up_time, po.product_name, po.category, po.now_price, po.bid_end_time, po.post_image, po.member_id, pi.member_id as pick_member
+		from post po, pick pi
+		where po.product_no = pi.product_no(+) and pi.member_id(+) = ''
+	) subpost
+	where category like '패션*신발*%' and title like '%%'
+) p, a_member m
+where p.member_id=m.member_id and rnum between 1 and 6
+
+select * from post
+
+select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time, p.pick_member
+from(
+	select row_number() over(order by ${pagingBean.sortBy}) as rnum, product_no, title, product_name, now_price, bid_end_time, post_image, member_id, pick_member
+	from(
+		select po.product_no, po.title, po.product_up_time, po.product_name, po.category, po.now_price, po.bid_end_time, po.post_image, po.member_id, pi.member_id as pick_member
+		from post po, pick pi
+		where po.product_no = pi.product_no(+) and pi.member_id(+) = '${memberVO.memberId}'
+	) subpost
+	where category like '${pagingBean.category}%' and title like '%%'
+) p, a_member m
+where p.member_id=m.member_id and rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}
 
 
-
-
+select * from post
 
 -- 상품 등록 
 insert into post values(product_no_seq.nextval, '롤렉스','2000','2000',sysdate,sysdate+3,'100','4000','afadafad','1','java')

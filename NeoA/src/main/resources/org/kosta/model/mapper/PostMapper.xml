@@ -10,32 +10,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="pick_member" property="pickVO.memberId"/>
 	</resultMap>
 	<select id="showAll" resultMap="detailPostRM" parameterType="hashmap">
-<!-- 	select p.product_no, p.product_name
-	from post p, a_member a
-	where p.member_id = a.member_id
-	order by p.product_up_time desc -->
-	
-	<!-- p.bid_end_time 에러남 ㅠ -->
-<!-- 	select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time
+
+<!-- 	select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time, p.pick_member
 	from(
-		select row_number() over(order by ${sortBy}) as rnum,product_no,title,product_name,now_price,bid_end_time,post_image,member_id
-		from post
-		where product_name like '${category}%'
+		select row_number() over(order by ${pagingBean.sortBy}) as rnum, po.product_no, po.title, po.product_name, po.now_price, po.bid_end_time, po.post_image, po.member_id, po.category ,pi.member_id as pick_member
+		from post po, pick pi
+		where po.product_no = pi.product_no(+) and pi.member_id(+) = '${memberVO.memberId}' and po.category like '${pagingBean.category}%' 
 	) p, a_member m
-	where p.member_id=m.member_id and rnum between #{startRowNumber} and #{endRowNumber} -->
+	where p.member_id=m.member_id and rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}  -->
 
 	select p.product_no, p.title, p.product_name, p.now_price, p.post_image, p.member_id, m.name, p.bid_end_time, p.pick_member
 	from(
-		select row_number() over(order by ${pagingBean.sortBy}) as rnum, po.product_no, po.title, po.product_name, po.now_price, po.bid_end_time, po.post_image, po.member_id, pi.member_id as pick_member
-		from post po, pick pi
-		where po.product_no = pi.product_no(+) and pi.member_id(+) = '${memberVO.memberId}' and po.product_name like '${pagingBean.category}%' 
+		select row_number() over(order by ${pagingBean.sortBy}) as rnum, product_no, title, product_name, now_price, bid_end_time, post_image, member_id, pick_member
+		from(
+			select po.product_no, po.title, po.product_up_time, po.product_name, po.category, po.now_price, po.bid_end_time, po.post_image, po.member_id, pi.member_id as pick_member
+			from post po, pick pi
+			where po.product_no = pi.product_no(+) and pi.member_id(+) = '${memberVO.memberId}'
+		) subpost
+		where category like '${pagingBean.category}%' and title like '%%'
 	) p, a_member m
-	where p.member_id=m.member_id and rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber} 
+	where p.member_id=m.member_id and rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}
 
 	</select>
 	
 	<select id="showAllCount" resultType="integer" parameterType="pagingBeanMain">
-		select count(*) from post where product_name like '${category}%'
+		select count(*) from post where category like '${category}%'
 	</select>
 	
 	<insert id="registerProduct" parameterType="postVO">

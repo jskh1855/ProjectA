@@ -66,8 +66,10 @@ public class ProductController {
 
 		// 카테고리
 		if (category != "" && category!=null ) {
+			
 			pagingBean.setCategory(category);
-			String[] ca=category.split(";");
+			
+			String[] ca=category.split("a");
 			System.out.println(ca.length);
 			for(int i=0; i<ca.length; i++) {
 				System.out.println(ca[i]);
@@ -78,6 +80,7 @@ public class ProductController {
 				}
 			}
 		}
+		
 		
 		System.out.println("테스트 : 1:"+pagingBean.getCa1()+" 2:"+pagingBean.getCa2());
 		
@@ -97,7 +100,7 @@ public class ProductController {
 		if (pageNo != null) {
 			pagingBean.setNowPage(Integer.parseInt(pageNo));
 		}
-
+		
 		map.put("memberVO", memberVO);
 		map.put("pagingBean", pagingBean);
 		
@@ -159,7 +162,7 @@ public class ProductController {
 		pvo.setPostImage(images.toString());
 		String category1 = request.getParameter("top");
 		String category2 = request.getParameter("mid");
-		pvo.setCategory(category1+';'+category2+';');
+		pvo.setCategory(category1+'a'+category2+'a');
 		pvo.setMemberVO(memberVO);
 		pvo.setNowPrice(pvo.getStartPrice());
 		System.out.println(pvo);
@@ -279,6 +282,7 @@ public class ProductController {
 	}
 	
 	@PostMapping("/pickAjax")
+	@ResponseBody
 	public Map<String,String> pickAjax() {
 		System.out.println("실행완료");
 		Map<String,String> param=new HashMap<String,String>();

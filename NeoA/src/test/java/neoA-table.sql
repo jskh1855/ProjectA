@@ -82,7 +82,7 @@ create table qna(
 */
 
 --qna 테이블 변경 변경, qna_no 와 qna_type 을 복합기본키로. qna_type 이 0이면 질문, 1 이면 대답.
-drop table qna;
+--drop table qna;
 create table qna (
 	qna_no varchar2(100) not null,    
 	qna_time date not null,
@@ -103,9 +103,9 @@ create table bid_log(
 );
 create sequence bid_no_seq;
 
-insert into bid_log values(bid_no_seq.nextval,sysdate,'20000','java','9');
-insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','java','8');
-insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','java','7');
+--insert into bid_log values(bid_no_seq.nextval,sysdate,'20000','java','9');
+--insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','java','8');
+--insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','java','7');
 
 create table pick(
 	pick_no varchar2(20) primary key,
@@ -138,13 +138,14 @@ drop table qna;
 drop table post;
 drop table a_authorities;
 drop table a_member;
-drop table category;
+--drop table category;
 
 --sequence 드랍
 drop sequence category_seq;
 drop sequence product_no_seq;
 drop sequence bid_no_seq;
 drop sequence pick_no_seq;
+drop sequence qna_no_seq;
 
 -- **************************************
 -- insert ( sample )  

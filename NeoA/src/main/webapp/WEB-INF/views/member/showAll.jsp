@@ -75,24 +75,26 @@
 			showAll();
 		});
 		
-		// 찜목록 ajax 처리 
-		$.ajaxSetup({
+		
+  		$.ajaxSetup({
 			success:function(result){
 				alert(result);
 			},
 			error:function(){
 				alert("fail");
 			}
-		});//ajaxSetup
+		});//ajaxSetup 
 
+		// 찜목록 ajax 처리 
 		$("#testJSONButton").click(function(){
 			$.ajax({
-				headers:{"[[${_csrf.headerName}]]":"[[_csrf.token]]"},
+				headers:{"${_csrf.headerName}":"${_csrf.token}"}, 
 				type:"post",
 				dataType:"json",
 				url:"/pickAjax",
-				sucess:function(result){
-					alert(result);
+				success:function(result){
+					alert(result.pick+"?");
+					alert("성공");
 				}
 			});
 		});
@@ -110,14 +112,15 @@
 		
 		let ca1 = '';
 		if($("#productSelect option:selected").text()!='대분류 선택'){
-			ca1 = $("#productSelect option:selected").text()+';';
+			ca1 = $("#productSelect option:selected").text()+'a';
 		}
 		let ca2 = '';
 		if($("#mallSelect option:selected").text()!='중분류 선택'){
-			ca2 = $("#mallSelect option:selected").text()+';';
+			ca2 = $("#mallSelect option:selected").text()+'a';
 		}
 		let category=ca1+ca2;
 		
+		//alert(category);
 		//alert(pageNo);
 		
 		//${pageContext.request.contextPath} 써야하는데.. 
@@ -244,6 +247,8 @@ dd<br>
 ${pagingBean.ca1}
 <br>
 ${pagingBean.ca2}
+<br>
+${pagingBean.category}
 
 </div>
 
