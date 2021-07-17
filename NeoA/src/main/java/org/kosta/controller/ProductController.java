@@ -123,24 +123,24 @@ public class ProductController {
 	public String upload(HttpServletRequest request, @RequestParam("filename") MultipartFile[] mFiles, PostVO pvo) {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String path = request.getSession().getServletContext().getRealPath("");
-		System.out.println(memberVO.getMemberId());
-		File Folder = new File(path + "..\\resources\\static\\myweb\\images\\"+memberVO.getMemberId());
-		if (!Folder.exists()) {
-			try{
-			    Folder.mkdir(); //폴더 생성합니다.
-			    System.out.println("폴더가 생성되었습니다.");
-		        } 
-		        catch(Exception e){
-			    e.getStackTrace();
-			}
-		}
+//		System.out.println(memberVO.getMemberId());
+//		File Folder = new File(path + "..\\resources\\static\\myweb\\images\\"+memberVO.getMemberId());
+//		if (!Folder.exists()) {
+//			try{
+//			    Folder.mkdir(); //폴더 생성합니다.
+//			    System.out.println("폴더가 생성되었습니다.");
+//		        } 
+//		        catch(Exception e){
+//			    e.getStackTrace();
+//			}
+//		}
 		StringBuilder images = new StringBuilder();
 		try {
-			String path2 = "..\\resources\\static\\myweb\\images\\"+memberVO.getMemberId()+"\\";
+			//String path2 = "..\\resources\\static\\myweb\\images\\"+memberVO.getMemberId()+"\\";
 
 
 			for (int i = 0; i < mFiles.length; i++) {
-				mFiles[i].transferTo(new File(path + path2 + mFiles[i].getOriginalFilename()));
+				//mFiles[i].transferTo(new File(path + path2 + mFiles[i].getOriginalFilename()));
 				images.append(mFiles[i].getOriginalFilename());
 				images.append(";");
 
@@ -153,11 +153,8 @@ public class ProductController {
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		System.out.println(pvo);
+
 		
 		pvo.setPostImage(images.toString());
 		String category1 = request.getParameter("top");
@@ -165,9 +162,24 @@ public class ProductController {
 		pvo.setCategory(category1+'a'+category2+'a');
 		pvo.setMemberVO(memberVO);
 		pvo.setNowPrice(pvo.getStartPrice());
-		System.out.println(pvo);
-		productService.registerProduct(pvo);
 
+		productService.registerProduct(pvo);
+		File Folder = new File(path + "..\\resources\\static\\myweb\\images\\"+pvo.getProductNo());
+		try{
+		    Folder.mkdir(); //폴더 생성합니다.
+		    System.out.println("폴더가 생성되었습니다.");
+			String path2 = "..\\resources\\static\\myweb\\images\\"+pvo.getProductNo()+"\\";
+
+
+			for (int i = 0; i < mFiles.length; i++) {
+				mFiles[i].transferTo(new File(path + path2 + mFiles[i].getOriginalFilename()));
+
+			}
+		    
+        } 
+	        catch(Exception e){
+		    e.getStackTrace();
+        }
 		return "redirect:productUpload_ok";
 	}
 
