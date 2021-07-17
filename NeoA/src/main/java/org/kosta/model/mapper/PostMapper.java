@@ -22,6 +22,8 @@ public interface PostMapper {
 	
 	PostVO getproductDetails(String productNo);
 	
+	String selectPick(HashMap<String, String> map);
+	
 	void addPick(HashMap<String, String> map);
 
 	//PickVO addCart(HashMap<>());
@@ -35,9 +37,12 @@ public interface PostMapper {
 	
 	List<QnAVO> getQnAList(String productNo);
 	
+	
 	PickVO deletePick(String pickNo);
 	
 	void bid(PostVO pvo);
 	
 	void insertLog(BidLogVO bvo);
+
+	void deletePickByPostNoAndMId(HashMap<String, String> map);
 }

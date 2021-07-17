@@ -126,7 +126,12 @@ from(
 where p.member_id=m.member_id and rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}
 
 
-select * from post
+--찜 유무 
+
+select count(*) from pick where product_no = '4' and member_id = '1234';
+
+insert into 
+
 
 -- 상품 등록 
 insert into post values(product_no_seq.nextval, '롤렉스','2000','2000',sysdate,sysdate+3,'100','4000','afadafad','1','java')

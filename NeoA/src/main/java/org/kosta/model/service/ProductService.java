@@ -25,6 +25,8 @@ public interface ProductService {
 	
 	void addPick(String memberId, String productNo);
 	
+	String updatePick(HashMap<String, String> map);
+	
 	void bid(PostVO pvo);
 	
 	void insertLog(BidLogVO bvo);

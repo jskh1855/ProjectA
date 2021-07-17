@@ -85,16 +85,49 @@
 			}
 		});//ajaxSetup 
 
-		// 찜목록 ajax 처리 
-		$("#testJSONButton").click(function(){
+/* 		// 찜목록 ajax 처리 
+		$("#pick-switch").click(function(){
+			var productNo = $(this).attr('value');
+			alert(productNo);
 			$.ajax({
 				headers:{"${_csrf.headerName}":"${_csrf.token}"}, 
 				type:"post",
+				data:{ data : productNo },
 				dataType:"json",
-				url:"/pickAjax",
+				url:"/updatePick",
 				success:function(result){
-					alert(result.pick+"?");
-					alert("성공");
+					if(result.pick == '0'){
+						alert("찜ㄴㄴ");
+						$(this).html("찜ㄴㄴ");
+					}else if(result.pick == '1'){
+						alert("찜했음");
+						$(this).html("찜했음");
+					}
+				}
+			});
+		}); */
+		// 찜목록 ajax 처리    //on 메소드를 사용해 부모속성을 이용해 처리?
+		$(document).on("click", "#pick-switch-range", function() {
+			var productNo = $(this).children().attr('value');
+			//alert(productNo);
+			//alert("부모 : "+$(this).html());
+			//$(this).children("#pick-switch").html("123123");
+			//alert("자식 : "+$(this).children("#pick-switch").html());
+			$.ajax({
+				headers:{"${_csrf.headerName}":"${_csrf.token}"}, 
+				type:"post",
+				data:{ data : productNo },
+				dataType:"json",
+				url:"/updatePick",
+				context : this,   // success callback 에서 this 쓰기 위해 
+				success:function(result){
+					if(result.pick == '0'){
+						//alert("찜ㄴㄴ");
+						$(this).children("#pick-switch").html("찜ㄴㄴ");
+					}else if(result.pick == '1'){
+						//alert("찜했음");
+						$(this).children("#pick-switch").html("찜했음");
+					}
 				}
 			});
 		});
@@ -239,7 +272,10 @@
 </sec:authorize>
 <sec:authorize access="isAuthenticated()">
 	로그인 ok
-	<input type="button" id="testJSONButton" value="ㅇㅇ">
+	<input type="button" id="testJSONButton" value="4">
+	
+	<br><br>
+	<a id="test-a-tag">응</a> 
 </sec:authorize>
 	
 
@@ -343,14 +379,17 @@ ${pagingBean.category}
 	                                        <!-- 하트 로그인 유저만 -->
 	                                        <sec:authorize access="isAuthenticated()">
 		                                        <div class="favorit-items">
-		                                        	<c:choose>
-		                                        		<c:when test="${list.pickVO.memberId != null}">
-					                                            <span>찜완료</span>
-		                                        		</c:when>
-		                                        		<c:otherwise>
-					                                             <a href="${pageContext.request.contextPath}/addPick?productNo=${list.productNo}" style="color:black;"><span class="flaticon-heart"></span></a>
-		                                        		</c:otherwise>
-		                                        	</c:choose>
+		                                        	<span id="pick-switch-range">
+			                                        	<c:choose>
+			                                        		<c:when test="${list.pickVO.memberId != null}">
+					                                            	<a id="pick-switch" value="${list.productNo}">찜했음</a>
+			                                        		</c:when>
+			                                        		<c:otherwise>
+		                                        					<a id="pick-switch" value="${list.productNo}">찜ㄴㄴ</a>
+						                                            <%-- <a href="${pageContext.request.contextPath}/addPick?productNo=${list.productNo}" style="color:black;"><span class="flaticon-heart"></span></a> --%>
+			                                        		</c:otherwise>
+			                                        	</c:choose>
+		                                        	</span>
 		                                   		</div>
 	                                        </sec:authorize>
 	                                        

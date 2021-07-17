@@ -287,12 +287,24 @@ public class ProductController {
 		return "redirect:";
 	}
 	
-	@PostMapping("/pickAjax")
+	@PostMapping("/updatePick")
 	@ResponseBody
-	public Map<String,String> pickAjax() {
+	public Map<String,String> updatePick(HttpServletRequest request) {
 		System.out.println("실행완료");
+		
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		String productNo = request.getParameter("data");
+		String memberId = memberVO.getMemberId();
+		
+		//service -> postmapper
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("productNo", productNo);
+		map.put("memberId", memberId);
+		
+		//리턴값
 		Map<String,String> param=new HashMap<String,String>();
-		param.put("pick","ok");
+		param.put("pick",productService.updatePick(map));
 		return param;
 	}
 	
