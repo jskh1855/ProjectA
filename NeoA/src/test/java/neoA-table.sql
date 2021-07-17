@@ -81,12 +81,8 @@ create table qna(
 */
 
 --qna 테이블 변경 변경, qna_no 와 qna_type 을 복합기본키로. qna_type 이 0이면 질문, 1 이면 대답.
-<<<<<<< HEAD
---drop table qna;
-=======
 drop table qna;
 drop sequence qna_no_seq;
->>>>>>> 07cc6e882a7608039cd64f57b0cbfce46d4e601b
 create table qna (
 	qna_no varchar2(100) not null,    
 	qna_time date not null,
@@ -232,8 +228,6 @@ delete from a_authorities;
 delete from post;
 delete from bid_log;
 delete from pick;
-
-
 
 
 
