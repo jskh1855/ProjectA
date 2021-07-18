@@ -186,9 +186,7 @@ function startBid(id,price, unit) {
 							<h2>${productDetails.title }</h2>
 							<br>
 							<%--내용 --%>
-							
 							<div style="white-space:pre;"><c:out value="${productDetails.detail}" /></div>
-
 							<%-- <textarea rows="7" cols="7">${fn:replace(productDetails.detail,br,cn)}</textarea> --%>
 						</div>
 					</div>

@@ -87,12 +87,12 @@
 							
 							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 								<div class="single-popular-items mb-50 text-center">
-									<div class="popular-img">
+									<div class="popular-img" style="height:252.63px">
 						<!--------------확인용--------------------->
 									<%-- ${item } --%>
 						<!--------------------------------------->
-										<a href="/user/productDetails?productNo=${item.productNo }"><img src="/myweb/images/${item.productNo }/${item.postImage }" alt=""></a>
-										<div class="img-cap">
+										<a href="/user/productDetails?productNo=${item.productNo }"><img style="height:240px; width: auto" src="/myweb/images/${item.productNo }/${item.postImage }" alt=""></a>
+										<div class="img-cap" >
 											<a href="/user/productDetails?productNo=${item.productNo }"><span>상세 보기</span></a>
 										</div>
 									</div>
