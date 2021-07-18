@@ -156,6 +156,32 @@ function startBid(id,price, unit) {
 	});
 }
 </script>
+<script type="text/javascript">
+$(document).on("click", "#pick-switch-range", function() {
+	var productNo = $(this).children().attr('value');
+	//alert(productNo);
+	//alert("부모 : "+$(this).html());
+	//$(this).children("#pick-switch").html("123123");
+	//alert("자식 : "+$(this).children("#pick-switch").html());
+	$.ajax({
+		headers:{"${_csrf.headerName}":"${_csrf.token}"}, 
+		type:"post",
+		data:{ data : productNo },
+		dataType:"json",
+		url:"/updatePick",
+		context : this,   // success callback 에서 this 쓰기 위해 
+		success:function(result){
+			if(result.pick == '0'){
+				//alert("찜ㄴㄴ");
+				$(this).children("#pick-switch").html("<span class='far fa-heart'/>");
+			}else if(result.pick == '1'){
+				//alert("찜했음");
+				$(this).children("#pick-switch").html("<span class='fas fa-heart' style='color: red;'/>");
+			}
+		}
+	});
+});
+</script>
 <main>
 	<input type="hidden" id="productNo" value="${productDetails.productNo }"> <input type="hidden" id="memberId"
 		value="${productDetails.memberVO.memberId }">
@@ -254,6 +280,21 @@ function startBid(id,price, unit) {
 						</div>
 						<%--제품 정보들 --%>
 						<aside class="single_sidebar_widget post_category_widget">
+						 <!-- 하트 로그인 유저만 -->
+	                                        <sec:authorize access="isAuthenticated()">
+		                                        <div class="favorit-items" style="font-size: 30px;" align="right">
+		                                        	<span id="pick-switch-range">
+			                                        	<c:choose>
+			                                        		<c:when test="${productDetails.pickVO.memberId != null}">
+					                                            	<a id="pick-switch" value="${productDetails.productNo}"><span class="fas fa-heart" style="color: red;"/></a>
+			                                        		</c:when>
+			                                        		<c:otherwise>
+		                                        					<a id="pick-switch" value="${productDetails.productNo}"><span class="far fa-heart"/></a>
+			                                        		</c:otherwise>
+			                                        	</c:choose>
+		                                        	</span>
+		                                   		</div>
+	                                        </sec:authorize>
 							<%--현재가격 --%>
 							<h4 class="widget_title">현재가격 <div id="nowPrice">${productDetails.nowPrice }</div></h4>
 							<%--기타 정보들 --%>
