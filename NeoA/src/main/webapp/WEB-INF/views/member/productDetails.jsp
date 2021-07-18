@@ -144,14 +144,7 @@ function startBid(id,price, unit) {
 				document.getElementById("bidPrice").value = nextPrice;
 				document.getElementById("nowPrice").innerHTML = price;
 				document.getElementById("numBid").innerHTML = newVal;
-// 					if (data == "fail") {
-// 						alert("아이디가 중복됩니다");
-// 						$("#idCheckView").html(id+ " 사용불가!").css("color","red");
-// 						checkResultId = "";
-// 					} else {
-// 						$("#idCheckView").html(id+ " 사용가능!").css("color","blue");
-// 						checkResultId = id;
-// 					}
+				
 		}//callback
 	});
 }
@@ -350,30 +343,30 @@ $(document).on("click", "#pick-switch-range", function() {
 						<aside class="single_sidebar_widget popular_post_widget">
 							<h3 class="widget_title">최근 입찰 내역</h3>
 							<div class="media post_item">
-								<img src="assets/img/post/post_1.png" alt="post">
+<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
 								<div class="media-body">
 									<a href="single-blog.html">
-										<h3>A 님 25000원</h3>
+										<h3>${recentThree[0].memberId} 님 ${recentThree[0].bidPrice}원</h3>
 									</a>
-									<p>January 12, 2019</p>
+									<p>${recentThree[0].bidTime}</p>
 								</div>
 							</div>
 							<div class="media post_item">
-								<img src="assets/img/post/post_2.png" alt="post">
+<!-- 								<img src="assets/img/post/post_2.png" alt="post"> -->
 								<div class="media-body">
 									<a href="single-blog.html">
-										<h3>B 님 24000원</h3>
+										<h3>${recentThree[1].memberId} 님 ${recentThree[1].bidPrice}원</h3>
 									</a>
-									<p>02 Hours ago</p>
+									<p>${recentThree[1].bidTime}</p>
 								</div>
 							</div>
 							<div class="media post_item">
-								<img src="assets/img/post/post_3.png" alt="post">
+<!-- 								<img src="assets/img/post/post_3.png" alt="post"> -->
 								<div class="media-body">
 									<a href="single-blog.html">
-										<h3>C 님 20000원</h3>
+										<h3>${recentThree[2].memberId} 님 ${recentThree[2].bidPrice}원</h3>
 									</a>
-									<p>03 Hours ago</p>
+									<p>${recentThree[2].bidTime}</p>
 								</div>
 							</div>
 <!-- 							<div class="media post_item"> -->

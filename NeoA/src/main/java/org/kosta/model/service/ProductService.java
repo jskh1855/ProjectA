@@ -28,4 +28,6 @@ public interface ProductService {
 	void bid(String id);
 	
 	void insertLog(BidLogVO bvo);
+
+	List<BidLogVO> recentBids(String productNo);
 }

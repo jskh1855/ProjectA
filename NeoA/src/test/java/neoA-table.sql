@@ -233,6 +233,9 @@ delete from bid_log;
 delete from pick;
 
 
+SELECT * from (select * from bid_log order by bid_no desc)
+WHERE product_no='64' and ROWNUM <= 3;
+
 
 
 
