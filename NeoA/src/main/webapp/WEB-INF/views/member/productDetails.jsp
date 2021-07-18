@@ -121,7 +121,7 @@ function showQnAList(qna){
 	$("#QnAListSize").html("QnA ["+qna.length+"]");
 }
 
-function startBid(id,price, unit) {
+function startBid(id, unit) {
 // 	var data=$("#input").val();
 // 	var messageDTO={
 // 	    result:data
@@ -144,17 +144,37 @@ function startBid(id,price, unit) {
 				document.getElementById("bidPrice").value = nextPrice;
 				document.getElementById("nowPrice").innerHTML = price;
 				document.getElementById("numBid").innerHTML = newVal;
-// 					if (data == "fail") {
-// 						alert("아이디가 중복됩니다");
-// 						$("#idCheckView").html(id+ " 사용불가!").css("color","red");
-// 						checkResultId = "";
-// 					} else {
-// 						$("#idCheckView").html(id+ " 사용가능!").css("color","blue");
-// 						checkResultId = id;
-// 					}
+// 				console.log(data);
+				
 		}//callback
 	});
 }
+</script>
+<script type="text/javascript">
+$(document).on("click", "#pick-switch-range", function() {
+	var productNo = $(this).children().attr('value');
+	//alert(productNo);
+	//alert("부모 : "+$(this).html());
+	//$(this).children("#pick-switch").html("123123");
+	//alert("자식 : "+$(this).children("#pick-switch").html());
+	$.ajax({
+		headers:{"${_csrf.headerName}":"${_csrf.token}"}, 
+		type:"post",
+		data:{ data : productNo },
+		dataType:"json",
+		url:"/updatePick",
+		context : this,   // success callback 에서 this 쓰기 위해 
+		success:function(result){
+			if(result.pick == '0'){
+				//alert("찜ㄴㄴ");
+				$(this).children("#pick-switch").html("<span class='far fa-heart'/>");
+			}else if(result.pick == '1'){
+				//alert("찜했음");
+				$(this).children("#pick-switch").html("<span class='fas fa-heart' style='color: red;'/>");
+			}
+		}
+	});
+});
 </script>
 <main>
 	<input type="hidden" id="productNo" value="${productDetails.productNo }"> <input type="hidden" id="memberId"
@@ -250,10 +270,25 @@ function startBid(id,price, unit) {
 						<%--입찰하기 --%>
 						<div class="add_to_cart">
 							<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice"> 원으로 <a href="#" class="btn_3"
-								onclick="startBid(${productDetails.productNo},${productDetails.nowPrice+productDetails.unitPrice}, ${productDetails.unitPrice})">입찰하기</a>
+								onclick="startBid(${productDetails.productNo}, ${productDetails.unitPrice})">입찰하기</a>
 						</div>
 						<%--제품 정보들 --%>
 						<aside class="single_sidebar_widget post_category_widget">
+						 <!-- 하트 로그인 유저만 -->
+	                                        <sec:authorize access="isAuthenticated()">
+		                                        <div class="favorit-items" style="font-size: 30px;" align="right">
+		                                        	<span id="pick-switch-range">
+			                                        	<c:choose>
+			                                        		<c:when test="${productDetails.pickVO.memberId != null}">
+					                                            	<a id="pick-switch" value="${productDetails.productNo}"><span class="fas fa-heart" style="color: red;"/></a>
+			                                        		</c:when>
+			                                        		<c:otherwise>
+		                                        					<a id="pick-switch" value="${productDetails.productNo}"><span class="far fa-heart"/></a>
+			                                        		</c:otherwise>
+			                                        	</c:choose>
+		                                        	</span>
+		                                   		</div>
+	                                        </sec:authorize>
 							<%--현재가격 --%>
 							<h4 class="widget_title">현재가격 <div id="nowPrice">${productDetails.nowPrice }</div></h4>
 							<%--기타 정보들 --%>
@@ -309,30 +344,30 @@ function startBid(id,price, unit) {
 						<aside class="single_sidebar_widget popular_post_widget">
 							<h3 class="widget_title">최근 입찰 내역</h3>
 							<div class="media post_item">
-								<img src="assets/img/post/post_1.png" alt="post">
-								<div class="media-body">
-									<a href="single-blog.html">
-										<h3>A 님 25000원</h3>
-									</a>
-									<p>January 12, 2019</p>
+<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
+								<div class="media-body" id="recentOne">
+<!-- 									<a href="single-blog.html"> -->
+										<h3>${recentThree[0].memberId} 님 ${recentThree[0].bidPrice}원</h3>
+<!-- 									</a> -->
+									<p>${recentThree[0].bidTime}</p>
 								</div>
 							</div>
 							<div class="media post_item">
-								<img src="assets/img/post/post_2.png" alt="post">
-								<div class="media-body">
-									<a href="single-blog.html">
-										<h3>B 님 24000원</h3>
-									</a>
-									<p>02 Hours ago</p>
+<!-- 								<img src="assets/img/post/post_2.png" alt="post"> -->
+								<div class="media-body" id="recentTwo">
+<!-- 									<a href="single-blog.html"> -->
+										<h3>${recentThree[1].memberId} 님 ${recentThree[1].bidPrice}원</h3>
+<!-- 									</a> -->
+									<p>${recentThree[1].bidTime}</p>
 								</div>
 							</div>
 							<div class="media post_item">
-								<img src="assets/img/post/post_3.png" alt="post">
-								<div class="media-body">
-									<a href="single-blog.html">
-										<h3>C 님 20000원</h3>
-									</a>
-									<p>03 Hours ago</p>
+<!-- 								<img src="assets/img/post/post_3.png" alt="post"> -->
+								<div class="media-body" id="recentThree">
+<!-- 									<a href="single-blog.html"> -->
+										<h3>${recentThree[2].memberId} 님 ${recentThree[2].bidPrice}원</h3>
+<!-- 									</a> -->
+									<p>${recentThree[2].bidTime}</p>
 								</div>
 							</div>
 <!-- 							<div class="media post_item"> -->
