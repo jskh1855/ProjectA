@@ -121,7 +121,7 @@ function showQnAList(qna){
 	$("#QnAListSize").html("QnA ["+qna.length+"]");
 }
 
-function startBid(id, unit) {
+function startBid(id, price,unit) {
 // 	var data=$("#input").val();
 // 	var messageDTO={
 // 	    result:data
@@ -137,12 +137,12 @@ function startBid(id, unit) {
 					"${_csrf.token}");
 					},
 		success : function(data) {
-				var nextPrice = price+unit;
-				console.log(nextPrice);
+				var nextPrice = document.getElementById("bidPrice").value;
+				var newPrice = parseInt(nextPrice,10) + unit
 				var numBid = document.getElementById("numBid").innerHTML;
 				var newVal = parseInt(numBid,10) + 1;
-				document.getElementById("bidPrice").value = nextPrice;
-				document.getElementById("nowPrice").innerHTML = price;
+				document.getElementById("bidPrice").value = newPrice;
+				document.getElementById("nowPrice").innerHTML = nextPrice;
 				document.getElementById("numBid").innerHTML = newVal;
 // 				console.log(data);
 				
@@ -270,7 +270,7 @@ $(document).on("click", "#pick-switch-range", function() {
 						<%--입찰하기 --%>
 						<div class="add_to_cart">
 							<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice"> 원으로 <a href="#" class="btn_3"
-								onclick="startBid(${productDetails.productNo}, ${productDetails.unitPrice})">입찰하기</a>
+								onclick="startBid(${productDetails.productNo}, ${productDetails.nowPrice+productDetails.unitPrice },${productDetails.unitPrice})">입찰하기</a>
 						</div>
 						<%--제품 정보들 --%>
 						<aside class="single_sidebar_widget post_category_widget">
