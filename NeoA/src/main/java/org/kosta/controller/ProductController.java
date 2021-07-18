@@ -336,7 +336,8 @@ public class ProductController {
     	BidLogVO bvo = new BidLogVO(Integer.parseInt(bidPrice),memberId,id);
     	productService.insertLog(bvo);
     	List<BidLogVO> bidList = productService.recentBids(id);
- 
+    	model.addAttribute("bidList", bidList);
+  
         //model.addAttribute("msg",dto.getResult()+"/ this is the value sent by the server ");
     	//model.addAttribute("productDetails", productService.getproductDetails("11"));
         return "member/productDetails.tiles";
