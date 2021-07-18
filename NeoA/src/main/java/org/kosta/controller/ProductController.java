@@ -219,6 +219,7 @@ public class ProductController {
 		String imagesList[] = dir.list();
 		model.addAttribute("imagesList",imagesList);
 		model.addAttribute("productDetails", productService.getproductDetails(productNo));
+		model.addAttribute("");
 		return "member/productDetails.tiles";
 	}
 
@@ -335,7 +336,7 @@ public class ProductController {
     	BidLogVO bvo = new BidLogVO(Integer.parseInt(bidPrice),memberId,id);
     	productService.insertLog(bvo);
         //model.addAttribute("msg",dto.getResult()+"/ this is the value sent by the server ");
-    	model.addAttribute("productDetails", productService.getproductDetails("11"));
+    	//model.addAttribute("productDetails", productService.getproductDetails("11"));
         return "member/productDetails.tiles";
     }
     

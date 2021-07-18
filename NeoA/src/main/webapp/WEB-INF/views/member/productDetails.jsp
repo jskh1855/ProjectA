@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -138,8 +139,11 @@ function startBid(id,price, unit) {
 		success : function(data) {
 				var nextPrice = price+unit;
 				console.log(nextPrice);
+				var numBid = document.getElementById("numBid").innerHTML;
+				var newVal = parseInt(numBid,10) + 1;
 				document.getElementById("bidPrice").value = nextPrice;
 				document.getElementById("nowPrice").innerHTML = price;
+				document.getElementById("numBid").innerHTML = newVal;
 // 					if (data == "fail") {
 // 						alert("아이디가 중복됩니다");
 // 						$("#idCheckView").html(id+ " 사용불가!").css("color","red");
@@ -256,11 +260,11 @@ function startBid(id,price, unit) {
 							<ul class="list cat-list">
 								<li><a href="#" class="d-flex">
 										<p>시작가&nbsp&nbsp&nbsp</p>
-										<p>${productDetails.startPrice }</p>
+										<p>${productDetails.startPrice }원</p>
 								</a></li>
 								<li><a href="#" class="d-flex">
 										<p>즉구가&nbsp&nbsp&nbsp</p>
-										<p>${productDetails.giveMeThatPrice }</p>
+										<p>${productDetails.giveMeThatPrice }원</p>
 								</a></li>
 								<li><a href="#" class="d-flex">
 										<p>경매시작시간&nbsp&nbsp&nbsp</p>
@@ -296,8 +300,9 @@ function startBid(id,price, unit) {
 										</script>
 								</a></li>
 								<li><a href="#" class="d-flex">
-										<p>총 입찰자 수&nbsp&nbsp&nbsp</p>
-										<p>ajax 로 구현할 부분</p>
+										<p>총 입찰자 수:&nbsp&nbsp&nbsp</p>
+										<fmt:parseNumber var="numBid" integerOnly="true" value="${(productDetails.nowPrice-productDetails.startPrice)/productDetails.unitPrice }"/>
+										<div id="numBid">${numBid}</div>명
 								</a></li>
 							</ul>
 						</aside>
@@ -330,15 +335,15 @@ function startBid(id,price, unit) {
 									<p>03 Hours ago</p>
 								</div>
 							</div>
-							<div class="media post_item">
-								<img src="assets/img/post/post_1.png" alt="post">
-								<div class="media-body">
-									<a href="single-blog.html">
-										<h3>A 님 10000원</h3>
-									</a>
-									<p>01 Hours ago</p>
-								</div>
-							</div>
+<!-- 							<div class="media post_item"> -->
+<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
+<!-- 								<div class="media-body"> -->
+<!-- 									<a href="single-blog.html"> -->
+<!-- 										<h3>A 님 10000원</h3> -->
+<!-- 									</a> -->
+<!-- 									<p>01 Hours ago</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 						</aside>
 						<aside class="single_sidebar_widget tag_cloud_widget">
 							<h4 class="widget_title">판매자 신용도</h4>
