@@ -31,7 +31,7 @@ create table a_authorities(
 	constraint fk_a foreign key(username) references a_member(member_id),
 	constraint member_a primary key(username,authority)
 );
-
+select * from a_authorities
 /*
 create table post(
 	product_no varchar2(100) primary key,
