@@ -121,7 +121,7 @@ function showQnAList(qna){
 	$("#QnAListSize").html("QnA ["+qna.length+"]");
 }
 
-function startBid(id,price, unit) {
+function startBid(id, unit) {
 // 	var data=$("#input").val();
 // 	var messageDTO={
 // 	    result:data
@@ -144,6 +144,7 @@ function startBid(id,price, unit) {
 				document.getElementById("bidPrice").value = nextPrice;
 				document.getElementById("nowPrice").innerHTML = price;
 				document.getElementById("numBid").innerHTML = newVal;
+// 				console.log(data);
 				
 		}//callback
 	});
@@ -269,7 +270,7 @@ $(document).on("click", "#pick-switch-range", function() {
 						<%--입찰하기 --%>
 						<div class="add_to_cart">
 							<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice"> 원으로 <a href="#" class="btn_3"
-								onclick="startBid(${productDetails.productNo},${productDetails.nowPrice+productDetails.unitPrice}, ${productDetails.unitPrice})">입찰하기</a>
+								onclick="startBid(${productDetails.productNo}, ${productDetails.unitPrice})">입찰하기</a>
 						</div>
 						<%--제품 정보들 --%>
 						<aside class="single_sidebar_widget post_category_widget">
@@ -344,28 +345,28 @@ $(document).on("click", "#pick-switch-range", function() {
 							<h3 class="widget_title">최근 입찰 내역</h3>
 							<div class="media post_item">
 <!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
-								<div class="media-body">
-									<a href="single-blog.html">
+								<div class="media-body" id="recentOne">
+<!-- 									<a href="single-blog.html"> -->
 										<h3>${recentThree[0].memberId} 님 ${recentThree[0].bidPrice}원</h3>
-									</a>
+<!-- 									</a> -->
 									<p>${recentThree[0].bidTime}</p>
 								</div>
 							</div>
 							<div class="media post_item">
 <!-- 								<img src="assets/img/post/post_2.png" alt="post"> -->
-								<div class="media-body">
-									<a href="single-blog.html">
+								<div class="media-body" id="recentTwo">
+<!-- 									<a href="single-blog.html"> -->
 										<h3>${recentThree[1].memberId} 님 ${recentThree[1].bidPrice}원</h3>
-									</a>
+<!-- 									</a> -->
 									<p>${recentThree[1].bidTime}</p>
 								</div>
 							</div>
 							<div class="media post_item">
 <!-- 								<img src="assets/img/post/post_3.png" alt="post"> -->
-								<div class="media-body">
-									<a href="single-blog.html">
+								<div class="media-body" id="recentThree">
+<!-- 									<a href="single-blog.html"> -->
 										<h3>${recentThree[2].memberId} 님 ${recentThree[2].bidPrice}원</h3>
-									</a>
+<!-- 									</a> -->
 									<p>${recentThree[2].bidTime}</p>
 								</div>
 							</div>

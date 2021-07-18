@@ -92,13 +92,13 @@ public class ProductServiceImpl implements ProductService {
 	public String updatePick(HashMap<String, String> map) {
 		String checkPick=postMapper.selectPick(map);
 		
-		if(checkPick.equals("0")) { // 기존에 없으니 insert문 실행
+		if(checkPick.equals("0")) { // 현재 0 : 찜X -> 찜O insert문 실행
 			System.out.println("service update");
 			postMapper.insertPickByPostNoAndMId(map);
-		}else if(checkPick.equals("1")) { // 기존에 있으니 delete문 실행
+		}else if(checkPick.equals("1")) { // 현재 1 : 찜O -> 찜X delete문 실행
 			System.out.println("service delete");
 			postMapper.deletePickByPostNoAndMId(map);
-		}else { //오류나오는 상황 없을것 같습니다. 
+		}else { 
 			System.out.println("오류");
 			return null;
 		}
