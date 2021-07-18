@@ -106,4 +106,9 @@ public class ProductServiceImpl implements ProductService {
 		return postMapper.selectPick(map);
 	}
 	
+	@Override
+	@Override
+	public List<BidLogVO> recentBids(String productNo){
+		return postMapper.recentBids(productNo);
+	}
 }

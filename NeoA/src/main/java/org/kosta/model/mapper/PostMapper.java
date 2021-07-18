@@ -47,4 +47,6 @@ public interface PostMapper {
 	void deletePickByPostNoAndMId(HashMap<String, String> map);
 	
 	void insertPickByPostNoAndMId(HashMap<String, String> map);
+	
+	List<BidLogVO> recentBids(String productNo);
 }
