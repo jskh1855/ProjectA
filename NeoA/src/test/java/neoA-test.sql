@@ -250,3 +250,25 @@ select
      inner join post p
      on c.product_no = p.product_no   
      where c.member_id = 'spring'
+     
+ --닉
+ select * from nick1 where rownum =1  
+ 	union select * from nick2 where rownum =1
+ 	
+     	 order by dbms_random.value	 
+     	 
+     	 
+   INSERT INTO nick_name(ad,noun)
+SELECT n1.ad,n2.noun
+FROM nick1 n1, nick2 n2
+WHERE where rownum =1
+
+
+ALTER TABLE nick1 MODIFY (nickname VARCHAR2(50) GENERATED ALWAYS AS (ad || ' ' || noun) VIRTUAL); 
+select ad,noun, (ad+noun) as sum from nick1;
+
+
+
+
+
+

@@ -118,6 +118,8 @@ create table pick(
 create sequence pick_no_seq;
 
 
+
+
 insert into pick values(pick_no_seq.nextval,sysdate,'spring','21');
 insert into pick values(pick_no_seq.nextval,sysdate,'spring','8');
 insert into pick values(pick_no_seq.nextval,sysdate,'spring','7');
