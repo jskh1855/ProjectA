@@ -107,7 +107,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	@Override
 	public List<BidLogVO> recentBids(String productNo){
 		return postMapper.recentBids(productNo);
 	}
