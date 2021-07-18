@@ -19,6 +19,8 @@ public class HomeController {
 		return "member/shop.tiles";
 	}
 	
+	
+	
 	/*
 	 * @RequestMapping("productDetails") public String productDetails() { return
 	 * "member/productDetails.tiles"; }

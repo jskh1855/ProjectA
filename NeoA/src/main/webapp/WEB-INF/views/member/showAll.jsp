@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/myweb/assets/js/jquery.nice-select.min.js"></script>
@@ -54,19 +55,16 @@
 	$(document).ready(function(){
 		
 		$(".nav-item").click(function(){
-			//alert($(this).attr('value'));
 			sortBy = $(this).attr('value');
 			showAll();
 		});
 		
 		$("#select1").change(function(){
-			//alert($(this).val());
 			perPage = $(this).val();
 			showAll();
 		});
 		
 		$("#page-num1, #page-num2, #page-num3, #page-num4").click(function(){
-			//alert("이게왜?"+$(this).attr('value'));
 			pageNo = $(this).attr('value');
 			showAll();
 		});			
@@ -85,27 +83,6 @@
 			}
 		});//ajaxSetup 
 
-/* 		// 찜목록 ajax 처리 
-		$("#pick-switch").click(function(){
-			var productNo = $(this).attr('value');
-			alert(productNo);
-			$.ajax({
-				headers:{"${_csrf.headerName}":"${_csrf.token}"}, 
-				type:"post",
-				data:{ data : productNo },
-				dataType:"json",
-				url:"/updatePick",
-				success:function(result){
-					if(result.pick == '0'){
-						alert("찜ㄴㄴ");
-						$(this).html("찜ㄴㄴ");
-					}else if(result.pick == '1'){
-						alert("찜했음");
-						$(this).html("찜했음");
-					}
-				}
-			});
-		}); */
 		// 찜목록 ajax 처리    //on 메소드를 사용해 부모속성을 이용해 처리?
 		$(document).on("click", "#pick-switch-range", function() {
 			var productNo = $(this).children().attr('value');
@@ -152,13 +129,7 @@
 			ca2 = $("#mallSelect option:selected").text()+'a';
 		}
 		let category=ca1+ca2;
-		
-		//alert(category);
-		//alert(pageNo);
-		
-		//${pageContext.request.contextPath} 써야하는데.. 
-		let contextPath = getContextPath();
-		//alert(contextPath);
+
 		
 		if(pageNo == null){
 			//alert("  "+sortBy+"   "+perPage+"   "+pageNo+"   "+"전송1");
@@ -168,11 +139,6 @@
 			location.href="/user/showAll?sortBy="+sortBy+"&perPage="+perPage+"&category="+category+"&pageNo="+pageNo;
 		}
 	}	
-	
-	function getContextPath() {
-		var hostIndex = location.href.indexOf( location.host ) + location.host.length;
-		return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
-	};
 	
 
 </script>
@@ -210,84 +176,6 @@
                 </div>
             </div>
         </div>
-
-<%-- 전체 목록 출력을 위한 테스트 by jaehoon --%>
-전체 목록 출력 
-<div class="container">
-데이터 가져다 쓰기~
-	<table border="1">
-		<tr>
-			<th>pick</th>
-			<th>넘버</th>
-			<th>제품사진</th>
-			<th>제목</th>
-			<th>제품명</th>
-			<th>현재가</th>
-			<th>종료시간</th>
-			<th>판매자아이디</th>
-			<th>판매자이름</th>
-			<th>로그인회원찜유무(아이디로)</th>
-		</tr>
-	<c:forEach items="${postVOList}" var="list">
-	
-		<tr>
-			<td>
-			<div class="favorit-items">
-	        <a href="${pageContext.request.contextPath}/addPick?productNo=${list.productNo}" style="color:black;"><span class="flaticon-heart"></span></a>
-	        </div>
-			</td>
-			<td>${list.productNo}</td>
-			<td>${list.postImage}</td>
-			<td>${list.title}</td>
-			<td>${list.productName}</td>
-			<td>${list.nowPrice}</td>
-			<td>에러</td>
-			<td>${list.memberVO.memberId}</td>
-			<td>${list.memberVO.name}</td>
-			<td>${list.pickVO.memberId}</td>
-		</tr>
-	</c:forEach>
-	</table> 
-	
-	 <%--<sec:authentication property="principal.name"/>  찜 확인 --%>
-	 
-</div>
-<br>
-<div>
-	페이지당<br>
-	<a href="${pageContext.request.contextPath}/user/showAll?perPage=3" style="color: black;"> 3 </a>
-	<a href="${pageContext.request.contextPath}/user/showAll?perPage=6" style="color: black;"> 6 </a>
-	<a href="${pageContext.request.contextPath}/user/showAll?perPage=12" style="color: black;"> 12 </a><br> 
-	카테고리(일단 제품명으로)<br>
-	<a href="${pageContext.request.contextPath}/user/showAll?category=" style="color: black;"> 초기화 </a>
-	<a href="${pageContext.request.contextPath}/user/showAll?category=나" style="color: black;"> 나 </a>
-	<a href="${pageContext.request.contextPath}/user/showAll?category=롤" style="color: black;"> 롤 </a><br>
-	정렬<br>
-	<a href="${pageContext.request.contextPath}/user/showAll?sortBy=product_up_time desc" style="color: black;"> 등록순 </a>
-	<a href="${pageContext.request.contextPath}/user/showAll?sortBy=now_price asc" style="color: black;"> 가격 오름차순 </a>
-	<a href="${pageContext.request.contextPath}/user/showAll?sortBy=now_price desc" style="color: black;"> 가격 내림차순 </a><br>	
-
-<sec:authorize access="isAuthenticated()==false">
-	로그인 x
-</sec:authorize>
-<sec:authorize access="isAuthenticated()">
-	로그인 ok
-	<input type="button" id="testJSONButton" value="4">
-	
-	<br><br>
-	<a id="test-a-tag">응</a> 
-</sec:authorize>
-	
-
-dd<br>
-${pagingBean.ca1}
-<br>
-${pagingBean.ca2}
-<br>
-${pagingBean.category}
-
-</div>
-
 
 
         <!-- Latest Products Start -->
@@ -370,10 +258,7 @@ ${pagingBean.category}
 	                                    <div class="popular-img">
 	                                        <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular1.png" alt="">
 	                                        <div class="img-cap">
-	                                        	<div>
-	                                            	<span style="float: left; width: 50%; background-color: pink;" >sub1</span>
-	                                            	<span style="float: left; width: 50%">sub22</span>
-	                                            </div>
+	                                            <a href="/user/productDetails?productNo=${item.productNo }"><span>상세보기</span></a>
 	                                        </div>
 	                                        
 	                                        <!-- 하트 로그인 유저만 -->
@@ -394,44 +279,46 @@ ${pagingBean.category}
 	                                        </sec:authorize>
 	                                        
 	                                    </div>
+	                                    
 	                                    <div class="popular-caption">
 	                                        <h3><a href="${pageContext.request.contextPath}/user/productDetails?productNo=${list.productNo}">${list.title}</a></h3>
-	                                        <span> ${list.nowPrice} 원</span>
-	                                    </div>
-	                                    <div class="popular-caption">
-	                                    <span id="${list.productNo}">남은시간</span>
-	                                    
-	                                    <script>
-												var stDate = new Date().getTime();
-												var edDate = new Date("${list.bidEndTime}").getTime(); // 종료날짜
-												var RemainDate = edDate - stDate;
-												if(RemainDate<0){
-													document.getElementById(${list.productNo}).innerHTML= "만료";
-												}else{
-												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
-												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
-												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
-												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
-												document.getElementById(${list.productNo}).innerHTML= "남은시간 " + m;
-												}
-										</script>
-										
-										<script>
-											var timer = setInterval(function(){
-												var stDate = new Date().getTime();
-												var edDate = new Date("${list.bidEndTime}").getTime(); // 종료날짜
-												var RemainDate = edDate - stDate;
-												if(RemainDate<0){
-													document.getElementById(${list.productNo}).innerHTML= "만료";
-												}else{
-												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
-												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
-												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
-												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
-												document.getElementById(${list.productNo}).innerHTML= "남은시간 " + m;
-												}
-											}, 1000);
-										</script>  
+	                                        <span>시작가 ${list.startPrice} 원</span>
+	                                        <span>현재가 ${list.nowPrice} 원</span>
+	                                        <span>입찰자수 <c:out value="${fn:length(list.bidLogVOList) }" /> 명</span>
+	                                        
+		                                    <span id="${list.productNo}">남은시간</span>
+		                                    
+		                                    <script>
+													var stDate = new Date().getTime();
+													var edDate = new Date("${list.bidEndTime}").getTime(); // 종료날짜
+													var RemainDate = edDate - stDate;
+													if(RemainDate<0){
+														document.getElementById(${list.productNo}).innerHTML= "만료";
+													}else{
+													var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+													var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+													var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+													m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
+													document.getElementById(${list.productNo}).innerHTML= "남은시간 " + m;
+													}
+											</script>
+											
+											<script>
+												var timer = setInterval(function(){
+													var stDate = new Date().getTime();
+													var edDate = new Date("${list.bidEndTime}").getTime(); // 종료날짜
+													var RemainDate = edDate - stDate;
+													if(RemainDate<0){
+														document.getElementById(${list.productNo}).innerHTML= "만료";
+													}else{
+													var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+													var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+													var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+													m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
+													document.getElementById(${list.productNo}).innerHTML= "남은시간 " + m;
+													}
+												}, 1000);
+											</script>  
 	                                    </div>
 	                                </div>
 	                            </div>

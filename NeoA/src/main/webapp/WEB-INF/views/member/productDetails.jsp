@@ -184,10 +184,16 @@ function startBid(id,price, unit) {
 						<div class="blog_details">
 							<%--제목 --%>
 							<h2>${productDetails.title }</h2>
+							<br>
 							<%--내용 --%>
-							<p class="excert">${productDetails.detail }</p>
+							
+							<div style="white-space:pre;"><c:out value="${productDetails.detail}" /></div>
+
+							<%-- <textarea rows="7" cols="7">${fn:replace(productDetails.detail,br,cn)}</textarea> --%>
 						</div>
 					</div>
+					<br>
+					<br>
 					<%--Qna 시작 --%>
 					<sec:authorize access="isAuthenticated()">
 						<h4 id="QnAListSize">QnA</h4>
