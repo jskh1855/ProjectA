@@ -137,14 +137,13 @@ public class ProductController {
 		StringBuilder images = new StringBuilder();
 		try {
 			//String path2 = "..\\resources\\static\\myweb\\images\\"+memberVO.getMemberId()+"\\";
-
-
-			for (int i = 0; i < mFiles.length; i++) {
+			images.append(mFiles[0].getOriginalFilename());
+				
+			//kbs//for (int i = 0; i < mFiles.length; i++) {
 				//mFiles[i].transferTo(new File(path + path2 + mFiles[i].getOriginalFilename()));
-				images.append(mFiles[i].getOriginalFilename());
-				images.append(";");
-
-			}
+			//kbs//	images.append(mFiles[i].getOriginalFilename());
+			//kbs//	images.append(";");
+			//kbs//}
 			System.out.println(images);
 			// img1.jpg;img2.jpg;img3.jpg;
 			
@@ -201,11 +200,26 @@ public class ProductController {
 		return "member/search_result.tiles";
 	}
 	
+	//파일 리스트 가져오기 테스트용/////////////////////////////////////////////////////
+	@RequestMapping("/user/picsTest")
+	public void pics(HttpServletRequest request) {
+		String path = request.getSession().getServletContext().getRealPath("");
+		String productNo = "41";
+		File dir = new File(path + "..\\resources\\static\\myweb\\images\\"+productNo);
+		String files[] = dir.list();
+		for (int i = 0; i < files.length; i++) {
+		    System.out.println("file: " + files[i]);
+		}
+	}
 	
 	@RequestMapping("/user/productDetails")
-	public String getproductDetails(@RequestParam("productNo") String productNo, Model model) {
+	public String getproductDetails(@RequestParam("productNo") String productNo, Model model, HttpServletRequest request) {
+		String path = request.getSession().getServletContext().getRealPath("");
+		String path2 = "..\\resources\\static\\myweb\\images\\";
+		File dir = new File(path + path2 + productNo);
+		String imagesList[] = dir.list();
+		model.addAttribute("imagesList",imagesList);
 		model.addAttribute("productDetails", productService.getproductDetails(productNo));
-		//System.out.println(productService.showDetails(productNo));
 		return "member/productDetails.tiles";
 	}
 

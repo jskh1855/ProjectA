@@ -91,7 +91,7 @@
 						<!--------------확인용--------------------->
 									<%-- ${item } --%>
 						<!--------------------------------------->
-										<a href="/user/productDetails?productNo=${item.productNo }"><img src="/myweb/assets/img/gallery/popular1.png" alt=""></a>
+										<a href="/user/productDetails?productNo=${item.productNo }"><img src="/myweb/images/${item.productNo }/${item.postImage }" alt=""></a>
 										<div class="img-cap">
 											<a href="/user/productDetails?productNo=${item.productNo }"><span>상세 보기</span></a>
 										</div>

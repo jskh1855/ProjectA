@@ -72,7 +72,7 @@ function replyForm(qnaNo,qnaType){
 				+'</div>'
 			+'</div>'
 			+'<div>'
-				+'<button id="registerAnswer" onclick="registerAnswer('+qnaNo+')" class="button button-contactForm btn_1 boxed-btn">답변하기</button>'
+				+'<button id="registerAnswer" onclick="registerAnswer(\''+qnaNo+'\')" class="button button-contactForm btn_1 boxed-btn">답변하기</button>'
 			+'</div></div>'
 		);
 	$("#qna_"+qnaNo+"_"+qnaType).append(reply);
@@ -152,7 +152,6 @@ function startBid(id,price, unit) {
 	});
 }
 </script>
-
 <main>
 	<input type="hidden" id="productNo" value="${productDetails.productNo }"> <input type="hidden" id="memberId"
 		value="${productDetails.memberVO.memberId }">
@@ -171,7 +170,6 @@ function startBid(id,price, unit) {
 		</div>
 	</div>
 	<%--${productDetails }--%>
-
 	<!--================Blog Area =================-->
 	<section class="blog_area single-post-area section-padding">
 		<div class="container">
@@ -181,6 +179,8 @@ function startBid(id,price, unit) {
 						<div class="feature-img">
 							<img class="img-fluid" src="assets/img/gallery/popular3.png" alt="" style="width: 300px;">
 						</div>
+						<%--제품 사진 보여주기 --%>
+						<c:forEach var="image" items="${imagesList }"><img src="/myweb/images/${productDetails.productNo }/${image }"></c:forEach>
 						<div class="blog_details">
 							<%--제목 --%>
 							<h2>${productDetails.title }</h2>
