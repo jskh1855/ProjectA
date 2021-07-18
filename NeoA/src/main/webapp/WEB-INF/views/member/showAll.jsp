@@ -7,7 +7,6 @@
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/myweb/assets/js/jquery.nice-select.min.js"></script>
-<!-- 경로 문제인가요? -->
 
 <style>
 .center {
@@ -83,31 +82,28 @@
 			}
 		});//ajaxSetup 
 
-		// 찜목록 ajax 처리    //on 메소드를 사용해 부모속성을 이용해 처리?
-		$(document).on("click", "#pick-switch-range", function() {
+		//아래; on 메소드를 사용해 부모속성을 이용해 처리?
+		//context : this,   // success callback 에서 this
+		
+		// 찜목록 ajax 처리  
+ 		$(document).on("click", "#pick-switch-range", function() {
 			var productNo = $(this).children().attr('value');
-			//alert(productNo);
-			//alert("부모 : "+$(this).html());
-			//$(this).children("#pick-switch").html("123123");
-			//alert("자식 : "+$(this).children("#pick-switch").html());
 			$.ajax({
 				headers:{"${_csrf.headerName}":"${_csrf.token}"}, 
 				type:"post",
 				data:{ data : productNo },
 				dataType:"json",
 				url:"/updatePick",
-				context : this,   // success callback 에서 this 쓰기 위해 
+				context : this, 
 				success:function(result){
 					if(result.pick == '0'){
-						//alert("찜ㄴㄴ");
 						$(this).children("#pick-switch").html("<span class='far fa-heart'/>");
 					}else if(result.pick == '1'){
-						//alert("찜했음");
 						$(this).children("#pick-switch").html("<span class='fas fa-heart' style='color: red;'/>");
 					}
 				}
 			});
-		});
+		}); 
 		
 	});
 
@@ -255,10 +251,10 @@
                         <c:forEach items="${postVOList}" var="list">
 	                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 	                                <div class="single-popular-items mb-50 text-center">
-	                                    <div class="popular-img">
-	                                        <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular1.png" alt="">
+	                                    <div class="popular-img" style="height:252.63px">
+	                                        <a href="/user/productDetails?productNo=${list.productNo }"><img style="height:240px; width: auto" src="/myweb/images/${list.productNo }/${list.postImage }" alt=""></a>
 	                                        <div class="img-cap">
-	                                            <a href="/user/productDetails?productNo=${item.productNo }"><span>상세보기</span></a>
+	                                            <a href="/user/productDetails?productNo=${list.productNo }"><span>상세보기</span></a>
 	                                        </div>
 	                                        
 	                                        <!-- 하트 로그인 유저만 -->
