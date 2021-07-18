@@ -252,7 +252,7 @@
 	                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 	                                <div class="single-popular-items mb-50 text-center">
 	                                    <div class="popular-img" style="height:252.63px">
-	                                        <a href="/user/productDetails?productNo=${list.productNo }"><img style="height:240px; width: auto" src="/myweb/images/${item.productNo }/${item.postImage }" alt=""></a>
+	                                        <a href="/user/productDetails?productNo=${list.productNo }"><img style="height:240px; width: auto" src="/myweb/images/${list.productNo }/${list.postImage }" alt=""></a>
 	                                        <div class="img-cap">
 	                                            <a href="/user/productDetails?productNo=${list.productNo }"><span>상세보기</span></a>
 	                                        </div>
