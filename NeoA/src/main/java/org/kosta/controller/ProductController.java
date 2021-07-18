@@ -1,6 +1,7 @@
 package org.kosta.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -326,7 +327,8 @@ public class ProductController {
 	}
 	
     @RequestMapping(value = "/bid",method = RequestMethod.POST)
-    public String dataSend(HttpServletRequest request, Model model){
+    @ResponseBody
+    public List<String> dataSend(HttpServletRequest request){
     	System.out.println("AA");
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
@@ -336,11 +338,16 @@ public class ProductController {
     	BidLogVO bvo = new BidLogVO(Integer.parseInt(bidPrice),memberId,id);
     	productService.insertLog(bvo);
     	List<BidLogVO> bidList = productService.recentBids(id);
-    	model.addAttribute("bidList", bidList);
-  
+    	//model.addAttribute("recentThree", bidList);
+    	System.out.println("BB");
+    	List<String> list = new ArrayList<String>();
+    	for (int i=0;i<bidList.size();i++) {
+    		list.add(bidList.get(i).getMemberId()+" 님" +Integer.toString(bidList.get(i).getBidPrice()) + "원" );
+    		list.add(bidList.get(i).getBidTime());
+    	}
         //model.addAttribute("msg",dto.getResult()+"/ this is the value sent by the server ");
     	//model.addAttribute("productDetails", productService.getproductDetails("11"));
-        return "member/productDetails.tiles";
+        return list;
     }
     
 	
