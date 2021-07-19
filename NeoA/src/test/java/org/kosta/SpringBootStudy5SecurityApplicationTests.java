@@ -126,7 +126,20 @@ class SpringBootStudy5SecurityApplicationTests {
 		//productService.addPick("spring", "23");
 		
 		
-		System.out.println(productService.getQnAList("1"));
+		//System.out.println(productService.getQnAList("1"));
+		
+		//int totalPostCount = memberService.getMySellSucessCountById("kobos");
+		//System.out.println(totalPostCount);
+		
+		int totalPostCount = memberService.getMySellSucessCountById("kobos");
+		PagingBean pagingBean = new PagingBean(totalPostCount);
+		int startRowNumber = pagingBean.getStartRowNumber();
+		int endRowNumber = pagingBean.getEndRowNumber();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", "kobos");
+		map.put("startRowNumber", startRowNumber);
+		map.put("endRowNumber", endRowNumber);
+		System.out.println(memberService.getMySellSuccessList("kobos", pagingBean));
 		
 	}
 	

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <style>
 .center {
 	text-align: center;
@@ -41,7 +41,7 @@
 
 <main>
 	<!-- Hero Area Start-->
-<!-- 	<div class="slider-area ">
+	<!-- 	<div class="slider-area ">
 		<div class="single-slider slider-height2 d-flex align-items-center">
 			<div class="container">
 				<div class="row">
@@ -63,9 +63,11 @@
 					<!--Nav Button  -->
 					<nav>
 						<div class="nav nav-tabs" id="nav-tab" role="tablist">
-							<a class="nav-item nav-link active" id="nav-home-tab" href="${pageContext.request.contextPath}/mypage" role="tab" aria-controls="nav-home" aria-selected="true"> 판매 목록</a> 
-							<a class="nav-item nav-link" id="nav-profile-tab" href="${pageContext.request.contextPath}/myBidList" role="tab" aria-controls="nav-profile" aria-selected="false"> 입찰 목록</a> 
-							<a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypagePickList" role="tab" aria-controls="nav-contact" aria-selected="false"> pick 목록 </a> 
+							<a class="nav-item nav-link active" id="nav-home-tab" href="${pageContext.request.contextPath}/mypage" role="tab" aria-controls="nav-home" aria-selected="true"> 판매 목록</a>
+							<a class="nav-item nav-link" id="nav-profile-tab" href="${pageContext.request.contextPath}/myBidList" role="tab" aria-controls="nav-profile" aria-selected="false"> 입찰 목록</a>
+							<a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypagePickList" role="tab" aria-controls="nav-contact" aria-selected="false"> pick 목록 </a>
+							<a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypageSellSuccess" role="tab" aria-controls="nav-contact" aria-selected="false"> 판매 완료 목록 </a>
+							<a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypageBidSuccess" role="tab" aria-controls="nav-contact" aria-selected="false"> 입찰 성공 목록 </a>
 							<a class="nav-item nav-link" id="nav-contact-tab" href="${pageContext.request.contextPath}/mypageMyInfo" role="tab" aria-controls="nav-userInfo" aria-selected="false"> 나의 정보 </a>
 						</div>
 					</nav>
@@ -76,62 +78,62 @@
 				<!-- Select items -->
 			</div>
 
-			
-
 			<!-- Nav Card -->
 			<div class="tab-content" id="nav-tabContent">
 				<!-- card one -->
 				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 					<div class="row">
 						<c:forEach var="item" items="${list}">
-							
 							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 								<div class="single-popular-items mb-50 text-center">
-									<div class="popular-img" style="height:252.63px">
-						<!--------------확인용--------------------->
-									<%-- ${item } --%>
-						<!--------------------------------------->
-										<a href="/user/productDetails?productNo=${item.productNo }"><img style="height:240px; width: auto" src="/myweb/images/${item.productNo }/${item.postImage }" alt=""></a>
-										<div class="img-cap" >
-											<a href="/user/productDetails?productNo=${item.productNo }"><span>상세 보기</span></a>
+									<div class="popular-img" style="height: 252.63px">
+										<a href="/user/productDetails?productNo=${item.productNo }">
+											<img style="height: 240px; width: auto" src="/myweb/images/${item.productNo }/${item.postImage }" alt="">
+										</a>
+										<div class="img-cap">
+											<a href="/user/productDetails?productNo=${item.productNo }">
+												<span>상세 보기</span>
+											</a>
 										</div>
 									</div>
 									<div class="popular-caption">
 										<h3>
-											<a href="/user/productDetails?productNo=${item.productNo }"> <c:out value="${item.title}" /></a>
+											<a href="/user/productDetails?productNo=${item.productNo }">
+												<c:out value="${item.title}" />
+											</a>
 										</h3>
-										<span>시작가 <c:out value="${item.startPrice}" /></span> <span>현재가 <c:out value="${item.nowPrice}" /></span> <span>입찰자수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
+										<span>시작가 <c:out value="${item.startPrice}" /></span> <span>현재가 <c:out value="${item.nowPrice}" /></span> <span>총 입찰 수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
 										</span> <span id="${item.productNo}"> 남은시간 </span>
-										<script>
+										<c:choose>
+											<c:when test="${item.state eq 2}">
+												<script>
+													document.getElementById(${item.productNo}).innerHTML="남은시간 낙찰완료";
+											</script>
+											</c:when>
+											<c:otherwise>
+												<script>
+												function remainTime(){
 												var stDate = new Date().getTime();
 												var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
 												var RemainDate = edDate - stDate;
 												if(RemainDate<0){
-													document.getElementById(${item.productNo}).innerHTML= "만료";
+													document.getElementById(${item.productNo}).innerHTML= "경매시간 만료, 역경매 시작";
 												}else{
-												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
-												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
-												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
-												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
-												document.getElementById(${item.productNo}).innerHTML= "남은시간 " + m;
+													var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+													var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+													var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+													m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
+													document.getElementById(${item.productNo}).innerHTML="남은시간 " + m;
 												}
+											}
+											function startInterval(seconds, remainTime){
+												remainTime();
+												return setInterval(remainTime, seconds * 1000);
+											};
+											startInterval(1, remainTime);
 										</script>
-										<script>
-											var timer = setInterval(function(){
-												var stDate = new Date().getTime();
-												var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
-												var RemainDate = edDate - stDate;
-												if(RemainDate<0){
-													document.getElementById(${item.productNo}).innerHTML= "만료";
-												}else{
-												var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
-												var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
-												var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
-												m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
-												document.getElementById(${item.productNo}).innerHTML= "남은시간 " + m;
-												}
-											}, 1000);
-										</script>
+											</c:otherwise>
+										</c:choose>
 									</div>
 								</div>
 							</div>

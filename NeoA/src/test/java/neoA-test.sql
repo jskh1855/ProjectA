@@ -268,7 +268,56 @@ ALTER TABLE nick1 MODIFY (nickname VARCHAR2(50) GENERATED ALWAYS AS (ad || ' ' |
 select ad,noun, (ad+noun) as sum from nick1;
 
 
+select * from BID_LOG
+
+select count(*)
+from(
+select distinct product_no 
+from  bid_log
+where member_id='kobos')
 
 
+		
+		select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image, b.bid_no,b.bid_time,b.bid_price, b.member_id, b.product_no
+		from (
+		 		select row_number() over(ORDER BY bid_time DESC) as rnum, bid_no,to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price,member_id, product_no 
+		 		from  bid_log
+		 		) b, post p
+		where p.product_no=b.product_no AND b.member_id='kobos'
+		and rnum between '1' and '6'
+			
+		select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image, b.bid_time, b.product_no
+		from(
+			select row_number() over(ORDER BY bid_time DESC) as rnum, product_no, bid_time
+		 	from(	
+				select product_no, MAX(bid_time) as bid_time
+				from(
+					select bid_no,to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price,member_id, product_no 
+		 			from  bid_log where member_id='kobos'
+		 			)
+		 		group by product_no	
+		 		)
+		 	) b, post p
+		where p.product_no=b.product_no AND rnum between '1' and '6'
+		
+		select * from post
+		
+		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image, state
+		from (select row_number() over(ORDER BY product_no DESC) as rnum, state, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, 
+		bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
+		from post 
+		where member_id='kobos')
+		where rnum between '1' and '6' and state ='2'		
+		
+		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image, state
+		from (select row_number() over(ORDER BY product_no DESC) as rnum, state, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, 
+		bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
+		from post 
+		where member_id='kobos')
+		where rnum between '1' and '6' and state = '2'	
+		
+		select * from bid_log 
 
-
+		select bid_no, to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price, member_id
+		from bid_log
+		where bid_price=(SELECT max(bid_price) as bid_price FROM bid_log where product_no = '2');

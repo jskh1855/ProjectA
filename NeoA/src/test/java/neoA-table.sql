@@ -65,8 +65,11 @@ create table post(
 	detail clob,
 	post_image varchar2(100),
 	category varchar2(100),
+	state number DEFAULT '0' NOT NULL,
 	member_id varchar2(100) constraint fk_post references a_member(member_id) on delete cascade
 );
+alter table post drop column state
+ALTER TABLE post ADD(state number DEFAULT '0' NOT NULL); 
 create sequence product_no_seq;
 
 /*

@@ -30,4 +30,6 @@ public interface ProductService {
 	void insertLog(BidLogVO bvo);
 
 	List<BidLogVO> recentBids(String productNo);
+
+	void updateState(String productNo);
 }

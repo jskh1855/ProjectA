@@ -303,6 +303,14 @@ public class ProductController {
 		//System.out.println(list);
 		return list;
 	}
+	
+	@PostMapping("/complteBid")
+	public String completeBid(String productNo) {
+		//System.out.println("completebid");
+		//System.out.println(productNo);
+		productService.updateState(productNo);
+		return "redirect:user/productDetails?productNo="+productNo;
+	}
 
 	
 	@PostMapping("/updatePick")

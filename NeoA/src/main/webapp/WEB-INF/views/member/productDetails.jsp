@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -42,7 +42,15 @@ $(document).ready(function() {
 		});//ajax
 		document.getElementById("qnaContent").value='';
 	});//click
+	
 })//ready
+
+function complete(){
+	if(confirm("낙찰 진행 하시겠습니까?")){
+		//alert("진행");
+		document.getElementById("complteBid").submit();
+	}
+}
 
 <%--답변하기, 답변하기 form 을 동적 생성했더니 $(document).ready(function() 에선 작동 안함--%>	
 function registerAnswer(qnaNo){
@@ -121,6 +129,11 @@ function showQnAList(qna){
 	$("#QnAListSize").html("QnA ["+qna.length+"]");
 }
 
+function showBig(val) {
+		var obj = document.getElementById("big");
+		 obj.src = "/myweb/images/${productDetails.productNo }/" + val;
+} 
+
 function startBid(id,unit) {
 	var price = document.getElementById("bidPrice").value;
 	console.log("1111");
@@ -181,6 +194,7 @@ $(document).on("click", "#pick-switch-range", function() {
 });
 </script>
 <main>
+
 	<input type="hidden" id="productNo" value="${productDetails.productNo }"> <input type="hidden" id="memberId"
 		value="${productDetails.memberVO.memberId }">
 	<!-- Hero Area Start-->
@@ -208,18 +222,27 @@ $(document).on("click", "#pick-switch-range", function() {
 							<img class="img-fluid" src="assets/img/gallery/popular3.png" alt="" style="width: 300px;">
 						</div>
 						<%--제품 사진 보여주기 --%>
-						<c:forEach var="image" items="${imagesList }"><img src="/myweb/images/${productDetails.productNo }/${image }"></c:forEach>
+
+						<%--<c:forEach var="image" items="${imagesList }">
+							<img src="/myweb/images/${productDetails.productNo }/${image }">
+						</c:forEach>--%>
+						<img src="/myweb/images/${productDetails.productNo }/${productDetails.postImage}" height="500" id="big" /><br> <br>
+						<c:forEach var="image" items="${imagesList }">
+							<img src="/myweb/images/${productDetails.productNo }/${image }" height="130" onmouseover="showBig('${image }');">
+						</c:forEach>
+
 						<div class="blog_details">
 							<%--제목 --%>
 							<h2>${productDetails.title }</h2>
 							<br>
 							<%--내용 --%>
-							<div style="white-space:pre;"><c:out value="${productDetails.detail}" /></div>
+							<div style="white-space: pre;">
+								<c:out value="${productDetails.detail}" />
+							</div>
 							<%-- <textarea rows="7" cols="7">${fn:replace(productDetails.detail,br,cn)}</textarea> --%>
 						</div>
 					</div>
-					<br>
-					<br>
+					<br> <br>
 					<%--Qna 시작 --%>
 					<sec:authorize access="isAuthenticated()">
 						<h4 id="QnAListSize">QnA</h4>
@@ -271,30 +294,71 @@ $(document).on("click", "#pick-switch-range", function() {
 				</div>
 				<div class="col-lg-4">
 					<div class="blog_right_sidebar">
-						<%--입찰하기 --%>
-						<div class="add_to_cart">
-							<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice"> 원으로 <a href="#" class="btn_3"
-								onclick="startBid(${productDetails.productNo},${productDetails.unitPrice})">입찰하기</a>
-						</div>
+
+						<c:choose>
+							<c:when test="${productDetails.state eq 0}">
+								<sec:authorize access="isAuthenticated()">
+									<sec:authentication property="principal.memberId" var="currMemberId" />
+									<c:choose>
+										<c:when test="${currMemberId eq productDetails.memberVO.memberId }">
+											<div class="add_to_cart">
+												<form action="${pageContext.request.contextPath}/complteBid" id="complteBid" method="post">
+													<sec:csrfInput />
+													<input type="hidden" name="productNo" value="${productDetails.productNo}"> <a href="#" style="width: 100%; text-align: center" class="btn_3" onclick="complete()">현재가격으로
+														낙찰하기</a>
+												</form>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<%--입찰하기 --%>
+											<div class="add_to_cart">
+												<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice"> 원으로 <a href="#"
+													class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}); return false;">입찰하기</a>
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+									<div class="add_to_cart">
+										<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice" disabled> 원으로 <a href="#"
+											class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}); return false;"
+											style="color: white; background-color: #808080" disabled>로그인 후 입찰</a>
+									</div>
+								</sec:authorize>
+							</c:when>
+							<c:when test="${productDetails.state eq 1}">
+
+							</c:when>
+							<c:when test="${productDetails.state eq 2}">
+								<div class="add_to_cart">
+									<a href="#" class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}); return false;"
+										style="color: white; background-color: red; width: 100%; text-align: center; border-color: red" disabled>낙찰 완료</a>
+								</div>
+							</c:when>
+						</c:choose>
+
+
 						<%--제품 정보들 --%>
 						<aside class="single_sidebar_widget post_category_widget">
-						 <!-- 하트 로그인 유저만 -->
-	                                        <sec:authorize access="isAuthenticated()">
-		                                        <div class="favorit-items" style="font-size: 30px;" align="right">
-		                                        	<span id="pick-switch-range">
-			                                        	<c:choose>
-			                                        		<c:when test="${productDetails.pickVO.memberId != null}">
-					                                            	<a id="pick-switch" value="${productDetails.productNo}"><span class="fas fa-heart" style="color: red;"/></a>
-			                                        		</c:when>
-			                                        		<c:otherwise>
-		                                        					<a id="pick-switch" value="${productDetails.productNo}"><span class="far fa-heart"/></a>
-			                                        		</c:otherwise>
-			                                        	</c:choose>
-		                                        	</span>
-		                                   		</div>
-	                                        </sec:authorize>
+							<!-- 하트 로그인 유저만 -->
+							<sec:authorize access="isAuthenticated()">
+								<div class="favorit-items" style="font-size: 30px;" align="right">
+									<span id="pick-switch-range"> <c:choose>
+											<c:when test="${productDetails.pickVO.memberId != null}">
+												<a id="pick-switch" value="${productDetails.productNo}"><span class="fas fa-heart" style="color: red;" /></a>
+											</c:when>
+											<c:otherwise>
+												<a id="pick-switch" value="${productDetails.productNo}"><span class="far fa-heart" /></a>
+											</c:otherwise>
+										</c:choose>
+									</span>
+								</div>
+							</sec:authorize>
 							<%--현재가격 --%>
-							<h4 class="widget_title">현재가격 <div id="nowPrice">${productDetails.nowPrice }</div></h4>
+							<h4 class="widget_title">
+								현재가격
+								<div id="nowPrice">${productDetails.nowPrice }</div>
+							</h4>
 							<%--기타 정보들 --%>
 							<ul class="list cat-list">
 								<li><a href="#" class="d-flex">
@@ -316,7 +380,13 @@ $(document).on("click", "#pick-switch-range", function() {
 								<li><a href="#" class="d-flex">
 										<p>남은 시간&nbsp&nbsp&nbsp</p>
 										<p id="remainTime"></p>
-										<script>
+										 <c:choose>
+											<c:when test="${productDetails.state eq 2}">
+												낙찰완료
+											</c:when>
+											<c:otherwise>
+
+												<script>
 											function remainTime(){
 												var stDate = new Date().getTime();
 												var edDate = new Date("${productDetails.bidEndTime}").getTime(); // 종료날짜
@@ -337,10 +407,12 @@ $(document).on("click", "#pick-switch-range", function() {
 											};
 											startInterval(1, remainTime);
 										</script>
+											</c:otherwise>
+										</c:choose>
 								</a></li>
 								<li><a href="#" class="d-flex">
-										<p>총 입찰자 수:&nbsp&nbsp&nbsp</p>
-										<fmt:parseNumber var="numBid" integerOnly="true" value="${(productDetails.nowPrice-productDetails.startPrice)/productDetails.unitPrice }"/>
+										<p>총 입찰 수:&nbsp&nbsp&nbsp</p> <fmt:parseNumber var="numBid" integerOnly="true"
+											value="${(productDetails.nowPrice-productDetails.startPrice)/productDetails.unitPrice }" />
 										<div id="numBid">${numBid}</div>명
 								</a></li>
 							</ul>
@@ -348,41 +420,41 @@ $(document).on("click", "#pick-switch-range", function() {
 						<aside class="single_sidebar_widget popular_post_widget">
 							<h3 class="widget_title">최근 입찰 내역</h3>
 							<div class="media post_item">
-<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
+								<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
 								<div class="media-body">
-<!-- 									<a href="single-blog.html"> -->
-										<h3  id="recentOne">${recentThree[0].memberId} 님 ${recentThree[0].bidPrice}원</h3>
-<!-- 									</a> -->
+									<!-- 									<a href="single-blog.html"> -->
+									<h3 id="recentOne">${recentThree[0].memberId}님${recentThree[0].bidPrice}원</h3>
+									<!-- 									</a> -->
 									<p id="timeOne">${recentThree[0].bidTime}</p>
 								</div>
 							</div>
 							<div class="media post_item">
-<!-- 								<img src="assets/img/post/post_2.png" alt="post"> -->
-								<div class="media-body" >
-<!-- 									<a href="single-blog.html"> -->
-										<h3 id="recentTwo">${recentThree[1].memberId} 님 ${recentThree[1].bidPrice}원</h3>
-<!-- 									</a> -->
+								<!-- 								<img src="assets/img/post/post_2.png" alt="post"> -->
+								<div class="media-body">
+									<!-- 									<a href="single-blog.html"> -->
+									<h3 id="recentTwo">${recentThree[1].memberId}님${recentThree[1].bidPrice}원</h3>
+									<!-- 									</a> -->
 									<p id="timeTwo">${recentThree[1].bidTime}</p>
 								</div>
 							</div>
 							<div class="media post_item">
-<!-- 								<img src="assets/img/post/post_3.png" alt="post"> -->
+								<!-- 								<img src="assets/img/post/post_3.png" alt="post"> -->
 								<div class="media-body">
-<!-- 									<a href="single-blog.html"> -->
-										<h3  id="recentThree">${recentThree[2].memberId} 님 ${recentThree[2].bidPrice}원</h3>
-<!-- 									</a> -->
+									<!-- 									<a href="single-blog.html"> -->
+									<h3 id="recentThree">${recentThree[2].memberId}님${recentThree[2].bidPrice}원</h3>
+									<!-- 									</a> -->
 									<p id="timeThree">${recentThree[2].bidTime}</p>
 								</div>
 							</div>
-<!-- 							<div class="media post_item"> -->
-<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
-<!-- 								<div class="media-body"> -->
-<!-- 									<a href="single-blog.html"> -->
-<!-- 										<h3>A 님 10000원</h3> -->
-<!-- 									</a> -->
-<!-- 									<p>01 Hours ago</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
+							<!-- 							<div class="media post_item"> -->
+							<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
+							<!-- 								<div class="media-body"> -->
+							<!-- 									<a href="single-blog.html"> -->
+							<!-- 										<h3>A 님 10000원</h3> -->
+							<!-- 									</a> -->
+							<!-- 									<p>01 Hours ago</p> -->
+							<!-- 								</div> -->
+							<!-- 							</div> -->
 						</aside>
 						<aside class="single_sidebar_widget tag_cloud_widget">
 							<h4 class="widget_title">판매자 신용도</h4>

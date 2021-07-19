@@ -17,15 +17,18 @@ public class PostVO {
 	private String bidEndTime;
 	private MemberVO memberVO;
 	private String category;
-	//private QnAVO qnaVO;
+	// private QnAVO qnaVO;
 	private PickVO pickVO;
-	private List<BidLogVO> bidLogVOList;
+	private String state;
+	private List<BidLogVO> BidLogVOList;
 	public PostVO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 	public PostVO(String title, String productNo, String productName, int startPrice, int nowPrice,
 			String productUpTime, int unitPrice, int giveMeThatPrice, String detail, String postImage, int bidTimeUnit,
-			String bidEndTime, MemberVO memberVO, String category, PickVO pickVO, List<BidLogVO> bidLogVOList) {
+			String bidEndTime, MemberVO memberVO, String category, PickVO pickVO, String state,
+			List<BidLogVO> bidLogVOList) {
 		super();
 		this.title = title;
 		this.productNo = productNo;
@@ -42,7 +45,8 @@ public class PostVO {
 		this.memberVO = memberVO;
 		this.category = category;
 		this.pickVO = pickVO;
-		this.bidLogVOList = bidLogVOList;
+		this.state = state;
+		BidLogVOList = bidLogVOList;
 	}
 	public String getTitle() {
 		return title;
@@ -134,11 +138,17 @@ public class PostVO {
 	public void setPickVO(PickVO pickVO) {
 		this.pickVO = pickVO;
 	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	public List<BidLogVO> getBidLogVOList() {
-		return bidLogVOList;
+		return BidLogVOList;
 	}
 	public void setBidLogVOList(List<BidLogVO> bidLogVOList) {
-		this.bidLogVOList = bidLogVOList;
+		BidLogVOList = bidLogVOList;
 	}
 	@Override
 	public String toString() {
@@ -146,8 +156,8 @@ public class PostVO {
 				+ startPrice + ", nowPrice=" + nowPrice + ", productUpTime=" + productUpTime + ", unitPrice="
 				+ unitPrice + ", giveMeThatPrice=" + giveMeThatPrice + ", detail=" + detail + ", postImage=" + postImage
 				+ ", bidTimeUnit=" + bidTimeUnit + ", bidEndTime=" + bidEndTime + ", memberVO=" + memberVO
-				+ ", category=" + category + ", pickVO=" + pickVO + ", bidLogVOList=" + bidLogVOList + "]";
+				+ ", category=" + category + ", pickVO=" + pickVO + ", state=" + state + ", BidLogVOList="
+				+ BidLogVOList + "]";
 	}
 
-	
 }

@@ -45,8 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getSellProductListById" parameterType="map" resultType="postVO">
-		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image
-		from (select row_number() over(ORDER BY product_no DESC) as rnum, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
+		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image, state
+		from (select row_number() over(ORDER BY product_no DESC) as rnum, state, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
 		from post 
 		where member_id=#{id})
 		where rnum between #{startRowNumber} and #{endRowNumber}
@@ -54,26 +54,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getTotalBidProductCountById" resultType="int">
 		select count(*)
+		from(
+		select distinct product_no 
 		from  bid_log
-		where member_id=#{value}
+		where member_id=#{value})
 	</select>
 	
 	<select id="getBidProductListById" parameterType="map" resultType="postVO">
-		select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image,
+	<!--	select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image,
 		b.bid_no,b.bid_time,b.bid_price, b.member_id, b.product_no
-	from 
+		from 
 		 		(select row_number() over(ORDER BY bid_time DESC) as rnum,
 		 		bid_no,to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price,member_id,product_no 
 		 		from  bid_log) b, post p
 		where p.product_no=b.product_no AND b.member_id=#{id}
-		and rnum between #{startRowNumber} and #{endRowNumber}
-		
+		and rnum between #{startRowNumber} and #{endRowNumber} -->
+		select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image, b.bid_time, b.product_no
+		from(
+			select row_number() over(ORDER BY bid_time DESC) as rnum, product_no, bid_time
+		 	from(	
+				select product_no, MAX(bid_time) as bid_time
+				from(
+					select bid_no,to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price,member_id, product_no 
+		 			from  bid_log where member_id=#{id}
+		 			)
+		 		group by product_no	
+		 		)
+		 	) b, post p
+		where p.product_no=b.product_no AND rnum between #{startRowNumber} and #{endRowNumber}
 	</select>
 
 	<select id="getBidCountByProductNo" resultType="bidLogVO">
 		select bid_no, to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price, member_id
 		from bid_log
 		where product_no = #{value}
+	</select>
+	
+	<select id="getBidHighestByProductNo" resultType="bidLogVO">
+		select bid_no, to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price, member_id
+		from bid_log
+		where bid_price=(SELECT max(bid_price) as bid_price FROM bid_log where product_no = #{value})
 	</select>
 	
 	<select id="getTotalPickProductCountById" resultType="int">
@@ -101,4 +121,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from a_member
 		where member_id=#{value}
 	</delete>
+	
+	<select id="getMyBidProductList" resultType="string">
+		select distinct product_no 
+		from  bid_log
+		where member_id=#{value}
+	</select>
+	
+	<select id="getMemberVOByProductNo" resultType="memberVO">
+		select member_id
+		from post
+		where product_no=#{value}
+	</select>
+	
+	<select id="getMySellSuccessList" parameterType="map" resultType="postVO">
+		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image, state
+		from (select row_number() over(ORDER BY product_no DESC) as rnum, state, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, 
+		bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
+		from post 
+		where member_id=#{id})
+		where rnum between #{startRowNumber} and #{endRowNumber} and state ='2'
+	</select>
+	
+	<select id="getMySellSucessCountById" resultType="int">
+		select count(*)
+		from post
+		where member_id=#{id} and state='2'
+	</select>
+	
 </mapper>

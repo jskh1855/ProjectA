@@ -45,12 +45,11 @@ public class MemberController {
 		mv.addObject("id", vo.getMemberId());
 		mv.addObject("name", vo.getName());
 		mv.addObject("address", vo.getAddress());
-		mv.addObject("phone",vo.getPhoneNo());
+		mv.addObject("phone", vo.getPhoneNo());
 		mv.setViewName("member/register_result.tiles");
 		/*
-		 * model.addAttribute("memberVO", vo);
-		 * 	return "member/register_result.tiles";
-		 */	
+		 * model.addAttribute("memberVO", vo); return "member/register_result.tiles";
+		 */
 		return mv;
 	}
 
@@ -120,7 +119,6 @@ public class MemberController {
 	public String myBidList(Model model, @RequestParam("pageNo") @Nullable String pageNo) {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = memberVO.getMemberId();
-
 		int totalPostCount = memberService.getTotalBidProductCountById(id);
 		PagingBean pagingBean = null;
 		if (pageNo == null) {
@@ -133,7 +131,7 @@ public class MemberController {
 		List<PostVO> list = memberService.getBidProductListById(id, pagingBean);
 		// System.out.println(list);
 		model.addAttribute("list", list);
-
+		// System.out.println(list.size());
 		return "member/mypage_bid_list.tiles";
 	}
 
@@ -202,4 +200,34 @@ public class MemberController {
 
 		return "member/deleteMemberResult.tiles";
 	}
+
+	@RequestMapping("/mypageSellSuccess")
+	public String mypageSellSuccess(Model model, @RequestParam("pageNo") @Nullable String pageNo) {
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String memberId = memberVO.getMemberId();
+		int totalPostCount = memberService.getMySellSucessCountById(memberId);
+		PagingBean pagingBean = null;
+		if (pageNo == null) {
+			pagingBean = new PagingBean(totalPostCount);
+		} else {
+			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
+		}
+		model.addAttribute("pagingBean", pagingBean);
+		List<PostVO> list = memberService.getMySellSuccessList(memberId, pagingBean);
+		model.addAttribute("list", list);
+		MemberVO buyerMemberVO = null;
+		for(int i=0; i<list.size();i++) {
+			buyerMemberVO = memberService.findMemberById(list.get(i).getBidLogVOList().get(0).getMemberId());
+		}
+		model.addAttribute("buyerMemberVO", buyerMemberVO);
+		return "member/mypageSellSuccess.tiles";
+
+	}
+
+	@RequestMapping("/mypageBidSuccess")
+	public String mypageBidSuccess(Model model) {
+		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return "member/mypageBidSuccess.tiles";
+	}
+
 }

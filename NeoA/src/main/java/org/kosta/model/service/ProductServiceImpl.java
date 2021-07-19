@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
 import org.kosta.model.vo.BidLogVO;
+import org.kosta.model.vo.MemberVO;
 import org.kosta.model.vo.PostVO;
 import org.kosta.model.vo.QnAVO;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,8 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public PostVO getproductDetails(String productNo) {
 		PostVO postVO = postMapper.getproductDetails(productNo);
+		MemberVO memberVO = memberMapper.getMemberVOByProductNo(productNo);
+		postVO.setMemberVO(memberVO);
 		return postVO;
 	}
 
@@ -109,5 +112,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<BidLogVO> recentBids(String productNo){
 		return postMapper.recentBids(productNo);
+	}
+
+
+	@Override
+	public void updateState(String productNo) {
+		postMapper.updateState(productNo);		
 	}
 }

@@ -41,5 +41,14 @@ public interface MemberMapper {
 	
 	MemberVO deleteMember(String memberId);
 	
+	List<String> getMyBidProductList(String memberId);
+
+	MemberVO getMemberVOByProductNo(String productNo);
+
+	List<PostVO> getMySellSuccessList(HashMap<String, Object> map);
+
+	int getMySellSucessCountById(String memberId);
+
+	List<BidLogVO> getBidHighestByProductNo(String productNo);
 }
 

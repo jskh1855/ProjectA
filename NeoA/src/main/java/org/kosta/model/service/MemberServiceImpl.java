@@ -90,6 +90,8 @@ public class MemberServiceImpl implements MemberService {
 		int startRowNumber = pagingBean.getStartRowNumber();
 		int endRowNumber = pagingBean.getEndRowNumber();
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		//List<String> myBidProductList= memberMapper.getMyBidProductList(id);
+		//System.out.println(myBidProductList);
 		map.put("id", id);
 		map.put("startRowNumber", startRowNumber);
 		map.put("endRowNumber", endRowNumber);
@@ -140,6 +142,28 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void deleteMember(String memberId) {
 		memberMapper.deleteMember(memberId);
+	}
+
+	@Override
+	public List<PostVO> getMySellSuccessList(String memberId, PagingBean pagingBean) {
+		int startRowNumber = pagingBean.getStartRowNumber();
+		int endRowNumber = pagingBean.getEndRowNumber();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", memberId);
+		map.put("startRowNumber", startRowNumber);
+		map.put("endRowNumber", endRowNumber);
+		List<PostVO> postlist = memberMapper.getMySellSuccessList(map);
+		for (int i = 0; i < postlist.size(); i++) {
+			String productNo = postlist.get(i).getProductNo();
+			List<BidLogVO> bidList = memberMapper.getBidHighestByProductNo(productNo);
+			postlist.get(i).setBidLogVOList(bidList);
+		}
+		return postlist;
+	}
+
+	@Override
+	public int getMySellSucessCountById(String memberId) {
+		return memberMapper.getMySellSucessCountById(memberId);
 	}
 
 	
