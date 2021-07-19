@@ -27,11 +27,12 @@
                         </div>
                     </div>
                 </div>
+            
                 <!-- Single Slider -->
                 <div class="single-slider slider-height d-flex align-items-center slide-bg">
                     <div class="container">
                         <div class="row justify-content-between align-items-center">
-                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                            <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7">
                                 <div class="hero__caption">
                                     <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">Keep in touch with your a_uction</h1>
                                     <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">조심하세요, 순간의 방심으로 당신 물건은 남에게 돌아갈지도..? </p>
@@ -41,31 +42,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-5 col-md-8 col-sm-8 d-none d-sm-block">
+                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
                                 <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-                                    <img src="${pageContext.request.contextPath}/myweb/assets/img/jhk/auction2.png" alt="" class=" heartbeat">
+                                    <img src="${pageContext.request.contextPath}/myweb/assets/img/jhk/auction2.png" alt="" class=" heartbeat" width="400px" height="100px">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+            
             </div>
-        </div>
-        
-        
-        <%-- 전체 목록 출력을 위한 테스트 by jaehoon --%>
-        <hr>
-        <div>
-       		<form action="${pageContext.request.contextPath}/user/showAll" method="get">
-       			<button type="submit" style="color: black">전체목록보기</button>		
-       		</form>
-       		
-       		<a href="${pageContext.request.contextPath}/user/showAll" style="color: black">전체목록보기2</a>
-        </div>
-        <hr>
-        <!-- 이미지 업로드 테스트  -->
-        <div >
-        	<a href="${pageContext.request.contextPath}/productUpload" style="color: black">이미지업로드</a>
         </div>
         
         

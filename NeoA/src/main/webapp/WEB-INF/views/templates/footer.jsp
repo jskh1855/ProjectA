@@ -15,7 +15,7 @@
 									src="assets/img/logo/logo2_footer.png" alt=""></a>
 							</div>
 <!-- 							<div style="font: italic;"></div>
- -->							<div id="map" style="width: 400px; height: 300px; border: solid;"></div>
+ -->							<div id="map" style="width: 300px; height: 300px; border: solid;"></div>
 							<script type="text/javascript"
 								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59a14a97db6460297c9b90217b7b1059"></script>
 							<script type="text/javascript">
