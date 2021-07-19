@@ -77,7 +77,7 @@
 				<div class="grid-list-view"></div>
 				<!-- Select items -->
 			</div>
-	${list}<br>${buyerMemberVO }
+	<!--  ${list}<br>${buyerMemberVO }-->
 			<!-- Nav Card -->
 			<div class="tab-content" id="nav-tabContent">
 				<!-- card one -->
