@@ -11,11 +11,11 @@
 
 	</style>
 <script type="text/javascript">
-var str = $("#textarea").val();
+// var str = $("#textarea").val();
 
-str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
+// str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
 
-$("#text").html(str);
+// $("#text").html(str);
 
 
 
