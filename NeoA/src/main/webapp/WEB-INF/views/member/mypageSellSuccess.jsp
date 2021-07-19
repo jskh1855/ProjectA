@@ -104,9 +104,11 @@
 										</h3>
 										<span>낙찰가 <c:out value="${item.nowPrice}" /></span> 
 										<span>총 입찰 수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명				</span> 
-										<span> 구매자 성명 ${buyerMemberVO.name } </span>
-										<span> 구매자 연락처 ${buyerMemberVO.phoneNo }</span>
-										<span> 구매자 주소 ${buyerMemberVO.address }</span>
+										<div style="background-color: #ed6f63;">
+											<span style="color: white">구매자 성명 : ${buyerMemberVO.name } </span>
+											<span style="color: white">구매자 연락처 : ${buyerMemberVO.phoneNo }</span>
+											<span style="color: white">구매자 주소 : ${buyerMemberVO.address }</span>
+										</div>
 									</div>
 								</div>
 							</div>
