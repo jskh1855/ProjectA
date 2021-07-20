@@ -169,6 +169,11 @@ commit
 
 update post set now_price = now_price + unit_price where product_no ='2';
 
+
+update post set now_price = now_price + unit_price where product_no ='2';
+
+
+
 insert into a_authorities(username,authority) values('java','ROLE_MEMBER');
 
 -- **************************************

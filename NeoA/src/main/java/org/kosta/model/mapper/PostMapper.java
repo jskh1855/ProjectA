@@ -42,7 +42,7 @@ public interface PostMapper {
 	
 	PickVO deletePick(String pickNo);
 	
-	void bid(String id);
+	void bid(HashMap<String, String> map);
 	
 	void insertLog(BidLogVO bvo);
 

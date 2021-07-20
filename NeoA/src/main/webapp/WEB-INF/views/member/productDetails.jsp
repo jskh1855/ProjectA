@@ -146,12 +146,12 @@ function startBid(id,unit,nego) {
 	var price = null;
 	
 	if(nego == 0){
-		alert("네고");
+		//alert("네고");
 		price = document.getElementById("negoPrice").value;
 		alert(price);
 	}else if(nego == 1){
 		price = document.getElementById("bidPrice").value;
-		alert("실행되나?")
+		//alert("실행되나?")
 	}
 	
 	console.log("1111");
@@ -383,7 +383,7 @@ $(document).on("click", "#pick-switch-range", function() {
 													<c:when test="${endDate <= nowDate}">
 															<!-- 기간지남  -->			
 															<input type="text" value="" size="12" id="negoPrice"> 원으로
-															<a href="#" class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice},0); return false;">제시하기</a>
+															<a href="#" class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice},0); return false;">제시하기</a><br>
 															<span id="negoCheck"></span>
 													</c:when>
 													<c:otherwise>

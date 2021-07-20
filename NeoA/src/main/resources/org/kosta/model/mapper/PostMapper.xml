@@ -140,10 +140,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-	<update id="bid" parameterType="string">
-		update post set now_price =
-		now_price + unit_price
-		where product_no =#{value}
+	<update id="bid" parameterType="hashmap">
+		update post set now_price = #{bidPrice}
+		where product_no = #{id}
 	</update>
 
 	<insert id="insertLog" parameterType="bidLogVO">

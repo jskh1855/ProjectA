@@ -86,8 +86,8 @@ public class ProductServiceImpl implements ProductService {
 
 	
 	@Override
-	public void bid(String id){
-		postMapper.bid(id);
+	public void bid(HashMap<String, String> map){
+		postMapper.bid(map);
 	}
 	
 	@Override

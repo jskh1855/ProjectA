@@ -355,9 +355,14 @@ public class ProductController {
     	System.out.println("AA");
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
-    	String id = request.getParameter("id");
-    	String bidPrice = request.getParameter("bidPrice");
-    	productService.bid(id);
+		String id = request.getParameter("id");
+		String bidPrice = request.getParameter("bidPrice");
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("bidPrice", bidPrice);
+		productService.bid(map);
+    	
     	BidLogVO bvo = new BidLogVO(Integer.parseInt(bidPrice),memberId,id);
     	productService.insertLog(bvo);
     	List<BidLogVO> bidList = productService.recentBids(id);
