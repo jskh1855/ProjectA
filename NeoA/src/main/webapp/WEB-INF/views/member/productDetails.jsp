@@ -382,13 +382,13 @@ $(document).on("click", "#pick-switch-range", function() {
 													<c:when test="${endDate <= nowDate}">
 															<!-- 기간지남  -->			
 															<input type="text" value="" size="12" id="negoPrice"> 원으로
-															<a href="#" class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice},0); return false;">제시하기</a><br>
+															<a href="#" class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice},'0'); return false;">제시하기</a><br>
 															<span id="negoCheck"></span>
 													</c:when>
 													<c:otherwise>
 															<!-- 기간 안지남 -->
 															<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice"> 원으로 
-															<a href="#"	class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice},1); return false;">입찰하기</a>
+															<a href="#"	class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice},'1'); return false;">입찰하기</a>
 													</c:otherwise>
 												</c:choose>
 																							
@@ -399,7 +399,7 @@ $(document).on("click", "#pick-switch-range", function() {
 								<sec:authorize access="isAnonymous()">
 									<div class="add_to_cart">
 										<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice" disabled style = "text-align:right;"> 원으로 <a href="#"
-											class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}); return false;"
+											class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice},1); return false;"
 											style="color: white; background-color: #808080" disabled>로그인 후 입찰</a>
 									</div>
 								</sec:authorize>
@@ -409,7 +409,7 @@ $(document).on("click", "#pick-switch-range", function() {
 							</c:when>
 							<c:when test="${productDetails.state eq 2}">
 								<div class="add_to_cart">
-									<a href="#" class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}); return false;"
+									<a href="#" class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice},1); return false;"
 										style="color: white; background-color: red; width: 100%; text-align: center; border-color: red" disabled>낙찰 완료</a>
 								</div>
 							</c:when>
