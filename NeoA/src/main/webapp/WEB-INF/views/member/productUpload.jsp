@@ -69,13 +69,13 @@ $(function() {
 		<sec:csrfInput />
 
 		<br>
-		 		<select id="productSelect" name = "top">
+		 		<select id="productSelect" name = "top" style="font-style: oblique;">
 				   <option value="0" selected="selected">대분류 선택</option>
 				   <option value="전자제품">전자제품</option>
 				   <option value="패션">패션</option>
 				   <option value="책">책</option>
 				</select>
-				<select id="mallSelect" name = "mid">
+				<select id="mallSelect" name = "mid"style="font-style: oblique;">
 				   <option value="0">중분류 선택</option>
 				   <option value="스마트폰" class="mall전자제품">스마트폰</option>
 				   <option value="컴퓨터" class="mall전자제품">컴퓨터</option>
@@ -93,34 +93,32 @@ $(function() {
 		<br>
 
 		<hr>
-		<h3>물품정보</h3>
+		<h2 style="color: #a0a0a0">물품정보</h2>
 		<hr>
 		<br>
 		<table>
 
 			<tr>
 				<div>
-				<th><label for ="title">물품 제목</label></th>
-				<td><input type="text" id="title" name="title"></td>
+				<th><label for ="title" style="margin-right: 30px; font-size: large; font-style: italic;">물품 제목</label></th>
+				<td><input type="text" style="margin-right: 30px; font-size: large; font-style: italic;"id="title" name="title" ></td>
+				
+				
+				<th><label for ="productName" style="margin-right: 30px; font-size: large; font-style: italic;">물품명</label></th>
+				<td><input type="text" style="margin-right: 30px; font-size: large; font-style: italic;" id="productName" name="productName"></td>
 				</div>
 			</tr>
 			<tr>
 				<div>
-				<th><label for ="productName">물품명</label></th>
-				<td><input type="text" id="productName" name="productName"></td>
+				<th><label for ="detail"style="margin-right: 30px; font-size: large; font-style: italic;">물품 설명</label></th>
+				<td><textarea name="detail" style="margin-right: 30px; font-size: large; font-style: italic;"id="detail" cols="45" rows="10">상품정보 입력</textarea></td>
 				</div>
 			</tr>
 			<tr>
-				<div>
-				<th><label for ="detail">물품 설명</label></th>
-				<td><textarea name="detail" id="detail" cols="45" rows="10">상품정보 입력</textarea></td>
-				</div>
-			</tr>
-			<tr>
-				<th>이미지 등록</th>
+				<th style="margin-right: 30px; font-size: large; font-style: italic;">이미지 등록</th>
 				<td>
 					<div class="inputArea">
-						<label for="postImage">이 사진이 썸네일로 지정됩니다!</label><br> 
+						<label for="postImage" style="font-style: italic;font-size: large;">이 사진이 썸네일로 지정됩니다!</label><br> 
 						<input type="file" id="postImage"
 							name="filename" multiple="multiple" />
 						<div class="select_img">
@@ -147,20 +145,23 @@ $(function() {
 
 		<br> <br>
 		<hr>
-		<h3>경매정보</h3>
+		<h2 style="color: #a0a0a0">경매정보</h2>
 		<hr>
 		<br>
 		<table>
 			<tr>
-				<div>
-				<th><label for ="startPrice">시작가</label></th>
-				<td><input type="text" id="startPrice" name="startPrice"></td>
+				<div >
+				<th><label for ="startPrice" style="margin-right: 30px; font-size: large; font-style: italic;">시작가</label></th>
+				<td ><input type="text" style="margin-right: 30px;font-size: large; font-style: italic;" id="startPrice" name="startPrice"></td>
+				
+				<th><label for ="giveMeThatPrice"  style="margin-right: 30px;font-size: large; font-style: italic;">즉시구매가격</label></th>
+				<td><input type="number"style="margin-right: 30px; font-size: large; font-style: italic;" id="giveMeThatPrice" name="giveMeThatPrice"></td>
 				</div>
 			</tr>
 			<tr>
-				<div>
-				<th><label for ="unitPrice">입찰단위</label></th>
-				<td><select name="unitPrice" id ="unitPrice" size="6" multiple>
+				<div >
+				<th><label for ="unitPrice" style="margin-top: 50px; font-size: large; font-style: italic;">입찰단위</label></th>
+				<td><select name="unitPrice" style="margin-top: 50px; font-family: fantasy;" id ="unitPrice" size="6" multiple>
 						<option value="100" />100원
 						<option value="500" />500원
 						<option value="1000" />1000원
@@ -169,11 +170,9 @@ $(function() {
 						<option value="500000" /> 500000원
 				</select></td>
 				</div>
-			</tr>
-			<tr>
 				<div>
-				<th><label for ="bidTimeUnit" >경매기간</th>
-				<td><select name="bidTimeUnit" id = "bidTimeUnit" size="6" multiple>
+				<th><label for ="bidTimeUnit" style="margin-top: 50px;font-size: large; font-style: italic;">경매기간</th>
+				<td><select name="bidTimeUnit" style="margin-top: 50px; font-style: oblique;" id = "bidTimeUnit" size="6" multiple>
 						<option value="1" />1일
 						<option value="2" />2일
 						<option value="3" />3일
@@ -182,14 +181,14 @@ $(function() {
 						<option value="7" />7일
 				</select></td>
 				</div>
-				<div>
-				<th><label for ="giveMeThatPrice" >즉시구매가격</label></th>
-				<td><input type="number" id="giveMeThatPrice" name="giveMeThatPrice"></td>
-				</div>
-			</tr>
 				
+			</tr>
+			
 		</table>
-		<input type="submit" value="등록" />
+	
+			<div align="center" style="margin-top: 50px;">
+							<button  type="submit"class="button button-contactForm btn_1 boxed-btn" style="font-size: large;" >상품등록</button>
+			</div>
 	</form>
 </div>
 

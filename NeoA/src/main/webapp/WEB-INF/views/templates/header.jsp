@@ -87,7 +87,7 @@
 											<li><a href="https://blog.naver.com/sandeoduk">대월벌꿀
 													짱</a></li>
 										</ul></li>
-									<li><a href="#">Pages</a>
+									<li>
 										<ul class="submenu">
 											<li><a
 												href="${pageContext.request.contextPath}/user/loginPage">Login</a></li>
@@ -105,7 +105,7 @@
 										<form
 											action="${pageContext.request.contextPath}/user/searchByTitle">
 											<div>
-												<input type="text" name="title" placeholder="검색어를 입력해주세요">
+												<input type="text" name="title" placeholder="search for _a">
 												<input type="submit" value="검색">
 											</div>
 										</form>
