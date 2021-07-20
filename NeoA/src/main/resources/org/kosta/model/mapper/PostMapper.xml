@@ -157,7 +157,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="recentBids" parameterType="string" resultType="bidLogVO">
 
-		select * from (select * from bid_log order by bid_no desc)
+		select * from (select * from bid_log order by bid_time desc)
 		WHERE 
 		<![CDATA[
 		product_no=#{value} and ROWNUM <= 3

@@ -83,7 +83,7 @@
 									<li><a href="#">Blog</a>
 										<ul class="submenu">
 											<li><a href="https://iamaway.tistory.com/">Blog-jh</a></li>
-											<li><a href="blog-details.html">Blog-hs</a></li>
+											<li><a href="https://gegenpress.tistory.com/">Blog-hs</a></li>
 											<li class="hot"><a href="https://blog.naver.com/sandeoduk">대월벌꿀
 													짱</a></li>
 										</ul></li>

@@ -3,6 +3,7 @@ package org.kosta.controller;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ProductController {
@@ -222,7 +222,25 @@ public class ProductController {
 		String imagesList[] = dir.list();
 		model.addAttribute("imagesList",imagesList);
 		model.addAttribute("productDetails", productService.getproductDetails(productNo));
-		model.addAttribute("recentThree", productService.recentBids(productNo));
+		List<BidLogVO> bList = productService.recentBids(productNo);
+		ArrayList<String> checkList = new ArrayList<String>();
+		System.out.println("AA");
+		int size = bList.size();
+		for (int j=0;j<size;j++) {
+			checkList.add("1");
+		}
+		
+
+		if (size < 3) {
+			for (int i = size;i<3;i++) {
+				checkList.add("0");
+			}
+		}
+		System.out.println("BB");
+		model.addAttribute("recentThree", bList);
+		System.out.println(bList);
+		model.addAttribute("listCheck",checkList);
+		System.out.println(checkList);
 		return "member/productDetails.tiles";
 	}
 
@@ -269,10 +287,17 @@ public class ProductController {
 	}
 
 	@RequestMapping("/user/randPost")
-	public String randPost(Model model) {
+	public String randPost(Model model, HttpServletRequest request) {
 		System.out.println("random!");
-		model.addAttribute("random", postMapper.randPost());
-		return "member/randompost.tiles";
+		PostVO pvo = postMapper.randPost();
+		String path = request.getSession().getServletContext().getRealPath("");
+		String path2 = "..\\resources\\static\\myweb\\images\\";
+		File dir = new File(path + path2 + pvo.getProductNo());
+		String imagesList[] = dir.list();
+		model.addAttribute("imagesList",imagesList);
+		model.addAttribute("productDetails", productService.getproductDetails(pvo.getProductNo()));
+		model.addAttribute("recentThree", productService.recentBids(pvo.getProductNo()));
+		return "member/productDetails.tiles";
 	}
 	
 	@ResponseBody
@@ -370,9 +395,10 @@ public class ProductController {
     	System.out.println("BB");
     	List<String> list = new ArrayList<String>();
     	for (int i=0;i<bidList.size();i++) {
-    		list.add(bidList.get(i).getMemberId()+" 님" +Integer.toString(bidList.get(i).getBidPrice()) + "원" );
+    		list.add(bidList.get(i).getMemberId()+"님  " +Integer.toString(bidList.get(i).getBidPrice()) + "원" );
     		list.add(bidList.get(i).getBidTime());
     	}
+    	System.out.println(list);
         //model.addAttribute("msg",dto.getResult()+"/ this is the value sent by the server ");
     	//model.addAttribute("productDetails", productService.getproductDetails("11"));
         return list;
