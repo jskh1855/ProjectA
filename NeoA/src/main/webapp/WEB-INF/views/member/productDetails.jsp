@@ -146,12 +146,12 @@ function startBid(id,unit,nego) {
 	var price = null;
 	
 	if(nego == 0){
-		//alert("네고");
+		alert("네고");
 		price = document.getElementById("negoPrice").value;
 		alert(price);
 	}else if(nego == 1){
 		price = document.getElementById("bidPrice").value;
-		//alert("실행되나?")
+		alert("실행되나?")
 	}
 	
 	console.log("1111");
@@ -177,11 +177,6 @@ function startBid(id,unit,nego) {
 				}
 				var numBid = document.getElementById("numBid").innerHTML;
 				var newVal = parseInt(numBid,10) + 1;
-<<<<<<< HEAD
-				document.getElementById("bidPrice").value = newPrice;
-				document.getElementById("nowPrice").innerHTML = nextPrice+'원';
-=======
->>>>>>> 9959187df50af1b2eba3b0a8c360ba59c61b2bf7
 				document.getElementById("numBid").innerHTML = newVal;
 				console.log(data[0]);
 				document.getElementById("recent0").innerHTML = data[0];
@@ -194,7 +189,6 @@ function startBid(id,unit,nego) {
 		}//callback
 	});
 }
-</script>
 
 <script type="text/javascript">
  	$(document).ready(function(){
