@@ -166,5 +166,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set state='2'
 		where product_no = #{value}
 	</update>
+	
+	<select id="findPopular" resultType="string">
+
+		SELECT product_no, count(product_no) as count from (SELECT post.product_no,now_price,product_up_time, bid_end_time, post_image FROM POST
+		
+		FULL OUTER JOIN bid_log
+		
+		on post.product_no = bid_log.product_no)
+		
+		GROUP BY product_no
+		order by count DESC
+	</select>
 </mapper>
 

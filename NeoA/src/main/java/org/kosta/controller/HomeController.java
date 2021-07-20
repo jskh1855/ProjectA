@@ -1,18 +1,36 @@
 package org.kosta.controller;
 
-import org.kosta.model.vo.MemberVO;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.kosta.model.service.ProductService;
+import org.kosta.model.vo.PostVO;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
 	
+
+	@Resource
+	private ProductService productService;
+	
 	@RequestMapping(value = {"/home","/"})
-	public String home(){
+	public String home(Model model){
 		//Spring Security 권한 출력 
-		System.out.println("home "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());		
+		System.out.println("home "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+		List<String> list = productService.findPopular();
+		List<PostVO> pList = new ArrayList<PostVO> ();
+		//model.addAttribute("memberVO", productService.findPopular());
+		for (int i=0;i<list.size();i++) {
+			pList.add(productService.getproductDetails(list.get(i)));
+		}
+		model.addAttribute("pList", pList);
+		System.out.println(pList);
 		return "home.tiles";
 	}
 	
