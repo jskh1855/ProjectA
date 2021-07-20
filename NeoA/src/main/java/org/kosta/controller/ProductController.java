@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ProductController {
@@ -358,5 +359,20 @@ public class ProductController {
         return list;
     }
     
-	
+	/*
+	 * @RequestMapping("user/recentThree") public String recentThree(ModelAndView
+	 * mv) { PostVO vo = postMapper.recentThree(); mv.addObject("id",
+	 * vo.getMemberVO().getMemberId()); mv.addObject("title", vo.getTitle());
+	 * mv.addObject("name", vo.getProductName()); mv.addObject("nowPrice",
+	 * vo.getNowPrice()); mv.addObject("endtime", vo.getBidEndTime());
+	 * mv.addObject("starttime", vo.getProductUpTime()); mv.addObject("pick",
+	 * vo.getPickVO()); mv.addObject("postimage", vo.getPostImage());
+	 * 
+	 * mv.setViewName("home.tiles");
+	 * 
+	 * 
+	 * return "mv"; }
+	 */
+   
+    
 }

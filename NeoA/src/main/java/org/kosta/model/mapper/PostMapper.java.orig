@@ -51,9 +51,12 @@ public interface PostMapper {
 	List<BidLogVO> recentBids(String productNo);
 
 	void updateState(String productNo);
+<<<<<<< HEAD
 	
 	List<PostVO> recentThree();
 	
+=======
 
 	List<String> findPopular();
+>>>>>>> 089c94df1a1b3f78b636d05b287cf5fce484ceb1
 }

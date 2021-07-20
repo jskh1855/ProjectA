@@ -50,6 +50,9 @@
                         </div>
                     </div>
                 </div>
+            <form action="${pageContext.request.contextPath}/user/recentThree">
+            	<button>home2</button>
+            </form>
                 <!-- Single Slider -->
                 <div class="single-slider slider-height d-flex align-items-center slide-bg">
                     <div class="container">
