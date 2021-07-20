@@ -111,27 +111,31 @@
 											</script>
 											</c:when>
 											<c:otherwise>
-												<script>
+											<%--시간 계산 스크립트 --%>
+											<script>
 												function remainTime(){
-												var stDate = new Date().getTime();
-												var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
-												var RemainDate = edDate - stDate;
-												if(RemainDate<0){
-													document.getElementById(${item.productNo}).innerHTML= "경매시간 만료, 역경매 시작";
-												}else{
-													var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
-													var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
-													var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
-													m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
-													document.getElementById(${item.productNo}).innerHTML="남은시간 " + m;
+													var stDay = new Date().getDate();
+													var edDay = new Date("${item.bidEndTime}").getDate(); // 종료날짜
+													var stDate = new Date().getTime();
+													var edDate = new Date("${item.bidEndTime}").getTime(); // 종료날짜
+													var RemainDate = edDate - stDate;
+													if(RemainDate<0){
+														document.getElementById(${item.productNo}).innerHTML= "경매시간 만료, 역경매 시작";
+													}else{
+														var day = edDay-stDay;
+														var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+														var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+														var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+														m = day +"일 " + hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경 
+														document.getElementById(${item.productNo}).innerHTML="남은시간 " + m;
+													}
 												}
-											}
-											function startInterval(seconds, remainTime){
-												remainTime();
-												return setInterval(remainTime, seconds * 1000);
-											};
-											startInterval(1, remainTime);
-										</script>
+												function startInterval(seconds, remainTime){
+													remainTime();
+													return setInterval(remainTime, seconds * 1000);
+												};
+												startInterval(1, remainTime);
+											</script>
 											</c:otherwise>
 										</c:choose>
 									</div>

@@ -6,7 +6,6 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	//alert($("#memberId").val());
 	<%--모든 post ajax 에 대해서 csrf 토큰 첨부하기--%>
 	$.ajaxPrefilter(function(options) {
 		let headerName = '${_csrf.headerName}';
@@ -15,8 +14,7 @@ $(document).ready(function() {
 		options.headers = {};
 		options.headers[headerName] = token;
 		}
-	});
-	
+	});//ajaxPrefilter
 	//페이지 로딩시 qna 보여주기
 	$.ajax({
 		type:"GET",
@@ -27,7 +25,6 @@ $(document).ready(function() {
 			showQnAList(qna);
 		}//callback
 	});//ajax 
-	
 	//질문 등록 및 qna 새로 띄워주기
 	$("#registerQuestion").click(function() {
 		$(".comments-area").children().remove();
@@ -42,14 +39,23 @@ $(document).ready(function() {
 		});//ajax
 		document.getElementById("qnaContent").value='';
 	});//click
-	
 })//ready
 
 function complete(){
+	var one = document.getElementById("recentOne");
+	var two = document.getElementById("recentTwo");
+	var three = document.getElementById("recentThree");
+	//alert(one.innerHTML);
+	if(one.innerHTML=="님원"&&two.innerHTML=="님원"&&three.innerHTML=="님원"){
+		alert("입찰자가 없습니다.");
+		return false;
+	}
 	if(confirm("낙찰 진행 하시겠습니까?")){
 		//alert("진행");
 		document.getElementById("complteBid").submit();
 	}
+
+
 }
 
 <%--답변하기, 답변하기 form 을 동적 생성했더니 $(document).ready(function() 에선 작동 안함--%>	

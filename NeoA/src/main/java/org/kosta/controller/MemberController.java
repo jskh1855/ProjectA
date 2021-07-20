@@ -216,8 +216,10 @@ public class MemberController {
 		List<PostVO> list = memberService.getMySellSuccessList(memberId, pagingBean);
 		model.addAttribute("list", list);
 		MemberVO buyerMemberVO = null;
-		for(int i=0; i<list.size();i++) {
-			buyerMemberVO = memberService.findMemberById(list.get(i).getBidLogVOList().get(0).getMemberId());
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getBidLogVOList().get(0) != null) {
+				buyerMemberVO = memberService.findMemberById(list.get(i).getBidLogVOList().get(0).getMemberId());
+			}
 		}
 		model.addAttribute("buyerMemberVO", buyerMemberVO);
 		return "member/mypageSellSuccess.tiles";
