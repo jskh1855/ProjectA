@@ -260,7 +260,7 @@ $.ajax({
 							<%--제목 --%>
 							<h2>${random.title }</h2>
 							<%--내용 --%>
-							<div style="white-space:pre;"><c:out value="${productDetails.detail}" /></div>
+							<div style="white-space:pre;"><c:out value="${random.detail}" /></div>
 						</div>
 					</div>
 					<%--Qna 시작 --%>
@@ -315,15 +315,15 @@ $.ajax({
 				<div class="col-lg-4">
 					<div class="blog_right_sidebar">
 						<c:choose>
-							<c:when test="${productDetails.state eq 0}">
+							<c:when test="${random.state eq 0}">
 								<sec:authorize access="isAuthenticated()">
 									<sec:authentication property="principal.memberId" var="currMemberId" />
 									<c:choose>
-										<c:when test="${currMemberId eq productDetails.memberVO.memberId }">
+										<c:when test="${currMemberId eq random.memberVO.memberId }">
 											<div class="add_to_cart">
 												<form action="${pageContext.request.contextPath}/complteBid" id="complteBid" method="post">
 													<sec:csrfInput />
-													<input type="hidden" name="productNo" value="${productDetails.productNo}"> <a href="#" style="width: 100%; text-align: center" class="btn_3" onclick="complete()">현재가격으로
+													<input type="hidden" name="productNo" value="${random.productNo}"> <a href="#" style="width: 100%; text-align: center" class="btn_3" onclick="complete()">현재가격으로
 														낙찰하기</a>
 												</form>
 											</div>
@@ -331,7 +331,7 @@ $.ajax({
 										<c:otherwise>
 											<%--입찰하기 --%>
 											<div class="add_to_cart">
-												<input type="text" value="${random.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice"> 원으로 <a href="#"
+												<input type="text" value="${random.nowPrice+random.unitPrice }" size="12" id="bidPrice"> 원으로 <a href="#"
 													class="btn_3" onclick="startBid(${random.productNo},${random.unitPrice}); return false;">입찰하기</a>
 											</div>
 										</c:otherwise>
@@ -339,7 +339,7 @@ $.ajax({
 								</sec:authorize>
 								<sec:authorize access="isAnonymous()">
 									<div class="add_to_cart">
-										<input type="text" value="${random.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice" disabled> 원으로 <a href="#"
+										<input type="text" value="${random.nowPrice+random.unitPrice }" size="12" id="bidPrice" disabled> 원으로 <a href="#"
 											class="btn_3" onclick="startBid(${random.productNo},${random.unitPrice}); return false;"
 											style="color: white; background-color: #808080" disabled>로그인 후 입찰</a>
 									</div>

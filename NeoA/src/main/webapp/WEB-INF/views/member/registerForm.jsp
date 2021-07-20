@@ -64,7 +64,7 @@
                                         <input type="text" class="form-control" id="memberId" name="memberId" value="" placeholder="아이디" autocomplete='off'><span id="idCheckView"></span>
                                     </div>
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="password" name="password" value="" placeholder="비밀번호" autocomplete='off'>
+                                        <input type="password" class="form-control" id="password" name="password" value="" placeholder="비밀번호" autocomplete='off'>
                                     </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="email" class="form-control" id="memberEmail" name="memberEmail" value="" placeholder="이메일" autocomplete='off'>
