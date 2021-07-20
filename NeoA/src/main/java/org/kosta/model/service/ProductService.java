@@ -32,4 +32,8 @@ public interface ProductService {
 	List<BidLogVO> recentBids(String productNo);
 
 	void updateState(String productNo);
+
+	String getHighestBidMemberIdByProductNo(String productNo);
+
+	void insertBidComplete(String productNo, String memberId);
 }

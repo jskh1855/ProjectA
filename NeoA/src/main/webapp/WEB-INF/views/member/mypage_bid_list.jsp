@@ -116,6 +116,13 @@
 											</c:otherwise>
 										</c:choose>
 										<span id="${item.productNo}"> 남은시간 </span>
+										<c:choose>
+											<c:when test="${item.state eq 2}">
+												<script>
+													document.getElementById(${item.productNo}).innerHTML="낙찰완료";
+											</script>
+											</c:when>
+											<c:otherwise>
 											<%--시간 계산 스크립트 --%>
 											<script>
 												function remainTime(){
@@ -141,6 +148,8 @@
 												};
 												startInterval(1, remainTime);
 											</script>
+											</c:otherwise>
+										</c:choose>
 									</div>
 								</div>
 							</div>

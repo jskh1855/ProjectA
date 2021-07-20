@@ -321,3 +321,24 @@ where member_id='kobos')
 		select bid_no, to_char(bid_time, 'YYYY-MM-DD HH24:MI:SS') as bid_time, bid_price, member_id
 		from bid_log
 		where bid_price=(SELECT max(bid_price) as bid_price FROM bid_log where product_no = '2');
+		
+		
+		select * from bid_log
+		
+		select * from post
+		
+		select *
+		from bid_log
+		
+		select distinct product_no
+		from BID_LOG
+		where member_id='kobos'
+		and product_no='41'
+		
+		select count(*)
+		from bid_log
+		where product_no='41' and member_id='kobos' and bid_price=(select max(bid_price) as bid_price from bid_log where product_no='41')
+		
+		select member_id
+		from bid_log
+		where product_no='41' and bid_price=(select max(bid_price) as bid_price from bid_log where product_no='41')

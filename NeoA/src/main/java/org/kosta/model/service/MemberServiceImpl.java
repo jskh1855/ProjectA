@@ -1,5 +1,6 @@
 package org.kosta.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -90,8 +91,8 @@ public class MemberServiceImpl implements MemberService {
 		int startRowNumber = pagingBean.getStartRowNumber();
 		int endRowNumber = pagingBean.getEndRowNumber();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		//List<String> myBidProductList= memberMapper.getMyBidProductList(id);
-		//System.out.println(myBidProductList);
+		// List<String> myBidProductList= memberMapper.getMyBidProductList(id);
+		// System.out.println(myBidProductList);
 		map.put("id", id);
 		map.put("startRowNumber", startRowNumber);
 		map.put("endRowNumber", endRowNumber);
@@ -111,12 +112,12 @@ public class MemberServiceImpl implements MemberService {
 	public int getTotalBidProductCountById(String id) {
 		return memberMapper.getTotalBidProductCountById(id);
 	}
-	
+
 	@Override
 	public int getTotalPickProductCountById(String id) {
 		return memberMapper.getTotalPickProductCountById(id);
 	}
-	
+
 	@Override
 	public void updateMemberWithoutPasswrod(MemberVO memberVO) {
 		memberMapper.updateMemberWithoutPasswrod(memberVO);
@@ -166,6 +167,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.getMySellSucessCountById(memberId);
 	}
 
-	
+	@Override
+	public List<String> getMyBidSuccessList(String memberId) {
+		List<String> list = memberMapper.getMyBidSuccessList(memberId);
+		return list;
+	}
 
 }

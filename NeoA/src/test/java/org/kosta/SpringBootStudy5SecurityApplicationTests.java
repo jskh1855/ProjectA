@@ -6,11 +6,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.kosta.model.mapper.MemberMapper;
 import org.kosta.model.mapper.PostMapper;
-import org.kosta.model.vo.PagingBean;
-import org.kosta.model.vo.PickVO;
 import org.kosta.model.service.MemberService;
 import org.kosta.model.service.ProductService;
-import org.kosta.model.vo.PostVO;
+import org.kosta.model.vo.PagingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -131,7 +129,10 @@ class SpringBootStudy5SecurityApplicationTests {
 		//int totalPostCount = memberService.getMySellSucessCountById("kobos");
 		//System.out.println(totalPostCount);
 		
-		int totalPostCount = memberService.getMySellSucessCountById("kobos");
+//		List<String> myBidLogList = mm.getMyBidLog("kobos");
+//		System.out.println(myBidLogList);
+		
+		int totalPostCount = 10;
 		PagingBean pagingBean = new PagingBean(totalPostCount);
 		int startRowNumber = pagingBean.getStartRowNumber();
 		int endRowNumber = pagingBean.getEndRowNumber();
@@ -139,7 +140,8 @@ class SpringBootStudy5SecurityApplicationTests {
 		map.put("id", "kobos");
 		map.put("startRowNumber", startRowNumber);
 		map.put("endRowNumber", endRowNumber);
-		System.out.println(memberService.getMySellSuccessList("kobos", pagingBean));
+		System.out.println(memberService.getMyBidSuccessList("kobos", pagingBean));
+		
 		
 	}
 	

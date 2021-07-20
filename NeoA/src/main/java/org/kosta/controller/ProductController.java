@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.model.mapper.PostMapper;
+import org.kosta.model.service.MemberService;
 import org.kosta.model.service.ProductService;
 import org.kosta.model.vo.BidLogVO;
 import org.kosta.model.vo.MemberVO;
@@ -309,6 +310,8 @@ public class ProductController {
 		//System.out.println("completebid");
 		//System.out.println(productNo);
 		productService.updateState(productNo);
+		String memberId = productService.getHighestBidMemberIdByProductNo(productNo);
+		productService.insertBidComplete(productNo, memberId);
 		return "redirect:user/productDetails?productNo="+productNo;
 	}
 

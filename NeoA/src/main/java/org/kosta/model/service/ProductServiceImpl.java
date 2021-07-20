@@ -119,4 +119,20 @@ public class ProductServiceImpl implements ProductService {
 	public void updateState(String productNo) {
 		postMapper.updateState(productNo);		
 	}
+
+
+	@Override
+	public String getHighestBidMemberIdByProductNo(String productNo) {
+		String memberId = memberMapper.getHighestBidMemberIdByProductNo(productNo);
+		return memberId;
+	}
+
+
+	@Override
+	public void insertBidComplete(String productNo, String memberId) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("productNo", productNo);
+		map.put("memberId", memberId);
+		postMapper.insertBidComplete(map);
+	}
 }

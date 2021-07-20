@@ -166,5 +166,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set state='2'
 		where product_no = #{value}
 	</update>
+	
+	<insert id="insertBidComplete" parameterType="map">
+		insert into bidComplete
+		values(bidComplete_no_seq.nextval, #{productNo}, #{memberId})
+	</insert>
 </mapper>
 

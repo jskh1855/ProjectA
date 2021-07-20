@@ -51,4 +51,6 @@ public interface PostMapper {
 	List<BidLogVO> recentBids(String productNo);
 
 	void updateState(String productNo);
+
+	void insertBidComplete(HashMap<String, String> map);
 }
