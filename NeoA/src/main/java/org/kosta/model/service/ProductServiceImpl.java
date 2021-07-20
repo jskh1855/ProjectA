@@ -33,6 +33,11 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return postList;
 	}
+	
+	@Override
+	public String nowPriceCheck(String productNo) {
+		return postMapper.nowPriceCheck(productNo);
+	}
 
 	
 	@Override

@@ -17,6 +17,8 @@ public interface PostMapper {
 	List<PostVO> showAll(HashMap<String, Object> map);
 	
 	int showAllCount(PagingBeanMain pg);
+	
+	String nowPriceCheck(String productNo);
 
 	void registerProduct(PostVO pvo);
 	

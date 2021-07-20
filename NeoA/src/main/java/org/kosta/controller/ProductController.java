@@ -338,6 +338,17 @@ public class ProductController {
 		return param;
 	}
 	
+	@PostMapping("/nowPriceCheck")
+	@ResponseBody
+	public Map<String, String> nowPriceCheck(HttpServletRequest request) {
+		String productNo = request.getParameter("data");
+		System.out.println("오나?");
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("nowPrice", productService.nowPriceCheck(productNo));
+		return param;
+	}
+	
+	
     @RequestMapping(value = "/bid",method = RequestMethod.POST)
     @ResponseBody
     public List<String> dataSend(HttpServletRequest request){

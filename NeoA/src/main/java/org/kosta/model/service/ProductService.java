@@ -37,4 +37,6 @@ public interface ProductService {
 
 	void insertBidComplete(String productNo, String memberId);
 	List<String> findPopular();
+
+	String nowPriceCheck(String productNo);
 }

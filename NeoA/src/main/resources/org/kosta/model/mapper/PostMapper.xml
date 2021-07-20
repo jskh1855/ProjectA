@@ -67,6 +67,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from pick where product_no = #{productNo} and member_id =
 		#{memberId}
 	</select>
+	
+	<select id="nowPriceCheck" resultType="string" parameterType="string">
+		select now_price from post where product_no = #{value}
+	</select>
 
 	<insert id="insertPickByPostNoAndMId" parameterType="hashmap">
 		insert into
