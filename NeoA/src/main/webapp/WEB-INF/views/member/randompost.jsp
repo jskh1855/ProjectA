@@ -182,33 +182,44 @@ function showQnAList(qna){
 	}
 	$("#QnAListSize").html("QnA ["+qna.length+"]");
 }
+function showBig(val) {
+	var obj = document.getElementById("big");
+	 obj.src = "/myweb/images/${productDetails.productNo }/" + val;
+} 
 
-function bid() {
-	var data=$("#input").val();
-	var messageDTO={
-	    result:data
-	    };
-    $.ajax({
-        url: "${pageContext.request.contextPath}/bid",
-        data: messageDTO,
-        type:"POST",
-        beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-					xhr.setRequestHeader(
-					"${_csrf.headerName}",
-					"${_csrf.token}");
-					},
-		success : function(data) {
-					if (data == "fail") {
-						alert("아이디가 중복됩니다");
-						$("#idCheckView").html(id+ " 사용불가!").css("color","red");
-						checkResultId = "";
-					} else {
-						$("#idCheckView").html(id+ " 사용가능!").css("color","blue");
-						checkResultId = id;
-					}
-		}//callback
-	});
+function startBid(id,unit) {
+var price = document.getElementById("bidPrice").value;
+console.log("1111");
+$.ajax({
+    url: "${pageContext.request.contextPath}/bid",
+    data: {"id" : id, "bidPrice" : price },
+    type:"POST",
+    beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+				xhr.setRequestHeader(
+				"${_csrf.headerName}",
+				"${_csrf.token}");
+				},
+	success : function(data) {
+			console.log("success");
+			var nextPrice = document.getElementById("bidPrice").value;
+			var newPrice = parseInt(nextPrice,10) + unit
+			var numBid = document.getElementById("numBid").innerHTML;
+			var newVal = parseInt(numBid,10) + 1;
+			document.getElementById("bidPrice").value = newPrice;
+			document.getElementById("nowPrice").innerHTML = nextPrice;
+			document.getElementById("numBid").innerHTML = newVal;
+			console.log(data[0]);
+			document.getElementById("recent0").innerHTML = data[0];
+			document.getElementById("recent1").innerHTML = data[2];
+			document.getElementById("recent2").innerHTML = data[4];
+			document.getElementById("time0").innerHTML = data[1];
+			document.getElementById("time1").innerHTML = data[3];
+			document.getElementById("time2").innerHTML = data[5];
+			
+	}//callback
+});
 }
+
 </script>
 <input type="hidden" id="productNo" value="${random.productNo }">
 <input type="hidden" id="memberId"
@@ -303,11 +314,48 @@ function bid() {
 				</div>
 				<div class="col-lg-4">
 					<div class="blog_right_sidebar">
-						<%--입찰하기 --%>
-						<div class="add_to_cart">
-							<input type="text" value="${random.nowPrice+productDetails.unitPrice }" size="12"> 원으로 <a href="#" class="btn_3"
-								onclick="startBid()">입찰하기</a>
-						</div>
+						<c:choose>
+							<c:when test="${productDetails.state eq 0}">
+								<sec:authorize access="isAuthenticated()">
+									<sec:authentication property="principal.memberId" var="currMemberId" />
+									<c:choose>
+										<c:when test="${currMemberId eq productDetails.memberVO.memberId }">
+											<div class="add_to_cart">
+												<form action="${pageContext.request.contextPath}/complteBid" id="complteBid" method="post">
+													<sec:csrfInput />
+													<input type="hidden" name="productNo" value="${productDetails.productNo}"> <a href="#" style="width: 100%; text-align: center" class="btn_3" onclick="complete()">현재가격으로
+														낙찰하기</a>
+												</form>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<%--입찰하기 --%>
+											<div class="add_to_cart">
+												<input type="text" value="${random.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice"> 원으로 <a href="#"
+													class="btn_3" onclick="startBid(${random.productNo},${random.unitPrice}); return false;">입찰하기</a>
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+									<div class="add_to_cart">
+										<input type="text" value="${random.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice" disabled> 원으로 <a href="#"
+											class="btn_3" onclick="startBid(${random.productNo},${random.unitPrice}); return false;"
+											style="color: white; background-color: #808080" disabled>로그인 후 입찰</a>
+									</div>
+								</sec:authorize>
+							</c:when>
+							<c:when test="${random.state eq 1}">
+
+							</c:when>
+							<c:when test="${random.state eq 2}">
+								<div class="add_to_cart">
+									<a href="#" class="btn_3" onclick="startBid(${random.productNo},${random.unitPrice}); return false;"
+										style="color: white; background-color: red; width: 100%; text-align: center; border-color: red" disabled>낙찰 완료</a>
+								</div>
+							</c:when>
+						</c:choose>
+
 						<%--제품 정보들 --%>
 						<aside class="single_sidebar_widget post_category_widget">
 							<%--현재가격 --%>
