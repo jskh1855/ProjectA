@@ -162,12 +162,12 @@ function startBid(id,unit) {
 				document.getElementById("nowPrice").innerHTML = nextPrice;
 				document.getElementById("numBid").innerHTML = newVal;
 				console.log(data[0]);
-				document.getElementById("recentOne").innerHTML = data[0];
-				document.getElementById("recentTwo").innerHTML = data[2];
-				document.getElementById("recentThree").innerHTML = data[4];
-				document.getElementById("timeOne").innerHTML = data[1];
-				document.getElementById("timeTwo").innerHTML = data[3];
-				document.getElementById("timeThree").innerHTML = data[5];
+				document.getElementById("recent0").innerHTML = data[0];
+				document.getElementById("recent1").innerHTML = data[2];
+				document.getElementById("recent2").innerHTML = data[4];
+				document.getElementById("time0").innerHTML = data[1];
+				document.getElementById("time1").innerHTML = data[3];
+				document.getElementById("time2").innerHTML = data[5];
 				
 		}//callback
 	});
@@ -232,7 +232,7 @@ $(document).on("click", "#pick-switch-range", function() {
 						<%--<c:forEach var="image" items="${imagesList }">
 							<img src="/myweb/images/${productDetails.productNo }/${image }">
 						</c:forEach>--%>
-						<img src="/myweb/images/${productDetails.productNo }/${productDetails.postImage}" height="500" id="big" /><br> <br>
+						<img src="/myweb/images/${productDetails.productNo }/${productDetails.postImage}" height="500" width="600" id="big" /><br> <br>
 						<c:forEach var="image" items="${imagesList }">
 							<img src="/myweb/images/${productDetails.productNo }/${image }" height="130" onmouseover="showBig('${image }');">
 						</c:forEach>
@@ -425,33 +425,18 @@ $(document).on("click", "#pick-switch-range", function() {
 						</aside>
 						<aside class="single_sidebar_widget popular_post_widget">
 							<h3 class="widget_title">최근 입찰 내역</h3>
-							<div class="media post_item">
-								<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
-								<div class="media-body">
-									<!-- 									<a href="single-blog.html"> -->
-									<h3 id="recentOne">${recentThree[0].memberId}님${recentThree[0].bidPrice}원</h3>
-									<!-- 									</a> -->
-									<p id="timeOne">${recentThree[0].bidTime}</p>
-								</div>
-							</div>
-							<div class="media post_item">
-								<!-- 								<img src="assets/img/post/post_2.png" alt="post"> -->
-								<div class="media-body">
-									<!-- 									<a href="single-blog.html"> -->
-									<h3 id="recentTwo">${recentThree[1].memberId}님${recentThree[1].bidPrice}원</h3>
-									<!-- 									</a> -->
-									<p id="timeTwo">${recentThree[1].bidTime}</p>
-								</div>
-							</div>
-							<div class="media post_item">
-								<!-- 								<img src="assets/img/post/post_3.png" alt="post"> -->
-								<div class="media-body">
-									<!-- 									<a href="single-blog.html"> -->
-									<h3 id="recentThree">${recentThree[2].memberId}님${recentThree[2].bidPrice}원</h3>
-									<!-- 									</a> -->
-									<p id="timeThree">${recentThree[2].bidTime}</p>
-								</div>
-							</div>
+							
+			                	<c:forEach var="recent" items="${recentThree }" begin="0" end="2" varStatus="status">
+			                		<div class="media post_item">
+										<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
+										<div class="media-body">
+											<!-- 									<a href="single-blog.html"> -->
+											<h3 id="recent${status.index }">${recent.memberId}님  ${recent.bidPrice}원</h3>
+											<!-- 									</a> -->
+											<p id="time${status.index }">${recent.bidTime}</p>
+										</div>
+									</div>
+			                	</c:forEach>
 							<!-- 							<div class="media post_item"> -->
 							<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
 							<!-- 								<div class="media-body"> -->

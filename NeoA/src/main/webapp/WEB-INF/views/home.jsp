@@ -1,7 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
    <main>
+   <script type="text/javascript">
+   
+   $(document).on("click", "#pick-switch-range", function() {
+		var productNo = $(this).children().attr('value');
+		$.ajax({
+			headers:{"${_csrf.headerName}":"${_csrf.token}"}, 
+			type:"post",
+			data:{ data : productNo },
+			dataType:"json",
+			url:"/updatePick",
+			context : this, 
+			success:function(result){
+				if(result.pick == '0'){
+					$(this).children("#pick-switch").html("<span class='far fa-heart'/>");
+				}else if(result.pick == '1'){
+					$(this).children("#pick-switch").html("<span class='fas fa-heart' style='color: red;'/>");
+				}
+			}
+		});
+	}); 
+   </script>
         <!--? slider Area Start -->
         <div class="slider-area ">
             <div class="slider-active">
@@ -27,7 +50,6 @@
                         </div>
                     </div>
                 </div>
-            
                 <!-- Single Slider -->
                 <div class="single-slider slider-height d-flex align-items-center slide-bg">
                     <div class="container">
@@ -69,39 +91,38 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                      <c:forEach items="${recentThree }" var="three">
+                
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" style="border:inactiveborder;">
                         <div class="single-new-pro mb-30 text-center">
                             <div class="product-img">
-                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/new_product1.png" alt="">
+                                <a href="/user/productDetails?productNo=${three.productNo }"><img src="${pageContext.request.contextPath}/myweb/images/${three.productNo }/${three.postImage }" alt="" style="border: medium;"></a>
                             </div>
                             <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
+                                <h3><a href="/user/productDetails?productNo=${three.productNo }">${three.title }</a></h3>
+                                <span> Now! ${three.nowPrice }</span>
                             </div>
+                                                              <sec:authorize access="isAuthenticated()">
+		                                        <div class="favorit-items">
+		                                        	<span id="pick-switch-range">
+			                                        	<c:choose>
+			                                        		<c:when test="${three.pickVO.memberId != null}">
+					                                            	<a id="pick-switch" value="${three.productNo}"><span class="fas fa-heart" style="color: red;"/></a>
+			                                        		</c:when>
+			                                        		<c:otherwise>
+		                                        					<a id="pick-switch" value="${three.productNo}"><span class="far fa-heart"/></a>
+						                                            <%-- <a href="${pageContext.request.contextPath}/addPick?productNo=${list.productNo}" style="color:black;"><span class="flaticon-heart"></span></a> --%>
+			                                        		</c:otherwise>
+			                                        	</c:choose>
+		                                        	</span>
+		                                   		</div>
+	                                        </sec:authorize>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/new_product2.png" alt="">
-                            </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/new_product3.png" alt="">
-                            </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- 하트 로그인 유저만 -->
+	      
+                    
+               </c:forEach>
                 </div>
             </div>
         </section>
@@ -147,118 +168,35 @@
                     <div class="col-xl-7 col-lg-8 col-md-10">
                         <div class="section-tittle mb-70 text-center">
                             <h2>인기상품!!</h2>
-                            <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                            <p>지금 가장 치열한 가격 싸움이 진행중인 상품들이에요!</p>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular1.png" alt="">
-                                <div class="img-cap">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular2.png" alt="">
-                                <div class="img-cap">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular3.png" alt="">
-                                <div class="img-cap">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular4.png" alt="">
-                                <div class="img-cap">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular5.png" alt="">
-                                <div class="img-cap">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/popular6.png" alt="">
-                                <div class="img-cap">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
+                	<c:forEach var="product" items="${pList }" begin="0" end="5">
+	                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+	                        <div class="single-popular-items mb-50 text-center">
+	                            <div class="popular-img">
+	                                <img src="/myweb/images/${product.productNo }/${product.postImage}" alt="" height="300">
+	                                <div class="img-cap">
+	                                    <span>Add to cart</span>
+	                                </div>
+	                                <div class="favorit-items">
+	                                    <span class="flaticon-heart"></span>
+	                                </div>
+	                            </div>
+	                            <div class="popular-caption">
+	                                <h3><a href="/user/productDetails?productNo=${product.productNo }">${product.title}</a></h3>
+	                                 <span> <span style="font-style: italic; color: red;">Hot!</span>${product.nowPrice}원</span>
+	                            </div>
+	                        </div>
+	                    </div>							
+					</c:forEach>
                 </div>
                 <!-- Button -->
                 <div class="row justify-content-center">
                     <div class="room-btn pt-70">
-                        <a href="catagori.html" class="btn view-btn1">View More Products</a>
+                        <a href="${pageContext.request.contextPath}/user/showAll" class="btn view-btn1">View More Products</a>
                     </div>
                 </div>
             </div>
@@ -290,28 +228,26 @@
                 <div class="row align-items-center justify-content-between padding-130">
                     <div class="col-lg-5 col-md-6">
                         <div class="watch-details mb-40">
-                            <h2>Watch of Choice</h2>
-                            <p>Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                            <a href="shop.html" class="btn">Show Watches</a>
+                            <h2>product of Choice</h2>
+                            <a href="${pageContext.request.contextPath}/user/showAll" class="btn">Show More Product</a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-10">
                         <div class="choice-watch-img mb-40">
-                            <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/choce_watch1.png" alt="">
+                            <img src="/myweb/images/${pList[0].productNo }/${pList[0].postImage}" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="row align-items-center justify-content-between">
                     <div class="col-lg-6 col-md-6 col-sm-10">
                         <div class="choice-watch-img mb-40">
-                            <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/choce_watch2.png" alt="">
+                            <img src="/myweb/images/${pList[1].productNo }/${pList[1].postImage}" alt="">
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-6">
                         <div class="watch-details mb-40">
-                            <h2>Watch of Choice</h2>
-                            <p>Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                            <a href="shop.html" class="btn">Show Watches</a>
+                            <h2>product of Choice</h2>
+                            <a href="${pageContext.request.contextPath}/user/showAll" class="btn">Show More Product</a>
                         </div>
                     </div>
                 </div>

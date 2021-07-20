@@ -171,5 +171,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into bidComplete
 		values(bidComplete_no_seq.nextval, #{productNo}, #{memberId})
 	</insert>
+
+	<select id="recentThree"  resultType="postVO">
+		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image
+		from (select row_number() over(ORDER BY product_up_time DESC) as rnum, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
+		from post )
+		where rnum between '1' and '3'
+		</select>
+	<select id="findPopular" resultType="string">
+
+		SELECT product_no, count(product_no) as count from (SELECT post.product_no,now_price,product_up_time, bid_end_time, post_image FROM POST
+		
+		FULL OUTER JOIN bid_log
+		
+		on post.product_no = bid_log.product_no)
+		
+		GROUP BY product_no
+		order by count DESC
+	</select>
+	
 </mapper>
 

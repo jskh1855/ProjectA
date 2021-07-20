@@ -1,4 +1,4 @@
-package org.kosta.model.mapper;
+﻿package org.kosta.model.mapper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -53,4 +53,9 @@ public interface PostMapper {
 	void updateState(String productNo);
 
 	void insertBidComplete(HashMap<String, String> map);
+	
+	List<PostVO> recentThree();
+	
+
+	List<String> findPopular();
 }

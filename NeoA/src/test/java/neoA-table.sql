@@ -195,6 +195,18 @@ delete from pick;
 SELECT * from (select * from bid_log order by bid_no desc)
 WHERE product_no='64' and ROWNUM <= 3;
 
+SELECT product_no, count(product_no) as count from (SELECT post.product_no,now_price,product_up_time, bid_end_time, post_image FROM POST
+
+FULL OUTER JOIN bid_log
+
+on post.product_no = bid_log.product_no)
+
+GROUP BY product_no
+order by count DESC
+;
+
+
+
 
 
 
