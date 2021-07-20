@@ -376,10 +376,6 @@ $(document).on("click", "#pick-switch-range", function() {
 										<c:otherwise>
 											<%--입찰하기 --%>
 											<div class="add_to_cart">
-<<<<<<< HEAD
-												<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice" style = "text-align:right;"> 원으로 <a href="#"
-													class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}); return false;">입찰하기</a>
-=======
 												
 													
 												<jsp:useBean id="toDay" class="java.util.Date" />
@@ -402,7 +398,6 @@ $(document).on("click", "#pick-switch-range", function() {
 													</c:otherwise>
 												</c:choose>
 																							
->>>>>>> 9959187df50af1b2eba3b0a8c360ba59c61b2bf7
 											</div>
 										</c:otherwise>
 									</c:choose>
