@@ -105,7 +105,7 @@
 										<form
 											action="${pageContext.request.contextPath}/user/searchByTitle">
 											<div>
-												<input type="text" name="title" placeholder="검색어를 입력해주세요">
+												<input type="text" name="title" placeholder="search for _a">
 												<input type="submit" value="검색">
 											</div>
 										</form>
