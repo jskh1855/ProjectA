@@ -96,7 +96,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" style="border:inactiveborder;">
                         <div class="single-new-pro mb-30 text-center">
                             <div class="product-img">
-                                <a href="/user/productDetails?productNo=${three.productNo }"><img src="${pageContext.request.contextPath}/myweb/images/${three.productNo }/${three.postImage }" alt="" style="border: medium;"></a>
+                                <a href="/user/productDetails?productNo=${three.productNo }"><img src="${pageContext.request.contextPath}/myweb/images/${three.productNo }/${three.postImage }" alt="" style="height: 300px; width: auto"></a>
                             </div>
                             <div class="product-caption">
                                 <h3><a href="/user/productDetails?productNo=${three.productNo }">${three.title }</a></h3>
