@@ -142,16 +142,16 @@ function showBig(val) {
 } 
 
 function startBid(id,unit,nego) {
-	
+	console.log("???????");
 	var price = null;
 	
 	if(nego == 0){
-		alert("네고");
+		//alert("네고");
 		price = document.getElementById("negoPrice").value;
-		alert(price);
+		//alert(price);
 	}else if(nego == 1){
 		price = document.getElementById("bidPrice").value;
-		alert("실행되나?")
+		//alert("실행되나?")
 	}
 	
 	console.log("1111");
@@ -189,6 +189,7 @@ function startBid(id,unit,nego) {
 		}//callback
 	});
 }
+</script>  
 
 <script type="text/javascript">
  	$(document).ready(function(){
@@ -399,7 +400,7 @@ $(document).on("click", "#pick-switch-range", function() {
 								<sec:authorize access="isAnonymous()">
 									<div class="add_to_cart">
 										<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice" disabled style = "text-align:right;"> 원으로 <a href="#"
-											class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}); return false;"
+											class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}, 1); return false;"
 											style="color: white; background-color: #808080" disabled>로그인 후 입찰</a>
 									</div>
 								</sec:authorize>
@@ -409,7 +410,7 @@ $(document).on("click", "#pick-switch-range", function() {
 							</c:when>
 							<c:when test="${productDetails.state eq 2}">
 								<div class="add_to_cart">
-									<a href="#" class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}); return false;"
+									<a href="#" class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}, 1); return false;"
 										style="color: white; background-color: red; width: 100%; text-align: center; border-color: red" disabled>낙찰 완료</a>
 								</div>
 							</c:when>
