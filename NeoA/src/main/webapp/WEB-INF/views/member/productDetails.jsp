@@ -232,7 +232,7 @@ $(document).on("click", "#pick-switch-range", function() {
 						<%--<c:forEach var="image" items="${imagesList }">
 							<img src="/myweb/images/${productDetails.productNo }/${image }">
 						</c:forEach>--%>
-						<img src="/myweb/images/${productDetails.productNo }/${productDetails.postImage}" height="500" id="big" /><br> <br>
+						<img src="/myweb/images/${productDetails.productNo }/${productDetails.postImage}" height="500" width="700" id="big" /><br> <br>
 						<c:forEach var="image" items="${imagesList }">
 							<img src="/myweb/images/${productDetails.productNo }/${image }" height="130" onmouseover="showBig('${image }');">
 						</c:forEach>
