@@ -159,7 +159,7 @@ function startBid(id,unit) {
 				var numBid = document.getElementById("numBid").innerHTML;
 				var newVal = parseInt(numBid,10) + 1;
 				document.getElementById("bidPrice").value = newPrice;
-				document.getElementById("nowPrice").innerHTML = nextPrice;
+				document.getElementById("nowPrice").innerHTML = nextPrice+'원';
 				document.getElementById("numBid").innerHTML = newVal;
 				console.log(data[0]);
 				document.getElementById("recent0").innerHTML = data[0];
@@ -318,7 +318,7 @@ $(document).on("click", "#pick-switch-range", function() {
 										<c:otherwise>
 											<%--입찰하기 --%>
 											<div class="add_to_cart">
-												<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice"> 원으로 <a href="#"
+												<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice" style = "text-align:right;"> 원으로 <a href="#"
 													class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}); return false;">입찰하기</a>
 											</div>
 										</c:otherwise>
@@ -326,7 +326,7 @@ $(document).on("click", "#pick-switch-range", function() {
 								</sec:authorize>
 								<sec:authorize access="isAnonymous()">
 									<div class="add_to_cart">
-										<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice" disabled> 원으로 <a href="#"
+										<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice" disabled style = "text-align:right;"> 원으로 <a href="#"
 											class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}); return false;"
 											style="color: white; background-color: #808080" disabled>로그인 후 입찰</a>
 									</div>
@@ -363,7 +363,7 @@ $(document).on("click", "#pick-switch-range", function() {
 							<%--현재가격 --%>
 							<h4 class="widget_title">
 								현재가격
-								<div id="nowPrice">${productDetails.nowPrice }</div>
+								<div id="nowPrice">${productDetails.nowPrice }원</div>
 							</h4>
 							<%--기타 정보들 --%>
 							<ul class="list cat-list">
@@ -426,17 +426,34 @@ $(document).on("click", "#pick-switch-range", function() {
 						<aside class="single_sidebar_widget popular_post_widget">
 							<h3 class="widget_title">최근 입찰 내역</h3>
 							
-			                	<c:forEach var="recent" items="${recentThree }" begin="0" end="2" varStatus="status">
-			                		<div class="media post_item">
-										<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
-										<div class="media-body">
-											<!-- 									<a href="single-blog.html"> -->
-											<h3 id="recent${status.index }">${recent.memberId}님  ${recent.bidPrice}원</h3>
-											<!-- 									</a> -->
-											<p id="time${status.index }">${recent.bidTime}</p>
+							<c:set var="check" value="1" />
+			                <c:forEach var="recent2" items="${listCheck}" varStatus="status">
+								<c:if test="${recent2 eq 0}">
+									<c:set var="check" value="0" />
+								</c:if>
+				                <c:choose>
+				                	<c:when test="${check eq 0}">
+				                		<div class="media post_item">
+											<div class="media-body">
+																					<a href="single-blog.html">
+												<h3 id="recent${status.index }"></h3>
+																					</a>
+												<p id="time${status.index }"></p>
+											</div>
 										</div>
-									</div>
-			                	</c:forEach>
+									</c:when>
+									<c:otherwise>
+				                		<div class="media post_item">
+											<div class="media-body">
+																					<a href="single-blog.html">
+												<h3 id="recent${status.index }">${recentThree[status.index].memberId}님  ${recentThree[status.index].bidPrice}원</h3>
+																					</a>
+												<p id="time${status.index }">${recentThree[status.index].bidTime}</p>
+											</div>
+										</div>
+									</c:otherwise>
+								</c:choose>
+			                </c:forEach>
 							<!-- 							<div class="media post_item"> -->
 							<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
 							<!-- 								<div class="media-body"> -->

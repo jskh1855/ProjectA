@@ -238,8 +238,8 @@ delete from bid_log;
 delete from pick;
 
 
-SELECT * from (select * from bid_log order by bid_no desc)
-WHERE product_no='64' and ROWNUM <= 3;
+SELECT * from (select * from bid_log order by bid_time desc)
+WHERE product_no='85' and ROWNUM <= 3;
 
 SELECT product_no, count(product_no) as count from (SELECT post.product_no,now_price,product_up_time, bid_end_time, post_image FROM POST
 
