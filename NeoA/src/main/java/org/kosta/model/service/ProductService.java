@@ -1,4 +1,4 @@
-package org.kosta.model.service;
+﻿package org.kosta.model.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,5 +33,10 @@ public interface ProductService {
 
 	void updateState(String productNo);
 
+	String getHighestBidMemberIdByProductNo(String productNo);
+
+	void insertBidComplete(String productNo, String memberId);
 	List<String> findPopular();
+
+	String nowPriceCheck(String productNo);
 }

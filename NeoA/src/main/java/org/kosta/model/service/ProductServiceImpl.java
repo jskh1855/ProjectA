@@ -1,4 +1,4 @@
-package org.kosta.model.service;
+﻿package org.kosta.model.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +32,11 @@ public class ProductServiceImpl implements ProductService {
 			postList.get(i).setBidLogVOList(pickList);
 		}
 		return postList;
+	}
+	
+	@Override
+	public String nowPriceCheck(String productNo) {
+		return postMapper.nowPriceCheck(productNo);
 	}
 
 	
@@ -119,6 +124,21 @@ public class ProductServiceImpl implements ProductService {
 		postMapper.updateState(productNo);		
 	}
 
+
+	@Override
+	public String getHighestBidMemberIdByProductNo(String productNo) {
+		String memberId = memberMapper.getHighestBidMemberIdByProductNo(productNo);
+		return memberId;
+	}
+
+
+	@Override
+	public void insertBidComplete(String productNo, String memberId) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("productNo", productNo);
+		map.put("memberId", memberId);
+		postMapper.insertBidComplete(map);
+	}
 
 	@Override
 	public List<String> findPopular() {

@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.model.mapper.PostMapper;
+import org.kosta.model.service.MemberService;
 import org.kosta.model.service.ProductService;
 import org.kosta.model.vo.BidLogVO;
 import org.kosta.model.vo.MemberVO;
@@ -335,6 +336,8 @@ public class ProductController {
 		//System.out.println("completebid");
 		//System.out.println(productNo);
 		productService.updateState(productNo);
+		String memberId = productService.getHighestBidMemberIdByProductNo(productNo);
+		productService.insertBidComplete(productNo, memberId);
 		return "redirect:user/productDetails?productNo="+productNo;
 	}
 
@@ -359,6 +362,17 @@ public class ProductController {
 		param.put("pick",productService.updatePick(map));
 		return param;
 	}
+	
+	@PostMapping("/nowPriceCheck")
+	@ResponseBody
+	public Map<String, String> nowPriceCheck(HttpServletRequest request) {
+		String productNo = request.getParameter("data");
+		System.out.println("오나?");
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("nowPrice", productService.nowPriceCheck(productNo));
+		return param;
+	}
+	
 	
     @RequestMapping(value = "/bid",method = RequestMethod.POST)
     @ResponseBody

@@ -132,7 +132,7 @@ $(function() {
 										reader.onload = function(data) {
 											$(".select_img img").attr("src",
 													data.target.result).width(
-													500);
+													300);
 										}
 										reader.readAsDataURL(this.files[0]);
 									}

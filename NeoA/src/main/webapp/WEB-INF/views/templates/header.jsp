@@ -67,7 +67,7 @@
 						<div class="main-menu d-none d-lg-block">
 							<nav>
 								<ul id="navigation">
-									<li><a href="home">Home</a></li>
+									<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
 									<%-- <li><a href="${pageContext.request.contextPath}/shop">shop</a></li> --%>
 									<li><a
 										href="${pageContext.request.contextPath}/productUpload">auction</a></li>
@@ -76,26 +76,23 @@
 											<li><a
 												href="${pageContext.request.contextPath}/user/showAll">
 													Product list</a></li>
-											<li><a
+											<li class="hot"><a
 												href="${pageContext.request.contextPath}/user/randPost">
 													Random Product </a></li>
 										</ul></li>
-									<li><a href="blog.html">Blog</a>
+									<li><a href="#">Blog</a>
 										<ul class="submenu">
 											<li><a href="https://iamaway.tistory.com/">Blog-jh</a></li>
 											<li><a href="https://gegenpress.tistory.com/">Blog-hs</a></li>
-											<li><a href="https://blog.naver.com/sandeoduk">대월벌꿀
+											<li class="hot"><a href="https://blog.naver.com/sandeoduk">대월벌꿀
 													짱</a></li>
 										</ul></li>
-									<li>
+									<%-- <li>
 										<ul class="submenu">
 											<li><a
 												href="${pageContext.request.contextPath}/user/loginPage">Login</a></li>
-											<li><a href="cart.html">Cart</a></li>
-											<li><a href="elements.html">Element</a></li>
-											<li><a href="confirmation.html">Confirmation</a></li>
-											<li><a href="checkout.html">Product Checkout</a></li>
-										</ul></li>
+											<li><a href="${pageContext.request.contextPath}/member/mypage_pick_list">Cart</a></li>
+										</ul></li> --%>
 									<!--  <li><a href="contact.html">Contact</a></li> -->
 									<li>
 										<%-- <div class="nav-search search-switch" onsubmit="${pageContext.request.contextPath}/searchByTitle">
@@ -105,7 +102,7 @@
 										<form
 											action="${pageContext.request.contextPath}/user/searchByTitle">
 											<div>
-												<input type="text" name="title" placeholder="search for _a">
+												<input type="text" name="title" placeholder="search for _a" >
 												<input type="submit" value="검색">
 											</div>
 										</form>

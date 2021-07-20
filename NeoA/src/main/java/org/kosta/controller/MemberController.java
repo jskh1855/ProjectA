@@ -1,11 +1,13 @@
 package org.kosta.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.model.service.MemberService;
+import org.kosta.model.service.ProductService;
 import org.kosta.model.vo.MemberVO;
 import org.kosta.model.vo.PagingBean;
 import org.kosta.model.vo.PostVO;
@@ -23,6 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MemberController {
 
+	@Resource
+	private ProductService productService;
+	
 	@Resource
 	private MemberService memberService;
 
@@ -227,8 +232,27 @@ public class MemberController {
 	}
 
 	@RequestMapping("/mypageBidSuccess")
-	public String mypageBidSuccess(Model model) {
+	public String mypageBidSuccess(Model model, @RequestParam("pageNo") @Nullable String pageNo) {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String memberId = memberVO.getMemberId();
+		List<String> myBidSuccessList =  memberService.getMyBidSuccessList(memberId);
+		
+		
+		int totalPostCount = myBidSuccessList.size();
+		PagingBean pagingBean = null;
+		if (pageNo == null) {
+			pagingBean = new PagingBean(totalPostCount);
+		} else {
+			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
+		}
+		model.addAttribute("pagingBean", pagingBean);
+		
+		List<PostVO> list = new ArrayList<PostVO>();
+		
+		for(int i=0; i<totalPostCount;i++) {
+			list.add(productService.getproductDetails(myBidSuccessList.get(i)));
+		}
+		model.addAttribute("list", list);
 		return "member/mypageBidSuccess.tiles";
 	}
 

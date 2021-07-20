@@ -107,7 +107,7 @@
 										<c:choose>
 											<c:when test="${item.state eq 2}">
 												<script>
-													document.getElementById(${item.productNo}).innerHTML="남은시간 낙찰완료";
+													document.getElementById(${item.productNo}).innerHTML="낙찰완료";
 											</script>
 											</c:when>
 											<c:otherwise>

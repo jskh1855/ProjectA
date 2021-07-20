@@ -1,7 +1,7 @@
 -- **************************************
 -- table 생성 순서대로 
 -- **************************************
-
+/*
 create table category(
 	category_no varchar2(100) primary key,
 	large_cate varchar2(100) not null,
@@ -10,6 +10,7 @@ create table category(
 	category_name varchar2(100) not null
 );
 create sequence category_seq;
+*/
 
 create table a_member(
 	member_id varchar2(100) primary key,
@@ -31,25 +32,6 @@ create table a_authorities(
 	constraint fk_a foreign key(username) references a_member(member_id),
 	constraint member_a primary key(username,authority)
 );
-select * from a_authorities
-/*
-create table post(
-	product_no varchar2(100) primary key,
-	title varchar2(100) not null,
-	product_name varchar2(100) not null,
-	start_price number default 0,
-	now_price number default 0,
-	product_up_time date default sysdate,
-	bid_time_unit number default 0,
-	bid_end_time date,
-	unit_price number,
-	give_me_that_price number,
-	detail clob,
-	post_image varchar2(100),
-	category_no varchar2(100) constraint fk_post_category_no references category(category_no),
-	member_id varchar2(100) constraint fk_post references a_member(member_id)
-);
-*/
 
 create table post(
 	product_no varchar2(100) primary key,
@@ -68,24 +50,9 @@ create table post(
 	state number DEFAULT '0' NOT NULL,
 	member_id varchar2(100) constraint fk_post references a_member(member_id) on delete cascade
 );
-alter table post drop column state
-ALTER TABLE post ADD(state number DEFAULT '0' NOT NULL); 
 create sequence product_no_seq;
 
-/*
-create table qna(
-	qna_no varchar2(100) primary key,
-	qna_time date not null,
-	qna_type int default 1 not null,
-	qna_content clob not null,
-	member_id varchar2(100) constraint fk_member_id references a_member(member_id),
-	product_no varchar2(100) constraint fk_product_no references post(product_no)
-);
-*/
 
---qna 테이블 변경 변경, qna_no 와 qna_type 을 복합기본키로. qna_type 이 0이면 질문, 1 이면 대답.
-drop table qna;
-drop sequence qna_no_seq;
 create table qna (
 	qna_no varchar2(100) not null,    
 	qna_time date not null,
@@ -96,7 +63,6 @@ create table qna (
 	constraint pk_qna primary key (qna_no, qna_type)
 );
 create sequence qna_no_seq;
-select * from qna
 
 create table bid_log(
 	bid_no varchar2(100) primary key,
@@ -107,11 +73,6 @@ create table bid_log(
 );
 create sequence bid_no_seq;
 
---insert into bid_log values(bid_no_seq.nextval,sysdate,'20000','java','9');
---insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','java','8');
---insert into bid_log values(bid_no_seq.nextval,sysdate,'30000','java','7');
-
-
 create table pick(
 	pick_no varchar2(20) primary key,
 	pick_time date,
@@ -120,21 +81,12 @@ create table pick(
 );
 create sequence pick_no_seq;
 
-
-
-
-insert into pick values(pick_no_seq.nextval,sysdate,'spring','21');
-insert into pick values(pick_no_seq.nextval,sysdate,'spring','8');
-insert into pick values(pick_no_seq.nextval,sysdate,'spring','7');
-insert into pick values(pick_no_seq.nextval,sysdate,'spring','21');
-insert into pick values(pick_no_seq.nextval,sysdate,'spring','22');
-insert into pick values(pick_no_seq.nextval,sysdate,'spring','22');
-insert into pick values(pick_no_seq.nextval,sysdate,'spring','23');
-insert into pick values(pick_no_seq.nextval,sysdate,'spring','27');
-insert into pick values(pick_no_seq.nextval,sysdate,'spring','28');
-insert into pick values(pick_no_seq.nextval,sysdate,'spring','29');
-insert into pick values(pick_no_seq.nextval,sysdate,'spring','30');
-
+create table bidComplete(
+	bidComplete_no varchar2(100) primary key,
+	product_no varchar2(100) not null,
+	member_id varchar2(100) not null
+);
+create sequence bidComplete_no_seq;
 -- **************************************
 -- table 삭제 순서대로  
 -- **************************************
@@ -145,6 +97,7 @@ drop table qna;
 drop table post;
 drop table a_authorities;
 drop table a_member;
+drop table bidComplete;
 --drop table category;
 
 --sequence 드랍
@@ -153,6 +106,7 @@ drop sequence product_no_seq;
 drop sequence bid_no_seq;
 drop sequence pick_no_seq;
 drop sequence qna_no_seq;
+drop sequence bidComplete_no_seq;
 
 -- **************************************
 -- insert ( sample )  
@@ -226,7 +180,7 @@ select * from a_authorities;
 select * from bid_log;
 select * from pick;
 select * from qna;
-
+select * from bidComplete
 
 -- **************************************
 -- delete 

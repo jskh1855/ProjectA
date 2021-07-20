@@ -4,6 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
 <script type="text/javascript">
 $(document).ready(function() {
 	<%--모든 post ajax 에 대해서 csrf 토큰 첨부하기--%>
@@ -42,20 +43,20 @@ $(document).ready(function() {
 })//ready
 
 function complete(){
-	var one = document.getElementById("recentOne");
-	var two = document.getElementById("recentTwo");
-	var three = document.getElementById("recentThree");
+ 	//var one = document.getElementById("recent0");
+	//var two = document.getElementById("recent1");
+	//var three = document.getElementById("recent2");
 	//alert(one.innerHTML);
-	if(one.innerHTML=="님원"&&two.innerHTML=="님원"&&three.innerHTML=="님원"){
+	//alert(document.getElementById("recent2"));
+	//if(typeof(one)=="undefined"&&typeof(two)=="undefined"&&typeof(three)=="undefined"){
+	if(document.getElementById("recent0")==null&&document.getElementById("recent1")==null&&document.getElementById("recent2")==null){
 		alert("입찰자가 없습니다.");
 		return false;
-	}
+	} 
 	if(confirm("낙찰 진행 하시겠습니까?")){
 		//alert("진행");
 		document.getElementById("complteBid").submit();
 	}
-
-
 }
 
 <%--답변하기, 답변하기 form 을 동적 생성했더니 $(document).ready(function() 에선 작동 안함--%>	
@@ -140,8 +141,19 @@ function showBig(val) {
 		 obj.src = "/myweb/images/${productDetails.productNo }/" + val;
 } 
 
-function startBid(id,unit) {
-	var price = document.getElementById("bidPrice").value;
+function startBid(id,unit,nego) {
+	
+	var price = null;
+	
+	if(nego == 0){
+		alert("네고");
+		price = document.getElementById("negoPrice").value;
+		alert(price);
+	}else if(nego == 1){
+		price = document.getElementById("bidPrice").value;
+		alert("실행되나?")
+	}
+	
 	console.log("1111");
     $.ajax({
         url: "${pageContext.request.contextPath}/bid",
@@ -154,12 +166,22 @@ function startBid(id,unit) {
 					},
 		success : function(data) {
 				console.log("success");
-				var nextPrice = document.getElementById("bidPrice").value;
-				var newPrice = parseInt(nextPrice,10) + unit
+				if(nego == 0){
+					document.getElementById("negoPrice").value = "가격 제시";
+					document.getElementById("nowPrice").innerHTML = price;
+				}else if(nego == 1){
+					var nextPrice = document.getElementById("bidPrice").value;
+					var newPrice = parseInt(nextPrice,10) + unit;
+					document.getElementById("bidPrice").value = newPrice;
+					document.getElementById("nowPrice").innerHTML = nextPrice;
+				}
 				var numBid = document.getElementById("numBid").innerHTML;
 				var newVal = parseInt(numBid,10) + 1;
+<<<<<<< HEAD
 				document.getElementById("bidPrice").value = newPrice;
 				document.getElementById("nowPrice").innerHTML = nextPrice+'원';
+=======
+>>>>>>> 9959187df50af1b2eba3b0a8c360ba59c61b2bf7
 				document.getElementById("numBid").innerHTML = newVal;
 				console.log(data[0]);
 				document.getElementById("recent0").innerHTML = data[0];
@@ -173,6 +195,42 @@ function startBid(id,unit) {
 	});
 }
 </script>
+
+<script type="text/javascript">
+ 	$(document).ready(function(){
+ 		var productNo = $("#productNo").val();
+		var checkResultNego="";	
+		$("#negoPrice").keyup(function(){
+			/* var id=$(this).val().trim();
+			if(id.length<4 || id.length>10){
+				$("#negoCheck").html("숫자를 입력하세요!").css(
+						"background","pink");
+				checkResultNego="";
+				return;
+			} */
+			// spring security 적용시 ajax post 방식은 아래와 같이 beforeSend property에서 csrf 값을 셋팅해야 함 
+			$.ajax({
+				type:"post",
+				url:"/nowPriceCheck",
+				dataType:"json",
+				data:{ data : productNo },
+				beforeSend : function(xhr){   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                    xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                },
+				success:function(result){
+					if($("#negoPrice").val() <= result.nowPrice){
+						$("#negoCheck").html(result.nowPrice +"원 이상으로 입력하세요.").css("background","red");
+						//checkResultId="";
+					}else{						
+						//$("#negoCheck").html("사용가능!").css("background","yellow");		
+						//checkResultId=id; 
+					}			 	
+				}//callback			
+			});//ajax
+		});//keyup
+	}); //ready 
+</script>  
+
 <script type="text/javascript">
 $(document).on("click", "#pick-switch-range", function() {
 	var productNo = $(this).children().attr('value');
@@ -217,7 +275,7 @@ $(document).on("click", "#pick-switch-range", function() {
 			</div>
 		</div>
 	</div>
-	<%--${productDetails }--%>
+	<%--${productDetails }--%>	
 	<!--================Blog Area =================-->
 	<section class="blog_area single-post-area section-padding">
 		<div class="container">
@@ -232,7 +290,7 @@ $(document).on("click", "#pick-switch-range", function() {
 						<%--<c:forEach var="image" items="${imagesList }">
 							<img src="/myweb/images/${productDetails.productNo }/${image }">
 						</c:forEach>--%>
-						<img src="/myweb/images/${productDetails.productNo }/${productDetails.postImage}" height="500" width="700" id="big" /><br> <br>
+						<img src="/myweb/images/${productDetails.productNo }/${productDetails.postImage}" height="500" width="600" id="big" /><br> <br>
 						<c:forEach var="image" items="${imagesList }">
 							<img src="/myweb/images/${productDetails.productNo }/${image }" height="130" onmouseover="showBig('${image }');">
 						</c:forEach>
@@ -318,8 +376,33 @@ $(document).on("click", "#pick-switch-range", function() {
 										<c:otherwise>
 											<%--입찰하기 --%>
 											<div class="add_to_cart">
+<<<<<<< HEAD
 												<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice" style = "text-align:right;"> 원으로 <a href="#"
 													class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice}); return false;">입찰하기</a>
+=======
+												
+													
+												<jsp:useBean id="toDay" class="java.util.Date" />
+												<fmt:formatDate value='${toDay}' pattern='yyyy-MM-dd HH:mm:ss' var="nowDate"/>
+												<fmt:parseDate value="${productDetails.bidEndTime}" var="endDate1" pattern="yyyy-MM-dd HH:mm:ss"/>
+												<fmt:formatDate value="${endDate1}" pattern="yyyy-MM-dd HH:mm:ss" var="endDate"/>
+												
+												
+												<c:choose>
+													<c:when test="${endDate <= nowDate}">
+															<!-- 기간지남  -->			
+															<input type="text" value="" size="12" id="negoPrice"> 원으로
+															<a href="#" class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice},0); return false;">제시하기</a>
+															<span id="negoCheck"></span>
+													</c:when>
+													<c:otherwise>
+															<!-- 기간 안지남 -->
+															<input type="text" value="${productDetails.nowPrice+productDetails.unitPrice }" size="12" id="bidPrice"> 원으로 
+															<a href="#"	class="btn_3" onclick="startBid(${productDetails.productNo},${productDetails.unitPrice},1); return false;">입찰하기</a>
+													</c:otherwise>
+												</c:choose>
+																							
+>>>>>>> 9959187df50af1b2eba3b0a8c360ba59c61b2bf7
 											</div>
 										</c:otherwise>
 									</c:choose>
@@ -363,7 +446,26 @@ $(document).on("click", "#pick-switch-range", function() {
 							<%--현재가격 --%>
 							<h4 class="widget_title">
 								현재가격
-								<div id="nowPrice">${productDetails.nowPrice }원</div>
+								<div id="nowPrice">
+									<c:choose>
+										<c:when test="${endDate <= nowDate}">
+												<!-- 기간지남  -->			
+												<c:choose>
+													<c:when test="${productDetails.nowPrice == productDetails.startPrice}">
+														0
+													</c:when>
+													<c:otherwise>
+														${productDetails.nowPrice}
+													</c:otherwise>
+												</c:choose>
+										</c:when>
+										<c:otherwise>
+												${productDetails.nowPrice }
+										</c:otherwise>
+									</c:choose>
+								
+								
+								</div>
 							</h4>
 							<%--기타 정보들 --%>
 							<ul class="list cat-list">

@@ -67,6 +67,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from pick where product_no = #{productNo} and member_id =
 		#{memberId}
 	</select>
+	
+	<select id="nowPriceCheck" resultType="string" parameterType="string">
+		select now_price from post where product_no = #{value}
+	</select>
 
 	<insert id="insertPickByPostNoAndMId" parameterType="hashmap">
 		insert into
@@ -167,6 +171,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where product_no = #{value}
 	</update>
 	
+	<insert id="insertBidComplete" parameterType="map">
+		insert into bidComplete
+		values(bidComplete_no_seq.nextval, #{productNo}, #{memberId})
+	</insert>
+
 	<select id="recentThree"  resultType="postVO">
 		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image
 		from (select row_number() over(ORDER BY product_up_time DESC) as rnum, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image

@@ -1,4 +1,4 @@
-package org.kosta.model.mapper;
+﻿package org.kosta.model.mapper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +17,8 @@ public interface PostMapper {
 	List<PostVO> showAll(HashMap<String, Object> map);
 	
 	int showAllCount(PagingBeanMain pg);
+	
+	String nowPriceCheck(String productNo);
 
 	void registerProduct(PostVO pvo);
 	
@@ -51,6 +53,8 @@ public interface PostMapper {
 	List<BidLogVO> recentBids(String productNo);
 
 	void updateState(String productNo);
+
+	void insertBidComplete(HashMap<String, String> map);
 	
 	List<PostVO> recentThree();
 	

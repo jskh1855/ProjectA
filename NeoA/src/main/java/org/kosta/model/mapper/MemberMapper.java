@@ -50,5 +50,15 @@ public interface MemberMapper {
 	int getMySellSucessCountById(String memberId);
 
 	List<BidLogVO> getBidHighestByProductNo(String productNo);
+
+	List<String> getMyBidSuccessList(String memberId);
+
+	List<String> getMyBidLog(String id);
+
+	int isBidSuccess(String id, String productNo);
+
+	String getHighestBidMemberIdByProductNo(String productNo);
+	
+	
 }
 

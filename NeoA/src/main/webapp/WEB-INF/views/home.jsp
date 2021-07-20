@@ -96,17 +96,13 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" style="border:inactiveborder;">
                         <div class="single-new-pro mb-30 text-center">
                             <div class="product-img">
-                                <a href="/user/productDetails?productNo=${three.productNo }"><img src="${pageContext.request.contextPath}/myweb/images/${three.productNo }/${three.postImage }" alt="" style="border: medium;"></a>
+                                <a href="/user/productDetails?productNo=${three.productNo }"><img src="${pageContext.request.contextPath}/myweb/images/${three.productNo }/${three.postImage }" alt="" style="height: 300px;"></a>
                             </div>
                             <div class="product-caption">
                                 <h3><a href="/user/productDetails?productNo=${three.productNo }">${three.title }</a></h3>
-                                <span>${three.nowPrice }</span>
-                                <span>${three.memberVO.memberId }</span>
+                                <span> Now! ${three.nowPrice }</span>
                             </div>
-                        </div>
-                    </div>
-                    <!-- 하트 로그인 유저만 -->
-	                                        <sec:authorize access="isAuthenticated()">
+                                                              <sec:authorize access="isAuthenticated()">
 		                                        <div class="favorit-items">
 		                                        	<span id="pick-switch-range">
 			                                        	<c:choose>
@@ -121,6 +117,10 @@
 		                                        	</span>
 		                                   		</div>
 	                                        </sec:authorize>
+                        </div>
+                    </div>
+                    <!-- 하트 로그인 유저만 -->
+	      
                     
                </c:forEach>
                 </div>
@@ -168,7 +168,7 @@
                     <div class="col-xl-7 col-lg-8 col-md-10">
                         <div class="section-tittle mb-70 text-center">
                             <h2>인기상품!!</h2>
-                            <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                            <p>지금 가장 치열한 가격 싸움이 진행중인 상품들이에요!</p>
                         </div>
                     </div>
                 </div>
@@ -187,7 +187,7 @@
 	                            </div>
 	                            <div class="popular-caption">
 	                                <h3><a href="/user/productDetails?productNo=${product.productNo }">${product.title}</a></h3>
-	                                <span>${product.nowPrice}원</span>
+	                                 <span> <span style="font-style: italic; color: red;">Hot!</span>${product.nowPrice}원</span>
 	                            </div>
 	                        </div>
 	                    </div>							

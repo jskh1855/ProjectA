@@ -77,7 +77,6 @@
 				<div class="grid-list-view"></div>
 				<!-- Select items -->
 			</div>
-
 			<!-- Nav Card -->
 			<div class="tab-content" id="nav-tabContent">
 				<!-- card one -->
@@ -102,8 +101,15 @@
 												<c:out value="${item.title}" />
 											</a>
 										</h3>
-										<span>시작가 <c:out value="${item.startPrice}" /></span> <span>현재가 <c:out value="${item.nowPrice}" /></span> <span>총 입찰 수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
-										</span> <span id="${item.productNo}"> 남은시간 </span>
+										<span>시작가 <c:out value="${item.startPrice}" /></span> 
+										<span>구매가 <c:out value="${item.nowPrice}" /></span> 
+										<%-- <span>총 입찰 수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
+										</span>  --%>
+										<div style="background-color: #ed6f63;">
+											<span style="color: white">판매자 이름 : ${item.memberVO.name } </span>
+											<span style="color: white">판매자 은행명 : ${item.memberVO.bankName }</span>
+											<span style="color: white">판매자 계좌번호: ${item.memberVO.accountNo }</span>
+										</div>
 										<c:choose>
 											<c:when test="${item.state eq 2}">
 												<script>

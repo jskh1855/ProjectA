@@ -34,6 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM	a_member
 		WHERE 	member_id=#{value}	
  	</select>
+ 	
  	<sql id="selectMember">
  		select member_id,password,name,address from a_member
  	</sql>
@@ -69,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 		from  bid_log) b, post p
 		where p.product_no=b.product_no AND b.member_id=#{id}
 		and rnum between #{startRowNumber} and #{endRowNumber} -->
-		select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image, b.bid_time, b.product_no
+		select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image, b.bid_time, b.product_no, p.state
 		from(
 			select row_number() over(ORDER BY bid_time DESC) as rnum, product_no, bid_time
 		 	from(	
@@ -103,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	 
 	<select id="getPickProductListById" parameterType="map" resultType="postVO">
-		select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image,
+		select p.title, p.product_name, p.now_price, to_char(p.bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time,p.post_image,p.state,
 		k.pick_no, k.pick_time, k.member_id, k.product_no
 		from (select row_number() over(ORDER BY pick_time DESC) as rnum,
 		 		pick_no,to_char(pick_time, 'YYYY-MM-DD HH24:MI:SS') as pick_time,member_id,product_no 
@@ -129,9 +130,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getMemberVOByProductNo" resultType="memberVO">
-		select member_id
-		from post
-		where product_no=#{value}
+		select p.member_id, m.name, m.bank_name, m.account_no
+		from post p, a_member m
+		where product_no=#{value} and p.member_id = m.member_id
 	</select>
 	
 	<select id="getMySellSuccessList" parameterType="map" resultType="postVO">
@@ -148,5 +149,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from post
 		where member_id=#{id} and state='2'
 	</select>
+	
+	<select id="getMyBidSuccessList" parameterType="string" resultType="string">
+		select product_no
+		from bidComplete
+		where member_id = #{value}
+	</select>
+	
+	<select id ="getMyBidLog" parameterType="string" resultType="string">
+		select distinct product_no
+		from BID_LOG
+		where member_id=#{id}
+	</select>
+		
+	<select id="isBidSuccess" parameterType="map" resultType="int">
+		select count(*)
+		from bid_log
+		where product_no=#{productNo} and member_id=#{id} and bid_price=(select max(bid_price) as bid_price from bid_log where product_no=#{productNo})
+	</select>
+		
+	<select id="getHighestBidMemberIdByProductNo" parameterType="string" resultType="string">
+		select member_id
+		from bid_log
+		where product_no=#{value} and bid_price=(select max(bid_price) as bid_price from bid_log where product_no=#{value})
+	</select>	
+	
+	
 	
 </mapper>
