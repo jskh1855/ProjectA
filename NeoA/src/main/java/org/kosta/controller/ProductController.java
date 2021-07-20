@@ -373,11 +373,6 @@ public class ProductController {
 	 * 
 	 * return "mv"; }
 	 */
-    @RequestMapping("/home")
-    public String recentThree(Model model) {
-    	model.addAttribute("recentThree", postMapper.recentThree());
-    	
-    	return "home.tiles";
-    }
+   
     
 }

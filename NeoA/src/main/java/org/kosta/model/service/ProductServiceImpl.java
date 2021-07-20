@@ -1,6 +1,5 @@
 package org.kosta.model.service;
 
-import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.List;
 
@@ -118,5 +117,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void updateState(String productNo) {
 		postMapper.updateState(productNo);		
+	}
+
+
+	@Override
+	public List<String> findPopular() {
+		return postMapper.findPopular();
 	}
 }

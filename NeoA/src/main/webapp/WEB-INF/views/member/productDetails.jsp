@@ -6,7 +6,6 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	//alert($("#memberId").val());
 	<%--모든 post ajax 에 대해서 csrf 토큰 첨부하기--%>
 	$.ajaxPrefilter(function(options) {
 		let headerName = '${_csrf.headerName}';
@@ -15,8 +14,7 @@ $(document).ready(function() {
 		options.headers = {};
 		options.headers[headerName] = token;
 		}
-	});
-	
+	});//ajaxPrefilter
 	//페이지 로딩시 qna 보여주기
 	$.ajax({
 		type:"GET",
@@ -27,7 +25,6 @@ $(document).ready(function() {
 			showQnAList(qna);
 		}//callback
 	});//ajax 
-	
 	//질문 등록 및 qna 새로 띄워주기
 	$("#registerQuestion").click(function() {
 		$(".comments-area").children().remove();
@@ -42,14 +39,23 @@ $(document).ready(function() {
 		});//ajax
 		document.getElementById("qnaContent").value='';
 	});//click
-	
 })//ready
 
 function complete(){
+	var one = document.getElementById("recentOne");
+	var two = document.getElementById("recentTwo");
+	var three = document.getElementById("recentThree");
+	//alert(one.innerHTML);
+	if(one.innerHTML=="님원"&&two.innerHTML=="님원"&&three.innerHTML=="님원"){
+		alert("입찰자가 없습니다.");
+		return false;
+	}
 	if(confirm("낙찰 진행 하시겠습니까?")){
 		//alert("진행");
 		document.getElementById("complteBid").submit();
 	}
+
+
 }
 
 <%--답변하기, 답변하기 form 을 동적 생성했더니 $(document).ready(function() 에선 작동 안함--%>	
@@ -156,12 +162,12 @@ function startBid(id,unit) {
 				document.getElementById("nowPrice").innerHTML = nextPrice;
 				document.getElementById("numBid").innerHTML = newVal;
 				console.log(data[0]);
-				document.getElementById("recentOne").innerHTML = data[0];
-				document.getElementById("recentTwo").innerHTML = data[2];
-				document.getElementById("recentThree").innerHTML = data[4];
-				document.getElementById("timeOne").innerHTML = data[1];
-				document.getElementById("timeTwo").innerHTML = data[3];
-				document.getElementById("timeThree").innerHTML = data[5];
+				document.getElementById("recent0").innerHTML = data[0];
+				document.getElementById("recent1").innerHTML = data[2];
+				document.getElementById("recent2").innerHTML = data[4];
+				document.getElementById("time0").innerHTML = data[1];
+				document.getElementById("time1").innerHTML = data[3];
+				document.getElementById("time2").innerHTML = data[5];
 				
 		}//callback
 	});
@@ -226,7 +232,7 @@ $(document).on("click", "#pick-switch-range", function() {
 						<%--<c:forEach var="image" items="${imagesList }">
 							<img src="/myweb/images/${productDetails.productNo }/${image }">
 						</c:forEach>--%>
-						<img src="/myweb/images/${productDetails.productNo }/${productDetails.postImage}" height="500" id="big" /><br> <br>
+						<img src="/myweb/images/${productDetails.productNo }/${productDetails.postImage}" height="500" width="700" id="big" /><br> <br>
 						<c:forEach var="image" items="${imagesList }">
 							<img src="/myweb/images/${productDetails.productNo }/${image }" height="130" onmouseover="showBig('${image }');">
 						</c:forEach>
@@ -419,33 +425,18 @@ $(document).on("click", "#pick-switch-range", function() {
 						</aside>
 						<aside class="single_sidebar_widget popular_post_widget">
 							<h3 class="widget_title">최근 입찰 내역</h3>
-							<div class="media post_item">
-								<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
-								<div class="media-body">
-									<!-- 									<a href="single-blog.html"> -->
-									<h3 id="recentOne">${recentThree[0].memberId}님${recentThree[0].bidPrice}원</h3>
-									<!-- 									</a> -->
-									<p id="timeOne">${recentThree[0].bidTime}</p>
-								</div>
-							</div>
-							<div class="media post_item">
-								<!-- 								<img src="assets/img/post/post_2.png" alt="post"> -->
-								<div class="media-body">
-									<!-- 									<a href="single-blog.html"> -->
-									<h3 id="recentTwo">${recentThree[1].memberId}님${recentThree[1].bidPrice}원</h3>
-									<!-- 									</a> -->
-									<p id="timeTwo">${recentThree[1].bidTime}</p>
-								</div>
-							</div>
-							<div class="media post_item">
-								<!-- 								<img src="assets/img/post/post_3.png" alt="post"> -->
-								<div class="media-body">
-									<!-- 									<a href="single-blog.html"> -->
-									<h3 id="recentThree">${recentThree[2].memberId}님${recentThree[2].bidPrice}원</h3>
-									<!-- 									</a> -->
-									<p id="timeThree">${recentThree[2].bidTime}</p>
-								</div>
-							</div>
+							
+			                	<c:forEach var="recent" items="${recentThree }" begin="0" end="2" varStatus="status">
+			                		<div class="media post_item">
+										<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
+										<div class="media-body">
+											<!-- 									<a href="single-blog.html"> -->
+											<h3 id="recent${status.index }">${recent.memberId}님  ${recent.bidPrice}원</h3>
+											<!-- 									</a> -->
+											<p id="time${status.index }">${recent.bidTime}</p>
+										</div>
+									</div>
+			                	</c:forEach>
 							<!-- 							<div class="media post_item"> -->
 							<!-- 								<img src="assets/img/post/post_1.png" alt="post"> -->
 							<!-- 								<div class="media-body"> -->

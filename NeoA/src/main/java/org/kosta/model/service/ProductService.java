@@ -32,4 +32,6 @@ public interface ProductService {
 	List<BidLogVO> recentBids(String productNo);
 
 	void updateState(String productNo);
+
+	List<String> findPopular();
 }
