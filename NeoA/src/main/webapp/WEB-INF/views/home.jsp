@@ -1,7 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
    <main>
+   <script type="text/javascript">
+   
+   $(document).on("click", "#pick-switch-range", function() {
+		var productNo = $(this).children().attr('value');
+		$.ajax({
+			headers:{"${_csrf.headerName}":"${_csrf.token}"}, 
+			type:"post",
+			data:{ data : productNo },
+			dataType:"json",
+			url:"/updatePick",
+			context : this, 
+			success:function(result){
+				if(result.pick == '0'){
+					$(this).children("#pick-switch").html("<span class='far fa-heart'/>");
+				}else if(result.pick == '1'){
+					$(this).children("#pick-switch").html("<span class='fas fa-heart' style='color: red;'/>");
+				}
+			}
+		});
+	}); 
+   </script>
         <!--? slider Area Start -->
         <div class="slider-area ">
             <div class="slider-active">
@@ -27,7 +50,9 @@
                         </div>
                     </div>
                 </div>
-            
+            <form action="${pageContext.request.contextPath}/user/recentThree">
+            	<button>home2</button>
+            </form>
                 <!-- Single Slider -->
                 <div class="single-slider slider-height d-flex align-items-center slide-bg">
                     <div class="container">
@@ -69,39 +94,38 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                      <c:forEach items="${recentThree }" var="three">
+                
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" style="border:inactiveborder;">
                         <div class="single-new-pro mb-30 text-center">
                             <div class="product-img">
-                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/new_product1.png" alt="">
+                                <a href="/user/productDetails?productNo=${three.productNo }"><img src="${pageContext.request.contextPath}/myweb/images/${three.productNo }/${three.postImage }" alt="" style="border: medium;"></a>
                             </div>
                             <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
+                                <h3><a href="/user/productDetails?productNo=${three.productNo }">${three.title }</a></h3>
+                                <span>${three.nowPrice }</span>
+                                <span>${three.memberVO.memberId }</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/new_product2.png" alt="">
-                            </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                                <img src="${pageContext.request.contextPath}/myweb/assets/img/gallery/new_product3.png" alt="">
-                            </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- 하트 로그인 유저만 -->
+	                                        <sec:authorize access="isAuthenticated()">
+		                                        <div class="favorit-items">
+		                                        	<span id="pick-switch-range">
+			                                        	<c:choose>
+			                                        		<c:when test="${three.pickVO.memberId != null}">
+					                                            	<a id="pick-switch" value="${three.productNo}"><span class="fas fa-heart" style="color: red;"/></a>
+			                                        		</c:when>
+			                                        		<c:otherwise>
+		                                        					<a id="pick-switch" value="${three.productNo}"><span class="far fa-heart"/></a>
+						                                            <%-- <a href="${pageContext.request.contextPath}/addPick?productNo=${list.productNo}" style="color:black;"><span class="flaticon-heart"></span></a> --%>
+			                                        		</c:otherwise>
+			                                        	</c:choose>
+		                                        	</span>
+		                                   		</div>
+	                                        </sec:authorize>
+                    
+               </c:forEach>
                 </div>
             </div>
         </section>

@@ -87,7 +87,7 @@
 											<li><a href="https://blog.naver.com/sandeoduk">대월벌꿀
 													짱</a></li>
 										</ul></li>
-									<li><a href="#">Pages</a>
+									<li>
 										<ul class="submenu">
 											<li><a
 												href="${pageContext.request.contextPath}/user/loginPage">Login</a></li>

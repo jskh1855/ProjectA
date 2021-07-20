@@ -166,5 +166,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set state='2'
 		where product_no = #{value}
 	</update>
+	
+	<select id="recentThree"  resultType="postVO">
+		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image
+		from (select row_number() over(ORDER BY product_up_time DESC) as rnum, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
+		from post )
+		where rnum between '1' and '3'
+	</select>
 </mapper>
 

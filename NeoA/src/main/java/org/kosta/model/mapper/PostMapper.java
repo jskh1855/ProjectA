@@ -51,4 +51,7 @@ public interface PostMapper {
 	List<BidLogVO> recentBids(String productNo);
 
 	void updateState(String productNo);
+	
+	List<PostVO> recentThree();
+	
 }
