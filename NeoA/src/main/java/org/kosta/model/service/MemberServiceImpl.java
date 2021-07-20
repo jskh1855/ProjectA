@@ -152,8 +152,10 @@ public class MemberServiceImpl implements MemberService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("id", memberId);
 		map.put("startRowNumber", startRowNumber);
-		map.put("endRowNumber", endRowNumber);
+		map.put("endRowNumber", endRowNumber+1);
+		System.out.println(memberId +" "+ startRowNumber +" "+ endRowNumber);
 		List<PostVO> postlist = memberMapper.getMySellSuccessList(map);
+		System.out.println(postlist);
 		for (int i = 0; i < postlist.size(); i++) {
 			String productNo = postlist.get(i).getProductNo();
 			List<BidLogVO> bidList = memberMapper.getBidHighestByProductNo(productNo);

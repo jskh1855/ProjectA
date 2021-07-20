@@ -342,3 +342,11 @@ where member_id='kobos')
 		select member_id
 		from bid_log
 		where product_no='41' and bid_price=(select max(bid_price) as bid_price from bid_log where product_no='41')
+		
+		
+		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image, state
+		from (select row_number() over(ORDER BY product_no DESC) as rnum, state, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, 
+		bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
+		from post 
+		where member_id='kobos')
+		where rnum between '1' and '1' and state ='2'

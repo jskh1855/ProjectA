@@ -103,7 +103,7 @@
 												<c:out value="${item.title}" />
 											</a>
 										</h3>
-										<span>상품명 <c:out value="${item.productName}" /></span> <span>현재가 <c:out value="${item.nowPrice}" /></span> <span>입찰자수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
+										<span>상품명 <c:out value="${item.productName}" /></span> <span>현재가 <c:out value="${item.nowPrice}" /></span> <span>입찰 횟수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
 										</span> <span id="${item.productNo}"> 남은시간 </span>
 										<c:choose>
 											<c:when test="${item.state eq 2}">

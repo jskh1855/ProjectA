@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kosta.model.mapper.PostMapper">
+
+	<resultMap type="postVO" id="detailPostRM">
+		<result column="name" property="memberVO.name" />
+		<result column="member_id" property="memberVO.memberId" />
+		<result column="pick_member" property="pickVO.memberId" />
+	</resultMap>
+	
+	<select id="showAll" resultMap="detailPostRM" parameterType="hashmap">
+		select p.product_no, p.title, p.product_name, p.start_price, p.now_price, 
+			p.post_image, p.bid_end_time, p.pick_member, m.member_id, m.name
+		from(
+			select row_number() over(order by ${pagingBean.sortBy}) as rnum, product_no, title, 
+					product_name, start_price, now_price, bid_end_time, post_image, member_id, pick_member
+			from(
+				select po.product_no, po.title, po.product_up_time, po.product_name, po.category, po.start_price, 
+						po.now_price, po.bid_end_time, po.post_image, po.member_id, pi.member_id as pick_member
+				from post po, pick pi
+				where po.product_no = pi.product_no(+) and pi.member_id(+) = '${memberVO.memberId}'
+			) subpost
+			where category like '${pagingBean.category}%' and title like '%%'
+		) p, a_member m
+		where p.member_id=m.member_id and rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}
+	</select>
+
+	<select id="showAllCount" resultType="integer"
+		parameterType="pagingBeanMain">
+		select count(*) from post where category like
+		'${category}%'
+	</select>
+
+	<!-- <selectKey keyProperty="productNo" resultType="string" order="BEFORE"> -->
+	<!-- select MAX(product_no)+1 from post -->
+	<!-- </selectKey> -->
+	<insert id="registerProduct" parameterType="postVO">
+
+		insert into
+		post(product_no,title,product_name,start_price,now_price,bid_time_unit,bid_end_time,unit_price,give_me_that_price,detail,post_image,category,member_id)
+		values(product_no_seq.nextval,#{title},
+		#{productName},#{startPrice},#{nowPrice},#{bidTimeUnit},sysdate+#{bidTimeUnit},#{unitPrice},#{giveMeThatPrice},#{detail},#{postImage},#{category},#{memberVO.memberId})
+		<selectKey keyProperty="productNo" resultType="string"
+			order="AFTER">
+			select product_no_seq.currval from dual
+		</selectKey>
+	</insert>
+
+
+	<!-- <insert id="registerProduct" parameterType="postVO"> -->
+	<!-- insert into post(product_no,title,product_name,start_price,now_price,bid_time_unit,bid_end_time,unit_price,give_me_that_price,detail,post_image,category,member_id) -->
+	<!-- values(product_no_seq.nextval,#{title}, #{productName},#{startPrice},#{nowPrice},#{bidTimeUnit},sysdate+#{bidTimeUnit},#{unitPrice},#{giveMeThatPrice},#{detail},#{postImage},#{category},#{memberVO.memberId}) -->
+	<!-- </insert> -->
+
+	<select id="getproductDetails" parameterType="string"
+		resultType="postVO">
+		select product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit,
+		to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price,	give_me_that_price, detail, post_image, category, state
+		from post
+		where product_no = #{value}
+	</select>
+
+	<select id="selectPick" parameterType="hashmap"
+		resultType="string">
+		select count(*) from pick where product_no = #{productNo} and member_id =
+		#{memberId}
+	</select>
+
+	<insert id="insertPickByPostNoAndMId" parameterType="hashmap">
+		insert into
+		pick values(pick_no_seq.nextval, sysdate, #{memberId}, #{productNo})
+	</insert>
+
+	<delete id="deletePickByPostNoAndMId" parameterType="hashmap">
+		delete pick
+		where product_no = #{productNo} and member_id = #{memberId}
+	</delete>
+
+	<select id="pickList" resultType="PickVO">
+		select
+		row_number() over(order by c.pick_no desc) as num,
+		c.pick_no, c.member_id, c.pick_time,
+		p.product_name, p.now_price, p.post_image, p.product_no
+		from pick c
+		inner join post p
+		on c.product_no = p.product_no
+		where c.member_id = #{memberId}
+	</select>
+	<!-- <select id="searchByTitle" resultMap="detailPostRM" parameterType="hashMap"> 
+		select p.product_no, p.title, p.product_name, p.now_price, p.post_image, 
+		p.member_id, m.name, p.bid_end_time from( select row_number() over(order 
+		by product_no desc) as rnum,product_no,title,product_name,now_price,bid_end_time,post_image,member_id 
+		from post ) p, a_member m where p.member_id=m.member_id and p.title like 
+		'%'||#{title}||'%' and rnum between #{pg.startRowNumber} and #{pg.endRowNumber} 
+		</select> -->
+
+	<!-- <select id="searchByTitle" parameterType="hashmap" resultType="hashmap"> 
+		</select> -->
+	<select id="searchByTitle" parameterType="string"
+		resultMap="detailPostRM">
+		select *
+		from post p, a_member m
+		where title like
+		'%'||#{value}||'%' and p.member_id=m.member_id
+	</select>
+
+	<select id="randPost" resultType="postVO">
+		select * from
+		(select * from post order by dbms_random.value)
+		where rownum =1
+	</select>
+
+	<insert id="registerQuestion" parameterType="map">
+		insert into
+		qna(qna_no, qna_time, qna_type, qna_content, member_id, product_no)
+		values(qna_no_seq.nextval, sysdate, '0', #{qnaContent}, #{memberId},
+		#{productNo})
+	</insert>
+
+	<insert id="registerAnswer" parameterType="map">
+		insert into
+		qna(qna_no, qna_time, qna_type, qna_content, member_id, product_no)
+		values(#{qnaNo}, sysdate, '1', #{qnaContent}, #{memberId},
+		#{productNo})
+	</insert>
+
+	<select id="getQnAList" resultType="QnAVO">
+		select LPAD(qna_no,4,'0') as
+		qna_no, to_char(qna_time,'YYYY-MM-DD HH24:MI:SS') as qna_time,
+		qna_type, qna_content, member_id
+		from qna
+		where product_no=#{value}
+		order by qna_no
+	</select>
+
+
+	<update id="bid" parameterType="string">
+		update post set now_price =
+		now_price + unit_price
+		where product_no =#{value}
+	</update>
+
+	<insert id="insertLog" parameterType="bidLogVO">
+		insert into bid_log
+		values(bid_no_seq.nextval,sysdate,#{bidPrice},#{memberId},#{productNo})
+	</insert>
+
+	<select id="showHome" resultType="postVO">
+		select * from post
+		order by product_no desc	
+	</select>
+	
+	<select id="recentBids" parameterType="string" resultType="bidLogVO">
+
+		select * from (select * from bid_log order by bid_no desc)
+		WHERE 
+		<![CDATA[
+		product_no=#{value} and ROWNUM <= 3
+		]]>	
+	</select>
+	
+	<update id="updateState">
+		update post
+		set state='2'
+		where product_no = #{value}
+	</update>
+	
+<<<<<<< HEAD
+	<insert id="insertBidComplete" parameterType="map">
+		insert into bidComplete
+		values(bidComplete_no_seq.nextval, #{productNo}, #{memberId})
+	</insert>
+=======
+	<select id="recentThree"  resultType="postVO">
+		select product_no, title, product_name, start_price, now_price, product_up_time, bid_time_unit, bid_end_time, unit_price, give_me_that_price, post_image
+		from (select row_number() over(ORDER BY product_up_time DESC) as rnum, product_no, title, product_name, start_price, now_price, to_char(product_up_time, 'YYYY-MM-DD HH24:MI:SS') as product_up_time, bid_time_unit, to_char(bid_end_time, 'YYYY-MM-DD HH24:MI:SS') as bid_end_time, unit_price, give_me_that_price, post_image
+		from post )
+		where rnum between '1' and '3'
+		</select>
+	<select id="findPopular" resultType="string">
+
+		SELECT product_no, count(product_no) as count from (SELECT post.product_no,now_price,product_up_time, bid_end_time, post_image FROM POST
+		
+		FULL OUTER JOIN bid_log
+		
+		on post.product_no = bid_log.product_no)
+		
+		GROUP BY product_no
+		order by count DESC
+	</select>
+	
+>>>>>>> adc50e418bb1b25746fa292013c2af4e2a55baf3
+</mapper>
+

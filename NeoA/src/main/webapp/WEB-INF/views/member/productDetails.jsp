@@ -42,20 +42,20 @@ $(document).ready(function() {
 })//ready
 
 function complete(){
-	var one = document.getElementById("recentOne");
-	var two = document.getElementById("recentTwo");
-	var three = document.getElementById("recentThree");
+ 	//var one = document.getElementById("recent0");
+	//var two = document.getElementById("recent1");
+	//var three = document.getElementById("recent2");
 	//alert(one.innerHTML);
-	if(one.innerHTML=="님원"&&two.innerHTML=="님원"&&three.innerHTML=="님원"){
+	//alert(document.getElementById("recent2"));
+	//if(typeof(one)=="undefined"&&typeof(two)=="undefined"&&typeof(three)=="undefined"){
+	if(document.getElementById("recent0")==null&&document.getElementById("recent1")==null&&document.getElementById("recent2")==null){
 		alert("입찰자가 없습니다.");
 		return false;
-	}
+	} 
 	if(confirm("낙찰 진행 하시겠습니까?")){
 		//alert("진행");
 		document.getElementById("complteBid").submit();
 	}
-
-
 }
 
 <%--답변하기, 답변하기 form 을 동적 생성했더니 $(document).ready(function() 에선 작동 안함--%>	

@@ -102,9 +102,9 @@
 											</a>
 										</h3>
 										<span>시작가 <c:out value="${item.startPrice}" /></span> 
-										<span>현재가 <c:out value="${item.nowPrice}" /></span> 
-										<span>총 입찰 수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
-										</span> 
+										<span>구매가 <c:out value="${item.nowPrice}" /></span> 
+										<%-- <span>총 입찰 수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
+										</span>  --%>
 										<div style="background-color: #ed6f63;">
 											<span style="color: white">판매자 이름 : ${item.memberVO.name } </span>
 											<span style="color: white">판매자 은행명 : ${item.memberVO.bankName }</span>

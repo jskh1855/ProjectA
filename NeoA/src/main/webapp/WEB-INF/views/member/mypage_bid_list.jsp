@@ -103,16 +103,18 @@
 											</a>
 										</h3>
 										<span>상품명 <c:out value="${item.productName}" /></span> <span>현재가 <c:out value="${item.nowPrice}" /></span>
+										<span>입찰 횟수 <c:out value="${fn:length(item.bidLogVOList) }" /> 명
+										</span>
 										<c:set var="last" value="${fn:length(item.bidLogVOList )-1}" />
 										<sec:authentication var="currMemberId" property='principal.memberId' />
 										<%-- ${last }
 										${item.bidLogVOList[last].memberId }--%>
 										<c:choose>
 											<c:when test="${item.bidLogVOList[last].memberId ==currMemberId}">
-												최상위 입찰 중
+												<span style="color:blue">최상위 입찰 중</span>
 											</c:when>
 											<c:otherwise>
-												최상위 입찰자 아님
+												<span style="color:red">최상위 입찰자 아님</span>
 											</c:otherwise>
 										</c:choose>
 										<span id="${item.productNo}"> 남은시간 </span>
