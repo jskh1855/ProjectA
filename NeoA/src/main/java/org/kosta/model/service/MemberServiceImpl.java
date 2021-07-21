@@ -161,6 +161,7 @@ public class MemberServiceImpl implements MemberService {
 			List<BidLogVO> bidList = memberMapper.getBidHighestByProductNo(productNo);
 			postlist.get(i).setBidLogVOList(bidList);
 		}
+		
 		return postlist;
 	}
 

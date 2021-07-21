@@ -145,12 +145,12 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6">
                                 <div class="single-gallery mb-30">
-                                    <div class="gallery-img small-img" style="background-image: url(${pageContext.request.contextPath}/myweb/assets/img/gallery/gallery3.png);"></div>
+                                    <div class="gallery-img small-img" style="background-image: url(${pageContext.request.contextPath}/myweb/assets/1.jpg);"></div>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12  col-md-6 col-sm-6">
                                 <div class="single-gallery mb-30">
-                                    <div class="gallery-img small-img" style="background-image: url(${pageContext.request.contextPath}/myweb/assets/img/gallery/gallery4.png);"></div>
+                                    <div class="gallery-img small-img" style="background-image: url(${pageContext.request.contextPath}/myweb/assets/2.jpg);"></div>
                                 </div>
                             </div>
                         </div>

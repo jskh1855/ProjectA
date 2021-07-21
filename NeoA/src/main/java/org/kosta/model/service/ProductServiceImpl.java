@@ -25,13 +25,13 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<PostVO> showAll(HashMap<String, Object> map){
 		System.out.println("show All service");
-		List<PostVO> postList = postMapper.showAll(map);
-		for (int i = 0; i < postList.size(); i++) {
-			String productNo = postList.get(i).getProductNo();
-			List<BidLogVO> pickList = memberMapper.getBidCountByProductNo(productNo);
-			postList.get(i).setBidLogVOList(pickList);
-		}
-		return postList;
+		/*
+		 * List<PostVO> postList = postMapper.showAll(map); for (int i = 0; i <
+		 * postList.size(); i++) { String productNo = postList.get(i).getProductNo();
+		 * List<BidLogVO> pickList = memberMapper.getBidCountByProductNo(productNo);
+		 * postList.get(i).setBidLogVOList(pickList); }
+		 */
+		return postMapper.showAll(map);
 	}
 	
 	@Override

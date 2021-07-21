@@ -109,7 +109,7 @@ function showQnAList(qna){
 						+'<div class="desc"><p class="comment">'+qna[i].qnaContent+'</p>'
 							+'<div class="d-flex justify-content-between">'
 								+'<div class="d-flex align-items-center">'
-									+'<h5><a href="#">'+qna[i].memberId+'</a></h5>'
+									+'<h5><a href="#" style="color: black;">'+qna[i].memberId+'</a></h5>'
 									+'<p class="date">'+qna[i].qnaTime+'</p></div>'
 								+'<div class="reply-btn">'
 								+'<a href="javascript:void(0);" onclick="replyForm(\''+qna[i].qnaNo+'\', \''+qna[i].qnaType+'\')" id="'+replyId+'" class="btn-reply text-uppercase">reply</a>'
@@ -124,7 +124,7 @@ function showQnAList(qna){
 							+'<div class="desc"><p class="comment">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+qna[i].qnaContent+'</p>'
 								+'<div class="d-flex justify-content-between">'
 										+'<div class="d-flex align-items-center">'
-										+'<h5><a href="#">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+qna[i].memberId+'</a></h5>'
+										+'<h5><a href="#" style="color: black;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+qna[i].memberId+'</a></h5>'
 										+'<p class="date">'+qna[i].qnaTime+'</p></div>'
 									+'<div class="reply-btn">'
 									+'<a href="javascript:void(0);" onclick="replyForm(\''+qna[i].qnaNo+'\', \''+qna[i].qnaType+'\')" id="'+replyId+'" class="btn-reply text-uppercase">reply</a>'
@@ -217,7 +217,7 @@ function startBid(id,unit,nego) {
 						$("#negoCheck").html(result.nowPrice +"원 이상으로 입력하세요.").css("background","red");
 						//checkResultId="";
 					}else{						
-						//$("#negoCheck").html("사용가능!").css("background","yellow");		
+						$("#negoCheck").html("");		
 						//checkResultId=id; 
 					}			 	
 				}//callback			
@@ -445,15 +445,15 @@ $(document).on("click", "#pick-switch-range", function() {
 												<!-- 기간지남  -->			
 												<c:choose>
 													<c:when test="${productDetails.nowPrice == productDetails.startPrice}">
-														0
+														0원
 													</c:when>
 													<c:otherwise>
-														${productDetails.nowPrice}
+														${productDetails.nowPrice}원
 													</c:otherwise>
 												</c:choose>
 										</c:when>
 										<c:otherwise>
-												${productDetails.nowPrice }
+												${productDetails.nowPrice }원
 										</c:otherwise>
 									</c:choose>
 								
@@ -530,19 +530,16 @@ $(document).on("click", "#pick-switch-range", function() {
 				                	<c:when test="${check eq 0}">
 				                		<div class="media post_item">
 											<div class="media-body">
-																					<a href="single-blog.html">
-												<h3 id="recent${status.index }"></h3>
-																					</a>
-												<p id="time${status.index }"></p>
+
+												<h3 id="recent${status.index }">&nbsp</h3>
+												<p id="time${status.index }">&nbsp</p>
 											</div>
 										</div>
 									</c:when>
 									<c:otherwise>
 				                		<div class="media post_item">
 											<div class="media-body">
-																					<a href="single-blog.html">
 												<h3 id="recent${status.index }">${recentThree[status.index].memberId}님  ${recentThree[status.index].bidPrice}원</h3>
-																					</a>
 												<p id="time${status.index }">${recentThree[status.index].bidTime}</p>
 											</div>
 										</div>

@@ -280,7 +280,7 @@
 	                                        <h3><a href="${pageContext.request.contextPath}/user/productDetails?productNo=${list.productNo}">${list.title}</a></h3>
 	                                        <span>시작가 ${list.startPrice} 원</span>
 	                                        <span>현재가 ${list.nowPrice} 원</span>
-	                                        <span>입찰자수 <c:out value="${fn:length(list.bidLogVOList) }" /> 명</span>
+	                                        <%-- <span>입찰자수 <c:out value="${fn:length(list.bidLogVOList) }" /> 명</span> --%>
 	                                        
 		                                    <span id="${list.productNo}">남은시간</span>
 		                                    
