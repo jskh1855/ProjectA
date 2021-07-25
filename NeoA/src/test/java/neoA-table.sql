@@ -54,37 +54,37 @@ create sequence product_no_seq;
 
 
 create table qna (
-	qna_no varchar2(100) not null,    
+	qna_no char(100) not null,    
 	qna_time date not null,
  	qna_type int not null,
  	qna_content clob not null,
- 	member_id varchar2(100) constraint fk_member_id references a_member(member_id),
- 	product_no varchar2(100) constraint fk_product_no references post(product_no),
+ 	member_id char(100) constraint fk_member_id references a_member(member_id),
+ 	product_no char(100) constraint fk_product_no references post(product_no),
 	constraint pk_qna primary key (qna_no, qna_type)
 );
 create sequence qna_no_seq;
 
 create table bid_log(
-	bid_no varchar2(100) primary key,
+	bid_no char(100) primary key,
 	bid_time date,
-	bid_price varchar2(100) not null,
-	member_id varchar2(100) constraint fk_bid_id references a_member(member_id),
-	product_no varchar2(100) constraint fk_bid_no references post(product_no)
+	bid_price char(100) not null,
+	member_id char(100) constraint fk_bid_id references a_member(member_id),
+	product_no char(100) constraint fk_bid_no references post(product_no)
 );
 create sequence bid_no_seq;
 
 create table pick(
-	pick_no varchar2(20) primary key,
+	pick_no char(20) primary key,
 	pick_time date,
-	member_id varchar2(100) constraint fk_pick_id references a_member(member_id),
-	product_no varchar2(100) constraint fk_pick_no references post(product_no)
+	member_id char(100) constraint fk_pick_id references a_member(member_id),
+	product_no char(100) constraint fk_pick_no references post(product_no)
 );
 create sequence pick_no_seq;
 
 create table bidComplete(
-	bidComplete_no varchar2(100) primary key,
-	product_no varchar2(100) not null,
-	member_id varchar2(100) not null
+	bidComplete_no char(100) primary key,
+	product_no char(100) not null,
+	member_id char(100) not null
 );
 create sequence bidComplete_no_seq;
 -- **************************************
