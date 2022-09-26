@@ -126,34 +126,10 @@ public class ProductController {
 	public String upload(HttpServletRequest request, @RequestParam("filename") MultipartFile[] mFiles, PostVO pvo) {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String path = request.getSession().getServletContext().getRealPath("");
-//		System.out.println(memberVO.getMemberId());
-//		File Folder = new File(path + "..\\resources\\static\\myweb\\images\\"+memberVO.getMemberId());
-//		if (!Folder.exists()) {
-//			try{
-//			    Folder.mkdir(); //폴더 생성합니다.
-//			    System.out.println("폴더가 생성되었습니다.");
-//		        } 
-//		        catch(Exception e){
-//			    e.getStackTrace();
-//			}
-//		}
 		StringBuilder images = new StringBuilder();
 		try {
-			//String path2 = "..\\resources\\static\\myweb\\images\\"+memberVO.getMemberId()+"\\";
 			images.append(mFiles[0].getOriginalFilename());
-				
-			//kbs//for (int i = 0; i < mFiles.length; i++) {
-				//mFiles[i].transferTo(new File(path + path2 + mFiles[i].getOriginalFilename()));
-			//kbs//	images.append(mFiles[i].getOriginalFilename());
-			//kbs//	images.append(";");
-			//kbs//}
-			System.out.println(images);
-			// img1.jpg;img2.jpg;img3.jpg;
-			
-			// mFile.transferTo(new
-			// File("c:/Users/short/kosta/ProjectA/NeoA/src/main/resources/static/myweb/images/"+mFile.getOriginalFilename()));
 		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -236,50 +212,10 @@ public class ProductController {
 				checkList.add("0");
 			}
 		}
-		System.out.println("BB");
 		model.addAttribute("recentThree", bList);
-		System.out.println(bList);
 		model.addAttribute("listCheck",checkList);
-		System.out.println(checkList);
 		return "member/productDetails.tiles";
 	}
-
-//	@PostMapping("productRegister")
-//	public String productRegister(PostVO pvo, MultipartFile file, HttpServletRequest request) throws IOException, Exception {
-//		String uploadPath = request.getSession().getServletContext().getRealPath("/");
-//		System.out.println(uploadPath);
-//		/*
-//		 * String Path = "..\\resources\\static\\myweb\\images\\";
-//		 */		
-//		String imgUploadPath = uploadPath + File.separator + "imgUpload"; //이미지 업로드 폴더를 설정 = /uploadPath/imgUpload
-//		 String ymdPath = UpLoadFileUtils.calcPath(imgUploadPath); // 위의 폴더를 기준으로 연월일 폴더를 생성	
-//		 
-//		 String fileName = null;  // 기본 경로와 별개로 작성되는 경로 + 파일이름
-//		 System.out.println("imgUploadPath:"+imgUploadPath);
-//		 if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
-//			 System.out.println("파일업로드시작!!");
-//			  // 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)  
-//              fileName=UpLoadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-//              System.out.println("업로드할파일명"+fileName);
-//			  // postImage에 원본 파일 경로 + 파일명 저장
-//			  pvo.setPostImage(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-//			  System.out.println(pvo);			  		  
-//				/*
-//				 * pvo.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator +
-//				 * "s" + File.separator + "s_" + fileName);
-//				 */			 } else {  // 첨부된 파일이 없으면
-//			  fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
-//			  // 미리 준비된 none.png파일을 대신 출력함
-//			  System.out.println("업로드파일:"+fileName);
-//			  pvo.setPostImage(fileName);
-//				/*
-//				 * pvo.setGdsThumbImg(fileName);
-//				 */			 }
-//		 
-//		productService.registerProduct(pvo);
-//		return "redirect:member/registerproduct-result";
-//		
-//	}
 
 	@RequestMapping("member/registerproduct-result")
 	public String registerfin() {
@@ -303,7 +239,6 @@ public class ProductController {
 	@ResponseBody
 	@PostMapping("/registerQuestion")
 	public List<QnAVO> registerQuestion(String qnaContent, String productNo) {
-		//System.out.println("test = " + qnaContent + " " + productNo);
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
 		productService.registerQuestion(qnaContent, memberId, productNo);
@@ -316,7 +251,6 @@ public class ProductController {
 	public List<QnAVO> registerAnswer(String qnaNo, String qnaContent, String productNo) {
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
-		//System.out.println("test="+qnaNo+" "+ qnaContent+ " "+ memberId+ " "+ productNo);
 		productService.registerAnswer(qnaNo, qnaContent, memberId, productNo);
 		List<QnAVO> list = productService.getQnAList(productNo);
 		return list;
@@ -325,16 +259,12 @@ public class ProductController {
 	@ResponseBody
 	@RequestMapping("/user/getQnAList")
 	public List<QnAVO> getQnAList(String productNo) {
-		//System.out.println("testsssssssssss");
 		List<QnAVO> list = productService.getQnAList(productNo);
-		//System.out.println(list);
 		return list;
 	}
 	
 	@PostMapping("/complteBid")
 	public String completeBid(String productNo) {
-		//System.out.println("completebid");
-		//System.out.println(productNo);
 		productService.updateState(productNo);
 		String memberId = productService.getHighestBidMemberIdByProductNo(productNo);
 		productService.insertBidComplete(productNo, memberId);
@@ -352,7 +282,6 @@ public class ProductController {
 		String productNo = request.getParameter("data");
 		String memberId = memberVO.getMemberId();
 		
-		//service -> postmapper
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("productNo", productNo);
 		map.put("memberId", memberId);
@@ -391,7 +320,6 @@ public class ProductController {
     	BidLogVO bvo = new BidLogVO(Integer.parseInt(bidPrice),memberId,id);
     	productService.insertLog(bvo);
     	List<BidLogVO> bidList = productService.recentBids(id);
-    	//model.addAttribute("recentThree", bidList);
     	System.out.println("BB");
     	List<String> list = new ArrayList<String>();
     	for (int i=0;i<bidList.size();i++) {
@@ -399,25 +327,9 @@ public class ProductController {
     		list.add(bidList.get(i).getBidTime());
     	}
     	System.out.println(list);
-        //model.addAttribute("msg",dto.getResult()+"/ this is the value sent by the server ");
-    	//model.addAttribute("productDetails", productService.getproductDetails("11"));
         return list;
     }
     
-	/*
-	 * @RequestMapping("user/recentThree") public String recentThree(ModelAndView
-	 * mv) { PostVO vo = postMapper.recentThree(); mv.addObject("id",
-	 * vo.getMemberVO().getMemberId()); mv.addObject("title", vo.getTitle());
-	 * mv.addObject("name", vo.getProductName()); mv.addObject("nowPrice",
-	 * vo.getNowPrice()); mv.addObject("endtime", vo.getBidEndTime());
-	 * mv.addObject("starttime", vo.getProductUpTime()); mv.addObject("pick",
-	 * vo.getPickVO()); mv.addObject("postimage", vo.getPostImage());
-	 * 
-	 * mv.setViewName("home.tiles");
-	 * 
-	 * 
-	 * return "mv"; }
-	 */
    
     
 }
