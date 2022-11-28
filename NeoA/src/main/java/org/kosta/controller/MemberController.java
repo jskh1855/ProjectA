@@ -2,10 +2,8 @@ package org.kosta.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
 import org.kosta.model.service.MemberService;
 import org.kosta.model.service.ProductService;
 import org.kosta.model.vo.MemberVO;
@@ -52,9 +50,6 @@ public class MemberController {
 		mv.addObject("address", vo.getAddress());
 		mv.addObject("phone", vo.getPhoneNo());
 		mv.setViewName("member/register_result.tiles");
-		/*
-		 * model.addAttribute("memberVO", vo); return "member/register_result.tiles";
-		 */
 		return mv;
 	}
 
@@ -63,9 +58,6 @@ public class MemberController {
 	public String idcheckAjax(String id) {
 		return memberService.idcheck(id);
 	}
-
-	// ***************************register
-	// end****************************************
 
 	// ***************************update****************************************
 
@@ -98,8 +90,6 @@ public class MemberController {
 		return "member/loginPage.tiles";
 	}
 
-	// ***************************update end****************************************
-
 	// ***************************mypage********************************************
 	@RequestMapping("/mypage")
 	public String mypage(Model model, @RequestParam("pageNo") @Nullable String pageNo) {
@@ -131,12 +121,10 @@ public class MemberController {
 		} else {
 			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
 		}
-		// System.out.println(pagingBean);
+		
 		model.addAttribute("pagingBean", pagingBean);
 		List<PostVO> list = memberService.getBidProductListById(id, pagingBean);
-		// System.out.println(list);
 		model.addAttribute("list", list);
-		// System.out.println(list.size());
 		return "member/mypage_bid_list.tiles";
 	}
 
@@ -168,7 +156,6 @@ public class MemberController {
 
 	@PostMapping("/updateMemberInfo")
 	public String updateMemberInfo(MemberVO memberVO) {
-		// System.out.println(memberVO);
 
 		if (memberVO.getPassword() == "") {
 			System.out.println("updateMemberWithoutPasswrod");
