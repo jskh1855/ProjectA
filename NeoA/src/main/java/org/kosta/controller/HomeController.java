@@ -27,19 +27,18 @@ public class HomeController {
 	
 	@RequestMapping(value = {"/home","/"})
 	public String home(Model model){
-		//Spring Security 권한 출력 
-		System.out.println("home "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());		
+	
 		model.addAttribute("recentThree", postMapper.recentThree());
-	    System.out.println("postMapper.recentThree()"+postMapper.recentThree());
-		System.out.println("home "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
 		List<String> list = productService.findPopular();
 		List<PostVO> pList = new ArrayList<PostVO> ();
-		//model.addAttribute("memberVO", productService.findPopular());
+
 		for (int i=0;i<list.size();i++) {
 			pList.add(productService.getproductDetails(list.get(i)));
 		}
+		
 		model.addAttribute("pList", pList);
-		System.out.println(pList);
+		
 		return "home.tiles";
 	}
 	
@@ -47,9 +46,7 @@ public class HomeController {
 	public String shop() {
 		return "member/shop.tiles";
 	}
-	
-	
-	
+		
 	/*
 	 * @RequestMapping("productDetails") public String productDetails() { return
 	 * "member/productDetails.tiles"; }
