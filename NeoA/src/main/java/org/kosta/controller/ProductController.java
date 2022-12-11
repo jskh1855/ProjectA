@@ -38,13 +38,10 @@ public class ProductController {
 	@Resource
 	private ProductService productService;
 
-	// private PagingBeanMain pagingBean=new PagingBeanMain();
-
 	@RequestMapping("/user/showAll")
 	public String showAll(Model model, @RequestParam("pageNo") @Nullable String pageNo,
 			@RequestParam("category") @Nullable String category, @RequestParam("sortBy") @Nullable String sortBy,
 			@RequestParam("perPage") @Nullable String perPage) {
-
 		
 		//mapper로 보낼 객체
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -58,10 +55,6 @@ public class ProductController {
 			System.out.println("회원!");
 			memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		}
-	
-		
-		//회원일땐 아이디 출력, 비회원일땐 null
-		System.out.println("id:"+memberVO.getMemberId());
 		
 		PagingBeanMain pagingBean = new PagingBeanMain();
 
@@ -73,7 +66,6 @@ public class ProductController {
 			pagingBean.setCategory(category);
 			
 			String[] ca=category.split("a");
-			System.out.println(ca.length);
 			for(int i=0; i<ca.length; i++) {
 				System.out.println(ca[i]);
 				if(i==0) {
@@ -83,9 +75,6 @@ public class ProductController {
 				}
 			}
 		}
-		
-		
-		System.out.println("테스트 : 1:"+pagingBean.getCa1()+" 2:"+pagingBean.getCa2());
 		
 		// 정렬
 		if (sortBy != null) {
@@ -106,12 +95,8 @@ public class ProductController {
 		
 		map.put("memberVO", memberVO);
 		map.put("pagingBean", pagingBean);
-		
-		
-		System.out.println("1 test  " + pagingBean.getStartRowNumber());
 
 		model.addAttribute("postVOList", productService.showAll(map));
-		System.out.println("show all !!!");
 		model.addAttribute("pagingBean", pagingBean);
 		return "member/showAll.tiles";
 	}
@@ -131,12 +116,7 @@ public class ProductController {
 			images.append(mFiles[0].getOriginalFilename());
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
-		}
-
-		System.out.println(pvo);
-		/*
-		 * System.out.println(pvo.getDetail());
-		 */		
+		}		
 
 		pvo.setPostImage(images.toString());
 		String category1 = request.getParameter("top");
@@ -152,10 +132,8 @@ public class ProductController {
 		    System.out.println("폴더가 생성되었습니다.");
 			String path2 = "..\\resources\\static\\myweb\\images\\"+pvo.getProductNo()+"\\";
 
-
 			for (int i = 0; i < mFiles.length; i++) {
 				mFiles[i].transferTo(new File(path + path2 + mFiles[i].getOriginalFilename()));
-
 			}
 		    
         } 
@@ -200,7 +178,6 @@ public class ProductController {
 		model.addAttribute("productDetails", productService.getproductDetails(productNo));
 		List<BidLogVO> bList = productService.recentBids(productNo);
 		ArrayList<String> checkList = new ArrayList<String>();
-		System.out.println("AA");
 		int size = bList.size();
 		for (int j=0;j<size;j++) {
 			checkList.add("1");
@@ -224,7 +201,6 @@ public class ProductController {
 
 	@RequestMapping("/user/randPost")
 	public String randPost(Model model, HttpServletRequest request) {
-		System.out.println("random!");
 		PostVO pvo = postMapper.randPost();
 		String path = request.getSession().getServletContext().getRealPath("");
 		String path2 = "..\\resources\\static\\myweb\\images\\";
@@ -275,7 +251,6 @@ public class ProductController {
 	@PostMapping("/updatePick")
 	@ResponseBody
 	public Map<String,String> updatePick(HttpServletRequest request) {
-		System.out.println("실행완료");
 		
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
@@ -296,17 +271,14 @@ public class ProductController {
 	@ResponseBody
 	public Map<String, String> nowPriceCheck(HttpServletRequest request) {
 		String productNo = request.getParameter("data");
-		System.out.println("오나?");
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("nowPrice", productService.nowPriceCheck(productNo));
 		return param;
 	}
-	
-	
+		
     @RequestMapping(value = "/bid",method = RequestMethod.POST)
     @ResponseBody
     public List<String> dataSend(HttpServletRequest request){
-    	System.out.println("AA");
 		MemberVO memberVO = (MemberVO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String memberId = memberVO.getMemberId();
 		String id = request.getParameter("id");
@@ -320,16 +292,11 @@ public class ProductController {
     	BidLogVO bvo = new BidLogVO(Integer.parseInt(bidPrice),memberId,id);
     	productService.insertLog(bvo);
     	List<BidLogVO> bidList = productService.recentBids(id);
-    	System.out.println("BB");
     	List<String> list = new ArrayList<String>();
     	for (int i=0;i<bidList.size();i++) {
     		list.add(bidList.get(i).getMemberId()+"님  " +Integer.toString(bidList.get(i).getBidPrice()) + "원" );
     		list.add(bidList.get(i).getBidTime());
     	}
-    	System.out.println(list);
         return list;
-    }
-    
-   
-    
+    }    
 }
