@@ -17,24 +17,16 @@ public class UpLoadFileUtils {
 	//파일 업로드
 	public static String fileUpload(String uploadPath, String fileName, byte[] fileData)
 			throws Exception {
-		System.out.println("uploadpath : "+uploadPath);
-		System.out.println("filename : "+fileName);
-		System.out.println("fileData : "+fileData);
+		
 		UUID uid = UUID.randomUUID();
+		
 		//저장할 파일명 = UUID + 원본이름
 		String newFileName = uid + "_" + fileName;
 		String imgPath = calcPath(uploadPath);
+		
 		// 파일 경로 가져와서 (기존 업로드 경로 + 날짜별 경로) 파일명 받아 파일 객체 생성
 		File target = new File(uploadPath + imgPath, newFileName);
 		FileCopyUtils.copy(fileData, target);
-
-		// 파일명이 aaa.bbb.ccc.jpg인 경우 마지막 마침표를 찾기 위해
-		/*
-		 * String formatName = fileName.substring(fileName.lastIndexOf(".")+1); String
-		 * uploadedFileName = null;
-		 */
-		
-	
 		String thumbFileName = "s_" + newFileName;
 		File image = new File(imgPath + File.separator + newFileName);
 		
